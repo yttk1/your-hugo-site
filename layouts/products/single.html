@@ -69,6 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!btn) return;
 
   btn.addEventListener("click", (e) => {
+    const user = localStorage.getItem("user");
+
+    // 🚫 Stop if user not logged in
+    if (!user) {
+      alert("Please log in before adding items to cart.");
+      window.location.href = "/login/"; // optional redirect
+      return;
+    }
+
+    // ✅ Otherwise, proceed with add-to-cart
     const item = {
       id: e.target.dataset.id,
       title: e.target.dataset.title,
@@ -77,8 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       qty: 1
     };
 
-    const user = localStorage.getItem("user");
-    const key = user ? `cart_${user}` : "cart";
+    const key = `cart_${user}`;
     let cart = JSON.parse(localStorage.getItem(key)) || [];
 
     const existing = cart.find(p => p.id === item.id);
