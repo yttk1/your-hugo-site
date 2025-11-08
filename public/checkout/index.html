@@ -2,6 +2,7 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <title>Checkout | College Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -75,62 +76,7 @@
     <a href="/cart/" class="cart-icon" id="cart-link">🛒 <span id="cart-count">0</span></a>
   </div>
 
-  <script>
-  function updateHeader() {
-    const loginLink = document.getElementById('login-link');
-    const userDisplay = document.getElementById('user-display');
-    const cartLink = document.getElementById('cart-link');
-    const user = localStorage.getItem('user');
 
-    if (user) {
-      
-      userDisplay.textContent = user;
-      userDisplay.style.display = "inline-block";
-
-      loginLink.textContent = "Logout";
-      loginLink.href = "#";
-      loginLink.onclick = () => {
-        
-        localStorage.removeItem('cart');           
-        
-        
-
-        
-        localStorage.removeItem('user');
-
-        alert("Logged out!");
-        window.location.reload(); 
-      };
-
-      cartLink.style.display = "inline-flex";
-    } else {
-      
-      userDisplay.style.display = "none";
-      cartLink.style.display = "none";
-
-      loginLink.textContent = "Login";
-      loginLink.href = "/login/";
-      loginLink.onclick = null;
-    }
-  }
-
-  function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const total = cart.reduce((sum, item) => sum + item.qty, 0);
-    const countEl = document.getElementById('cart-count');
-    if (countEl) countEl.textContent = total;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    updateHeader();
-    updateCartCount();
-  });
-
-  window.addEventListener("storage", () => {
-    updateHeader();
-    updateCartCount();
-  });
-</script>
 
   <style>
     header {
@@ -247,68 +193,76 @@
   window.addEventListener('storage', updateCartCount);
   </script>
 
-<script>
+ <script>
+  function updateHeader() {
+    const loginLink = document.getElementById('login-link');
+    const userDisplay = document.getElementById('user-display');
+    const cartLink = document.getElementById('cart-link');
+    const user = localStorage.getItem('user');
 
-function updateHeader() {
-  const user = localStorage.getItem('user');
-  const loginLink = document.getElementById('login-link');
-  const userDisplay = document.getElementById('user-display');
-  const cartLink = document.getElementById('cart-link');
-
-  if (user) {
-    
-    loginLink.textContent = "Logout";
-    loginLink.href = "#";
-    loginLink.onclick = () => {
-      localStorage.removeItem('user');
-      alert("Logged out!");
-      updateHeader();
-    };
-
-    if (userDisplay) {
-      userDisplay.textContent = `👋 ${user}`;
+    if (user) {
+      
+      userDisplay.textContent = user;
       userDisplay.style.display = "inline-block";
-    }
 
-    if (cartLink) {
-      cartLink.style.display = "inline-block";
-    }
-  } else {
-    
-    loginLink.textContent = "Login";
-    loginLink.href = "/login/";
-    loginLink.onclick = null;
+      loginLink.textContent = "Logout";
+      loginLink.href = "#";
+      loginLink.onclick = (e) => {
+        e.preventDefault();
 
-    if (userDisplay) {
+        
+        localStorage.removeItem('cart');
+        localStorage.removeItem(`cart_${user}`);
+        localStorage.removeItem('cart_guest');
+
+        
+        localStorage.removeItem('user');
+
+        
+        const countEl = document.getElementById('cart-count');
+        if (countEl) countEl.textContent = 0;
+
+        alert("Logged out — cart cleared!");
+        window.location.reload();
+      };
+
+      cartLink.style.display = "inline-flex";
+    } else {
+      
       userDisplay.style.display = "none";
-    }
-
-    if (cartLink) {
       cartLink.style.display = "none";
+      loginLink.textContent = "Login";
+      loginLink.href = "/login/";
+      loginLink.onclick = null;
     }
   }
-}
 
+  function updateCartCount() {
+    const allKeys = Object.keys(localStorage);
+    let cart = [];
 
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const total = cart.reduce((sum, item) => sum + item.qty, 0);
-  const countEl = document.getElementById('cart-count');
-  if (countEl) countEl.textContent = total;
-}
+    const user = localStorage.getItem('user');
+    if (user && allKeys.includes(`cart_${user}`)) {
+      cart = JSON.parse(localStorage.getItem(`cart_${user}`)) || [];
+    } else if (allKeys.includes('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart')) || [];
+    }
 
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    const countEl = document.getElementById('cart-count');
+    if (countEl) countEl.textContent = total;
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateHeader();
-  updateCartCount();
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    updateHeader();
+    updateCartCount();
+  });
 
-
-window.addEventListener('storage', () => {
-  updateHeader();
-  updateCartCount();
-});
-</script>
+  window.addEventListener("storage", () => {
+    updateHeader();
+    updateCartCount();
+  });
+  </script>
 
 
 </body>
