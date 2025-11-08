@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
-  <title>{{ .Title }} | College Store</title>
+  <title>Sign Up | College Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -92,11 +92,116 @@
   </header>
 
   <main>
-    {{ block "main" . }}{{ end }}
+    
+<section class="signup-page">
+  <div class="signup-box">
+    <h1>Create Account</h1>
+
+    <form id="signup-form">
+      <label>
+        Username
+        <input type="text" id="new-username" required>
+      </label>
+      <label>
+        Password
+        <input type="password" id="new-password" required>
+      </label>
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <p id="signup-error" class="error" style="display:none;"></p>
+    <p id="signup-success" class="success" style="display:none;">Account created! Redirecting to login...</p>
+
+    <p class="note">Already have an account? <a href="/login/">Login</a></p>
+  </div>
+</section>
+
+<script>
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const username = document.getElementById('new-username').value.trim();
+  const password = document.getElementById('new-password').value.trim();
+
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+
+  
+  if (users.some(u => u.username === username)) {
+    const err = document.getElementById('signup-error');
+    err.textContent = "Username already exists.";
+    err.style.display = "block";
+    return;
+  }
+
+  
+  users.push({ username, password });
+  localStorage.setItem('users', JSON.stringify(users));
+
+  document.getElementById('signup-error').style.display = "none";
+  document.getElementById('signup-success').style.display = "block";
+
+  
+  setTimeout(() => {
+    window.location.href = "/login/";
+  }, 1500);
+});
+</script>
+
+<style>
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+.signup-box {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+.signup-box h1 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+.btn:hover { background: #1e40af; }
+.error { color: #dc2626; text-align: center; margin-top: 0.5rem; }
+.success { color: #10b981; text-align: center; margin-top: 0.5rem; }
+.note { text-align: center; margin-top: 1rem; }
+.note a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.note a:hover { text-decoration: underline; }
+</style>
+
   </main>
 
   <footer>
-    © {{ now.Year }} College Store. Built with Hugo.
+    © 2025 College Store. Built with Hugo.
   </footer>
 
   <script>
@@ -110,7 +215,7 @@
   </script>
 
 <script>
-// --- Update header based on login status ---
+
 function updateHeader() {
   const user = localStorage.getItem('user');
   const loginLink = document.getElementById('login-link');
@@ -118,7 +223,7 @@ function updateHeader() {
   const cartLink = document.getElementById('cart-link');
 
   if (user) {
-    // ✅ Logged in: show username + cart
+    
     loginLink.textContent = "Logout";
     loginLink.href = "#";
     loginLink.onclick = () => {
@@ -136,7 +241,7 @@ function updateHeader() {
       cartLink.style.display = "inline-block";
     }
   } else {
-    // 🚫 Not logged in: hide cart + username, show login
+    
     loginLink.textContent = "Login";
     loginLink.href = "/login/";
     loginLink.onclick = null;
@@ -151,7 +256,7 @@ function updateHeader() {
   }
 }
 
-// --- Update cart count ---
+
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const total = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -159,13 +264,13 @@ function updateCartCount() {
   if (countEl) countEl.textContent = total;
 }
 
-// --- Initialize when page is ready ---
+
 document.addEventListener("DOMContentLoaded", () => {
   updateHeader();
   updateCartCount();
 });
 
-// --- Keep synced across tabs ---
+
 window.addEventListener('storage', () => {
   updateHeader();
   updateCartCount();

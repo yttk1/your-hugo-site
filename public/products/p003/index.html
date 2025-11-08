@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <title>Campus Mug | College Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,6 +68,26 @@
       <a href="/about/">About</a>
     </div>
     <a href="/cart/" class="cart-icon">🛒 <span id="cart-count">0</span></a>
+    <a href="/login/" id="login-link">Login</a>
+
+    <script>
+    function updateLoginLink() {
+      const link = document.getElementById('login-link');
+      if (localStorage.getItem('user')) {
+        link.textContent = "Logout";
+        link.onclick = () => {
+          localStorage.removeItem('user');
+          alert("Logged out!");
+          window.location.reload();
+        };
+      } else {
+        link.textContent = "Login";
+        link.href = "/login/";
+      }
+    }
+    updateLoginLink();
+    </script>
+
   </header>
 
   <main>

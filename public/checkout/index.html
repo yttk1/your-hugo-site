@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <title>Checkout | College Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,7 +67,28 @@
       <a href="/products/">Products</a>
       <a href="/about/">About</a>
     </div>
-    <a href="/cart/" class="cart-icon">🛒 <span id="cart-count">0</span></a>
+    <a href="/cart/" class="cart-icon" id = "cart-link">🛒 <span id="cart-count">0</span></a>
+    <span id="user-display" class="username"></span>
+    <a href="/login/" id="login-link">Login</a>
+
+    <script>
+    function updateLoginLink() {
+      const link = document.getElementById('login-link');
+      if (localStorage.getItem('user')) {
+        link.textContent = "Logout";
+        link.onclick = () => {
+          localStorage.removeItem('user');
+          alert("Logged out!");
+          window.location.reload();
+        };
+      } else {
+        link.textContent = "Login";
+        link.href = "/login/";
+      }
+    }
+    updateLoginLink();
+    </script>
+
   </header>
 
   <main>
@@ -117,5 +138,70 @@
   updateCartCount();
   window.addEventListener('storage', updateCartCount);
   </script>
+
+<script>
+
+function updateHeader() {
+  const user = localStorage.getItem('user');
+  const loginLink = document.getElementById('login-link');
+  const userDisplay = document.getElementById('user-display');
+  const cartLink = document.getElementById('cart-link');
+
+  if (user) {
+    
+    loginLink.textContent = "Logout";
+    loginLink.href = "#";
+    loginLink.onclick = () => {
+      localStorage.removeItem('user');
+      alert("Logged out!");
+      updateHeader();
+    };
+
+    if (userDisplay) {
+      userDisplay.textContent = `👋 ${user}`;
+      userDisplay.style.display = "inline-block";
+    }
+
+    if (cartLink) {
+      cartLink.style.display = "inline-block";
+    }
+  } else {
+    
+    loginLink.textContent = "Login";
+    loginLink.href = "/login/";
+    loginLink.onclick = null;
+
+    if (userDisplay) {
+      userDisplay.style.display = "none";
+    }
+
+    if (cartLink) {
+      cartLink.style.display = "none";
+    }
+  }
+}
+
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+  const countEl = document.getElementById('cart-count');
+  if (countEl) countEl.textContent = total;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeader();
+  updateCartCount();
+});
+
+
+window.addEventListener('storage', () => {
+  updateHeader();
+  updateCartCount();
+});
+</script>
+
+
 </body>
 </html>
