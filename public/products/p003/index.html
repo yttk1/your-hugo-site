@@ -62,33 +62,87 @@
 </head>
 <body>
   <header>
-    <div>
-      <a href="/">🏫 College Store</a>
-      <a href="/products/">Products</a>
-      <a href="/about/">About</a>
-    </div>
-    <a href="/cart/" class="cart-icon">🛒 <span id="cart-count">0</span></a>
-    <a href="/login/" id="login-link">Login</a>
+  <div class="nav-left">
+    <a href="/">🏫 College Store</a>
+    <a href="/products/">Products</a>
+    <a href="/about/">About</a>
+  </div>
 
-    <script>
-    function updateLoginLink() {
-      const link = document.getElementById('login-link');
-      if (localStorage.getItem('user')) {
-        link.textContent = "Logout";
-        link.onclick = () => {
-          localStorage.removeItem('user');
-          alert("Logged out!");
-          window.location.reload();
-        };
-      } else {
-        link.textContent = "Login";
-        link.href = "/login/";
-      }
+  <div class="nav-right">
+    
+    <span id="user-display" class="username"></span>
+    <a href="#" id="login-link" class="logout-btn">Login</a>
+    <a href="/cart/" class="cart-icon" id="cart-link">🛒 <span id="cart-count">0</span></a>
+  </div>
+
+
+
+  <style>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      background: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
-    updateLoginLink();
-    </script>
 
-  </header>
+    .nav-left a {
+      margin-right: 1.2rem;
+      font-weight: 500;
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;  
+    }
+
+    .username {
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .logout-btn {
+      color: #dc2626;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .logout-btn:hover {
+      color: #b91c1c;
+    }
+
+    .cart-icon {
+      text-decoration: none;
+      color: #111827;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.2s ease;
+    }
+
+    .cart-icon:hover {
+      opacity: 0.8;
+    }
+
+    .cart-icon span {
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 0.8rem;
+    }
+  </style>
+</header>
+
+
 
   <main>
     
@@ -178,5 +232,78 @@ document.querySelector('.add-to-cart').addEventListener('click', e => {
   updateCartCount();
   window.addEventListener('storage', updateCartCount);
   </script>
+
+ <script>
+  function updateHeader() {
+    const loginLink = document.getElementById('login-link');
+    const userDisplay = document.getElementById('user-display');
+    const cartLink = document.getElementById('cart-link');
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      
+      userDisplay.textContent = user;
+      userDisplay.style.display = "inline-block";
+
+      loginLink.textContent = "Logout";
+      loginLink.href = "#";
+      loginLink.onclick = (e) => {
+        e.preventDefault();
+
+        
+        localStorage.removeItem('cart');
+        localStorage.removeItem(`cart_${user}`);
+        localStorage.removeItem('cart_guest');
+
+        
+        localStorage.removeItem('user');
+
+        
+        const countEl = document.getElementById('cart-count');
+        if (countEl) countEl.textContent = 0;
+
+        alert("Logged out — cart cleared!");
+        window.location.reload();
+      };
+
+      cartLink.style.display = "inline-flex";
+    } else {
+      
+      userDisplay.style.display = "none";
+      cartLink.style.display = "none";
+      loginLink.textContent = "Login";
+      loginLink.href = "/login/";
+      loginLink.onclick = null;
+    }
+  }
+
+  function updateCartCount() {
+    const allKeys = Object.keys(localStorage);
+    let cart = [];
+
+    const user = localStorage.getItem('user');
+    if (user && allKeys.includes(`cart_${user}`)) {
+      cart = JSON.parse(localStorage.getItem(`cart_${user}`)) || [];
+    } else if (allKeys.includes('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart')) || [];
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    const countEl = document.getElementById('cart-count');
+    if (countEl) countEl.textContent = total;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateHeader();
+    updateCartCount();
+  });
+
+  window.addEventListener("storage", () => {
+    updateHeader();
+    updateCartCount();
+  });
+  </script>
+
+
 </body>
 </html>
