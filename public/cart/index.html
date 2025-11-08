@@ -97,17 +97,35 @@ function loadCart() {
   cart.forEach((item) => {
     const subtotal = item.qty * item.price;
     total += subtotal;
+
     tbody.innerHTML += `
       <tr>
-        <td><img src="${item.img}" class="thumb"> ${item.title}</td>
+        <td>
+          <div class="item-info">
+            <img src="${item.img}" class="thumb">
+            <span class="item-title">${item.title}</span>
+          </div>
+        </td>
         <td>$${item.price.toFixed(2)}</td>
-        <td>${item.qty}</td>
+        <td>
+          <button class="qty-btn" onclick="updateQty('${item.id}', -1)">−</button>
+          <span id="qty-${item.id}">${item.qty}</span>
+          <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+        </td>
         <td>$${subtotal.toFixed(2)}</td>
         <td><button class="remove" onclick="removeItem('${item.id}')">🗑</button></td>
       </tr>`;
   });
-  document.getElementById('cart-total').textContent = 'Total: $' + total.toFixed(2);
+
+  
+  const totalEl = document.getElementById('cart-total');
+  if (totalEl) totalEl.textContent = 'Total: $' + total.toFixed(2);
+
+  
+  const bottomTotal = document.getElementById('cart-total-bottom');
+  if (bottomTotal) bottomTotal.textContent = 'Total: $' + total.toFixed(2);
 }
+
 function removeItem(id) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   cart = cart.filter(i => i.id !== id);
@@ -126,16 +144,27 @@ document.getElementById('purchase-btn').addEventListener('click', () => {
     alert("Your cart is empty!");
     return;
   }
-
   
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  alert(`Thank you for your purchase! Total: $${total.toFixed(2)}`);
-
-  
-  localStorage.removeItem('cart');
-  loadCart();
-  window.dispatchEvent(new Event('storage'));
+  window.location.href = '/payment/';
 });
+
+
+  function updateQty(id, change) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const item = cart.find(p => p.id === id);
+    if (!item) return;
+
+    item.qty += change;
+
+    if (item.qty <= 0) {
+      
+      cart = cart.filter(p => p.id !== id);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart(); 
+    window.dispatchEvent(new Event('storage'));
+  }
 
 </script>
 
@@ -186,6 +215,8 @@ button.remove {
 #clear-cart:hover { background: #dc2626; }
 
 #purchase-btn {
+  position: relative;
+  left: 33%;
   background: #10b981;  
   color: white;
   border: none;
@@ -198,6 +229,96 @@ button.remove {
 #purchase-btn:hover {
   background: #059669;
 }
+
+.qty-btn {
+  padding: 0.3rem 0.6rem;
+  margin: 0 0.2rem;
+  border: 1px solid #ccc;
+  background: #f9fafb;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.qty-btn:hover {
+  background: #e5e7eb;
+}
+#cart-table span {
+  min-width: 25px;
+  display: inline-block;
+  text-align: center;
+}
+
+ 
+#cart-table td {
+  vertical-align: middle;
+}
+
+ 
+.item-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+ 
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f3f4f6;
+  flex-shrink: 0;
+}
+
+ 
+.item-title {
+  font-weight: 500;
+  color: #111827;
+  line-height: 1.4;
+  display: block;
+  max-width: 200px;
+  white-space: normal;
+}
+
+ 
+#cart-table th, #cart-table td {
+  padding: 0.8rem 1rem;
+}
+
+ 
+.qty-btn {
+  padding: 0.3rem 0.7rem;
+  margin: 0 0.2rem;
+  border: 1px solid #ccc;
+  background: #f9fafb;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.qty-btn:hover {
+  background: #e5e7eb;
+}
+
+ 
+#cart-table {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+#cart-table tr {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+#cart-table th {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
 </style>
 
   </main>

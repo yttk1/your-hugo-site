@@ -12,6 +12,8 @@
   </url><url>
     <loc>http://localhost:1313/products/p002/</loc>
   </url><url>
+    <loc>http://localhost:1313/payment/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>

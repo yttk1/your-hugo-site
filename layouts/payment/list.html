@@ -1,0 +1,118 @@
+{{ define "main" }}
+<section class="payment-page">
+  <div class="container">
+    <h1>Checkout</h1>
+    <form id="payment-form">
+      <label>
+        Full Name
+        <input type="text" name="name" required>
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Address
+        <input type="text" name="address" required>
+      </label>
+      <label>
+        Card Number
+        <input type="text" name="card" placeholder="1234 5678 9012 3456" required>
+      </label>
+      <label>
+        Expiry Date
+        <input type="text" name="expiry" placeholder="MM/YY" required>
+      </label>
+      <label>
+        CVV
+        <input type="text" name="cvv" placeholder="123" required>
+      </label>
+      <button type="submit" class="btn">Pay Now</button>
+    </form>
+    <div id="success-message" style="display:none;">
+      <h2>Thank you for your purchase!</h2>
+      <p>Your payment has been processed successfully.</p>
+      <a href="/products/" class="btn">Continue Shopping</a>
+    </div>
+  </div>
+</section>
+
+<script>
+// Fake payment handling
+document.getElementById('payment-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  // Basic validation
+  const form = e.target;
+  if (!form.checkValidity()) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  // Clear cart
+  localStorage.removeItem('cart');
+  window.dispatchEvent(new Event('storage'));
+
+  // Show success message
+  form.style.display = "none";
+  document.getElementById('success-message').style.display = "block";
+});
+</script>
+
+<style>
+.payment-page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.payment-page .container {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+.payment-page h1 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+.payment-page form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.payment-page form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.payment-page form .btn {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  background: var(--primary);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.payment-page form .btn:hover { background: #1e40af; }
+#success-message h2 { color: var(--primary); text-align:center; }
+#success-message p { text-align:center; margin-bottom:1rem; }
+#success-message .btn { display:block; margin:0 auto; }
+</style>
+{{ end }}
