@@ -8,14 +8,7 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Campus Hoodie</title>
-      <link>http://localhost:1313/products/p001/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p001/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Campus Mug</title>
+      <title>Baldur’s Gate 3</title>
       <link>http://localhost:1313/products/p003/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p003/</guid>
@@ -29,10 +22,31 @@
       <description></description>
     </item>
     <item>
-      <title>Eco Notebook</title>
+      <title>Cyberpunk 2077</title>
+      <link>http://localhost:1313/products/p001/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p001/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Elden Ring</title>
       <link>http://localhost:1313/products/p002/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p002/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hades</title>
+      <link>http://localhost:1313/products/p004/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p004/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red Dead Redemption 2</title>
+      <link>http://localhost:1313/products/p005/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p005/</guid>
       <description></description>
     </item>
   </channel>

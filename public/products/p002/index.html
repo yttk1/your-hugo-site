@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Eco Notebook | Game Store</title>
+  <title>Elden Ring | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -263,70 +263,100 @@
 
 
 
+
 <div class="product-detail">
-  <img src="/images/notebook.jpg" alt="Eco Notebook">
+  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring">
   <div class="details">
-    <h1>Eco Notebook</h1>
-    <p class="price">$9.50</p>
-    <p>A5 recycled cover, 120 pages, ruled. Great for lectures.</p>
+    <h1>Elden Ring</h1>
+    <p class="price">$59.99</p>
+    <p class="desc">
+A vast world full of peril and wonder awaits. Traverse the Lands Between, 
+battle demigods, and forge your path as the Tarnished in this award-winning open-world action RPG.
+
+</p>
     <button class="add-to-cart"
       data-id="p002"
-      data-title="Eco Notebook"
-      data-price="9.5"
-      data-img="/images/notebook.jpg">Add to Cart</button>
+      data-title="Elden Ring"
+      data-price="59.99"
+      data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg">
+      Add to Cart
+    </button>
   </div>
 </div>
 
-<script>
-document.querySelector('.add-to-cart').addEventListener('click', e => {
-  const item = {
-    id: e.target.dataset.id,
-    title: e.target.dataset.title,
-    price: parseFloat(e.target.dataset.price),
-    img: e.target.dataset.img,
-    qty: 1
-  };
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const existing = cart.find(p => p.id === item.id);
-  if (existing) existing.qty += 1;
-  else cart.push(item);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  alert(item.title + " added to cart!");
-  window.dispatchEvent(new Event('storage'));
-});
-</script>
 
 <style>
 .product-detail {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
   align-items: flex-start;
-  background: white;
+  gap: 2rem;
   padding: 2rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  color: #fff;
 }
 .product-detail img {
-  width: 350px;
-  border-radius: var(--radius);
+  width: 420px;
+  border-radius: 10px;
   flex-shrink: 0;
 }
 .details { flex: 1; }
-.details h1 { margin-top: 0; }
-.price { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+.details h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+.price { font-size: 1.4rem; color: #38bdf8; font-weight: bold; }
+.desc { color: #e2e8f0; margin-top: 1rem; line-height: 1.6; }
 .add-to-cart {
-  margin-top: 1rem;
-  background: var(--primary);
+  background: #2563eb;
   color: white;
   border: none;
-  padding: 0.8rem 1.4rem;
-  border-radius: var(--radius);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   cursor: pointer;
+  margin-top: 1.2rem;
+  font-size: 1rem;
   transition: background 0.2s;
 }
-.add-to-cart:hover { background: #1e40af; }
+.add-to-cart:hover { background: #1d4ed8; }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".add-to-cart");
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1
+    };
+
+    const user = localStorage.getItem("user");
+    const key = user ? `cart_${user}` : "cart";
+    let cart = JSON.parse(localStorage.getItem(key)) || [];
+
+    const existing = cart.find(p => p.id === item.id);
+    if (existing) existing.qty += 1;
+    else cart.push(item);
+
+    localStorage.setItem(key, JSON.stringify(cart));
+    alert(`${item.title} added to cart!`);
+    updateCartCount();
+  });
+
+  function updateCartCount() {
+    const user = localStorage.getItem("user");
+    const key = user ? `cart_${user}` : "cart";
+    const cart = JSON.parse(localStorage.getItem(key)) || [];
+    const total = cart.reduce((sum, p) => sum + p.qty, 0);
+    const countEl = document.getElementById("cart-count");
+    if (countEl) countEl.textContent = total;
+  }
+});
+</script>
 
 
   </main>

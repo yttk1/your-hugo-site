@@ -258,122 +258,114 @@
 
   <main>
     
-<section class="payment-page">
-  <div class="container">
-    <h1>Checkout</h1>
-    <form id="payment-form">
-      <label>
-        Full Name
-        <input type="text" name="name" required>
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Address
-        <input type="text" name="address" required>
-      </label>
-      <label>
-        Card Number
-        <input type="text" name="card" placeholder="1234 5678 9012 3456" required>
-      </label>
-      <label>
-        Expiry Date
-        <input type="text" name="expiry" placeholder="MM/YY" required>
-      </label>
-      <label>
-        CVV
-        <input type="text" name="cvv" placeholder="123" required>
-      </label>
-      <button type="submit" class="btn">Pay Now</button>
-    </form>
-    <div id="success-message" style="display:none;">
-      <h2>Thank you for your purchase!</h2>
-      <p>Your payment has been processed successfully.</p>
-      <a href="/products/" class="btn">Continue Shopping</a>
-    </div>
+<h1 style="text-align:center; color:#fff;">💳 Payment</h1>
+
+<div id="payment-container">
+  <div id="checkout-summary">
+    <h2>Order Summary</h2>
+    <div id="order-items"></div>
+    <p>Total: <strong id="order-total">$0.00</strong></p>
   </div>
-</section>
 
-<script>
+  <form id="payment-form">
+    <h2>Payment Details</h2>
+    <label>Name on Card</label>
+    <input type="text" id="card-name" required>
 
-document.getElementById('payment-form').addEventListener('submit', function(e) {
-  e.preventDefault();
+    <label>Card Number</label>
+    <input type="text" id="card-number" maxlength="16" required>
 
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  if (cart.length === 0) {
-    alert("Your cart is empty!");
-    return;
-  }
+    <label>Expiry Date</label>
+    <input type="text" id="card-expiry" placeholder="MM/YY" required>
 
-  
-  const form = e.target;
-  if (!form.checkValidity()) {
-    alert("Please fill all required fields.");
-    return;
-  }
+    <label>CVV</label>
+    <input type="text" id="card-cvv" maxlength="3" required>
 
-  
-  localStorage.removeItem('cart');
-  window.dispatchEvent(new Event('storage'));
-
-  
-  form.style.display = "none";
-  document.getElementById('success-message').style.display = "block";
-});
-</script>
+    <button type="submit">Complete Purchase</button>
+  </form>
+</div>
 
 <style>
-.payment-page {
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
-}
-.payment-page .container {
-  background: white;
-  padding: 2rem 3rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 500px;
-}
-.payment-page h1 {
-  text-align: center;
-  color: var(--primary);
-  margin-bottom: 1.5rem;
-}
-.payment-page form label {
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-.payment-page form input {
-  width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.3rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-.payment-page form .btn {
-  display: block;
-  width: 100%;
-  margin-top: 1rem;
-  background: var(--primary);
+#payment-container {
+  background: #1e293b;
   color: white;
-  padding: 0.8rem;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1.1rem;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
-.payment-page form .btn:hover { background: #1e40af; }
-#success-message h2 { color: var(--primary); text-align:center; }
-#success-message p { text-align:center; margin-bottom:1rem; }
-#success-message .btn { display:block; margin:0 auto; }
+#payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+#payment-form input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: none;
+}
+#payment-form button {
+  margin-top: 1rem;
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#payment-form button:hover {
+  background: #16a34a;
+}
+#checkout-summary {
+  background: #334155;
+  padding: 1rem;
+  border-radius: 8px;
+}
+#order-items div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const checkoutCart = JSON.parse(localStorage.getItem("checkout_cart")) || [];
+  const orderContainer = document.getElementById("order-items");
+  const totalEl = document.getElementById("order-total");
+
+  if (checkoutCart.length === 0) {
+    orderContainer.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  let total = 0;
+  checkoutCart.forEach(item => {
+    const div = document.createElement("div");
+    div.innerHTML = `<span>${item.title} × ${item.qty}</span><span>$${(item.price * item.qty).toFixed(2)}</span>`;
+    orderContainer.appendChild(div);
+    total += item.price * item.qty;
+  });
+  totalEl.textContent = `$${total.toFixed(2)}`;
+
+  document.getElementById("payment-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("✅ Payment successful! Thank you for your purchase.");
+    localStorage.removeItem("checkout_cart");
+
+    
+    const user = localStorage.getItem("user");
+    const key = user ? `cart_${user}` : "cart";
+    localStorage.removeItem(key);
+
+    window.location.href = "/";
+  });
+});
+</script>
 
   </main>
 

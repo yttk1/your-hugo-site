@@ -1,4 +1,5 @@
 ---
 title: "Payment"
-layout: "payment"
+type: "payment"
+layout: "single"
 ---

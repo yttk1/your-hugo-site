@@ -65,16 +65,20 @@
   <header>
   <div class="nav-left">
     <a href="/" class="logo">
-      <img src="/image/favicon-32x32.png" alt="Gamestore88 Logo" class="logo-img">
-      <span class="logo-text">Gamestore88</span>
+      <img src="/favicon-32x32.png" alt="Gamestore88 Logo" class="logo-img">
+      <span class="logo-text">Home</span>
     </a>
-    <a href="/products/">Products</a>
-    <a href="/about/">About</a>
+    <nav class="nav-links">
+      <a href="/products/">🎮 Products</a>
+      <a href="/about/">📜 About</a>
+    </nav>
   </div>
 
   <div class="nav-right">
-    
-    <span id="user-display" class="username"></span>
+    <div class="user-info" id="user-info">
+      <div class="user-icon" id="user-icon"></div>
+      <span id="user-display" class="username"></span>
+    </div>
     <a href="#" id="login-link" class="logout-btn">Login</a>
     <a href="/cart/" class="cart-icon" id="cart-link">🛒 <span id="cart-count">0</span></a>
   </div>
@@ -82,69 +86,172 @@
 
 
   <style>
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 2rem;
-      background: white;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    }
 
-    .nav-left a {
-      margin-right: 1.2rem;
-      font-weight: 500;
-      color: #111827;
-      text-decoration: none;
-    }
+ 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;  
+}
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;  
-    }
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
 
-    .username {
-      font-weight: 700;
-      font-size: 1rem;
-      color: #1e3a8a;
-    }
+ 
+.logo-img {
+  height: 34px;
+  width: auto;
+  margin-right: 8px;
+  border-radius: 8px;
+}
 
-    .logout-btn {
-      color: #dc2626;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: color 0.2s ease;
-    }
+ 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
 
-    .logout-btn:hover {
-      color: #b91c1c;
-    }
+.nav-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
 
-    .cart-icon {
-      text-decoration: none;
-      color: #111827;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: opacity 0.2s ease;
-    }
+.nav-links a:hover {
+  color: #38bdf8;
+}
 
-    .cart-icon:hover {
-      opacity: 0.8;
-    }
+ 
+.store-header {
+  background: linear-gradient(90deg, #0a0f1a 0%, #111827 100%);
+  color: #e2e8f0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
 
-    .cart-icon span {
-      background: #3b82f6;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 7px;
-      font-size: 0.8rem;
-    }
-  </style>
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+.logo-img {
+  height: 34px;
+  width: auto;
+  margin-right: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(96, 165, 250, 0.8);
+}
+
+ 
+.nav-links a {
+  color: #94a3b8;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+ 
+.username {
+  font-weight: 600;
+  color: #4e4c4c;
+  text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
+}
+ 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+ 
+.user-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #efefef, #6c6e70);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 200;
+  font-size: 0.9rem;
+  box-shadow: 0 0 6px rgba(80, 80, 82, 0.6);
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+ 
+.logout-btn {
+  color: #f87171;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ef4444;
+  text-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
+}
+
+ 
+.cart-icon {
+  background: linear-gradient(145deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+.cart-icon:hover {
+  transform: scale(1.05);
+}
+</style>
 </header>
 
 
@@ -209,6 +316,13 @@
       userDisplay.textContent = user;
       userDisplay.style.display = "inline-block";
 
+      
+      const userIcon = document.getElementById('user-icon');
+      if (userIcon && user && user.length > 0) {
+        userIcon.textContent = user.charAt(0); 
+        userIcon.style.display = "flex";
+      }
+
       loginLink.textContent = "Logout";
       loginLink.href = "#";
       loginLink.onclick = (e) => {
@@ -229,7 +343,7 @@
         alert("Logged out — cart cleared!");
         window.location.reload();
       };
-
+    
       cartLink.style.display = "inline-flex";
     } else {
       
@@ -238,6 +352,9 @@
       loginLink.textContent = "Login";
       loginLink.href = "/login/";
       loginLink.onclick = null;
+      const userIcon = document.getElementById('user-icon');
+      if (userIcon) userIcon.style.display = "none";
+
     }
   }
 
@@ -266,6 +383,7 @@
     updateHeader();
     updateCartCount();
   });
+
   </script>
 
 

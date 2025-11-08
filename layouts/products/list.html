@@ -1,112 +1,168 @@
 {{ define "main" }}
-<div class="products-page">
+<section style="max-width:1200px; margin:2rem auto; padding:0 1rem;">
+  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎮 Our Games</h1>
 
-  <h1>🎮 Our Games</h1>
-
-  <!-- 🔍 Search bar -->
-  <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Search for a product...">
+  <div style="text-align:center; margin-bottom:1.4rem;">
+    <input id="search-bar" placeholder="Search for a game..." aria-label="Search" />
+    <p id="no-results" style="display:none; color:#94a3b8; margin-top:0.6rem;">😢 No games found.</p>
   </div>
 
-  <!-- 🧱 Product grid -->
-  <div id="product-grid" class="product-grid">
-    {{ range .Site.Data.products }}
-      <div class="product-card" data-title="{{ lower .title }}">
-        <a href="/products/{{ .id }}/">
-          <img src="{{ index .images 0 }}" alt="{{ .title }}">
-          <h3>{{ .title }}</h3>
-        </a>
-        <p>${{ printf "%.2f" .price }}</p>
-      </div>
+  <!-- product grid -->
+  <div class="products-grid" id="products-grid">
+    {{ range site.Data.products }}
+    <article class="product-card" data-title="{{ lower .title }}">
+      <a href="/products/{{ .id }}/" class="product-link" style="text-decoration:none; color:inherit;">
+        <div class="thumb-wrap">
+          <img src="{{ index .images 0 }}" alt="{{ .title }}" />
+        </div>
+        <h3>{{ .title }}</h3>
+        <p class="price">${{ printf "%.2f" .price }}</p>
+      </a>
+    </article>
     {{ end }}
   </div>
-</div>
+</section>
 
-<!-- 🔍 Search filter script -->
+<style>
+/* ===== Container / grid ===== */
+.products-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 1.5rem !important;
+  justify-items: center !important;
+  align-items: start !important;
+  padding: 0.5rem !important;
+  margin: 0 auto !important;
+  box-sizing: border-box;
+}
+
+/* ===== Cards ===== */
+.product-card {
+  width: 100% !important;
+  max-width: 320px !important;
+  background: #1e293b !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.35) !important;
+  transition: transform 220ms ease, box-shadow 220ms ease, opacity 220ms ease, visibility 220ms;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  border: 0 !important;
+  display: block !important; /* keep block so image & content stack inside the card */
+}
+
+/* image */
+.thumb-wrap {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  background: #0f172a;
+}
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* text */
+.product-card h3 {
+  margin: 0.7rem 0 0.4rem 0;
+  font-size: 1.05rem;
+  color: #f8fafc;
+}
+.product-card .price {
+  color: #38bdf8;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* hide-but-keep-space: do not collapse grid */
+.product-card.hidden-card {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transform: scale(0.98) !important;
+  pointer-events: none !important;
+}
+
+/* center single result nicely */
+.products-grid.center-single {
+  justify-content: center !important;
+}
+
+/* responsive tuning */
+@media (max-width: 900px) {
+  .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important; }
+  .thumb-wrap { height: 140px; }
+}
+@media (max-width: 560px) {
+  .products-grid { grid-template-columns: 1fr !important; }
+  .thumb-wrap { height: 200px; }
+}
+
+/* search input styling */
+#search-bar {
+  width: 60%;
+  max-width: 520px;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: #0f172a;
+  color: #cbd5e1;
+  box-shadow: 0 6px 16px rgba(2,6,23,0.2);
+  outline: none;
+}
+#search-bar::placeholder { color:#475569; }
+</style>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("search-input");
-  const products = document.querySelectorAll(".product-card");
+  const input = document.getElementById("search-bar");
+  const grid = document.getElementById("products-grid");
+  const cards = Array.from(document.querySelectorAll(".product-card"));
+  const noResults = document.getElementById("no-results");
 
-  input.addEventListener("input", () => {
-    const query = input.value.toLowerCase().trim();
-    products.forEach(p => {
-      const title = p.getAttribute("data-title");
-      if (title.includes(query)) {
-        p.style.display = "block";
+  function doFilter() {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+
+    cards.forEach(card => {
+      const title = card.getAttribute("data-title") || "";
+      if (!q || title.includes(q)) {
+        card.classList.remove("hidden-card");
+        visible++;
       } else {
-        p.style.display = "none";
+        card.classList.add("hidden-card");
       }
     });
+
+    // center if only one result
+    if (visible === 1) {
+      grid.classList.add("center-single");
+    } else {
+      grid.classList.remove("center-single");
+    }
+
+    // show no-results message
+    noResults.style.display = visible === 0 ? "block" : "none";
+  }
+
+  // initial (in case)
+  doFilter();
+
+  input.addEventListener("input", () => {
+    doFilter();
+  });
+
+  // Debug helper: press Ctrl+Shift+G to show how many visible cards
+  window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "g") {
+      const vis = cards.filter(c => !c.classList.contains("hidden-card")).length;
+      console.info("Visible cards:", vis);
+      alert("Visible cards: " + vis);
+    }
   });
 });
 </script>
-
-<style>
-.products-page {
-  text-align: center;
-}
-
-.search-bar {
-  margin: 1.5rem auto;
-  text-align: center;
-}
-
-.search-bar input {
-  width: 60%;
-  max-width: 400px;
-  padding: 0.7rem 1rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background: #0f172a;
-  color: #f1f5f9;
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
-  transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-.search-bar input:focus {
-  border: 1px solid #3b82f6;
-  outline: none;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
-}
-
-/* Product grid */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-.product-card {
-  background: #1e293b;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.6);
-}
-
-.product-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.product-card h3 {
-  color: #f8fafc;
-  margin-top: 0.6rem;
-}
-
-.product-card p {
-  color: #38bdf8;
-  font-weight: 600;
-}
-</style>
 {{ end }}

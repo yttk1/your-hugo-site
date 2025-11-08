@@ -1,4 +1,5 @@
 ---
 title: "Your Cart"
-layout: "cart"
+type: "cart"
+layout: "single"
 ---
