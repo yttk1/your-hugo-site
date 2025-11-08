@@ -81,8 +81,9 @@
     <tbody></tbody>
   </table>
   <div class="cart-footer">
-    <h2 id="cart-total">Total: $0.00</h2>
-    <button id="clear-cart">Clear Cart</button>
+  <h2 id="cart-total">Total: $0.00</h2>
+  <button id="purchase-btn">Purchase</button>
+  <button id="clear-cart">Clear Cart</button>
   </div>
 </div>
 
@@ -118,6 +119,24 @@ document.getElementById('clear-cart').addEventListener('click', () => {
   loadCart(); window.dispatchEvent(new Event('storage'));
 });
 loadCart();
+
+document.getElementById('purchase-btn').addEventListener('click', () => {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  alert(`Thank you for your purchase! Total: $${total.toFixed(2)}`);
+
+  
+  localStorage.removeItem('cart');
+  loadCart();
+  window.dispatchEvent(new Event('storage'));
+});
+
 </script>
 
 <style>
@@ -165,6 +184,20 @@ button.remove {
   cursor: pointer;
 }
 #clear-cart:hover { background: #dc2626; }
+
+#purchase-btn {
+  background: #10b981;  
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background 0.2s;
+}
+#purchase-btn:hover {
+  background: #059669;
+}
 </style>
 
   </main>
