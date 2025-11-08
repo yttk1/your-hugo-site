@@ -1,0 +1,4 @@
+---
+title: "Checkout"
+type: "checkout"
+---

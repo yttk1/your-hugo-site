@@ -1,0 +1,9 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "College Store"
+theme = ""
+paginate = 12
+
+[params]
+  brand = "College Store"
+  description = "A fake ecommerce demo for a college project"

@@ -1,0 +1,74 @@
+{{ define "main" }}
+{{ $id := .File.BaseFileName }}
+{{ $products := site.Data.products }}
+{{ $p := index (where $products "id" $id) 0 }}
+
+{{ if not $p }}
+  <p>Product not found.</p>
+{{ else }}
+<div class="product-detail">
+  <img src="{{ index $p.images 0 }}" alt="{{ $p.title }}">
+  <div class="details">
+    <h1>{{ $p.title }}</h1>
+    <p class="price">${{ printf "%.2f" $p.price }}</p>
+    <p>{{ $p.long }}</p>
+    <button class="add-to-cart"
+      data-id="{{ $p.id }}"
+      data-title="{{ $p.title }}"
+      data-price="{{ $p.price }}"
+      data-img="{{ index $p.images 0 }}">Add to Cart</button>
+  </div>
+</div>
+
+<script>
+document.querySelector('.add-to-cart').addEventListener('click', e => {
+  const item = {
+    id: e.target.dataset.id,
+    title: e.target.dataset.title,
+    price: parseFloat(e.target.dataset.price),
+    img: e.target.dataset.img,
+    qty: 1
+  };
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existing = cart.find(p => p.id === item.id);
+  if (existing) existing.qty += 1;
+  else cart.push(item);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(item.title + " added to cart!");
+  window.dispatchEvent(new Event('storage'));
+});
+</script>
+
+<style>
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.product-detail img {
+  width: 350px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+.details { flex: 1; }
+.details h1 { margin-top: 0; }
+.price { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+.add-to-cart {
+  margin-top: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-to-cart:hover { background: #1e40af; }
+</style>
+{{ end }}
+{{ end }}

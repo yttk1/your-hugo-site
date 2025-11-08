@@ -1,0 +1,31 @@
+{{ define "main" }}
+<h1>Checkout</h1>
+<div id="checkout-area">
+  <form id="checkout-form" onsubmit="return placeOrder(event);">
+    <label>
+      Full name
+      <input name="name" required>
+    </label>
+    <label>
+      Email
+      <input name="email" type="email" required>
+    </label>
+    <label>
+      Address
+      <textarea name="address" required></textarea>
+    </label>
+    <h3>Order summary</h3>
+    <div id="order-items"></div>
+    <p>Total: $<span id="order-total">0.00</span></p>
+    <button type="submit">Place order (Fake)</button>
+  </form>
+
+  <div id="order-result" style="display:none;">
+    <h2>Order confirmed</h2>
+    <p id="order-msg"></p>
+  </div>
+</div>
+<script>
+/* small helper to render order items — cart.js will populate */
+</script>
+{{ end }}

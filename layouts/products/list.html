@@ -1,0 +1,49 @@
+{{ define "main" }}
+<h1 class="page-title">Our Products</h1>
+<div class="product-grid">
+  {{ range site.Data.products }}
+  <a href="/products/{{ .id }}/" class="product-card">
+    <img src="{{ index .images 0 }}" alt="{{ .title }}">
+    <div class="info">
+      <h2>{{ .title }}</h2>
+      <p class="price">${{ printf "%.2f" .price }}</p>
+    </div>
+  </a>
+  {{ end }}
+</div>
+
+<style>
+.page-title { text-align:center; margin-bottom:2rem; font-size:2rem; }
+.product-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.product-card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.product-card .info {
+  padding: 1rem;
+}
+.price {
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0.3rem 0 0;
+}
+</style>
+{{ end }}

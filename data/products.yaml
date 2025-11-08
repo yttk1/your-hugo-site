@@ -1,0 +1,33 @@
+- id: "p001"
+  title: "Campus Hoodie"
+  price: 39.99
+  sku: "CH-001"
+  tags: ["clothing","hoodie"]
+  short: "Soft cotton hoodie with college logo."
+  long: "Comfortable, pre-shrunk cotton hoodie. Unisex sizes S–XXL."
+  images:
+    - "/images/hoodie-1.jpg"
+    - "/images/hoodie-2.jpg"
+  stock: 24
+
+- id: "p002"
+  title: "Eco Notebook"
+  price: 9.50
+  sku: "NB-002"
+  tags: ["stationery"]
+  short: "Recycled-paper notebook, 120 pages."
+  long: "A5 recycled cover, 120 pages, ruled. Great for lectures."
+  images:
+    - "/images/notebook.jpg"
+  stock: 120
+
+- id: "p003"
+  title: "Campus Mug"
+  price: 12.00
+  sku: "MG-003"
+  tags: ["kitchen","gift"]
+  short: "Ceramic mug with college crest."
+  long: "Microwave-safe ceramic. 350ml capacity."
+  images:
+    - "/images/mug.jpg"
+  stock: 42

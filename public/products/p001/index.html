@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <title>Campus Hoodie | College Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #f3f4f6;
+      --text: #111827;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      margin-right: 1.5rem;
+    }
+    header a:hover { color: var(--primary); }
+    .cart-icon {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius);
+    }
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 90%;
+      margin: 2rem auto;
+    }
+    footer {
+      background: white;
+      text-align: center;
+      padding: 1rem;
+      color: #555;
+      font-size: 0.9rem;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <a href="/">🏫 College Store</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
+    </div>
+    <a href="/cart/" class="cart-icon">🛒 <span id="cart-count">0</span></a>
+  </header>
+
+  <main>
+    
+
+
+
+
+
+<div class="product-detail">
+  <img src="/images/hoodie-1.jpg" alt="Campus Hoodie">
+  <div class="details">
+    <h1>Campus Hoodie</h1>
+    <p class="price">$39.99</p>
+    <p>Comfortable, pre-shrunk cotton hoodie. Unisex sizes S–XXL.</p>
+    <button class="add-to-cart"
+      data-id="p001"
+      data-title="Campus Hoodie"
+      data-price="39.99"
+      data-img="/images/hoodie-1.jpg">Add to Cart</button>
+  </div>
+</div>
+
+<script>
+document.querySelector('.add-to-cart').addEventListener('click', e => {
+  const item = {
+    id: e.target.dataset.id,
+    title: e.target.dataset.title,
+    price: parseFloat(e.target.dataset.price),
+    img: e.target.dataset.img,
+    qty: 1
+  };
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existing = cart.find(p => p.id === item.id);
+  if (existing) existing.qty += 1;
+  else cart.push(item);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(item.title + " added to cart!");
+  window.dispatchEvent(new Event('storage'));
+});
+</script>
+
+<style>
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.product-detail img {
+  width: 350px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+.details { flex: 1; }
+.details h1 { margin-top: 0; }
+.price { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+.add-to-cart {
+  margin-top: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-to-cart:hover { background: #1e40af; }
+</style>
+
+
+  </main>
+
+  <footer>
+    © 2025 College Store. Built with Hugo.
+  </footer>
+
+  <script>
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const total = cart.reduce((sum, i) => sum + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+  updateCartCount();
+  window.addEventListener('storage', updateCartCount);
+  </script>
+</body>
+</html>

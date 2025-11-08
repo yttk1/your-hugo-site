@@ -1,0 +1,96 @@
+{{ define "main" }}
+<h1>Your Cart</h1>
+<div class="cart-container">
+  <table id="cart-table">
+    <thead>
+      <tr><th>Item</th><th>Price</th><th>Qty</th><th>Total</th><th></th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="cart-footer">
+    <h2 id="cart-total">Total: $0.00</h2>
+    <button id="clear-cart">Clear Cart</button>
+  </div>
+</div>
+
+<script>
+function loadCart() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const tbody = document.querySelector('#cart-table tbody');
+  tbody.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((item) => {
+    const subtotal = item.qty * item.price;
+    total += subtotal;
+    tbody.innerHTML += `
+      <tr>
+        <td><img src="${item.img}" class="thumb"> ${item.title}</td>
+        <td>$${item.price.toFixed(2)}</td>
+        <td>${item.qty}</td>
+        <td>$${subtotal.toFixed(2)}</td>
+        <td><button class="remove" onclick="removeItem('${item.id}')">🗑</button></td>
+      </tr>`;
+  });
+  document.getElementById('cart-total').textContent = 'Total: $' + total.toFixed(2);
+}
+function removeItem(id) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = cart.filter(i => i.id !== id);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  loadCart(); window.dispatchEvent(new Event('storage'));
+}
+document.getElementById('clear-cart').addEventListener('click', () => {
+  localStorage.removeItem('cart');
+  loadCart(); window.dispatchEvent(new Event('storage'));
+});
+loadCart();
+</script>
+
+<style>
+.cart-container {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+th, td {
+  text-align: center;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+button.remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#clear-cart {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+#clear-cart:hover { background: #dc2626; }
+</style>
+{{ end }}

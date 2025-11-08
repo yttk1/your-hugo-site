@@ -1,0 +1,11 @@
+<header class="site-header">
+  <div class="brand">
+    <a href="{{ "/" | relLangURL }}">{{ .Site.Params.brand }}</a>
+  </div>
+  <nav>
+    <a href="{{ "/" | relLangURL }}">Home</a>
+    <a href="{{ "/products/" | relLangURL }}">Products</a>
+    <a href="{{ "/checkout/" | relLangURL }}">Checkout</a>
+    <button id="cart-toggle" class="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+  </nav>
+</header>
