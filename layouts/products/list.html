@@ -1,49 +1,112 @@
 {{ define "main" }}
-<h1 class="page-title">Our Products</h1>
-<div class="product-grid">
-  {{ range site.Data.products }}
-  <a href="/products/{{ .id }}/" class="product-card">
-    <img src="{{ index .images 0 }}" alt="{{ .title }}">
-    <div class="info">
-      <h2>{{ .title }}</h2>
-      <p class="price">${{ printf "%.2f" .price }}</p>
-    </div>
-  </a>
-  {{ end }}
+<div class="products-page">
+
+  <h1>🎮 Our Games</h1>
+
+  <!-- 🔍 Search bar -->
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search for a product...">
+  </div>
+
+  <!-- 🧱 Product grid -->
+  <div id="product-grid" class="product-grid">
+    {{ range .Site.Data.products }}
+      <div class="product-card" data-title="{{ lower .title }}">
+        <a href="/products/{{ .id }}/">
+          <img src="{{ index .images 0 }}" alt="{{ .title }}">
+          <h3>{{ .title }}</h3>
+        </a>
+        <p>${{ printf "%.2f" .price }}</p>
+      </div>
+    {{ end }}
+  </div>
 </div>
 
+<!-- 🔍 Search filter script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("search-input");
+  const products = document.querySelectorAll(".product-card");
+
+  input.addEventListener("input", () => {
+    const query = input.value.toLowerCase().trim();
+    products.forEach(p => {
+      const title = p.getAttribute("data-title");
+      if (title.includes(query)) {
+        p.style.display = "block";
+      } else {
+        p.style.display = "none";
+      }
+    });
+  });
+});
+</script>
+
 <style>
-.page-title { text-align:center; margin-bottom:2rem; font-size:2rem; }
+.products-page {
+  text-align: center;
+}
+
+.search-bar {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 60%;
+  max-width: 400px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar input:focus {
+  border: 1px solid #3b82f6;
+  outline: none;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+/* Product grid */
 .product-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  padding: 2rem;
 }
+
 .product-card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform .2s ease, box-shadow .2s ease;
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.6);
 }
+
 .product-card img {
   width: 100%;
-  height: 220px;
+  height: 160px;
   object-fit: cover;
+  border-radius: 8px;
 }
-.product-card .info {
-  padding: 1rem;
+
+.product-card h3 {
+  color: #f8fafc;
+  margin-top: 0.6rem;
 }
-.price {
-  color: var(--primary);
+
+.product-card p {
+  color: #38bdf8;
   font-weight: 600;
-  margin: 0.3rem 0 0;
 }
 </style>
 {{ end }}
