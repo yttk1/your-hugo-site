@@ -73,8 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 🚫 Stop if user not logged in
     if (!user) {
-      alert("Please log in before adding items to cart.");
-      window.location.href = "/login/"; // optional redirect
+      showToast("⚠️ Please log in before adding items to cart.", "warning");
+
+      // wait 1.5 seconds before redirect
+      setTimeout(() => {
+        window.location.href = "/login/";
+      }, 1500);
+
       return;
     }
 

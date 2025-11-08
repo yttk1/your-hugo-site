@@ -330,8 +330,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     if (!user) {
-      alert("Please log in before adding items to cart.");
-      window.location.href = "/login/"; 
+      showToast("⚠️ Please log in before adding items to cart.", "warning");
+
+      
+      setTimeout(() => {
+        window.location.href = "/login/";
+      }, 1500);
+
       return;
     }
 
