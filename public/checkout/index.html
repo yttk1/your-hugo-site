@@ -422,14 +422,6 @@ function showToast(message, type = "info") {
   }, 3000);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("pendingToast");
-  if (saved) {
-    const { message, type } = JSON.parse(saved);
-    showToast(message, type);
-    localStorage.removeItem("pendingToast");
-  }
-});
 
 window.alert = function (message) {
   showToast(message, "info");

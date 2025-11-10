@@ -329,8 +329,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     if (!user) {
-      alert("Please log in before adding items to cart.", "warning");
-      window.location.href = "/login/"; 
+      showToast("⚠️ Please log in before adding items to cart.", "warning");
+
+      
+      setTimeout(() => {
+        window.location.href = "/login/";
+      }, 1500);
+
       return;
     }
 
@@ -501,14 +506,6 @@ function showToast(message, type = "info") {
   }, 3000);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("pendingToast");
-  if (saved) {
-    const { message, type } = JSON.parse(saved);
-    showToast(message, type);
-    localStorage.removeItem("pendingToast");
-  }
-});
 
 window.alert = function (message) {
   showToast(message, "info");
