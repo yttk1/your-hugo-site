@@ -16,20 +16,6 @@
   </div>
 </section>
 
-<section class="featured">
-  <h2>Featured Products</h2>
-  <div class="product-grid">
-    {{ range first 3 site.Data.products }}
-    <a href="/products/{{ .id }}/" class="product-card">
-      <img src="{{ index .images 0 }}" alt="{{ .title }}">
-      <div class="info">
-        <h3>{{ .title }}</h3>
-        <p class="price">${{ printf "%.2f" .price }}</p>
-      </div>
-    </a>
-    {{ end }}
-  </div>
-</section>
 
 <style>
 .video-container {

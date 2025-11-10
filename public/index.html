@@ -16,14 +16,15 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--secondary);
-      color: var(--text);
+      background-color: #212121;
+      color: #e0e0e0;
       margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
     header {
-      background: white;
+      background: #1A1A1A;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       padding: 1rem 2rem;
       display: flex;
@@ -70,8 +71,8 @@
       <span class="logo-text">Home</span>
     </a>
     <nav class="nav-links">
-      <a href="/products/">🎮 Products</a>
-      <a href="/about/">📜 About</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
     </nav>
   </div>
 
@@ -86,7 +87,7 @@
 
 
 
-  <style>
+<style>
 
  
 .nav-left {
@@ -173,7 +174,7 @@
 
  
 .nav-links a {
-  color: #94a3b8;
+  color: #f7f4f4;
   margin-left: 1.5rem;
   text-decoration: none;
   font-weight: 500;
@@ -195,7 +196,7 @@
  
 .username {
   font-weight: 600;
-  color: #4e4c4c;
+  color: #ffffff;
   text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
 }
  
@@ -217,7 +218,7 @@
   justify-content: center;
   font-weight: 200;
   font-size: 0.9rem;
-  box-shadow: 0 0 6px rgba(80, 80, 82, 0.6);
+  box-shadow: 0 0 6px rgba(152, 152, 154, 0.6);
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
@@ -276,36 +277,6 @@
   </div>
 </section>
 
-<section class="featured">
-  <h2>Featured Products</h2>
-  <div class="product-grid">
-    
-    <a href="/products/p001/" class="product-card">
-      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077">
-      <div class="info">
-        <h3>Cyberpunk 2077</h3>
-        <p class="price">$49.99</p>
-      </div>
-    </a>
-    
-    <a href="/products/p002/" class="product-card">
-      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring">
-      <div class="info">
-        <h3>Elden Ring</h3>
-        <p class="price">$59.99</p>
-      </div>
-    </a>
-    
-    <a href="/products/p003/" class="product-card">
-      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg" alt="Baldur’s Gate 3">
-      <div class="info">
-        <h3>Baldur’s Gate 3</h3>
-        <p class="price">$69.99</p>
-      </div>
-    </a>
-    
-  </div>
-</section>
 
 <style>
 .video-container {
@@ -454,6 +425,156 @@
 
   </script>
 
+
+<div id="toast-container"></div>
+
+
+<div id="confirm-modal" class="confirm-modal">
+  <div class="confirm-box">
+    <p id="confirm-message">Are you sure?</p>
+    <div class="confirm-actions">
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+function showToast(message, type = "info") {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+
+window.alert = function (message) {
+  showToast(message, "info");
+};
+
+ 
+window.customConfirm = function (message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("confirm-message");
+    const yes = document.getElementById("confirm-yes");
+    const no = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.add("active");
+
+    const cleanup = () => {
+      modal.classList.remove("active");
+      yes.removeEventListener("click", onYes);
+      no.removeEventListener("click", onNo);
+    };
+
+    const onYes = () => { cleanup(); resolve(true); };
+    const onNo = () => { cleanup(); resolve(false); };
+
+    yes.addEventListener("click", onYes);
+    no.addEventListener("click", onNo);
+  });
+};
+</script>
+
+<style>
+ 
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+.toast {
+  opacity: 0;
+  transform: translateY(-10px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.toast.error { background: linear-gradient(135deg,#ef4444,#b91c1c); }
+.toast.warning { background: linear-gradient(135deg,#f97316,#ea580c); }
+.toast.info { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+
+ 
+.confirm-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+.confirm-modal.active {
+  display: flex;
+}
+.confirm-box {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  text-align: center;
+  min-width: 300px;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-actions button {
+  flex: 1;  
+  max-width: 120px;
+  min-width: 100px;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#confirm-yes {
+  background: #22c55e;
+  color: white;
+}
+#confirm-no {
+  background: #ef4444;
+  color: white;
+}
+
+#confirm-yes:hover { background: #16a34a; transform: scale(1.03); }
+#confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
+
+</style>
 
 </body>
 </html>

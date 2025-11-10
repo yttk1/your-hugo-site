@@ -15,14 +15,15 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--secondary);
-      color: var(--text);
+      background-color: #212121;
+      color: #e0e0e0;
       margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
     header {
-      background: white;
+      background: #1A1A1A;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       padding: 1rem 2rem;
       display: flex;
@@ -69,8 +70,8 @@
       <span class="logo-text">Home</span>
     </a>
     <nav class="nav-links">
-      <a href="/products/">🎮 Products</a>
-      <a href="/about/">📜 About</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
     </nav>
   </div>
 
@@ -85,7 +86,7 @@
 
 
 
-  <style>
+<style>
 
  
 .nav-left {
@@ -172,7 +173,7 @@
 
  
 .nav-links a {
-  color: #94a3b8;
+  color: #f7f4f4;
   margin-left: 1.5rem;
   text-decoration: none;
   font-weight: 500;
@@ -194,7 +195,7 @@
  
 .username {
   font-weight: 600;
-  color: #4e4c4c;
+  color: #ffffff;
   text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
 }
  
@@ -216,7 +217,7 @@
   justify-content: center;
   font-weight: 200;
   font-size: 0.9rem;
-  box-shadow: 0 0 6px rgba(80, 80, 82, 0.6);
+  box-shadow: 0 0 6px rgba(152, 152, 154, 0.6);
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
@@ -258,114 +259,197 @@
 
   <main>
     
-<h1 style="text-align:center; color:#fff;">💳 Payment</h1>
+<div class="payment-page">
+  <h1>💳 Payment</h1>
 
-<div id="payment-container">
-  <div id="checkout-summary">
-    <h2>Order Summary</h2>
-    <div id="order-items"></div>
-    <p>Total: <strong id="order-total">$0.00</strong></p>
+  <div class="payment-container">
+    
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div id="order-items" class="order-items">
+        <p>Loading your cart...</p>
+      </div>
+      <p class="total">Total: <strong>$<span id="order-total">0.00</span></strong></p>
+    </div>
+
+    
+    <div class="payment-form">
+      <h2>Payment Details</h2>
+      <label>Name on Card</label>
+      <input type="text" placeholder="John Doe" id="card-name">
+
+      <label>Card Number</label>
+      <input type="text" placeholder="1234 5678 9012 3456" id="card-number">
+
+      <label>Expiry Date</label>
+      <input type="text" placeholder="MM/YY" id="card-expiry">
+
+      <label>CVV</label>
+      <input type="text" placeholder="123" id="card-cvv">
+
+      <button id="complete-btn">Complete Purchase</button>
+    </div>
   </div>
-
-  <form id="payment-form">
-    <h2>Payment Details</h2>
-    <label>Name on Card</label>
-    <input type="text" id="card-name" required>
-
-    <label>Card Number</label>
-    <input type="text" id="card-number" maxlength="16" required>
-
-    <label>Expiry Date</label>
-    <input type="text" id="card-expiry" placeholder="MM/YY" required>
-
-    <label>CVV</label>
-    <input type="text" id="card-cvv" maxlength="3" required>
-
-    <button type="submit">Complete Purchase</button>
-  </form>
 </div>
 
 <style>
-#payment-container {
-  background: #1e293b;
-  color: white;
+.payment-page {
+  text-align: center;
+  margin-top: 2rem;
+  color: #f8fafc;
+}
+.payment-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: #0f172a;
   padding: 2rem;
   border-radius: 12px;
-  max-width: 800px;
+  max-width: 950px;
   margin: 2rem auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.5);
 }
-#payment-form {
+.order-summary, .payment-form {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+.order-summary h2, .payment-form h2 {
+  margin-top: 0;
+}
+.order-items {
+  margin-top: 1rem;
+  min-height: 150px;
+}
+.order-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  gap: 1rem;
 }
-#payment-form input {
+.order-item img {
+  width: 60px;
+  border-radius: 8px;
+}
+.item-info {
+  flex: 1;
+}
+.item-info h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+.item-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+.total {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+.payment-form label {
+  display: block;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-top: 1rem;
+}
+.payment-form input {
+  width: 100%;
   padding: 0.6rem;
   border-radius: 6px;
   border: none;
-}
-#payment-form button {
-  margin-top: 1rem;
-  background: #22c55e;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-#payment-form button:hover {
-  background: #16a34a;
-}
-#checkout-summary {
+  margin-top: 0.3rem;
   background: #334155;
-  padding: 1rem;
-  border-radius: 8px;
+  color: #f8fafc;
 }
-#order-items div {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
+.payment-form input:focus {
+  outline: 2px solid #38bdf8;
+}
+#complete-btn {
+  background: #10b981;
+  border: none;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+#complete-btn:hover {
+  background: #059669;
 }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const checkoutCart = JSON.parse(localStorage.getItem("checkout_cart")) || [];
+  const user = localStorage.getItem("user");
   const orderContainer = document.getElementById("order-items");
   const totalEl = document.getElementById("order-total");
 
-  if (checkoutCart.length === 0) {
-    orderContainer.innerHTML = "<p>Your cart is empty.</p>";
+  if (!user) {
+    showToast("⚠️ Please log in to continue.", "warning");
+    setTimeout(() => (window.location.href = "/login/"), 1200);
     return;
   }
 
-  let total = 0;
-  checkoutCart.forEach(item => {
-    const div = document.createElement("div");
-    div.innerHTML = `<span>${item.title} × ${item.qty}</span><span>$${(item.price * item.qty).toFixed(2)}</span>`;
-    orderContainer.appendChild(div);
-    total += item.price * item.qty;
-  });
-  totalEl.textContent = `$${total.toFixed(2)}`;
+  
+  const checkoutKey = `checkout_${user}`;
+  const cartKey = `cart_${user}`;
+  let cart = JSON.parse(localStorage.getItem(checkoutKey))
+          || JSON.parse(localStorage.getItem(cartKey))
+          || [];
 
-  document.getElementById("payment-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("✅ Payment successful! Thank you for your purchase.");
-    localStorage.removeItem("checkout_cart");
+  if (cart.length === 0) {
+    orderContainer.innerHTML = `<p>Your cart is empty.</p>`;
+    totalEl.textContent = "0.00";
+    return;
+  }
+
+  
+  let total = 0;
+  orderContainer.innerHTML = cart.map(item => {
+    const subtotal = (item.price * item.qty).toFixed(2);
+    total += parseFloat(subtotal);
+    return `
+      <div class="order-item">
+        <img src="${item.img}" alt="${item.title}">
+        <div class="item-info">
+          <h4>${item.title}</h4>
+          <p>Qty: ${item.qty}</p>
+        </div>
+        <span>$${subtotal}</span>
+      </div>
+    `;
+  }).join("");
+
+  totalEl.textContent = total.toFixed(2);
+
+  
+  document.getElementById("complete-btn").addEventListener("click", () => {
+    showToast("✅ Purchase complete!", "success");
 
     
-    const user = localStorage.getItem("user");
-    const key = user ? `cart_${user}` : "cart";
-    localStorage.removeItem(key);
+    localStorage.removeItem(checkoutKey);
+    localStorage.removeItem(cartKey);
 
-    window.location.href = "/";
+    setTimeout(() => (window.location.href = "/"), 1500);
   });
 });
+
+window.addEventListener("beforeunload", () => {
+  const user = localStorage.getItem("user");
+  if (!user) return;
+  localStorage.removeItem(`checkout_${user}`);
+});
+
 </script>
+
+
 
   </main>
 
@@ -465,6 +549,156 @@ document.addEventListener("DOMContentLoaded", () => {
 
   </script>
 
+
+<div id="toast-container"></div>
+
+
+<div id="confirm-modal" class="confirm-modal">
+  <div class="confirm-box">
+    <p id="confirm-message">Are you sure?</p>
+    <div class="confirm-actions">
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+function showToast(message, type = "info") {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+
+window.alert = function (message) {
+  showToast(message, "info");
+};
+
+ 
+window.customConfirm = function (message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("confirm-message");
+    const yes = document.getElementById("confirm-yes");
+    const no = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.add("active");
+
+    const cleanup = () => {
+      modal.classList.remove("active");
+      yes.removeEventListener("click", onYes);
+      no.removeEventListener("click", onNo);
+    };
+
+    const onYes = () => { cleanup(); resolve(true); };
+    const onNo = () => { cleanup(); resolve(false); };
+
+    yes.addEventListener("click", onYes);
+    no.addEventListener("click", onNo);
+  });
+};
+</script>
+
+<style>
+ 
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+.toast {
+  opacity: 0;
+  transform: translateY(-10px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.toast.error { background: linear-gradient(135deg,#ef4444,#b91c1c); }
+.toast.warning { background: linear-gradient(135deg,#f97316,#ea580c); }
+.toast.info { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+
+ 
+.confirm-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+.confirm-modal.active {
+  display: flex;
+}
+.confirm-box {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  text-align: center;
+  min-width: 300px;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-actions button {
+  flex: 1;  
+  max-width: 120px;
+  min-width: 100px;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#confirm-yes {
+  background: #22c55e;
+  color: white;
+}
+#confirm-no {
+  background: #ef4444;
+  color: white;
+}
+
+#confirm-yes:hover { background: #16a34a; transform: scale(1.03); }
+#confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
+
+</style>
 
 </body>
 </html>

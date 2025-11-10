@@ -80,6 +80,7 @@
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
+  
 }
 #checkout-btn:hover {
   background: #16a34a;
@@ -186,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cart = JSON.parse(localStorage.getItem(key)) || [];
 
     if (cart.length === 0) {
-        alert("Your cart is empty! Add items before checkout.");
+        showToast("Your cart is empty! Add items before checkout.", "error");
         return;
     }
 
@@ -198,14 +199,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  document.getElementById("empty-cart-btn").addEventListener("click", () => {
-    if (confirm("Are you sure you want to empty your cart?")) {
-      localStorage.removeItem(key);
-      cart = [];
-      renderCart();
-      alert("Your cart has been emptied!");
-    }
-  });
+  document.getElementById("empty-cart-btn").addEventListener("click", async () => {
+  const confirmed = await customConfirm("Are you sure you want to empty your cart?");
+  if (confirmed) {
+    localStorage.removeItem(key);
+    cart = [];
+    renderCart();
+    showToast("Your cart has been emptied!", "success");
+  } else {
+    showToast("Cancelled", "warning");
+  }
+});
+
 
   renderCart();
 });

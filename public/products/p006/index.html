@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>{{ .Title }} | Game Store</title>
+  <title>placeholder | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -88,14 +88,14 @@
 
 <style>
 
-/* Fix horizontal alignment for logo + links */
+ 
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 2rem; /* space between logo and links */
+  gap: 2rem;  
 }
 
-/* Keep logo image & text aligned */
+ 
 .logo {
   display: flex;
   align-items: center;
@@ -105,7 +105,7 @@
   font-size: 1.2rem;
 }
 
-/* Logo image sizing */
+ 
 .logo-img {
   height: 34px;
   width: auto;
@@ -113,7 +113,7 @@
   border-radius: 8px;
 }
 
-/* Nav links style */
+ 
 .nav-links {
   display: flex;
   align-items: center;
@@ -131,7 +131,7 @@
   color: #38bdf8;
 }
 
-/* 🎮 GAMER THEME HEADER */
+ 
 .store-header {
   background: linear-gradient(90deg, #0a0f1a 0%, #111827 100%);
   color: #e2e8f0;
@@ -146,7 +146,7 @@
   z-index: 20;
 }
 
-/* LOGO */
+ 
 .logo {
   display: flex;
   align-items: center;
@@ -171,7 +171,7 @@
   box-shadow: 0 0 14px rgba(96, 165, 250, 0.8);
 }
 
-/* NAV LINKS */
+ 
 .nav-links a {
   color: #f7f4f4;
   margin-left: 1.5rem;
@@ -185,27 +185,27 @@
   text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
 }
 
-/* RIGHT SIDE */
+ 
 .nav-right {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-/* USERNAME */
+ 
 .username {
   font-weight: 600;
   color: #ffffff;
   text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
 }
-/* User info container */
+ 
 .user-info {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Circular icon */
+ 
 .user-icon {
   width: 35px;
   height: 35px;
@@ -221,7 +221,7 @@
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
-/* LOGIN / LOGOUT */
+ 
 .logout-btn {
   color: #f87171;
   font-weight: 600;
@@ -234,7 +234,7 @@
   text-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
 }
 
-/* CART ICON */
+ 
 .cart-icon {
   background: linear-gradient(145deg, #2563eb, #1d4ed8);
   color: white;
@@ -258,11 +258,210 @@
 
 
   <main>
-    {{ block "main" . }}{{ end }}
+    
+
+
+
+
+
+<div class="game-container">
+  
+  
+  <div class="trailer">
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/91t0ha9x5EE" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+
+  
+  <div class="gallery">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg" alt="Hades screenshot">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Hades screenshot">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg" alt="Hades screenshot">
+    
+  </div>
+
+  
+  <div class="game-details">
+    <h1>Hades</h1>
+    <p class="price">$24.99</p>
+    <p class="meta">
+      <strong>Developer:</strong> Supergiant Games<br>
+      <strong>Publisher:</strong> Supergiant Games<br>
+      <strong>Release Date:</strong> 2020-09-17<br>
+      <strong>Modes:</strong> Singleplayer<br>
+      <strong>Genres:</strong> Action, Roguelike, Indie
+    </p>
+
+    <p class="desc">Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom.</p>
+
+    
+    <div class="buttons">
+      <button class="buy-now"
+        data-id="p006"
+        data-title="Hades"
+        data-price="24.99"
+        data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg">
+        Buy Now
+      </button>
+      <button class="add-to-cart"
+        data-id="p006"
+        data-title="Hades"
+        data-price="24.99"
+        data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg">
+        Add to Cart
+      </button>
+      <button class="share-btn" onclick="shareGame('Hades', 'http:\/\/localhost:1313\/products\/p006\/')">Share</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const addToCartBtn = document.querySelector(".add-to-cart");
+  const buyNowBtn = document.querySelector(".buy-now");
+
+  
+  addToCartBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
+
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in first.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
+    const key = `cart_${user}`;
+    let cart = JSON.parse(localStorage.getItem(key)) || [];
+    const existing = cart.find((p) => p.id === item.id);
+    if (existing) existing.qty += 1;
+    else cart.push(item);
+    localStorage.setItem(key, JSON.stringify(cart));
+
+    showToast(`🎮 ${item.title} added to cart!`, "success");
+  });
+
+  
+  buyNowBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
+
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in to buy games.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
+    
+    const key = `checkout_${user}`;
+    localStorage.setItem(key, JSON.stringify([item]));
+
+    showToast("💳 Redirecting to payment...", "info");
+    setTimeout(() => (window.location.href = "/payment/"), 1000);
+  });
+});
+</script>
+
+
+
+<style>
+.game-container {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.trailer iframe {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.gallery img {
+  height: 160px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.game-details {
+  margin-top: 1rem;
+}
+.price {
+  color: #38bdf8;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.meta {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.desc {
+  color: #e2e8f0;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.buttons button {
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.buy-now {
+  background: linear-gradient(135deg, #9333ea, #6366f1);
+  color: white;
+}
+.buy-now:hover { background: linear-gradient(135deg, #7e22ce, #4f46e5); transform: scale(1.03); }
+.add-to-cart {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+.add-to-cart:hover { background: linear-gradient(135deg, #1d4ed8, #2563eb); transform: scale(1.03); }
+.share-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+.share-btn:hover { background: #475569; transform: scale(1.03); }
+</style>
+
+
   </main>
 
   <footer>
-    © {{ now.Year }} Gamestore88. Built with Hugo.
+    © 2025 Gamestore88. Built with Hugo.
   </footer>
 
   <script>
@@ -283,14 +482,14 @@
     const user = localStorage.getItem('user');
 
     if (user) {
-      // ✅ Logged in
+      
       userDisplay.textContent = user;
       userDisplay.style.display = "inline-block";
 
-      // 🧩 Set first digit in icon
+      
       const userIcon = document.getElementById('user-icon');
       if (userIcon && user && user.length > 0) {
-        userIcon.textContent = user.charAt(0); // first character
+        userIcon.textContent = user.charAt(0); 
         userIcon.style.display = "flex";
       }
 
@@ -299,15 +498,15 @@
       loginLink.onclick = (e) => {
         e.preventDefault();
 
-        // 🧹 Clear all cart variations
+        
         localStorage.removeItem('cart');
         localStorage.removeItem(`cart_${user}`);
         localStorage.removeItem('cart_guest');
 
-        // 🧹 Clear user info
+        
         localStorage.removeItem('user');
 
-        // 🧹 Reset cart count immediately
+        
         const countEl = document.getElementById('cart-count');
         if (countEl) countEl.textContent = 0;
 
@@ -317,7 +516,7 @@
     
       cartLink.style.display = "inline-flex";
     } else {
-      // 🚫 Not logged in
+      
       userDisplay.style.display = "none";
       cartLink.style.display = "none";
       loginLink.textContent = "Login";
@@ -357,10 +556,10 @@
 
   </script>
 
-<!-- ✅ Global Toast + Confirmation System -->
+
 <div id="toast-container"></div>
 
-<!-- Confirmation Modal -->
+
 <div id="confirm-modal" class="confirm-modal">
   <div class="confirm-box">
     <p id="confirm-message">Are you sure?</p>
@@ -372,7 +571,7 @@
 </div>
 
 <script>
-/* -------------------- TOAST SYSTEM -------------------- */
+ 
 function showToast(message, type = "info") {
   let container = document.getElementById("toast-container");
   if (!container) {
@@ -393,12 +592,12 @@ function showToast(message, type = "info") {
   }, 3000);
 }
 
-// Override default alert()
+
 window.alert = function (message) {
   showToast(message, "info");
 };
 
-/* -------------------- CONFIRMATION SYSTEM -------------------- */
+ 
 window.customConfirm = function (message) {
   return new Promise((resolve) => {
     const modal = document.getElementById("confirm-modal");
@@ -425,7 +624,7 @@ window.customConfirm = function (message) {
 </script>
 
 <style>
-/* -------------------- TOAST STYLES -------------------- */
+ 
 #toast-container {
   position: fixed;
   top: 20px;
@@ -452,7 +651,7 @@ window.customConfirm = function (message) {
 .toast.warning { background: linear-gradient(135deg,#f97316,#ea580c); }
 .toast.info { background: linear-gradient(135deg,#3b82f6,#2563eb); }
 
-/* -------------------- CONFIRMATION MODAL -------------------- */
+ 
 .confirm-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -482,7 +681,7 @@ window.customConfirm = function (message) {
 }
 
 .confirm-actions button {
-  flex: 1; /* ✅ makes both buttons the same width */
+  flex: 1;  
   max-width: 120px;
   min-width: 100px;
   padding: 0.6rem 1rem;
