@@ -51,7 +51,7 @@ document.getElementById('payment-form').addEventListener('submit', function(e) {
   // Basic validation
   const form = e.target;
   if (!form.checkValidity()) {
-    alert("Please fill all required fields.");
+    alert("Please fill all required fields.", "warning");
     return;
   }
 
