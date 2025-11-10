@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Our Games | Game Store</title>
+  <title>placeholder | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -259,257 +259,203 @@
 
   <main>
     
-<section style="max-width:1200px; margin:2rem auto; padding:0 1rem;">
-  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem; ">🎮 Our Games</h1>
 
-  <div style="text-align:center; margin-bottom:1.4rem;">
-    <input id="search-bar" placeholder="Search for a game..." aria-label="Search" />
-    <p id="no-results" style="display:none; color:#94a3b8; margin-top:0.6rem;">😢 No games found.</p>
+
+
+
+
+<div class="game-container">
+  
+  
+  <div class="trailer">
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/91t0ha9x5EE" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+
+  
+  <div class="gallery">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg" alt="Hades screenshot">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Hades screenshot">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg" alt="Hades screenshot">
+    
   </div>
 
   
-  <div class="products-grid" id="products-grid">
+  <div class="game-details">
+    <h1>Hades</h1>
+    <p class="price">$24.99</p>
+    <p class="meta">
+      <strong>Developer:</strong> Supergiant Games<br>
+      <strong>Publisher:</strong> Supergiant Games<br>
+      <strong>Release Date:</strong> 2020-09-17<br>
+      <strong>Modes:</strong> Singleplayer<br>
+      <strong>Genres:</strong> Action, Roguelike, Indie
+    </p>
+
+    <p class="desc">Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom.</p>
+
     
-    <article class="product-card" data-title="cyberpunk 2077">
-      <a href="/products/p001/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077" />
-        </div>
-        <h3>Cyberpunk 2077</h3>
-        <p class="price">$59.99</p>
-      </a>
-    </article>
-    
-    <article class="product-card" data-title="elden ring">
-      <a href="/products/p002/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring" />
-        </div>
-        <h3>Elden Ring</h3>
-        <p class="price">$69.99</p>
-      </a>
-    </article>
-    
-    <article class="product-card" data-title="stardew valley">
-      <a href="/products/p003/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg" alt="Stardew Valley" />
-        </div>
-        <h3>Stardew Valley</h3>
-        <p class="price">$14.99</p>
-      </a>
-    </article>
-    
-    <article class="product-card" data-title="civilization vi">
-      <a href="/products/p004/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg" alt="Civilization VI" />
-        </div>
-        <h3>Civilization VI</h3>
-        <p class="price">$29.99</p>
-      </a>
-    </article>
-    
-    <article class="product-card" data-title="no man’s sky">
-      <a href="/products/p005/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/275850/header.jpg" alt="No Man’s Sky" />
-        </div>
-        <h3>No Man’s Sky</h3>
-        <p class="price">$59.99</p>
-      </a>
-    </article>
-    
-    <article class="product-card" data-title="hades">
-      <a href="/products/p006/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg" alt="Hades" />
-        </div>
-        <h3>Hades</h3>
-        <p class="price">$24.99</p>
-      </a>
-    </article>
-    
-    <article class="product-card" data-title="hades">
-      <a href="/products/p007/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg" alt="Hades" />
-        </div>
-        <h3>Hades</h3>
-        <p class="price">$24.99</p>
-      </a>
-    </article>
-    
+    <div class="buttons">
+      <button class="buy-now"
+        data-id="p006"
+        data-title="Hades"
+        data-price="24.99"
+        data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg">
+        Buy Now
+      </button>
+      <button class="add-to-cart"
+        data-id="p006"
+        data-title="Hades"
+        data-price="24.99"
+        data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg">
+        Add to Cart
+      </button>
+      <button class="share-btn" onclick="shareGame('Hades', 'http:\/\/localhost:1313\/products\/p006\/')">Share</button>
+    </div>
   </div>
-</section>
-
-<style>
- 
-.products-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-  gap: 1.5rem !important;
-  justify-items: center !important;
-  align-items: start !important;
-  padding: 0.5rem !important;
-  margin: 0 auto !important;
-  box-sizing: border-box;
-}
-
- 
-.product-card {
-  width: 100% !important;
-  max-width: 320px !important;
-  background: #1e293b !important;
-  color: #fff !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.35) !important;
-  transition: transform 220ms ease, box-shadow 220ms ease, opacity 220ms ease, visibility 220ms;
-  text-align: center !important;
-  box-sizing: border-box !important;
-  border: 0 !important;
-  display: block !important;  
-}
-
- 
-.thumb-wrap {
-  width: 100%;
-  height: 160px;
-  overflow: hidden;
-  background: #0f172a;
-}
-.product-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
- 
-.product-card h3 {
-  margin: 0.7rem 0 0.4rem 0;
-  font-size: 1.05rem;
-  color: #f8fafc;
-}
-.product-card .price {
-  color: #38bdf8;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
- 
-.product-card.hidden-card {
-  visibility: hidden !important;
-  opacity: 0 !important;
-  transform: scale(0.98) !important;
-  pointer-events: none !important;
-}
-
- 
-.products-grid.center-single {
-  justify-content: center !important;
-}
-
- 
-@media (max-width: 900px) {
-  .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important; }
-  .thumb-wrap { height: 140px; }
-}
-@media (max-width: 560px) {
-  .products-grid { grid-template-columns: 1fr !important; }
-  .thumb-wrap { height: 200px; }
-}
-
- 
-#search-bar {
-  width: 60%;
-  max-width: 520px;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  border: none;
-  background: #ffffff;
-  color: #000000;
-  box-shadow: 0 6px 16px rgba(2,6,23,0.2);
-  outline: none;
-}
-#search-bar::placeholder { color:#475569; }
-</style>
+</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("search-bar");
-  const grid = document.getElementById("products-grid");
-  const cards = Array.from(document.querySelectorAll(".product-card"));
-  const noResults = document.getElementById("no-results");
+  const addToCartBtn = document.querySelector(".add-to-cart");
+  const buyNowBtn = document.querySelector(".buy-now");
 
-  function doFilter() {
-    const q = input.value.trim().toLowerCase();
-    let visible = 0;
+  
+  addToCartBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
 
-    
-    const sorted = [...cards].sort((a, b) => {
-      const titleA = (a.getAttribute("data-title") || "").toLowerCase();
-      const titleB = (b.getAttribute("data-title") || "").toLowerCase();
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in first.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
 
-      const matchA = titleA.includes(q);
-      const matchB = titleB.includes(q);
+    const key = `cart_${user}`;
+    let cart = JSON.parse(localStorage.getItem(key)) || [];
+    const existing = cart.find((p) => p.id === item.id);
+    if (existing) existing.qty += 1;
+    else cart.push(item);
+    localStorage.setItem(key, JSON.stringify(cart));
 
-      const exactA = titleA === q;
-      const exactB = titleB === q;
+    showToast(`🎮 ${item.title} added to cart!`, "success");
+  });
 
-      
-      if (exactA && !exactB) return -1;
-      if (!exactA && exactB) return 1;
+  
+  buyNowBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
 
-      
-      if (matchA && !matchB) return -1;
-      if (!matchA && matchB) return 1;
-
-      
-      return titleA.localeCompare(titleB);
-    });
-
-    
-    grid.innerHTML = "";
-    sorted.forEach(card => {
-      const title = (card.getAttribute("data-title") || "").toLowerCase();
-      if (!q || title.includes(q)) {
-        card.classList.remove("hidden-card");
-        grid.appendChild(card);
-        visible++;
-      } else {
-        card.classList.add("hidden-card");
-      }
-    });
-
-    
-    if (visible === 1) {
-      grid.classList.add("center-single");
-    } else {
-      grid.classList.remove("center-single");
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in to buy games.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
     }
 
     
-    noResults.style.display = visible === 0 ? "block" : "none";
-  }
+    const key = `checkout_${user}`;
+    localStorage.setItem(key, JSON.stringify([item]));
 
-  
-  doFilter();
-
-  
-  input.addEventListener("input", doFilter);
-
-  
-  window.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "g") {
-      const vis = cards.filter(c => !c.classList.contains("hidden-card")).length;
-      console.info("Visible cards:", vis);
-      alert("Visible cards: " + vis);
-    }
+    showToast("💳 Redirecting to payment...", "info");
+    setTimeout(() => (window.location.href = "/payment/"), 1000);
   });
 });
 </script>
+
+
+
+<style>
+.game-container {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.trailer iframe {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.gallery img {
+  height: 160px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.game-details {
+  margin-top: 1rem;
+}
+.price {
+  color: #38bdf8;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.meta {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.desc {
+  color: #e2e8f0;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.buttons button {
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.buy-now {
+  background: linear-gradient(135deg, #9333ea, #6366f1);
+  color: white;
+}
+.buy-now:hover { background: linear-gradient(135deg, #7e22ce, #4f46e5); transform: scale(1.03); }
+.add-to-cart {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+.add-to-cart:hover { background: linear-gradient(135deg, #1d4ed8, #2563eb); transform: scale(1.03); }
+.share-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+.share-btn:hover { background: #475569; transform: scale(1.03); }
+</style>
 
 
   </main>

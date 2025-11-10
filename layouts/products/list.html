@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section style="max-width:1200px; margin:2rem auto; padding:0 1rem;">
-  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎮 Our Games</h1>
+  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem; ">🎮 Our Games</h1>
 
   <div style="text-align:center; margin-bottom:1.4rem;">
     <input id="search-bar" placeholder="Search for a game..." aria-label="Search" />
@@ -108,8 +108,8 @@
   padding: 0.8rem 1rem;
   border-radius: 10px;
   border: none;
-  background: #0f172a;
-  color: #cbd5e1;
+  background: #ffffff;
+  color: #000000;
   box-shadow: 0 6px 16px rgba(2,6,23,0.2);
   outline: none;
 }
@@ -127,35 +127,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const q = input.value.trim().toLowerCase();
     let visible = 0;
 
-    cards.forEach(card => {
-      const title = card.getAttribute("data-title") || "";
+    // Sort cards — exact matches first, then partial, then others
+    const sorted = [...cards].sort((a, b) => {
+      const titleA = (a.getAttribute("data-title") || "").toLowerCase();
+      const titleB = (b.getAttribute("data-title") || "").toLowerCase();
+
+      const matchA = titleA.includes(q);
+      const matchB = titleB.includes(q);
+
+      const exactA = titleA === q;
+      const exactB = titleB === q;
+
+      // Exact match first
+      if (exactA && !exactB) return -1;
+      if (!exactA && exactB) return 1;
+
+      // Partial match next
+      if (matchA && !matchB) return -1;
+      if (!matchA && matchB) return 1;
+
+      // Alphabetical fallback
+      return titleA.localeCompare(titleB);
+    });
+
+    // Rebuild grid visually
+    grid.innerHTML = "";
+    sorted.forEach(card => {
+      const title = (card.getAttribute("data-title") || "").toLowerCase();
       if (!q || title.includes(q)) {
         card.classList.remove("hidden-card");
+        grid.appendChild(card);
         visible++;
       } else {
         card.classList.add("hidden-card");
       }
     });
 
-    // center if only one result
+    // Center layout if single visible card
     if (visible === 1) {
       grid.classList.add("center-single");
     } else {
       grid.classList.remove("center-single");
     }
 
-    // show no-results message
+    // Show or hide "no results"
     noResults.style.display = visible === 0 ? "block" : "none";
   }
 
-  // initial (in case)
+  // Initial filter (on page load)
   doFilter();
 
-  input.addEventListener("input", () => {
-    doFilter();
-  });
+  // Live filter as user types
+  input.addEventListener("input", doFilter);
 
-  // Debug helper: press Ctrl+Shift+G to show how many visible cards
+  // Debug shortcut (Ctrl+Shift+G)
   window.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "g") {
       const vis = cards.filter(c => !c.classList.contains("hidden-card")).length;
@@ -165,4 +190,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
 {{ end }}

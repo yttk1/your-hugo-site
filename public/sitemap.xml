@@ -20,6 +20,8 @@
   </url><url>
     <loc>http://localhost:1313/payment/</loc>
   </url><url>
+    <loc>http://localhost:1313/products/p006/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p005/</loc>
   </url><url>
     <loc>http://localhost:1313/signup/</loc>
