@@ -279,13 +279,13 @@
       <input type="text" placeholder="John Doe" id="card-name">
 
       <label>Card Number</label>
-      <input type="text" placeholder="1234 5678 9012 3456" id="card-number">
+      <input type="text" placeholder="1234567890123456" id="card-number" inputmode="numeric" autocomplete="cc-number" maxlength="19">
 
       <label>Expiry Date</label>
-      <input type="text" placeholder="MM/YY" id="card-expiry">
+      <input type="text" placeholder="MM/YY" id="card-expiry" inputmode="numeric" autocomplete="cc-exp" maxlength="5">
 
       <label>CVV</label>
-      <input type="text" placeholder="123" id="card-cvv">
+      <input type="text" placeholder="123" id="card-cvv" inputmode="numeric" autocomplete="cc-csc" maxlength="3">
 
       <button id="complete-btn">Complete Purchase</button>
     </div>
@@ -447,6 +447,95 @@ window.addEventListener("beforeunload", () => {
   localStorage.removeItem(`checkout_${user}`);
 });
 
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const numberEl = document.getElementById("card-number");
+  const expiryEl = document.getElementById("card-expiry");
+  const cvvEl = document.getElementById("card-cvv");
+  const completeBtn = document.getElementById("complete-btn");
+
+  if (!numberEl || !expiryEl || !cvvEl || !completeBtn) return;
+
+  
+  numberEl.addEventListener("input", () => {
+    const digits = numberEl.value.replace(/\D/g, "").slice(0, 19);
+    numberEl.value = digits;
+  });
+
+  
+  cvvEl.addEventListener("input", () => {
+    const digits = cvvEl.value.replace(/\D/g, "").slice(0, 3);
+    cvvEl.value = digits;
+  });
+
+  
+  expiryEl.addEventListener("input", () => {
+    const digits = expiryEl.value.replace(/\D/g, "").slice(0, 4);
+    let out = digits;
+    if (digits.length >= 3) {
+      out = `${digits.slice(0,2)}/${digits.slice(2,4)}`;
+    }
+    expiryEl.value = out;
+  });
+
+  function isValidExpiry(mmYY) {
+    const m = /^(\d{2})\/(\d{2})$/.exec(mmYY);
+    if (!m) return false;
+    const month = parseInt(m[1], 10);
+    return month >= 1 && month <= 12;
+  }
+
+  function luhnValid(num) {
+    if (!/^\d{13,19}$/.test(num)) return false;
+    let sum = 0, dbl = false;
+    for (let i = num.length - 1; i >= 0; i--) {
+      let n = parseInt(num[i], 10);
+      if (dbl) {
+        n *= 2;
+        if (n > 9) n -= 9;
+      }
+      sum += n;
+      dbl = !dbl;
+    }
+    return sum % 10 === 0;
+  }
+
+  
+  const clone = completeBtn.cloneNode(true);
+  completeBtn.parentNode.replaceChild(clone, completeBtn);
+
+  clone.addEventListener("click", () => {
+    const number = numberEl.value.replace(/\D/g, "");
+    const expiry = expiryEl.value.trim();
+    const cvv = cvvEl.value.trim();
+
+    if (!luhnValid(number)) {
+      showToast("❌ Enter a valid card number.", "error");
+      return;
+    }
+    if (!isValidExpiry(expiry)) {
+      showToast("❌ Expiry must be MM/YY (01-12).", "error");
+      return;
+    }
+    if (!/^\d{3}$/.test(cvv)) {
+      showToast("❌ CVV must be 3 digits.", "error");
+      return;
+    }
+
+    
+    const user = localStorage.getItem("user");
+    const checkoutKey = user ? `checkout_${user}` : null;
+    const cartKey = user ? `cart_${user}` : null;
+
+    showToast("✅ Purchase complete!", "success");
+    if (checkoutKey) localStorage.removeItem(checkoutKey);
+    if (cartKey) localStorage.removeItem(cartKey);
+    setTimeout(() => (window.location.href = "/"), 1500);
+  });
+});
 </script>
 
 
