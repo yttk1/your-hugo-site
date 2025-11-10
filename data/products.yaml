@@ -8,7 +8,7 @@
   genres: ["Action", "RPG", "Open World"]
   trailer: "https://www.youtube.com/embed/qIcTM8WXFjk"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg"
+    - "https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png"
     - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg?t=1756209867"
     - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_0e64170751e1ae20ff8fdb7001a8892fd48260e7.1920x1080.jpg?t=1756209867"
   long: "Experience a vast open world set in the megalopolis of Night City, where you play as V, a cyberpunk mercenary hunting for a one-of-a-kind implant that holds the key to immortality."
@@ -23,7 +23,7 @@
   genres: ["Action", "RPG", "Fantasy"]
   trailer: "https://www.youtube.com/embed/E3Huy2cdih0"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg"
+    - "https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg"
   long: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery."
@@ -53,7 +53,7 @@
   genres: ["Strategy", "Turn-Based", "Historical"]
   trailer: "https://www.youtube.com/embed/5KdE0p2joJw"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg"
+    - "https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/ss_9110531d77ecb8f2c6f18b8a64b478b6bafcf5d4.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/ss_2c985e42a6a3d1a16c8cb8d1b580dc29d7b8f081.jpg"
   long: "Build an empire that will stand the test of time. Choose a civilization and lead your people from the Stone Age to the Information Age."
@@ -83,23 +83,23 @@
   genres: ["Action", "Roguelike", "Indie"]
   trailer: "https://www.youtube.com/embed/91t0ha9x5EE"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg"
+    - "https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
   long: "Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom."
 
 
 - id: "p007"
-  title: "Hades"
-  price: 24.99
-  developer: "Supergiant Games"
-  publisher: "Supergiant Games"
-  release_date: "2020-09-17"
-  modes: "Singleplayer"
-  genres: ["Action", "Roguelike", "Indie"]
-  trailer: "https://www.youtube.com/embed/91t0ha9x5EE"
+  title: "EA SPORTS FC 26"
+  price: 64.99
+  developer: "Electronic Arts"
+  publisher: "Electronic Arts"
+  release_date: "2025-09-26"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Sports"]
+  trailer: "https://www.youtube.com/embed/TSi0iJYSQ24"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg"
+    - "https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
-  long: "Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom."
+  long: "The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience powered by community feedback, Manager Live Challenges that bring fresh storylines to the new season, and Archetypes inspired by greats of the game."
