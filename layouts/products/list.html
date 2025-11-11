@@ -10,6 +10,7 @@
         </button>
 
         <div class="filter-options" id="genres">
+        <div class="filter-scroll">
           {{ $genres := slice }}
           {{ range site.Data.products }}
             {{ range .genres }}
@@ -24,8 +25,32 @@
             <span class="label">{{ . }}</span>
           </div>
           {{ end }}
+        </div>
 
-          <button id="clear-filters" class="clear-filters-link">Clear all filters</button>
+        <button id="clear-filters" class="clear-filters-link">Clear all filters</button>
+      </div>
+
+      <!-- 🎮 MODES FILTER -->
+      <div class="filter-group">
+        <button class="filter-toggle" data-target="modes">
+          Modes <span class="arrow">▼</span>
+        </button>
+
+        <div class="filter-options" id="modes">
+          <div class="filter-scroll">
+            <div class="filter-item" data-mode="multiplayer">
+              <span class="checkbox"></span>
+              <span class="label">Multiplayer</span>
+            </div>
+            <div class="filter-item" data-mode="singleplayer">
+              <span class="checkbox"></span>
+              <span class="label">Singleplayer</span>
+            </div>
+            <div class="filter-item" data-mode="co-op">
+              <span class="checkbox"></span>
+              <span class="label">Co-op</span>
+            </div>
+          </div>
         </div>
       </div>
     </aside>
@@ -362,22 +387,22 @@
     content: "✔";
     position: absolute;
     color: #fff;
-    top: -3px;
-    left: 2px;
+    top: -1px;
+    left: 3px;
     font-size: 0.7rem;
   }
 
   /* 🚫 Exclude */
   .filter-item.exclude .checkbox {
-    background: #ef4444;
-    border-color: #ef4444;
+    background: #a09e9e;
+    border-color: #a09e9e;
   }
   .filter-item.exclude .checkbox::after {
     content: "✖";
     position: absolute;
     color: #fff;
-    top: -3px;
-    left: 2px;
+    top: -1px;
+    left: 3px;
     font-size: 0.7rem;
   }
 
@@ -390,7 +415,7 @@
     font-weight: 700;
     font-size: 0.9rem;
     cursor: pointer;
-    margin-top: 0.8rem;
+    margin-top: -0.7rem;
     text-align: left;
     padding-left: 0.2rem;
     transition: color 0.2s;
@@ -412,6 +437,41 @@
     }
   }
 
+  /* ===== Limit genre list height with scroll ===== */
+  /* ===== Limit genre list height with scroll (Clear button stays fixed below) ===== */
+  .filter-options {
+    display: none;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    padding-left: 0.3rem;
+  }
+
+  .filter-options.active {
+    display: flex;
+  }
+
+  /* Wrap only the genre items in a scrollable container */
+  .filter-scroll {
+    max-height: 250px;        /* shows around 10 items */
+    overflow-y: auto;
+    margin-bottom: 0.8rem;
+    scrollbar-width: thin;
+    scrollbar-color: #a855f7 #2b2b2b;
+  }
+
+  .filter-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .filter-scroll::-webkit-scrollbar-thumb {
+    background: #a855f7;
+    border-radius: 3px;
+  }
+  .filter-scroll::-webkit-scrollbar-track {
+    background: #2b2b2b;
+  }
+
+
   </style>
 
   <script>
@@ -421,12 +481,17 @@
     const grid = document.getElementById("products-grid");
     const cards = Array.from(document.querySelectorAll(".product-card"));
     const noResults = document.getElementById("no-results");
-    const genreItems = document.querySelectorAll(".filter-item");
+    const genreItems = document.querySelectorAll("[data-genre]");
+    const modeItems = document.querySelectorAll("[data-mode]");
     const clearBtn = document.querySelector(".clear-filters-link");
     const toggles = document.querySelectorAll(".filter-toggle");
 
     let includeGenres = new Set();
     let excludeGenres = new Set();
+
+    let includeModes = new Set();
+    let excludeModes = new Set();
+
 
     // Accordion toggle
     toggles.forEach(btn => {
@@ -469,7 +534,12 @@
         const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
         const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
 
-        if (matchesSearch && matchesInclude && !matchesExclude) {
+        const modes = (card.dataset.modes || "").toLowerCase().split(",");
+        const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
+        const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
+
+
+        if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude) {
           grid.appendChild(card);
           card.style.display = "block";
           visible++;
@@ -501,11 +571,33 @@
       });
     });
 
+    // Mode toggle: include → exclude → off
+    modeItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const mode = item.dataset.mode;
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+          item.classList.add("exclude");
+          includeModes.delete(mode);
+          excludeModes.add(mode);
+        } else if (item.classList.contains("exclude")) {
+          item.classList.remove("exclude");
+          excludeModes.delete(mode);
+        } else {
+          item.classList.add("active");
+          includeModes.add(mode);
+        }
+        doFilterAndSort();
+      });
+    });
+
     // Clear filters
     clearBtn.addEventListener("click", () => {
       includeGenres.clear();
       excludeGenres.clear();
-      genreItems.forEach(i => i.classList.remove("active", "exclude"));
+      includeModes.clear();
+      excludeModes.clear();
+      document.querySelectorAll(".filter-item").forEach(i => i.classList.remove("active", "exclude"));
       doFilterAndSort();
     });
 

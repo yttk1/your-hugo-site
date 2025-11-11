@@ -65,7 +65,7 @@
   publisher: "Hello Games"
   release_date: "2016-08-12"
   modes: "Singleplayer / Multiplayer"
-  genres: ["Adventure", "Exploration", "Sci-Fi"]
+  genres: ["Adventure", "Sci-Fi"]
   trailer: "https://www.youtube.com/embed/nLtmEjqzg7M"
   images:
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/header.jpg"
