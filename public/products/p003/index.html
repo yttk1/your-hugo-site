@@ -295,21 +295,35 @@
     </div>
   </div>
 
-
   
   <div class="game-details">
-    <h1>Stardew Valley</h1>
+    <h1 class="game-title">Stardew Valley</h1>
     <p class="price">$14.99</p>
-    <p class="meta">
-      <strong>Developer:</strong> ConcernedApe<br>
-      <strong>Publisher:</strong> ConcernedApe<br>
-      <strong>Release Date:</strong> 2016-02-26<br>
-      <strong>Modes:</strong> Singleplayer / Co-op<br>
-      <strong>Genres:</strong> Indie, Simulation, Farming
-    </p>
 
-    <p class="desc">Build the farm of your dreams! Raise animals, grow crops, mine, fish, and build relationships in this beloved indie farming simulator.</p>
+    <br>
 
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Info</h2>
+      <hr class="section-divider">
+      <div class="meta">
+        <p><strong>Developer:</strong> ConcernedApe</p>
+        <p><strong>Publisher:</strong> ConcernedApe</p>
+        <p><strong>Release Date:</strong> 2016-02-26</p>
+        <p><strong>Modes:</strong> Singleplayer / Co-op</p>
+        <p><strong>Genres:</strong> Indie, Simulation, Farming</p>
+      </div>
+    </div>
+
+    <br>
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Description</h2>
+      <hr class="section-divider">
+      <p class="desc">Build the farm of your dreams! Raise animals, grow crops, mine, fish, and build relationships in this beloved indie farming simulator.</p>
+    </div>
+
+    <br>
     
     <div class="buttons">
       <button class="buy-now"
@@ -572,6 +586,44 @@ function showMedia(src, type) {
   filter: brightness(1);
 }
 
+ 
+.section-block {
+  margin-top: 2rem;
+}
+
+.section-title {
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.meta p {
+  margin: 0.2rem 0;
+}
+
+.desc {
+  color: #e2e8f0;
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
 
 
 </style>
