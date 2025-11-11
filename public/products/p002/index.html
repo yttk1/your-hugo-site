@@ -15,14 +15,15 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--secondary);
-      color: var(--text);
+      background-color: #212121;
+      color: #e0e0e0;
       margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
     header {
-      background: white;
+      background: #1A1A1A;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       padding: 1rem 2rem;
       display: flex;
@@ -69,8 +70,8 @@
       <span class="logo-text">Home</span>
     </a>
     <nav class="nav-links">
-      <a href="/products/">🎮 Products</a>
-      <a href="/about/">📜 About</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
     </nav>
   </div>
 
@@ -85,7 +86,7 @@
 
 
 
-  <style>
+<style>
 
  
 .nav-left {
@@ -172,7 +173,7 @@
 
  
 .nav-links a {
-  color: #94a3b8;
+  color: #f7f4f4;
   margin-left: 1.5rem;
   text-decoration: none;
   font-weight: 500;
@@ -194,7 +195,7 @@
  
 .username {
   font-weight: 600;
-  color: #4e4c4c;
+  color: #ffffff;
   text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
 }
  
@@ -216,7 +217,7 @@
   justify-content: center;
   font-weight: 200;
   font-size: 0.9rem;
-  box-shadow: 0 0 6px rgba(80, 80, 82, 0.6);
+  box-shadow: 0 0 6px rgba(152, 152, 154, 0.6);
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
@@ -263,114 +264,198 @@
 
 
 
+<div class="game-container">
+  
+  
+  <div class="trailer">
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/E3Huy2cdih0" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
 
-<div class="product-detail">
-  <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring">
-  <div class="details">
+  
+  <div class="gallery">
+    
+    <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring screenshot">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg" alt="Elden Ring screenshot">
+    
+    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg" alt="Elden Ring screenshot">
+    
+  </div>
+
+  
+  <div class="game-details">
     <h1>Elden Ring</h1>
-    <p class="price">$59.99</p>
-    <p class="desc">
-A vast world full of peril and wonder awaits. Traverse the Lands Between, 
-battle demigods, and forge your path as the Tarnished in this award-winning open-world action RPG.
+    <p class="price">$69.99</p>
+    <p class="meta">
+      <strong>Developer:</strong> FromSoftware<br>
+      <strong>Publisher:</strong> Bandai Namco Entertainment<br>
+      <strong>Release Date:</strong> 2022-02-25<br>
+      <strong>Modes:</strong> Singleplayer / Multiplayer<br>
+      <strong>Genres:</strong> Action, RPG, Fantasy
+    </p>
 
-</p>
-    <button class="add-to-cart"
-      data-id="p002"
-      data-title="Elden Ring"
-      data-price="59.99"
-      data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg">
-      Add to Cart
-    </button>
+    <p class="desc">Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery.</p>
+
+    
+    <div class="buttons">
+      <button class="buy-now"
+        data-id="p002"
+        data-title="Elden Ring"
+        data-price="69.99"
+        data-img="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp">
+        Buy Now
+      </button>
+      <button class="add-to-cart"
+        data-id="p002"
+        data-title="Elden Ring"
+        data-price="69.99"
+        data-img="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp">
+        Add to Cart
+      </button>
+      <button class="share-btn" onclick="shareGame('Elden Ring', 'http:\/\/localhost:1313\/products\/p002\/')">Share</button>
+    </div>
   </div>
 </div>
 
-
-<style>
-.product-detail {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 2rem;
-  background: #1e293b;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  color: #fff;
-}
-.product-detail img {
-  width: 420px;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-.details { flex: 1; }
-.details h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-.price { font-size: 1.4rem; color: #38bdf8; font-weight: bold; }
-.desc { color: #e2e8f0; margin-top: 1rem; line-height: 1.6; }
-.add-to-cart {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 1.2rem;
-  font-size: 1rem;
-  transition: background 0.2s;
-}
-.add-to-cart:hover { background: #1d4ed8; }
-</style>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector(".add-to-cart");
-  if (!btn) return;
+  const addToCartBtn = document.querySelector(".add-to-cart");
+  const buyNowBtn = document.querySelector(".buy-now");
 
-  btn.addEventListener("click", (e) => {
-    const user = localStorage.getItem("user");
-
-    
-    if (!user) {
-      showToast("⚠️ Please log in before adding items to cart.", "warning");
-
-      
-      setTimeout(() => {
-        window.location.href = "/login/";
-      }, 1500);
-
-      return;
-    }
-
-    
+  
+  addToCartBtn.addEventListener("click", (e) => {
     const item = {
       id: e.target.dataset.id,
       title: e.target.dataset.title,
       price: parseFloat(e.target.dataset.price),
       img: e.target.dataset.img,
-      qty: 1
+      qty: 1,
     };
+
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in first.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
 
     const key = `cart_${user}`;
     let cart = JSON.parse(localStorage.getItem(key)) || [];
-
-    const existing = cart.find(p => p.id === item.id);
+    const existing = cart.find((p) => p.id === item.id);
     if (existing) existing.qty += 1;
     else cart.push(item);
-
     localStorage.setItem(key, JSON.stringify(cart));
-    alert(`${item.title} added to cart!`);
-    updateCartCount();
+
+    showToast(`🎮 ${item.title} added to cart!`, "success");
   });
 
-  function updateCartCount() {
+  
+  buyNowBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
+
     const user = localStorage.getItem("user");
-    const key = user ? `cart_${user}` : "cart";
-    const cart = JSON.parse(localStorage.getItem(key)) || [];
-    const total = cart.reduce((sum, p) => sum + p.qty, 0);
-    const countEl = document.getElementById("cart-count");
-    if (countEl) countEl.textContent = total;
-  }
+    if (!user) {
+      showToast("⚠️ Please log in to buy games.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
+    
+    const key = `checkout_${user}`;
+    localStorage.setItem(key, JSON.stringify([item]));
+
+    showToast("💳 Redirecting to payment...", "info");
+    setTimeout(() => (window.location.href = "/payment/"), 1000);
+  });
 });
 </script>
+
+
+
+<style>
+.game-container {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.trailer iframe {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.gallery img {
+  height: 160px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.game-details {
+  margin-top: 1rem;
+}
+.price {
+  color: #38bdf8;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.meta {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.desc {
+  color: #e2e8f0;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.buttons button {
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.buy-now {
+  background: linear-gradient(135deg, #9333ea, #6366f1);
+  color: white;
+}
+.buy-now:hover { background: linear-gradient(135deg, #7e22ce, #4f46e5); transform: scale(1.03); }
+.add-to-cart {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+.add-to-cart:hover { background: linear-gradient(135deg, #1d4ed8, #2563eb); transform: scale(1.03); }
+.share-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+.share-btn:hover { background: #475569; transform: scale(1.03); }
+</style>
 
 
   </main>

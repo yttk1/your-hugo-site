@@ -1,110 +1,282 @@
 {{ define "main" }}
-<h1 style="text-align:center; color:#fff;">💳 Payment</h1>
+<div class="payment-page">
+  <h1>💳 Payment</h1>
 
-<div id="payment-container">
-  <div id="checkout-summary">
-    <h2>Order Summary</h2>
-    <div id="order-items"></div>
-    <p>Total: <strong id="order-total">$0.00</strong></p>
+  <div class="payment-container">
+    <!-- 🧾 Order Summary -->
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div id="order-items" class="order-items">
+        <p>Loading your cart...</p>
+      </div>
+      <p class="total">Total: <strong>$<span id="order-total">0.00</span></strong></p>
+    </div>
+
+    <!-- 💰 Payment Form -->
+    <div class="payment-form">
+      <h2>Payment Details</h2>
+      <label>Name on Card</label>
+      <input type="text" placeholder="John Doe" id="card-name">
+
+      <label>Card Number</label>
+      <input type="text" placeholder="1234567890123456" id="card-number" inputmode="numeric" autocomplete="cc-number" maxlength="19">
+
+      <label>Expiry Date</label>
+      <input type="text" placeholder="MM/YY" id="card-expiry" inputmode="numeric" autocomplete="cc-exp" maxlength="5">
+
+      <label>CVV</label>
+      <input type="text" placeholder="123" id="card-cvv" inputmode="numeric" autocomplete="cc-csc" maxlength="3">
+
+      <button id="complete-btn">Complete Purchase</button>
+    </div>
   </div>
-
-  <form id="payment-form">
-    <h2>Payment Details</h2>
-    <label>Name on Card</label>
-    <input type="text" id="card-name" required>
-
-    <label>Card Number</label>
-    <input type="text" id="card-number" maxlength="16" required>
-
-    <label>Expiry Date</label>
-    <input type="text" id="card-expiry" placeholder="MM/YY" required>
-
-    <label>CVV</label>
-    <input type="text" id="card-cvv" maxlength="3" required>
-
-    <button type="submit">Complete Purchase</button>
-  </form>
 </div>
 
 <style>
-#payment-container {
-  background: #1e293b;
-  color: white;
+.payment-page {
+  text-align: center;
+  margin-top: 2rem;
+  color: #f8fafc;
+}
+.payment-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: #0f172a;
   padding: 2rem;
   border-radius: 12px;
-  max-width: 800px;
+  max-width: 950px;
   margin: 2rem auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.5);
 }
-#payment-form {
+.order-summary, .payment-form {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+.order-summary h2, .payment-form h2 {
+  margin-top: 0;
+}
+.order-items {
+  margin-top: 1rem;
+  min-height: 150px;
+}
+.order-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  gap: 1rem;
 }
-#payment-form input {
+.order-item img {
+  width: 60px;
+  border-radius: 8px;
+}
+.item-info {
+  flex: 1;
+}
+.item-info h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+.item-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+.total {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+.payment-form label {
+  display: block;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin-top: 1rem;
+}
+.payment-form input {
+  width: 100%;
   padding: 0.6rem;
   border-radius: 6px;
   border: none;
-}
-#payment-form button {
-  margin-top: 1rem;
-  background: #22c55e;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-#payment-form button:hover {
-  background: #16a34a;
-}
-#checkout-summary {
+  margin-top: 0.3rem;
   background: #334155;
-  padding: 1rem;
-  border-radius: 8px;
+  color: #f8fafc;
 }
-#order-items div {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
+.payment-form input:focus {
+  outline: 2px solid #38bdf8;
+}
+#complete-btn {
+  background: #10b981;
+  border: none;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+#complete-btn:hover {
+  background: #059669;
 }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const checkoutCart = JSON.parse(localStorage.getItem("checkout_cart")) || [];
+  const user = localStorage.getItem("user");
   const orderContainer = document.getElementById("order-items");
   const totalEl = document.getElementById("order-total");
 
-  if (checkoutCart.length === 0) {
-    orderContainer.innerHTML = "<p>Your cart is empty.</p>";
+  if (!user) {
+    showToast("⚠️ Please log in to continue.", "warning");
+    setTimeout(() => (window.location.href = "/login/"), 1200);
     return;
   }
 
+  // ✅ Load from either checkout_<user> or cart_<user>
+  const checkoutKey = `checkout_${user}`;
+  const cartKey = `cart_${user}`;
+  let cart = JSON.parse(localStorage.getItem(checkoutKey))
+          || JSON.parse(localStorage.getItem(cartKey))
+          || [];
+
+  if (cart.length === 0) {
+    orderContainer.innerHTML = `<p>Your cart is empty.</p>`;
+    totalEl.textContent = "0.00";
+    return;
+  }
+
+  // Render items
   let total = 0;
-  checkoutCart.forEach(item => {
-    const div = document.createElement("div");
-    div.innerHTML = `<span>${item.title} × ${item.qty}</span><span>$${(item.price * item.qty).toFixed(2)}</span>`;
-    orderContainer.appendChild(div);
-    total += item.price * item.qty;
+  orderContainer.innerHTML = cart.map(item => {
+    const subtotal = (item.price * item.qty).toFixed(2);
+    total += parseFloat(subtotal);
+    return `
+      <div class="order-item">
+        <img src="${item.img}" alt="${item.title}">
+        <div class="item-info">
+          <h4>${item.title}</h4>
+          <p>Qty: ${item.qty}</p>
+        </div>
+        <span>$${subtotal}</span>
+      </div>
+    `;
+  }).join("");
+
+  totalEl.textContent = total.toFixed(2);
+
+  // Complete Purchase
+  document.getElementById("complete-btn").addEventListener("click", () => {
+    showToast("✅ Purchase complete!", "success");
+
+    // Remove both checkout and cart keys for this user
+    localStorage.removeItem(checkoutKey);
+    localStorage.removeItem(cartKey);
+
+    setTimeout(() => (window.location.href = "/"), 1500);
   });
-  totalEl.textContent = `$${total.toFixed(2)}`;
+});
+// 🧹 Clear checkout data when leaving the Payment page
+window.addEventListener("beforeunload", () => {
+  const user = localStorage.getItem("user");
+  if (!user) return;
+  localStorage.removeItem(`checkout_${user}`);
+});
 
-  document.getElementById("payment-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("✅ Payment successful! Thank you for your purchase.");
-    localStorage.removeItem("checkout_cart");
+</script>
 
-    // Also clear the user's cart
+<script>
+// Enforce numeric-only inputs and validated purchase flow
+document.addEventListener("DOMContentLoaded", () => {
+  const numberEl = document.getElementById("card-number");
+  const expiryEl = document.getElementById("card-expiry");
+  const cvvEl = document.getElementById("card-cvv");
+  const completeBtn = document.getElementById("complete-btn");
+
+  if (!numberEl || !expiryEl || !cvvEl || !completeBtn) return;
+
+  // Digits-only for card number; cap at 19 digits
+  numberEl.addEventListener("input", () => {
+    const digits = numberEl.value.replace(/\D/g, "").slice(0, 19);
+    numberEl.value = digits;
+  });
+
+  // Digits-only for CVV; cap at 3 digits
+  cvvEl.addEventListener("input", () => {
+    const digits = cvvEl.value.replace(/\D/g, "").slice(0, 3);
+    cvvEl.value = digits;
+  });
+
+  // Expiry: user types digits only; display as MM/YY automatically
+  expiryEl.addEventListener("input", () => {
+    const digits = expiryEl.value.replace(/\D/g, "").slice(0, 4);
+    let out = digits;
+    if (digits.length >= 3) {
+      out = `${digits.slice(0,2)}/${digits.slice(2,4)}`;
+    }
+    expiryEl.value = out;
+  });
+
+  function isValidExpiry(mmYY) {
+    const m = /^(\d{2})\/(\d{2})$/.exec(mmYY);
+    if (!m) return false;
+    const month = parseInt(m[1], 10);
+    return month >= 1 && month <= 12;
+  }
+
+  function luhnValid(num) {
+    if (!/^\d{13,19}$/.test(num)) return false;
+    let sum = 0, dbl = false;
+    for (let i = num.length - 1; i >= 0; i--) {
+      let n = parseInt(num[i], 10);
+      if (dbl) {
+        n *= 2;
+        if (n > 9) n -= 9;
+      }
+      sum += n;
+      dbl = !dbl;
+    }
+    return sum % 10 === 0;
+  }
+
+  // Replace existing click handlers on Complete button
+  const clone = completeBtn.cloneNode(true);
+  completeBtn.parentNode.replaceChild(clone, completeBtn);
+
+  clone.addEventListener("click", () => {
+    const number = numberEl.value.replace(/\D/g, "");
+    const expiry = expiryEl.value.trim();
+    const cvv = cvvEl.value.trim();
+
+    if (!luhnValid(number)) {
+      showToast("❌ Enter a valid card number.", "error");
+      return;
+    }
+    if (!isValidExpiry(expiry)) {
+      showToast("❌ Expiry must be MM/YY (01-12).", "error");
+      return;
+    }
+    if (!/^\d{3}$/.test(cvv)) {
+      showToast("❌ CVV must be 3 digits.", "error");
+      return;
+    }
+
+    // Success flow mirrors original handler
     const user = localStorage.getItem("user");
-    const key = user ? `cart_${user}` : "cart";
-    localStorage.removeItem(key);
+    const checkoutKey = user ? `checkout_${user}` : null;
+    const cartKey = user ? `cart_${user}` : null;
 
-    window.location.href = "/";
+    showToast("✅ Purchase complete!", "success");
+    if (checkoutKey) localStorage.removeItem(checkoutKey);
+    if (cartKey) localStorage.removeItem(cartKey);
+    setTimeout(() => (window.location.href = "/"), 1500);
   });
 });
 </script>
+
+
 {{ end }}

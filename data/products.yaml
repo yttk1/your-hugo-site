@@ -1,43 +1,105 @@
 - id: "p001"
   title: "Cyberpunk 2077"
-  price: 49.99
+  price: 59.99
+  developer: "CD Projekt Red"
+  publisher: "CD Projekt"
+  release_date: "2020-12-10"
+  modes: "Singleplayer"
+  genres: ["Action", "RPG", "Open World"]
+  trailer: "https://www.youtube.com/embed/qIcTM8WXFjk"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg"
-  long: >
-    Step into the neon-soaked streets of Night City as V, a mercenary outlaw on a quest for immortality. 
-    Experience stunning visuals, deep character customization, and branching storylines in CD Projekt Red’s sci-fi RPG.
+    - "https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg?t=1756209867"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_0e64170751e1ae20ff8fdb7001a8892fd48260e7.1920x1080.jpg?t=1756209867"
+  long: "Experience a vast open world set in the megalopolis of Night City, where you play as V, a cyberpunk mercenary hunting for a one-of-a-kind implant that holds the key to immortality."
 
 - id: "p002"
   title: "Elden Ring"
-  price: 59.99
+  price: 69.99
+  developer: "FromSoftware"
+  publisher: "Bandai Namco Entertainment"
+  release_date: "2022-02-25"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Action", "RPG", "Fantasy"]
+  trailer: "https://www.youtube.com/embed/E3Huy2cdih0"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg"
-  long: >
-    A vast world full of peril and wonder awaits. Traverse the Lands Between, 
-    battle demigods, and forge your path as the Tarnished in this award-winning open-world action RPG.
+    - "https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg"
+  long: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery."
 
 - id: "p003"
-  title: "Baldur’s Gate 3"
-  price: 69.99
+  title: "Stardew Valley"
+  price: 14.99
+  developer: "ConcernedApe"
+  publisher: "ConcernedApe"
+  release_date: "2016-02-26"
+  modes: "Singleplayer / Co-op"
+  genres: ["Indie", "Simulation", "Farming"]
+  trailer: "https://www.youtube.com/embed/ot7uXNQskhs"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg"
-  long: >
-    Gather your party and return to the Forgotten Realms in this next-generation Dungeons & Dragons RPG 
-    where every choice matters and your decisions shape the world around you.
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_46079e35b86c471c6edb8aaf6d6091fbd4f82692.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_0b26123e0a3d377e3b8f5e0ad37a36404a814223.jpg"
+  long: "Build the farm of your dreams! Raise animals, grow crops, mine, fish, and build relationships in this beloved indie farming simulator."
 
 - id: "p004"
-  title: "Hades"
-  price: 19.99
+  title: "Civilization VI"
+  price: 29.99
+  developer: "Firaxis Games"
+  publisher: "2K"
+  release_date: "2016-10-21"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Strategy", "Turn-Based", "Historical"]
+  trailer: "https://www.youtube.com/embed/5KdE0p2joJw"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg"
-  long: >
-    Defy the god of the dead as you hack and slash out of the Underworld in this fast-paced rogue-like action game from Supergiant Games.
+    - "https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/ss_9110531d77ecb8f2c6f18b8a64b478b6bafcf5d4.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/ss_2c985e42a6a3d1a16c8cb8d1b580dc29d7b8f081.jpg"
+  long: "Build an empire that will stand the test of time. Choose a civilization and lead your people from the Stone Age to the Information Age."
 
 - id: "p005"
-  title: "Red Dead Redemption 2"
+  title: "No Man’s Sky"
   price: 59.99
+  developer: "Hello Games"
+  publisher: "Hello Games"
+  release_date: "2016-08-12"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Adventure", "Exploration", "Sci-Fi"]
+  trailer: "https://www.youtube.com/embed/nLtmEjqzg7M"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg"
-  long: >
-    Experience the epic tale of life in America’s unforgiving heartland. 
-    Play as Arthur Morgan, an outlaw on the run, in Rockstar’s masterpiece of storytelling and open-world immersion.
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/header.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_91f39b6e22b7f8c8f3e6c31b76326e44aa4c8bb2.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_07b0111d93db03777dfb04d0dca46a7f3d16052c.jpg"
+  long: "Explore an infinite universe with endless planets to discover, each filled with unique lifeforms, landscapes, and challenges."
+
+- id: "p006"
+  title: "Hades"
+  price: 24.99
+  developer: "Supergiant Games"
+  publisher: "Supergiant Games"
+  release_date: "2020-09-17"
+  modes: "Singleplayer"
+  genres: ["Action", "Roguelike", "Indie"]
+  trailer: "https://www.youtube.com/embed/91t0ha9x5EE"
+  images:
+    - "https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
+  long: "Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom."
+
+
+- id: "p007"
+  title: "EA SPORTS FC 26"
+  price: 64.99
+  developer: "Electronic Arts"
+  publisher: "Electronic Arts"
+  release_date: "2025-09-26"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Sports"]
+  trailer: "https://www.youtube.com/embed/TSi0iJYSQ24"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
+  long: "The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience powered by community feedback, Manager Live Challenges that bring fresh storylines to the new season, and Archetypes inspired by greats of the game."
