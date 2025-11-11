@@ -16,10 +16,19 @@
   <div class="gallery-container">
     <div class="main-display" id="main-display">
       {{ if $p.trailer }}
-        <iframe id="main-media" src="{{ $p.trailer }}" frameborder="0" allowfullscreen></iframe>
+        {{/* extract YouTube video ID (works with ?v= or /embed/ URLs) */}}
+        {{ $videoID := replaceRE ".*(?:v=|embed/)([a-zA-Z0-9_-]+).*" "$1" $p.trailer }}
+        <iframe
+          id="main-media"
+          src="https://www.youtube.com/embed/{{ $videoID }}?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
       {{ else }}
         <img id="main-media" src="{{ index $p.images 0 }}" alt="{{ $p.title }}">
       {{ end }}
+
     </div>
 
     <div class="thumbnails">
@@ -111,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+
     const key = `cart_${user}`;
     let cart = JSON.parse(localStorage.getItem(key)) || [];
     const existing = cart.find((p) => p.id === item.id);
@@ -119,6 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(key, JSON.stringify(cart));
 
     showToast(`🎮 ${item.title} added to cart!`, "success");
+    updateCartCount();
+    animateCartIcon();
   });
 
   // Buy Now
@@ -170,6 +182,22 @@ function showMedia(src, type) {
     iframe.frameBorder = "0";
     display.appendChild(iframe);
   }
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+  const key = user ? `cart_${user}` : "cart";
+  const cart = JSON.parse(localStorage.getItem(key)) || [];
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+function animateCartIcon() {
+  const icon = document.getElementById("cart-link"); // id in your header
+  if (!icon) return;
+  icon.classList.add("cart-bounce");
+  setTimeout(() => icon.classList.remove("cart-bounce"), 500);
 }
 </script>
 
@@ -368,7 +396,14 @@ function showMedia(src, type) {
   line-height: 1.6;
   white-space: pre-line;
 }
+.cart-bounce {
+  animation: bounce 0.4s ease;
+}
 
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
 
 </style>
 {{ end }}
