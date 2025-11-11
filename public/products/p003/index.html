@@ -265,23 +265,36 @@
 
 
 <div class="game-container">
-  
-  
-  <div class="trailer">
-    <iframe width="100%" height="450" src="https://www.youtube.com/embed/ot7uXNQskhs" frameborder="0" allowfullscreen></iframe>
-  </div>
-  
 
   
-  <div class="gallery">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg" alt="Stardew Valley screenshot">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_46079e35b86c471c6edb8aaf6d6091fbd4f82692.jpg" alt="Stardew Valley screenshot">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_0b26123e0a3d377e3b8f5e0ad37a36404a814223.jpg" alt="Stardew Valley screenshot">
-    
+  <div class="gallery-container">
+    <div class="main-display" id="main-display">
+      
+        <iframe id="main-media" src="https://www.youtube.com/embed/ot7uXNQskhs" frameborder="0" allowfullscreen></iframe>
+      
+    </div>
+
+    <div class="thumbnails">
+      
+      
+        
+        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/ot7uXNQskhs','video')">
+          <img src="https://img.youtube.com/vi/ot7uXNQskhs/hqdefault.jpg" alt="Trailer thumbnail">
+          <div class="play-icon">▶</div>
+        </div>
+      
+
+      
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg" alt="Stardew Valley screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/413150\/header.jpg','image')">
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_46079e35b86c471c6edb8aaf6d6091fbd4f82692.jpg" alt="Stardew Valley screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/413150\/ss_46079e35b86c471c6edb8aaf6d6091fbd4f82692.jpg','image')">
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_0b26123e0a3d377e3b8f5e0ad37a36404a814223.jpg" alt="Stardew Valley screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/413150\/ss_0b26123e0a3d377e3b8f5e0ad37a36404a814223.jpg','image')">
+      
+    </div>
   </div>
+
 
   
   <div class="game-details">
@@ -375,6 +388,31 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (window.location.href = "/payment/"), 1000);
   });
 });
+
+function showMedia(src, type) {
+  const display = document.getElementById("main-display");
+  display.innerHTML = ""; 
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Game image";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
+    img.style.borderRadius = "10px";
+    display.appendChild(img);
+  } else if (type === "video") {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "500";
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = "10px";
+    iframe.frameBorder = "0";
+    display.appendChild(iframe);
+  }
+}
 </script>
 
 
@@ -455,6 +493,87 @@ document.addEventListener("DOMContentLoaded", () => {
   color: #f8fafc;
 }
 .share-btn:hover { background: #475569; transform: scale(1.03); }
+
+.gallery-container {
+  margin-bottom: 2rem;
+}
+
+.main-display {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.main-display img,
+.main-display iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+ 
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.thumb {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+ 
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-thumb img {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.video-thumb:hover img {
+  filter: brightness(1);
+}
+
+
+
 </style>
 
 
