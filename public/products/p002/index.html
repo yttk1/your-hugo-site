@@ -270,45 +270,60 @@
   <div class="gallery-container">
     <div class="main-display" id="main-display">
       
-      
-      <iframe id="main-media" src="https://www.youtube.com/embed/E3Huy2cdih0" frameborder="0" allowfullscreen></iframe>
+        <iframe id="main-media" src="https://www.youtube.com/embed/E3Huy2cdih0" frameborder="0" allowfullscreen></iframe>
       
     </div>
 
     <div class="thumbnails">
       
       
-      <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/E3Huy2cdih0','video')">
-        🎥 Trailer
-      </div>
+        
+        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/E3Huy2cdih0','video')">
+          <img src="https://img.youtube.com/vi/E3Huy2cdih0/hqdefault.jpg" alt="Trailer thumbnail">
+          <div class="play-icon">▶</div>
+        </div>
       
 
       
       
-      <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/07\/ELDEN-RING_ps5.webp','image')">
+        <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/07\/ELDEN-RING_ps5.webp','image')">
       
-      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1245620\/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg','image')">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1245620\/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg','image')">
       
-      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1245620\/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg','image')">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1245620\/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg','image')">
       
     </div>
   </div>
 
-
   
   <div class="game-details">
-    <h1>Elden Ring</h1>
+    <h1 class="game-title">Elden Ring</h1>
     <p class="price">$69.99</p>
-    <p class="meta">
-      <strong>Developer:</strong> FromSoftware<br>
-      <strong>Publisher:</strong> Bandai Namco Entertainment<br>
-      <strong>Release Date:</strong> 2022-02-25<br>
-      <strong>Modes:</strong> Singleplayer / Multiplayer<br>
-      <strong>Genres:</strong> Action, RPG, Fantasy
-    </p>
 
-    <p class="desc">Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery.</p>
+    <br>
 
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Info</h2>
+      <hr class="section-divider">
+      <div class="meta">
+        <p><strong>Developer:</strong> FromSoftware</p>
+        <p><strong>Publisher:</strong> Bandai Namco Entertainment</p>
+        <p><strong>Release Date:</strong> 2022-02-25</p>
+        <p><strong>Modes:</strong> Singleplayer / Multiplayer</p>
+        <p><strong>Genres:</strong> Action, RPG, Fantasy</p>
+      </div>
+    </div>
+
+    <br>
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Description</h2>
+      <hr class="section-divider">
+      <p class="desc">Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery.</p>
+    </div>
+
+    <br>
     
     <div class="buttons">
       <button class="buy-now"
@@ -395,8 +410,10 @@ function showMedia(src, type) {
   if (type === "image") {
     const img = document.createElement("img");
     img.src = src;
-    img.alt = "Game preview";
-    img.style.maxWidth = "100%";
+    img.alt = "Game image";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
     img.style.borderRadius = "10px";
     display.appendChild(img);
   } else if (type === "video") {
@@ -511,28 +528,32 @@ function showMedia(src, type) {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 10px;
 }
 
+ 
 .thumbnails {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.8rem;
   justify-content: center;
 }
 
 .thumb {
+  position: relative;
   width: 120px;
   height: 120px;
   border-radius: 8px;
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background: #1e293b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  color: #93c5fd;
+  border-radius: 8px;
 }
 
 .thumb:hover {
@@ -540,10 +561,70 @@ function showMedia(src, type) {
   opacity: 1;
 }
 
+ 
 .video-thumb {
-  background: linear-gradient(145deg, #4f46e5, #7c3aed);
-  color: white;
+  position: relative;
 }
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-thumb img {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.video-thumb:hover img {
+  filter: brightness(1);
+}
+
+ 
+.section-block {
+  margin-top: 2rem;
+}
+
+.section-title {
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.meta p {
+  margin: 0.2rem 0;
+}
+
+.desc {
+  color: #e2e8f0;
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
 
 </style>
 
