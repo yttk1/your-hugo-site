@@ -40,28 +40,36 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  background: rgba(235, 2, 2, 0.45);
+  background: transparent; /* 👈 bỏ nền */
   padding: 2rem;
   border-radius: 12px;
+  color: #fff; /* để chữ sáng */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); /* 👈 cho dễ đọc trên nền video */
 }
+
+
+
 
 .btn {
   display: inline-block;
-  background: linear-gradient(135deg, #3b82f6, #9333ea);
-  color: white;
+  background: rgba(255, 255, 255, 0.1); /* 👈 trong suốt nhẹ */
+  backdrop-filter: blur(8px); /* 👈 kính mờ */
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
   padding: 0.9rem 2rem;
   border-radius: 9999px;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(147, 51, 234, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
 .btn:hover {
+  background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
-  background: linear-gradient(135deg, #2563eb, #7e22ce);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
 }
 
 </style>

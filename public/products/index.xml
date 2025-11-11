@@ -22,6 +22,13 @@
       <description></description>
     </item>
     <item>
+      <title>EA SPORTS FC 26</title>
+      <link>http://localhost:1313/products/p007/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p007/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Elden Ring</title>
       <link>http://localhost:1313/products/p002/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -29,10 +36,10 @@
       <description></description>
     </item>
     <item>
-      <title>Game EA SPORTS FC 26 – PS5</title>
-      <link>http://localhost:1313/products/p007/</link>
+      <title>Hades</title>
+      <link>http://localhost:1313/products/p006/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p007/</guid>
+      <guid>http://localhost:1313/products/p006/</guid>
       <description></description>
     </item>
     <item>
