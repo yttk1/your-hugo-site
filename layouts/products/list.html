@@ -4,30 +4,31 @@
     <!-- 🎚 Sidebar Filter -->
     <!-- 🎚 Sidebar Filter -->
     <aside class="filter-sidebar">
+      <!-- 🎚 GENRES FILTER -->
       <div class="filter-group">
         <button class="filter-toggle" data-target="genres">
           Genres <span class="arrow">▼</span>
         </button>
 
         <div class="filter-options" id="genres">
-        <div class="filter-scroll">
-          {{ $genres := slice }}
-          {{ range site.Data.products }}
-            {{ range .genres }}
-              {{ if not (in $genres .) }}
-                {{ $genres = $genres | append . }}
+          <div class="filter-scroll">
+            {{ $genres := slice }}
+            {{ range site.Data.products }}
+              {{ range .genres }}
+                {{ if not (in $genres .) }}
+                  {{ $genres = $genres | append . }}
+                {{ end }}
               {{ end }}
             {{ end }}
-          {{ end }}
-          {{ range sort $genres }}
-          <div class="filter-item" data-genre="{{ . | lower }}">
-            <span class="checkbox"></span>
-            <span class="label">{{ . }}</span>
+            {{ range sort $genres }}
+            <div class="filter-item" data-genre="{{ . | lower }}">
+              <span class="checkbox"></span>
+              <span class="label">{{ . }}</span>
+            </div>
+            {{ end }}
           </div>
-          {{ end }}
+          <button class="clear-filters-link clear-genres">Clear genres</button>
         </div>
-
-        <button id="clear-filters" class="clear-filters-link">Clear all filters</button>
       </div>
 
       <!-- 🎮 MODES FILTER -->
@@ -51,9 +52,11 @@
               <span class="label">Co-op</span>
             </div>
           </div>
+          <button class="clear-filters-link clear-modes">Clear modes</button>
         </div>
       </div>
     </aside>
+
 
 
     <!-- 🎮 Main Product Section -->
@@ -92,7 +95,31 @@
           data-title="{{ lower .title }}"
           data-price="{{ .price }}"
           data-release="{{ .release_date }}"
-          data-genres="{{ delimit .genres "," }}">
+          data-genres="{{ delimit .genres "," }}"
+          data-modes="{{- with .modes -}}
+            {{- $m := trim . " " -}}
+            {{- if gt (len $m) 0 -}}
+              {{- if in $m "/" -}}
+                {{- $parts := split $m "/" -}}
+                {{- $clean := slice -}}
+                {{- range $parts -}}
+                  {{- if gt (len (trim . " ")) 0 -}}
+                    {{- $clean = $clean | append (lower (trim . " ")) -}}
+                  {{- end -}}
+                {{- end -}}
+                {{- delimit $clean "," -}}
+              {{- else -}}
+                {{- lower $m -}}
+              {{- end -}}
+            {{- else -}}
+              none
+            {{- end -}}
+          {{- else -}}
+            none
+          {{- end -}}"
+
+
+>
           <a href="/products/{{ .id }}/" class="product-link">
             <div class="thumb-wrap">
               <img src="{{ index .images 0 }}" alt="{{ .title }}" />
@@ -476,135 +503,140 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("search-bar");
-    const sortSelect = document.getElementById("sort-select");
-    const grid = document.getElementById("products-grid");
-    const cards = Array.from(document.querySelectorAll(".product-card"));
-    const noResults = document.getElementById("no-results");
-    const genreItems = document.querySelectorAll("[data-genre]");
-    const modeItems = document.querySelectorAll("[data-mode]");
-    const clearBtn = document.querySelector(".clear-filters-link");
-    const toggles = document.querySelectorAll(".filter-toggle");
+  const input = document.getElementById("search-bar");
+  const sortSelect = document.getElementById("sort-select");
+  const grid = document.getElementById("products-grid");
+  const cards = Array.from(document.querySelectorAll(".product-card"));
+  const noResults = document.getElementById("no-results");
+  const toggles = document.querySelectorAll(".filter-toggle");
 
-    let includeGenres = new Set();
-    let excludeGenres = new Set();
+  const genreItems = document.querySelectorAll("[data-genre]");
+  const modeItems = document.querySelectorAll("[data-mode]");
+  const clearGenresBtn = document.querySelector(".clear-genres");
+  const clearModesBtn = document.querySelector(".clear-modes");
 
-    let includeModes = new Set();
-    let excludeModes = new Set();
+  let includeGenres = new Set();
+  let excludeGenres = new Set();
+  let includeModes = new Set();
+  let excludeModes = new Set();
 
+  // Accordion toggle
+  toggles.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = document.getElementById(btn.dataset.target);
+      btn.classList.toggle("active");
+      target.classList.toggle("active");
+    });
+  });
 
-    // Accordion toggle
-    toggles.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = document.getElementById(btn.dataset.target);
-        btn.classList.toggle("active");
-        target.classList.toggle("active");
-      });
+  // 🔍 Core filter + sort
+  function doFilterAndSort() {
+    const q = input.value.trim().toLowerCase();
+    const sortBy = sortSelect.value;
+    let visible = 0;
+
+    const sorted = [...cards].sort((a, b) => {
+      const titleA = (a.dataset.title || "").toLowerCase();
+      const titleB = (b.dataset.title || "").toLowerCase();
+      const priceA = parseFloat(a.dataset.price) || 0;
+      const priceB = parseFloat(b.dataset.price) || 0;
+      const dateA = new Date(a.dataset.release || "1970-01-01");
+      const dateB = new Date(b.dataset.release || "1970-01-01");
+
+      switch (sortBy) {
+        case "alphabet": return titleA.localeCompare(titleB);
+        case "alphabet-desc": return titleB.localeCompare(titleA);
+        case "price": return priceA - priceB;
+        case "price-desc": return priceB - priceA;
+        case "release": return dateB - dateA;
+        case "release-old": return dateA - dateB;
+        default: return 0;
+      }
     });
 
-    function doFilterAndSort() {
-      const q = input.value.trim().toLowerCase();
-      const sortBy = sortSelect.value;
-      let visible = 0;
+    grid.innerHTML = "";
+    sorted.forEach(card => {
+      const title = (card.dataset.title || "").toLowerCase();
+      const genres = (card.dataset.genres || "").toLowerCase().split(",");
+      const modes = (card.dataset.modes || "").toLowerCase().split(",");
 
-      const sorted = [...cards].sort((a, b) => {
-        const titleA = (a.dataset.title || "").toLowerCase();
-        const titleB = (b.dataset.title || "").toLowerCase();
-        const priceA = parseFloat(a.dataset.price) || 0;
-        const priceB = parseFloat(b.dataset.price) || 0;
-        const dateA = new Date(a.dataset.release || "1970-01-01");
-        const dateB = new Date(b.dataset.release || "1970-01-01");
+      const matchesSearch = !q || title.includes(q);
+      const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
+      const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
+      const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
+      const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
 
-        switch (sortBy) {
-          case "alphabet": return titleA.localeCompare(titleB);
-          case "alphabet-desc": return titleB.localeCompare(titleA);
-          case "price": return priceA - priceB;
-          case "price-desc": return priceB - priceA;
-          case "release": return dateB - dateA;
-          case "release-old": return dateA - dateB;
-          default: return 0;
-        }
-      });
-
-      grid.innerHTML = "";
-      sorted.forEach(card => {
-        const title = (card.dataset.title || "").toLowerCase();
-        const genres = (card.dataset.genres || "").toLowerCase().split(",");
-        const matchesSearch = !q || title.includes(q);
-        const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
-        const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
-
-        const modes = (card.dataset.modes || "").toLowerCase().split(",");
-        const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
-        const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
-
-
-        if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude) {
-          grid.appendChild(card);
-          card.style.display = "block";
-          visible++;
-        } else {
-          card.style.display = "none";
-        }
-      });
-
-      noResults.style.display = visible === 0 ? "block" : "none";
-    }
-
-    // Genre toggle: include → exclude → off
-    genreItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const genre = item.dataset.genre;
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-          item.classList.add("exclude");
-          includeGenres.delete(genre);
-          excludeGenres.add(genre);
-        } else if (item.classList.contains("exclude")) {
-          item.classList.remove("exclude");
-          excludeGenres.delete(genre);
-        } else {
-          item.classList.add("active");
-          includeGenres.add(genre);
-        }
-        doFilterAndSort();
-      });
+      if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude) {
+        grid.appendChild(card);
+        card.style.display = "block";
+        visible++;
+      } else {
+        card.style.display = "none";
+      }
     });
 
-    // Mode toggle: include → exclude → off
-    modeItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const mode = item.dataset.mode;
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-          item.classList.add("exclude");
-          includeModes.delete(mode);
-          excludeModes.add(mode);
-        } else if (item.classList.contains("exclude")) {
-          item.classList.remove("exclude");
-          excludeModes.delete(mode);
-        } else {
-          item.classList.add("active");
-          includeModes.add(mode);
-        }
-        doFilterAndSort();
-      });
-    });
+    noResults.style.display = visible === 0 ? "block" : "none";
+  }
 
-    // Clear filters
-    clearBtn.addEventListener("click", () => {
-      includeGenres.clear();
-      excludeGenres.clear();
-      includeModes.clear();
-      excludeModes.clear();
-      document.querySelectorAll(".filter-item").forEach(i => i.classList.remove("active", "exclude"));
+  // 🎮 Genre toggle
+  genreItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const genre = item.dataset.genre;
+      if (item.classList.contains("active")) {
+        item.classList.remove("active");
+        item.classList.add("exclude");
+        includeGenres.delete(genre);
+        excludeGenres.add(genre);
+      } else if (item.classList.contains("exclude")) {
+        item.classList.remove("exclude");
+        excludeGenres.delete(genre);
+      } else {
+        item.classList.add("active");
+        includeGenres.add(genre);
+      }
       doFilterAndSort();
     });
+  });
 
-    input.addEventListener("input", doFilterAndSort);
-    sortSelect.addEventListener("change", doFilterAndSort);
+  // 🎮 Mode toggle
+  modeItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const mode = item.dataset.mode;
+      if (item.classList.contains("active")) {
+        item.classList.remove("active");
+        item.classList.add("exclude");
+        includeModes.delete(mode);
+        excludeModes.add(mode);
+      } else if (item.classList.contains("exclude")) {
+        item.classList.remove("exclude");
+        excludeModes.delete(mode);
+      } else {
+        item.classList.add("active");
+        includeModes.add(mode);
+      }
+      doFilterAndSort();
+    });
+  });
+
+  // 🔄 Individual Clear Buttons
+  clearGenresBtn.addEventListener("click", () => {
+    includeGenres.clear();
+    excludeGenres.clear();
+    genreItems.forEach(i => i.classList.remove("active", "exclude"));
     doFilterAndSort();
   });
+
+  clearModesBtn.addEventListener("click", () => {
+    includeModes.clear();
+    excludeModes.clear();
+    modeItems.forEach(i => i.classList.remove("active", "exclude"));
+    doFilterAndSort();
+  });
+
+  input.addEventListener("input", doFilterAndSort);
+  sortSelect.addEventListener("change", doFilterAndSort);
+  doFilterAndSort();
+});
 
   </script>
   {{ end }}
