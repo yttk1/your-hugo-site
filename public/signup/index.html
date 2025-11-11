@@ -259,109 +259,220 @@
 
   <main>
     
-<section class="signup-page">
-  <div class="signup-box">
-    <h1>Create Account</h1>
+<section class="hero">
+  <div class="video-container">
+    <iframe
+      id="bg-video"
+      src="https://www.youtube.com/embed/nMBBXqu0OLE?autoplay=1&mute=1&loop=1&playlist=nMBBXqu0OLE&controls=0&showinfo=0&modestbranding=1"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+    ></iframe>
+  </div>
 
-    <form id="signup-form">
-      <label>
-        Username
-        <input type="text" id="new-username" required>
-      </label>
-      <label>
-        Password
-        <input type="password" id="new-password" required>
-      </label>
-      <button type="submit" class="btn">Sign Up</button>
-    </form>
-
-    <p id="signup-error" class="error" style="display:none;"></p>
-    <p id="signup-success" class="success" style="display:none;">Account created! Redirecting to login...</p>
-
-    <p class="note">Already have an account? <a href="/login/">Login</a></p>
+  <div class="overlay">
+    <h1>Welcome to Gamestore88</h1>
+    <p>Your one-stop shop for cheap games 🎮</p>
+    <a href="/products/" class="btn">Shop Now</a>
   </div>
 </section>
 
-<script>
-document.getElementById('signup-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const username = document.getElementById('new-username').value.trim();
-  const password = document.getElementById('new-password').value.trim();
 
-  let users = JSON.parse(localStorage.getItem('users')) || [];
+<section class="featured-section">
+  <div class="featured">
+    <h2>🕹️ New Releases</h2>
+    <div class="cards">
+      <a href="/products/p007" class="card">
+        <img src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26">
+        <h3>EA SPORTS FC 26</h3>
+        <p>$64.99</p>
+      </a>
 
-  
-  if (users.some(u => u.username === username)) {
-    const err = document.getElementById('signup-error');
-    err.textContent = "Username already exists.";
-    err.style.display = "block";
-    return;
-  }
+      <a href="/products/p002" class="card">
+        <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring">
+        <h3>Elden Ring</h3>
+        <p>$69.99</p>
+      </a>
 
-  
-  users.push({ username, password });
-  localStorage.setItem('users', JSON.stringify(users));
+      <a href="/products/p006" class="card">
+        <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades">
+        <h3>Hades</h3>
+        <p>$24.99</p>
+      </a>
+    </div>
+  </div>
 
-  document.getElementById('signup-error').style.display = "none";
-  document.getElementById('signup-success').style.display = "block";
+  <div class="featured">
+    <h2>🔥 Trending Games</h2>
+    <div class="cards">
+      <a href="/products/p001" class="card">
+        <img src="https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png" alt="Cyberpunk 2077">
+        <h3>Cyberpunk 2077</h3>
+        <p>$59.99</p>
+      </a>
 
-  
-  setTimeout(() => {
-    window.location.href = "/login/";
-  }, 1500);
-});
-</script>
+      <a href="/products/p005" class="card">
+        <img src="https://m.media-amazon.com/images/I/71uKPJmC8yL._SL1500_.jpg" alt="No Man’s Sky">
+        <h3>No Man’s Sky</h3>
+        <p>$59.99</p>
+      </a>
+
+      <a href="/products/p003" class="card">
+        <img src="https://mudishop.com.br/wp-content/uploads/2024/05/job-4.jpg" alt="Stardew Valley">
+        <h3>Stardew Valley</h3>
+        <p>$14.99</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="featured">
+    <h2>💸 On Sale Now</h2>
+    <div class="cards">
+      <a href="/products/p004" class="card">
+        <img src="https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg" alt="Civilization VI">
+        <h3>Civilization VI</h3>
+        <p><span class="discount">-40%</span> $17.99</p>
+      </a>
+
+      <a href="/products/p001" class="card">
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg" alt="Cyberpunk 2077">
+        <h3>Cyberpunk 2077</h3>
+        <p><span class="discount">-50%</span> $29.99</p>
+      </a>
+
+      <a href="/products/p005" class="card">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_07b0111d93db03777dfb04d0dca46a7f3d16052c.jpg" alt="No Man’s Sky">
+        <h3>No Man’s Sky</h3>
+        <p><span class="discount">-35%</span> $38.99</p>
+      </a>
+    </div>
+  </div>
+</section>
 
 <style>
-.signup-page {
+.video-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  background: transparent;
+  padding: 2rem;
+  color: #fff;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+}
+
+.btn {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+ 
+.featured-section {
+  position: relative;
+  z-index: 3;
+  margin-top: 100vh;
+  padding: 4rem 2rem;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: center;
+}
+
+.featured {
+  margin-bottom: 4rem;
+}
+
+.featured h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+}
+
+.cards {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 60vh;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
-.signup-box {
-  background: white;
-  padding: 2rem 3rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-}
-.signup-box h1 {
-  text-align: center;
-  color: var(--primary);
-  margin-bottom: 1.5rem;
-}
-label {
-  display: block;
-  margin-bottom: 1rem;
+
+.card {
+  width: 250px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
   font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
 }
-input {
+
+.card img {
   width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.3rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.card h3 {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin-bottom: 1rem;
   font-size: 1rem;
 }
-.btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  width: 100%;
-  border-radius: var(--radius);
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0.5rem;
+
+.discount {
+  color: #4ade80;
+  font-weight: bold;
+  margin-right: 0.3rem;
 }
-.btn:hover { background: #1e40af; }
-.error { color: #dc2626; text-align: center; margin-top: 0.5rem; }
-.success { color: #10b981; text-align: center; margin-top: 0.5rem; }
-.note { text-align: center; margin-top: 1rem; }
-.note a { color: var(--primary); text-decoration: none; font-weight: 600; }
-.note a:hover { text-decoration: underline; }
+
+.card:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+}
 </style>
 
   </main>

@@ -1,76 +1,872 @@
-{{ define "main" }}
-<section class="hero">
-  <div class="video-container">
-  <iframe
-    id="bg-video"
-    src="https://www.youtube.com/embed/nMBBXqu0OLE?autoplay=1&mute=1&loop=1&playlist=nMBBXqu0OLE&controls=0&showinfo=0&modestbranding=1"
-    frameborder="0"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
-  </div>
-  <div class="overlay">
-    <h1>Welcome to Gamestore88</h1>
-    <p>Your one-stop shop for cheap games 🎮</p>
-    <a href="/products/" class="btn">Shop Now</a>
-  </div>
-</section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gamestore88 — Home</title>
+  <style>
+    /* Reset + base */
+    :root{
+      --bg:#111213;
+      --panel: rgba(255,255,255,0.03);
+      --panel-2: rgba(255,255,255,0.06);
+      --muted: #cbd5e1;
+      --accent-green: linear-gradient(135deg,#10b981,#34d399);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#fff; -webkit-font-smoothing:antialiased}
+    a{color:inherit}
 
+    /* NAVBAR (fixed) */
+    .navbar{
+      position:fixed; top:0; left:0; right:0; height:64px;
+      display:flex; align-items:center; gap:24px; padding:0 24px;
+      background: rgba(10,10,10,0.65);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index:999;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
+    .brand .logo{
+      width:38px; height:38px; border-radius:8px; background:#ff4d6d; display:inline-block;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+    }
+    .navlinks{display:flex; gap:18px; margin-left:8px}
+    .navlinks a{padding:8px 10px; border-radius:8px; text-decoration:none; color:#ddd}
+    .navlinks a.active{color:#60a5fa; font-weight:700}
+    .nav-right{margin-left:auto; display:flex; gap:12px; align-items:center}
 
-<style>
-.video-container {
+    /* HERO: full-screen video background */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 64px); /* leave room for fixed navbar */
+      margin-top: 64px;           /* push below navbar */
+      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .video-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;}
+    /* make iframe cover whole area (cover behaviour) */
+    .video-bg iframe{
+      position:absolute;
+      left:50%; top:50%;
+      width:177.78vh;   /* 16:9 trick: width = 100 * (16/9) of viewport height */
+      height:100vh;
+      transform:translate(-50%,-50%);
+      border:0;
+      pointer-events:none;
+    }
+
+    /* overlay centered */
+    /* Replace your existing .hero-overlay with this */
+/* Completely transparent overlay */
+.hero-overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 50%;
+  top: 34%; /* chỉnh cao thấp theo ý — giảm % để lên cao hơn */
   left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* So user can't click */
-}
-.overlay {
-  position: relative;
-  z-index: 1;
+  transform: translate(-50%, -34%);
   text-align: center;
-  background: transparent; /* 👈 bỏ nền */
-  padding: 2rem;
-  border-radius: 12px;
-  color: #fff; /* để chữ sáng */
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); /* 👈 cho dễ đọc trên nền video */
+  color: #fff;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0; /* bỏ padding để text sát trung tâm */
+  background: transparent; /* hoàn toàn trong suốt */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.8); /* giúp chữ nổi rõ trên video */
 }
 
+.hero-overlay h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
 
+.hero-overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 1.6rem;
+  color: #e5e7eb;
+}
 
-
-.btn {
+/* Shop Now button — giữ nền riêng */
+.hero-btn {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.1); /* 👈 trong suốt nhẹ */
-  backdrop-filter: blur(8px); /* 👈 kính mờ */
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45); /* nền mờ riêng cho nút */
   color: #fff;
   padding: 0.9rem 2rem;
   border-radius: 9999px;
-  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
   font-weight: 600;
-  font-size: 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.07);
+  box-shadow: 0 0 25px rgba(255,255,255,0.25);
 }
 
+
+/* optional: slightly lift on hover/focus to feel interactive */
+.hero-overlay:hover,
+.hero-overlay:focus-within{
+  transform: translate(-50%, -36%);
+  background: rgba(0,0,0,0.07);
+}
+
+    .hero-overlay h1{font-size:2.6rem; margin:0 0 0.6rem; letter-spacing:-0.02em}
+    .hero-overlay p{margin:0 0 1rem; color:var(--muted)}
+    .hero-btn{
+      display:inline-block; padding:10px 22px; border-radius:999px; font-weight:700;
+      background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+      color:#fff; text-decoration:none;
+      transition:all .18s ease;
+    }
+    .hero-btn:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.6); background: rgba(255,255,255,0.12)}
+
+    /* MAIN CONTENT */
+    main{position:relative; z-index:3; padding:3rem 1rem 6rem; max-width:1200px; margin:0 auto; margin-top: 24px}
+    section.featured-section{ margin-top:0; padding:0 }
+
+    .featured { margin-bottom:3.5rem }
+    .featured h2{font-size:1.8rem; margin:0 0 1rem; display:flex; gap:12px; align-items:center; justify-content:center}
+    .featured .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:1.2rem;
+      align-items:start;
+    }
+
+    /* CARD */
+    .card{
+      display:block; text-decoration:none; color:inherit;
+      border-radius:12px; overflow:hidden;
+      background: var(--panel); border:1px solid var(--panel-2);
+      transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .card:hover{ transform:translateY(-8px); box-shadow:0 24px 60px rgba(0,0,0,0.65) }
+
+    .card .media{ position:relative; width:100%; height:140px; overflow:hidden; background:#0b0b0b }
+    .card img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .45s ease }
+    .card:hover img{ transform:scale(1.06) }
+
+    .price-badge{
+      position:absolute; right:10px; top:10px; z-index:4;
+      background: rgba(0,0,0,0.6); padding:6px 10px; border-radius:999px; font-weight:800; font-size:0.95rem;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .price-badge .orig{ text-decoration:line-through; color:#bfc8d6; margin-right:6px; font-weight:600; font-size:0.85rem }
+
+    .discount-badge{
+      position:absolute; left:10px; top:10px; z-index:4;
+      background: var(--accent-green); color:#04201a; font-weight:800; padding:6px 8px; border-radius:8px;
+      font-size:0.82rem; box-shadow: 0 6px 14px rgba(16,185,129,0.12);
+    }
+
+    .card .meta{ padding:14px; text-align:left }
+    .card h3{ margin:0 0 6px; font-size:1.05rem }
+    .card .sub{ margin:0; color:var(--muted); font-size:0.9rem }
+
+    /* responsive tweaks */
+    @media (max-width:900px){
+      .hero-overlay h1{font-size:2rem}
+      .video-bg iframe{ width:220vh } /* keep cover on narrower displays (adjust if needed) */
+    }
+    @media (max-width:640px){
+      .hero{height:62vh}
+      .hero-overlay{padding:1.2rem}
+      .hero-overlay h1{font-size:1.4rem}
+      .video-bg iframe{ width:260vh }
+      .card .media{height:120px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="navigation" aria-label="Top navigation">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <span>Gamestore88</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a class="active" href="/">Home</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="/login" style="color:#ff7b8d; font-weight:700;">Login</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <!-- START: Hero Carousel -->
+<section class="hero-carousel" aria-label="Featured games carousel">
+  <div class="hc-slides">
+    <!-- Slide: Cyberpunk 2077 (p001) -->
+<article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+
+    <!-- Slide: Elden Ring (p002) -->
+   <article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+
+    <!-- Slide: Stardew Valley (p003) -->
+ <article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+
+    <!-- Slide: Civilization VI (p004) -->
+ <article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+
+    <!-- Slide: No Man's Sky (p005) -->
+<article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+
+    <!-- Slide: Hades (p006) -->
+  <article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+
+    <!-- Slide: EA SPORTS FC 26 (p007) -->
+   <article class="hc-slide" data-id="p001" aria-hidden="false">
+  <div class="hc-video">
+    <iframe
+      src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&playlist=qIcTM8WXFjk&controls=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hc-inner">
+    <div class="hc-tags">
+      <a href="/products/p001" class="tag">Action</a>
+      <a href="/products/p001" class="tag">RPG</a>
+      <a href="/products/p001" class="tag">Open World</a>
+    </div>
+    <h2 class="hc-title">Cyberpunk 2077</h2>
+    <div class="hc-ctas">
+      <a class="btn primary" href="/products/p001">View Product</a>
+      <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+    </div>
+  </div>
+</article>
+  </div>
+
+  <!-- Controls -->
+  <button class="hc-arrow hc-prev" aria-label="Previous slide">‹</button>
+  <button class="hc-arrow hc-next" aria-label="Next slide">›</button>
+
+  <!-- Indicators -->
+  <div class="hc-dots" role="tablist" aria-label="Slide indicators"></div>
+</section>
+<!-- END: Hero Carousel -->
+
+<style>
+/* --- Carousel base --- */
+/* --- Hero Carousel with 16:9 ratio --- */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  aspect-ratio: 16 / 9; /* Giữ tỷ lệ 16:9 */
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Slide wrapper */
+.hc-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each slide */
+.hc-slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 1.2s cubic-bezier(.2,.9,.2,1);
+  transform: scale(1.02);
+}
+.hc-slide[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Background image or video (16:9 fills perfectly) */
+.hc-bg,
+.hc-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.45) contrast(1.1) saturate(1.15);
+}
+
+/* Nếu dùng iframe (YouTube) */
+.hc-bg iframe,
+.hc-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Nội dung overlay */
+.hc-inner {
+  position: absolute;
+  bottom: 8%;
+  left: 6%;
+  z-index: 3;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 50%;
+}
+
+/* Thẻ thể loại */
+.hc-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0b1220;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.tag:hover {
+  background: #10b981;
+  color: #041d15;
+}
+
+/* Tiêu đề lớn */
+.hc-title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin: 6px 0 12px;
+  font-weight: 900;
+  text-shadow: 0 6px 26px rgba(0, 0, 0, 0.85);
+  letter-spacing: -0.015em;
+}
+
+/* Nút (giữ nhỏ gọn) */
+.hc-ctas {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+.btn.primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #051814;
+  border: none;
+  box-shadow: 0 4px 18px rgba(6, 95, 70, 0.25);
+}
+.btn.primary:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Arrows */
+.hc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 28px;
+  border: 0;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hc-prev { left: 16px; }
+.hc-next { right: 16px; }
+.hc-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots */
+.hc-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 6;
+}
+.hc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.hc-dot.active {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hc-title {
+    font-size: 2.2rem;
+  }
+  .hc-inner {
+    max-width: 80%;
+    left: 8%;
+  }
+}
+@media (max-width: 640px) {
+  .hero-carousel {
+    aspect-ratio: 16/9;
+    border-radius: 0;
+  }
+  .hc-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  .hc-inner {
+    bottom: 6%;
+    left: 5%;
+    right: 5%;
+    max-width: 90%;
+    align-items: center;
+    text-align: center;
+  }
+  .hc-arrow {
+    display: none;
+  }
+}
+
+.hc-slides{ position:relative; height:100%; width:100%; }
+
+/* each slide */
+.hc-slide{ position:absolute; inset:0; display:block; opacity:0; pointer-events:none; transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1); transform:scale(.99); }
+.hc-slide[aria-hidden="false"]{ opacity:1; pointer-events:auto; transform:scale(1) }
+
+/* background image covers */
+.hc-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.48) saturate(1.05); }
+
+/* inner content block */
+.hc-inner{ position:relative; z-index:3; display:flex; flex-direction:column; gap:14px; max-width:980px; margin:0 auto; padding:36px; color:#fff; text-align:left; transform:translateY(0); top:18%; }
+.hc-tags{ display:flex; gap:10px; margin-bottom:4px; flex-wrap:wrap }
+.tag{ display:inline-block; background:rgba(255,255,255,0.95); color:#0b1220; padding:8px 12px; border-radius:6px; font-weight:700; font-size:0.9rem; text-decoration:none }
+
+/* Title */
+.hc-title{ font-size:3.2rem; margin:6px 0; text-shadow:0 6px 26px rgba(0,0,0,0.7); }
+
+/* CTAs */
+.hc-ctas{ display:flex; gap:12px; margin-top:6px; align-items:center }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:10px; font-weight:800; text-decoration:none }
+.btn.primary{ background:linear-gradient(180deg,#10b981,#059669); color:#051814; box-shadow:0 10px 30px rgba(6,95,70,0.18) }
+.btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.12); color: #fff; padding:10px 14px; border-radius:8px }
+
+/* arrows */
+.hc-arrow{ position:absolute; top:50%; transform:translateY(-50%); width:56px; height:56px; border-radius:6px; background:rgba(0,0,0,.6); color:#fff; font-size:28px; border:0; cursor:pointer; z-index:5; display:flex; align-items:center; justify-content:center }
+.hc-prev{ left:14px }
+.hc-next{ right:14px }
+.hc-arrow:hover{ background:rgba(0,0,0,.85) }
+
+/* dots */
+.hc-dots{ position:absolute; left:50%; transform:translateX(-50%); bottom:14px; display:flex; gap:8px; z-index:6 }
+.hc-dot{ width:10px; height:10px; border-radius:999px; background:rgba(255,255,255,0.2); cursor:pointer; border:1px solid rgba(0,0,0,0.25) }
+.hc-dot.active{ background:rgba(255,255,255,0.95); box-shadow:0 6px 18px rgba(0,0,0,.45) }
+
+/* responsive */
+@media (max-width:1000px){
+  .hc-title{ font-size:2.2rem }
+  .hc-inner{ padding:22px; top:12% }
+  .btn.primary{ padding:10px 16px }
+}
+@media (max-width:640px){
+  .hc-title{ font-size:1.6rem }
+  .hc-inner{ padding:16px; top:8%; text-align:center }
+  .hc-tags{ justify-content:center }
+  .hc-arrow{ display:none } /* hide arrows on small screens (swipe) */
+}
 </style>
-{{ end }}
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.hc-slide'));
+  const nextBtn = document.querySelector('.hc-next');
+  const prevBtn = document.querySelector('.hc-prev');
+  const dotsWrap = document.querySelector('.hc-dots');
+  let current = slides.findIndex(s => s.getAttribute('aria-hidden') === 'false');
+  if (current < 0) current = 0;
+  const total = slides.length;
+  let timer = null;
+  const AUTOPLAY_DELAY = 5000;
+
+  // create dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'hc-dot' + (i === current ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function setSlide(index){
+    slides.forEach((s, i) => {
+      s.setAttribute('aria-hidden', i===index ? 'false' : 'true');
+    });
+    const dots = Array.from(dotsWrap.children);
+    dots.forEach((d,i)=> d.classList.toggle('active', i===index));
+    current = index;
+  }
+
+  function goTo(i){
+    setSlide((i+total)%total);
+    restartTimer();
+  }
+
+  function next(){
+    goTo(current+1);
+  }
+  function prev(){ goTo(current-1); }
+
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  // keyboard support
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // autoplay
+  function startTimer(){
+    stopTimer();
+    timer = setInterval(next, AUTOPLAY_DELAY);
+  }
+  function stopTimer(){ if(timer){ clearInterval(timer); timer = null } }
+  function restartTimer(){ stopTimer(); startTimer(); }
+
+  // pause on hover
+  const container = document.querySelector('.hero-carousel');
+  container.addEventListener('mouseenter', stopTimer);
+  container.addEventListener('mouseleave', startTimer);
+
+  // init
+  setSlide(current);
+  startTimer();
+
+  // swipe support (touch)
+  let touchStartX = 0;
+  container.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  container.addEventListener('touchend', e => {
+    const diff = (e.changedTouches[0].clientX - touchStartX);
+    if (Math.abs(diff) > 40) diff < 0 ? next() : prev();
+  });
+})();
+</script>
+
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- NEW RELEASES -->
+    <section class="featured-section" aria-label="New Releases">
+      <div class="featured">
+        <h2>🕹️ New Releases</h2>
+        <div class="grid">
+          <!-- p007 -->
+          <a class="card" href="/products/p007" aria-label="EA SPORTS FC 26">
+            <div class="media">
+              <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26 cover">
+              <div class="price-badge">$64.99</div>
+            </div>
+            <div class="meta">
+              <h3>EA SPORTS FC 26</h3>
+              <p class="sub">Electronic Arts • Sports • 2025</p>
+            </div>
+          </a>
+
+          <!-- p002 -->
+          <a class="card" href="/products/p002" aria-label="Elden Ring">
+            <div class="media">
+              <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring cover">
+              <div class="price-badge">$69.99</div>
+            </div>
+            <div class="meta">
+              <h3>Elden Ring</h3>
+              <p class="sub">FromSoftware • Action RPG • 2022</p>
+            </div>
+          </a>
+
+          <!-- p006 -->
+          <a class="card" href="/products/p006" aria-label="Hades">
+            <div class="media">
+              <img loading="lazy" src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades cover">
+              <div class="price-badge">$24.99</div>
+            </div>
+            <div class="meta">
+              <h3>Hades</h3>
+              <p class="sub">Supergiant Games • Roguelike • 2020</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRENDING -->
+    <section class="featured-section" aria-label="Trending Games">
+      <div class="featured">
+        <h2>🔥 Trending Games</h2>
+        <div class="grid">
+          <!-- p001 -->
+          <a class="card" href="/products/p001" aria-label="Cyberpunk 2077">
+            <div class="media">
+              <img loading="lazy" src="https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png" alt="Cyberpunk 2077 cover">
+              <div class="price-badge">$59.99</div>
+            </div>
+            <div class="meta">
+              <h3>Cyberpunk 2077</h3>
+              <p class="sub">CD Projekt Red • Action, RPG • 2020</p>
+            </div>
+          </a>
+
+          <!-- p005 -->
+          <a class="card" href="/products/p005" aria-label="No Man’s Sky">
+            <div class="media">
+              <img loading="lazy" src="https://m.media-amazon.com/images/I/71uKPJmC8yL._SL1500_.jpg" alt="No Man’s Sky cover">
+              <div class="price-badge">$59.99</div>
+            </div>
+            <div class="meta">
+              <h3>No Man’s Sky</h3>
+              <p class="sub">Hello Games • Exploration • 2016</p>
+            </div>
+          </a>
+
+          <!-- p003 -->
+          <a class="card" href="/products/p003" aria-label="Stardew Valley">
+            <div class="media">
+              <img loading="lazy" src="https://mudishop.com.br/wp-content/uploads/2024/05/job-4.jpg" alt="Stardew Valley cover">
+              <div class="price-badge">$14.99</div>
+            </div>
+            <div class="meta">
+              <h3>Stardew Valley</h3>
+              <p class="sub">ConcernedApe • Indie • 2016</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ON SALE -->
+    <section class="featured-section" aria-label="On Sale Now">
+      <div class="featured">
+        <h2>💸 On Sale Now</h2>
+        <div class="grid">
+          <!-- p004 CIV VI - 40% -->
+          <a class="card" href="/products/p004" aria-label="Civilization VI">
+            <div class="media">
+              <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg" alt="Civilization VI cover">
+              <div class="price-badge"><span class="orig">$29.99</span> $17.99</div>
+              <div class="discount-badge">-40%</div>
+            </div>
+            <div class="meta">
+              <h3>Civilization VI</h3>
+              <p class="sub">Firaxis Games • Strategy • 2016</p>
+            </div>
+          </a>
+
+          <!-- p001 Cyberpunk sale -50% -->
+          <a class="card" href="/products/p001" aria-label="Cyberpunk 2077 sale">
+            <div class="media">
+              <img loading="lazy" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg" alt="Cyberpunk 2077 cover">
+              <div class="price-badge"><span class="orig">$59.99</span> $29.99</div>
+              <div class="discount-badge">-50%</div>
+            </div>
+            <div class="meta">
+              <h3>Cyberpunk 2077</h3>
+              <p class="sub">CD Projekt Red • Action, RPG • 2020</p>
+            </div>
+          </a>
+
+          <!-- p005 No Man’s Sky -35% -->
+          <a class="card" href="/products/p005" aria-label="No Man’s Sky sale">
+            <div class="media">
+              <img loading="lazy" src="https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_07b0111d93db03777dfb04d0dca46a7f3d16052c.jpg" alt="No Man’s Sky cover">
+              <div class="price-badge"><span class="orig">$59.99</span> $38.99</div>
+              <div class="discount-badge">-35%</div>
+            </div>
+            <div class="meta">
+              <h3>No Man’s Sky</h3>
+              <p class="sub">Hello Games • Exploration • 2016</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
