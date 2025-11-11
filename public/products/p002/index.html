@@ -265,23 +265,35 @@
 
 
 <div class="game-container">
-  
-  
-  <div class="trailer">
-    <iframe width="100%" height="450" src="https://www.youtube.com/embed/E3Huy2cdih0" frameborder="0" allowfullscreen></iframe>
-  </div>
-  
 
   
-  <div class="gallery">
-    
-    <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring screenshot">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg" alt="Elden Ring screenshot">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg" alt="Elden Ring screenshot">
-    
+  <div class="gallery-container">
+    <div class="main-display" id="main-display">
+      
+      
+      <iframe id="main-media" src="https://www.youtube.com/embed/E3Huy2cdih0" frameborder="0" allowfullscreen></iframe>
+      
+    </div>
+
+    <div class="thumbnails">
+      
+      
+      <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/E3Huy2cdih0','video')">
+        🎥 Trailer
+      </div>
+      
+
+      
+      
+      <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/07\/ELDEN-RING_ps5.webp','image')">
+      
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1245620\/ss_2b6a6bb6f6b80aa1f8e86f2b27369df3c1b13b9d.jpg','image')">
+      
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg" alt="Elden Ring screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1245620\/ss_32ad4b1fbd237ea54e1fa14a8bba1ef8a88b07c2.jpg','image')">
+      
+    </div>
   </div>
+
 
   
   <div class="game-details">
@@ -375,6 +387,29 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (window.location.href = "/payment/"), 1000);
   });
 });
+
+function showMedia(src, type) {
+  const display = document.getElementById("main-display");
+  display.innerHTML = ""; 
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Game preview";
+    img.style.maxWidth = "100%";
+    img.style.borderRadius = "10px";
+    display.appendChild(img);
+  } else if (type === "video") {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "500";
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = "10px";
+    iframe.frameBorder = "0";
+    display.appendChild(iframe);
+  }
+}
 </script>
 
 
@@ -455,6 +490,61 @@ document.addEventListener("DOMContentLoaded", () => {
   color: #f8fafc;
 }
 .share-btn:hover { background: #475569; transform: scale(1.03); }
+
+.gallery-container {
+  margin-bottom: 2rem;
+}
+
+.main-display {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.main-display img,
+.main-display iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+.thumb {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  object-fit: cover;
+  background: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #93c5fd;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.video-thumb {
+  background: linear-gradient(145deg, #4f46e5, #7c3aed);
+  color: white;
+}
+
 </style>
 
 

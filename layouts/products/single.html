@@ -11,19 +11,34 @@
 </div>
 {{ else }}
 <div class="game-container">
-  <!-- 🎥 Trailer -->
-  {{ if $p.trailer }}
-  <div class="trailer">
-    <iframe width="100%" height="450" src="{{ $p.trailer }}" frameborder="0" allowfullscreen></iframe>
-  </div>
-  {{ end }}
 
-  <!-- 🖼️ Image Gallery -->
-  <div class="gallery">
-    {{ range $p.images }}
-    <img src="{{ . }}" alt="{{ $p.title }} screenshot">
-    {{ end }}
+  <!-- 🎮 Media Gallery (main preview + thumbnails) -->
+  <div class="gallery-container">
+    <div class="main-display" id="main-display">
+      {{ if $p.trailer }}
+        <iframe id="main-media" src="{{ $p.trailer }}" frameborder="0" allowfullscreen></iframe>
+      {{ else }}
+        <img id="main-media" src="{{ index $p.images 0 }}" alt="{{ $p.title }}">
+      {{ end }}
+    </div>
+
+    <div class="thumbnails">
+      <!-- 🎬 YouTube Trailer Thumbnail -->
+      {{ if $p.trailer }}
+        {{ $videoID := replaceRE ".*(?:v=|embed/)([a-zA-Z0-9_-]+).*" "$1" $p.trailer }}
+        <div class="thumb video-thumb" onclick="showMedia('{{ $p.trailer }}','video')">
+          <img src="https://img.youtube.com/vi/{{ $videoID }}/hqdefault.jpg" alt="Trailer thumbnail">
+          <div class="play-icon">▶</div>
+        </div>
+      {{ end }}
+
+      <!-- 🖼️ Game Images -->
+      {{ range $p.images }}
+        <img src="{{ . }}" alt="{{ $p.title }} screenshot" class="thumb" onclick="showMedia('{{ . }}','image')">
+      {{ end }}
+    </div>
   </div>
+
 
   <!-- 📝 Game Details -->
   <div class="game-details">
@@ -117,6 +132,31 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (window.location.href = "/payment/"), 1000);
   });
 });
+
+function showMedia(src, type) {
+  const display = document.getElementById("main-display");
+  display.innerHTML = ""; // Clear old media
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Game image";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
+    img.style.borderRadius = "10px";
+    display.appendChild(img);
+  } else if (type === "video") {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "500";
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = "10px";
+    iframe.frameBorder = "0";
+    display.appendChild(iframe);
+  }
+}
 </script>
 
 
@@ -197,6 +237,87 @@ document.addEventListener("DOMContentLoaded", () => {
   color: #f8fafc;
 }
 .share-btn:hover { background: #475569; transform: scale(1.03); }
+
+.gallery-container {
+  margin-bottom: 2rem;
+}
+
+.main-display {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.main-display img,
+.main-display iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Thumbnail strip */
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.thumb {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* 🎥 YouTube trailer overlay */
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-thumb img {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.video-thumb:hover img {
+  filter: brightness(1);
+}
+
+
+
 </style>
 {{ end }}
 {{ end }}
