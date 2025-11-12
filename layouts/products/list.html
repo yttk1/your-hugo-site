@@ -601,6 +601,20 @@
     }
   } catch (_) { /* no-op if disabled */ }
 
+  // Restore current page from URL or localStorage
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const urlPageRaw = params.get("page");
+    const urlPage = urlPageRaw ? parseInt(urlPageRaw, 10) : NaN;
+    const savedPageRaw = localStorage.getItem("productPage");
+    const savedPage = savedPageRaw ? parseInt(savedPageRaw, 10) : NaN;
+    if (Number.isFinite(urlPage) && urlPage > 0) {
+      currentPage = urlPage;
+    } else if (Number.isFinite(savedPage) && savedPage > 0) {
+      currentPage = savedPage;
+    }
+  } catch (_) { /* ignore */ }
+
   toggles.forEach(btn => {
     btn.addEventListener("click", () => {
       const target = document.getElementById(btn.dataset.target);
@@ -675,6 +689,13 @@
       a.addEventListener("click", e => {
         e.preventDefault();
         currentPage = parseInt(a.dataset.page);
+        // Persist and reflect current page in URL
+        try {
+          localStorage.setItem("productPage", String(currentPage));
+          const params = new URLSearchParams(window.location.search);
+          params.set("page", String(currentPage));
+          history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+        } catch (_) { /* ignore */ }
         doFilterAndSort();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
@@ -721,12 +742,21 @@
 
     const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
     if (currentPage > totalPages) currentPage = totalPages || 1;
+    if (currentPage < 1) currentPage = 1;
 
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     const end = start + ITEMS_PER_PAGE;
     visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
 
     noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+    // Persist current page and sort in URL/localStorage so back button restores state
+    try {
+      localStorage.setItem("productPage", String(currentPage));
+      const params = new URLSearchParams(window.location.search);
+      params.set("page", String(currentPage));
+      params.set("sort", sortSelect.value);
+      history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+    } catch (_) { /* ignore */ }
     buildPagination(totalPages);
   }
 
@@ -792,8 +822,10 @@
     // Persist selection and reflect in URL for shareability
     try {
       localStorage.setItem("productSort", sortSelect.value);
+      localStorage.setItem("productPage", "1");
       const params = new URLSearchParams(window.location.search);
       params.set("sort", sortSelect.value);
+      params.set("page", "1");
       history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
     } catch (_) { /* ignore */ }
     doFilterAndSort();
@@ -814,7 +846,12 @@
         params.set("sort", sortSelect.value);
         history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
       }
+      if (!params.has("page")) {
+        params.set("page", String(currentPage));
+        history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+      }
       localStorage.setItem("productSort", sortSelect.value);
+      localStorage.setItem("productPage", String(currentPage));
     } catch (_) { /* ignore */ }
     doFilterAndSort();
   }, 0);
