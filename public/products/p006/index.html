@@ -265,38 +265,74 @@
 
 
 <div class="game-container">
-  
-  
-  <div class="trailer">
-    <iframe width="100%" height="450" src="https://www.youtube.com/embed/91t0ha9x5EE" frameborder="0" allowfullscreen></iframe>
-  </div>
-  
 
   
-  <div class="gallery">
-    
-    <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades screenshot">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Hades screenshot">
-    
-    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg" alt="Hades screenshot">
-    
+  <div class="gallery-container">
+    <div class="main-display" id="main-display">
+      
+        
+        
+        <iframe
+          id="main-media"
+          src="https://www.youtube.com/embed/91t0ha9x5EE?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      
+
+    </div>
+
+    <div class="thumbnails">
+      
+      
+        
+        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/91t0ha9x5EE','video')">
+          <img src="https://img.youtube.com/vi/91t0ha9x5EE/hqdefault.jpg" alt="Trailer thumbnail">
+          <div class="play-icon">▶</div>
+        </div>
+      
+
+      
+      
+        <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades screenshot" class="thumb" onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg','image')">
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Hades screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1145360\/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg','image')">
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg" alt="Hades screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1145360\/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg','image')">
+      
+    </div>
   </div>
 
   
   <div class="game-details">
-    <h1>Hades</h1>
+    <h1 class="game-title">Hades</h1>
     <p class="price">$24.99</p>
-    <p class="meta">
-      <strong>Developer:</strong> Supergiant Games<br>
-      <strong>Publisher:</strong> Supergiant Games<br>
-      <strong>Release Date:</strong> 2020-09-17<br>
-      <strong>Modes:</strong> Singleplayer<br>
-      <strong>Genres:</strong> Action, Roguelike, Indie
-    </p>
 
-    <p class="desc">Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom.</p>
+    <br>
 
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Info</h2>
+      <hr class="section-divider">
+      <div class="meta">
+        <p><strong>Developer:</strong> Supergiant Games</p>
+        <p><strong>Publisher:</strong> Supergiant Games</p>
+        <p><strong>Release Date:</strong> 2020-09-17</p>
+        <p><strong>Modes:</strong> Singleplayer</p>
+        <p><strong>Genres:</strong> Action, Roguelike, Indie</p>
+      </div>
+    </div>
+
+    <br>
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Description</h2>
+      <hr class="section-divider">
+      <p class="desc">Battle out of hell in this god-like rogue-like dungeon crawler from the creators of Bastion. Defy the god of the dead as you hack and slash your way to freedom.</p>
+    </div>
+
+    <br>
     
     <div class="buttons">
       <button class="buy-now"
@@ -340,6 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+
     const key = `cart_${user}`;
     let cart = JSON.parse(localStorage.getItem(key)) || [];
     const existing = cart.find((p) => p.id === item.id);
@@ -348,6 +385,8 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem(key, JSON.stringify(cart));
 
     showToast(`🎮 ${item.title} added to cart!`, "success");
+    updateCartCount();
+    animateCartIcon();
   });
 
   
@@ -375,6 +414,47 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (window.location.href = "/payment/"), 1000);
   });
 });
+
+function showMedia(src, type) {
+  const display = document.getElementById("main-display");
+  display.innerHTML = ""; 
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Game image";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
+    img.style.borderRadius = "10px";
+    display.appendChild(img);
+  } else if (type === "video") {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "500";
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = "10px";
+    iframe.frameBorder = "0";
+    display.appendChild(iframe);
+  }
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+  const key = user ? `cart_${user}` : "cart";
+  const cart = JSON.parse(localStorage.getItem(key)) || [];
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+function animateCartIcon() {
+  const icon = document.getElementById("cart-link"); 
+  if (!icon) return;
+  icon.classList.add("cart-bounce");
+  setTimeout(() => icon.classList.remove("cart-bounce"), 500);
+}
 </script>
 
 
@@ -455,6 +535,132 @@ document.addEventListener("DOMContentLoaded", () => {
   color: #f8fafc;
 }
 .share-btn:hover { background: #475569; transform: scale(1.03); }
+
+.gallery-container {
+  margin-bottom: 2rem;
+}
+
+.main-display {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.main-display img,
+.main-display iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+ 
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.thumb {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+ 
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-thumb img {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.video-thumb:hover img {
+  filter: brightness(1);
+}
+
+ 
+.section-block {
+  margin-top: 2rem;
+}
+
+.section-title {
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.meta p {
+  margin: 0.2rem 0;
+}
+
+.desc {
+  color: #e2e8f0;
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.cart-bounce {
+  animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
 </style>
 
 
@@ -627,7 +833,7 @@ window.customConfirm = function (message) {
  
 #toast-container {
   position: fixed;
-  top: 20px;
+  top: 90px;
   right: 20px;
   display: flex;
   flex-direction: column;
