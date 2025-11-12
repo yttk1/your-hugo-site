@@ -8,7 +8,7 @@
   genres: ["Action", "RPG", "Open World"]
   trailer: "https://www.youtube.com/embed/qIcTM8WXFjk"
   images:
-    - "https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png"
+    - "https://haloshop.vn/wp-content/uploads/2025/02/Cyberpunk-2077-Secondhand.jpg"
     - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg?t=1756209867"
     - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_0e64170751e1ae20ff8fdb7001a8892fd48260e7.1920x1080.jpg?t=1756209867"
   long: "Experience a vast open world set in the megalopolis of Night City, where you play as V, a cyberpunk mercenary hunting for a one-of-a-kind implant that holds the key to immortality."
@@ -38,7 +38,7 @@
   genres: ["Indie", "Simulation", "Farming"]
   trailer: "https://www.youtube.com/embed/ot7uXNQskhs"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg"
+    - "https://newgamesportal.com/pe/wp-content/uploads/2023/11/Stardew-Valley-PS5_13_11zon.webp"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_46079e35b86c471c6edb8aaf6d6091fbd4f82692.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/ss_0b26123e0a3d377e3b8f5e0ad37a36404a814223.jpg"
   long: "Build the farm of your dreams! Raise animals, grow crops, mine, fish, and build relationships in this beloved indie farming simulator."
@@ -53,7 +53,7 @@
   genres: ["Strategy", "Turn-Based", "Historical"]
   trailer: "https://www.youtube.com/embed/5KdE0p2joJw"
   images:
-    - "https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg"
+    - "https://m.media-amazon.com/images/I/81W5K9xvs3L._AC_UF1000,1000_QL80_.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/ss_9110531d77ecb8f2c6f18b8a64b478b6bafcf5d4.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/ss_2c985e42a6a3d1a16c8cb8d1b580dc29d7b8f081.jpg"
   long: "Build an empire that will stand the test of time. Choose a civilization and lead your people from the Stone Age to the Information Age."
@@ -65,10 +65,10 @@
   publisher: "Hello Games"
   release_date: "2016-08-12"
   modes: "Singleplayer / Multiplayer"
-  genres: ["Adventure", "Sci-Fi"]
+  genres: ["Adventure", "Exploration", "Sci-Fi"]
   trailer: "https://www.youtube.com/embed/nLtmEjqzg7M"
   images:
-    - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/header.jpg"
+    - "https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_91f39b6e22b7f8c8f3e6c31b76326e44aa4c8bb2.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_07b0111d93db03777dfb04d0dca46a7f3d16052c.jpg"
   long: "Explore an infinite universe with endless planets to discover, each filled with unique lifeforms, landscapes, and challenges."
@@ -103,3 +103,650 @@
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
   long: "The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience powered by community feedback, Manager Live Challenges that bring fresh storylines to the new season, and Archetypes inspired by greats of the game."
+
+- id: "p008"
+  title: "Baldur’s Gate 3"
+  price: 59.99
+  developer: "Larian Studios"
+  publisher: "Larian Studios"
+  release_date: "2023-08-03"
+  modes: "Singleplayer / Multiplayer / Co-op"
+  genres: ["RPG","Fantasy","Adventure"]
+  trailer: "https://www.youtube.com/embed/I4pUil2y82Y"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/baldur-gate-3-ps5-700x700h.webp"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/ss_6d62c6f9c3a0413da684ee9fa6bcb7ac70a71f17.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/ss_165f33422a1873cb3a7cc70a33ff637ccf7929d7.jpg"
+  long: "Gather your party and return to the Forgotten Realms. Your decisions shape every encounter in this award-winning Dungeons & Dragons adventure."
+
+- id: "p009"
+  title: "Red Dead Redemption 2"
+  price: 59.99
+  developer: "Rockstar Games"
+  publisher: "Rockstar Games"
+  release_date: "2019-11-05"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Action","Adventure","Open World"]
+  trailer: "https://www.youtube.com/embed/eaW0tYpxyp0"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/red-dead-redemption-2-ps4-700x700h.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_2.jpg"
+  long: "Live the outlaw life as Arthur Morgan, member of the Van der Linde gang, in an epic tale of loyalty, honor, and survival in the dying days of the Wild West."
+
+- id: "p010"
+  title: "The Witcher 3: Wild Hunt"
+  price: 39.99
+  developer: "CD Projekt Red"
+  publisher: "CD Projekt"
+  release_date: "2015-05-19"
+  modes: "Singleplayer"
+  genres: ["RPG","Action","Fantasy"]
+  trailer: "https://www.youtube.com/embed/c0i88t0Kacs"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_2.jpg"
+  long: "Play as Geralt of Rivia, a monster slayer for hire, and hunt down the Child of Prophecy in a morally complex open world filled with monsters and intrigue."
+
+- id: "p011"
+  title: "Resident Evil 4 Remake"
+  price: 59.99
+  developer: "Capcom"
+  publisher: "Capcom"
+  release_date: "2023-03-24"
+  modes: "Singleplayer"
+  genres: ["Action","Horror","Survival"]
+  trailer: "https://www.youtube.com/embed/Id2EaldBaWw"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-4-remake-ps5-700x700h.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/ss_2.jpg"
+  long: "A reimagined classic of survival horror. Step into Leon S. Kennedy’s mission to rescue the president’s daughter and face unimaginable terrors."
+
+- id: "p012"
+  title: "Hollow Knight"
+  price: 14.99
+  developer: "Team Cherry"
+  publisher: "Team Cherry"
+  release_date: "2017-02-24"
+  modes: "Singleplayer"
+  genres: ["Action","Metroidvania","Indie"]
+  trailer: "https://www.youtube.com/embed/UAO2urG23S4"
+  images:
+    - "https://m.media-amazon.com/images/I/719+fL1LgML._AC_UF1000,1000_QL80_.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/367520/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/367520/ss_2.jpg"
+  long: "Descend into a vast, ruined kingdom of insects and heroes. Explore, fight, and uncover secrets in this atmospheric hand-drawn action adventure."
+
+- id: "p013"
+  title: "Ghost of Tsushima DIRECTOR’S CUT"
+  price: 59.99
+  developer: "Sucker Punch Productions"
+  publisher: "PlayStation PC LLC"
+  release_date: "2024-05-16"
+  modes: "Singleplayer / Co-op"
+  genres: ["Action","Adventure","Open World"]
+  trailer: "https://www.youtube.com/embed/Zbq7BnsQhrw"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/Ghost-of-Tsushima_-Director_s-Cut-US.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_2.jpg"
+  long: "Step into the role of Jin Sakai, a samurai defending his home from Mongol invasion. Use stealth, swordplay, and honor to reclaim the island of Tsushima."
+
+- id: "p014"
+  title: "Helldivers 2"
+  price: 39.99
+  developer: "Arrowhead Game Studios"
+  publisher: "PlayStation PC LLC"
+  release_date: "2024-02-08"
+  modes: "Multiplayer / Co-op"
+  genres: ["Shooter","Action","Co-op"]
+  trailer: "https://www.youtube.com/embed/vxPLqwM_4cE"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/553850/ss_193f7c44a7c6b0dfc2ebcf32b602bb8cc926c35d.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/553850/ss_f1d57f3de6a875ce91d22242f8e88f10cc3199a8.jpg"
+  long: "Spread managed democracy across the galaxy in chaotic 4-player co-op missions where teamwork and friendly fire collide."
+
+- id: "p015"
+  title: "DOOM Eternal"
+  price: 39.99
+  developer: "id Software"
+  publisher: "Bethesda Softworks"
+  release_date: "2020-03-20"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Action","Shooter","FPS"]
+  trailer: "https://www.youtube.com/embed/_UuktemkCFI"
+  images:
+    - "https://m.media-amazon.com/images/I/81Jy-EnYnOL.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/ss_2.jpg"
+  long: "Rip and tear through demons in the definitive fast-paced shooter experience. Become the DOOM Slayer and bring hell to its knees."
+
+- id: "p016"
+  title: "The Sims 4"
+  price: 49.99
+  developer: "Maxis"
+  publisher: "Electronic Arts"
+  release_date: "2014-09-02"
+  modes: "Singleplayer"
+  genres: ["Simulation","Life","Sandbox"]
+  trailer: "https://www.youtube.com/embed/6bqKO2G0E2s"
+  images:
+    - "https://m.media-amazon.com/images/I/71XyC8lNCIL._AC_UF1000,1000_QL80_.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1222670/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1222670/ss_2.jpg"
+  long: "Build, design, and control your Sims’ lives in this open-ended life simulation where creativity knows no bounds."
+
+- id: "p017"
+  title: "Grand Theft Auto V"
+  price: 29.99
+  developer: "Rockstar North"
+  publisher: "Rockstar Games"
+  release_date: "2015-04-14"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Action","Open World","Crime"]
+  trailer: "https://www.youtube.com/embed/QkkoHAzjnUs"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/grand-theft-auto-v-ps5-700x700h.webp"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_2.jpg"
+  long: "Switch between three criminals and plan heists in the sprawling world of Los Santos. GTA Online adds endless chaos and creativity."
+
+- id: "p018"
+  title: "Sekiro: Shadows Die Twice"
+  price: 59.99
+  developer: "FromSoftware"
+  publisher: "Activision"
+  release_date: "2019-03-22"
+  modes: "Singleplayer"
+  genres: ["Action","Adventure","Soulslike"]
+  trailer: "https://www.youtube.com/embed/4OgoTZXPACo"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/sekiro-shadows-die-twice-ps4-700x700h.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/814380/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/814380/ss_2.jpg"
+  long: "Battle with precision and skill as a shinobi in Sengoku-era Japan. Utilize stealth, parries, and the deadly prosthetic arm to conquer brutal foes."
+
+- id: "p019"
+  title: "Dead Cells"
+  price: 24.99
+  developer: "Motion Twin"
+  publisher: "Motion Twin"
+  release_date: "2018-08-07"
+  modes: "Singleplayer"
+  genres: ["Action", "Roguelike", "Metroidvania"]
+  trailer: "https://www.youtube.com/embed/qtJ9x6wCRKQ"
+  images:
+    - "https://m.media-amazon.com/images/I/81YGxLQiERL.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
+  long: "Brutal combat, slick movement, and procedural runs. Chop through ever-changing levels and unlock weapons as you chase perfect flow."
+
+- id: "p020"
+  title: "Monster Hunter: World"
+  price: 29.99
+  developer: "Capcom"
+  publisher: "Capcom"
+  release_date: "2018-08-09"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Action","RPG","Co-op"]
+  trailer: "https://www.youtube.com/embed/xtjptZ8YVx8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/05/MONSTER-HUNTER-WORLD.webp"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/582010/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/582010/ss_2.jpg"
+  long: "Hunt colossal beasts across lush ecosystems. Craft new weapons and gear from the spoils of your victories in this massive action RPG."
+
+- id: "p021"
+  title: "Dark Souls III"
+  price: 59.99
+  developer: "FromSoftware"
+  publisher: "Bandai Namco Entertainment"
+  release_date: "2016-04-11"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Action","RPG","Soulslike"]
+  trailer: "https://www.youtube.com/embed/-6jCNhebfg8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/06/DARK-SOUL-III-THE-FIRE-FADES-EDITION-COMPLETE-EDITION_00.webp"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/374320/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/374320/ss_2.jpg"
+  long: "Embrace the darkness and face merciless challenges in the final chapter of the Dark Souls trilogy, with fluid combat and haunting world design."
+
+- id: "p022"
+  title: "Resident Evil Village"
+  price: 39.99
+  developer: "Capcom"
+  publisher: "Capcom"
+  release_date: "2021-05-07"
+  modes: "Singleplayer"
+  genres: ["Action","Horror","Survival"]
+  trailer: "https://www.youtube.com/embed/3SibWcAYz9I"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-village-ps4-700x700h.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/ss_2.jpg"
+  long: "Survive terrifying encounters in a mysterious European village. Experience the chilling continuation of Ethan Winters’ story."
+
+- id: "p023"
+  title: "God of War"
+  price: 49.99
+  developer: "Santa Monica Studio"
+  publisher: "PlayStation PC LLC"
+  release_date: "2022-01-14"
+  modes: "Singleplayer"
+  genres: ["Action","Adventure","Story-Rich"]
+  trailer: "https://www.youtube.com/embed/K0u_kAWLJOA"
+  images:
+    - "https://images-na.ssl-images-amazon.com/images/I/711lrrvzt+L.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/ss_2.jpg"
+  long: "Kratos returns as a father in a world of Norse gods and monsters. Wield the Leviathan Axe and face epic battles with raw emotional depth."
+
+- id: "p024"
+  title: "Detroit: Become Human"
+  price: 39.99
+  developer: "Quantic Dream"
+  publisher: "Quantic Dream"
+  release_date: "2020-06-18"
+  modes: "Singleplayer"
+  genres: ["Adventure","Interactive","Narrative"]
+  trailer: "https://www.youtube.com/embed/tbL8kTeg2gM"
+  images:
+    - "https://m.media-amazon.com/images/I/71mMQEAs+vL._SX522_.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1222140/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1222140/ss_2.jpg"
+  long: "Experience the future of Detroit through the eyes of three androids whose choices and sacrifices will shape humanity’s destiny."
+
+- id: "p025"
+  title: "Horizon Zero Dawn Complete Edition"
+  price: 49.99
+  developer: "Guerrilla Games"
+  publisher: "PlayStation PC LLC"
+  release_date: "2020-08-07"
+  modes: "Singleplayer"
+  genres: ["Action","Adventure","Open World"]
+  trailer: "https://www.youtube.com/embed/u4-FCsiF5x4"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/horizon-zero-dawn-complele-edition-ps4-700x700h.jpg"  
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1151640/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1151640/ss_2.jpg"
+  long: "In a world overrun by machines, Aloy hunts for answers to her past and her purpose. A landmark open-world experience with powerful storytelling."
+
+- id: "p026"
+  title: "Assassin’s Creed Mirage"
+  price: 49.99
+  developer: "Ubisoft Bordeaux"
+  publisher: "Ubisoft"
+  release_date: "2023-10-05"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Stealth"]
+  trailer: "https://www.youtube.com/embed/x55lAlFtXmw"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/ss_1.jpg"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/ss_2.jpg"
+  long: "Basim’s rise from thief to master assassin unfolds in 9th-century Baghdad."
+
+- id: "p027"
+  title: "Lies of P"
+  price: 59.99
+  developer: "NEOWIZ"
+  publisher: "NEOWIZ"
+  release_date: "2023-09-18"
+  modes: "Singleplayer"
+  genres: ["Action", "Soulslike", "RPG"]
+  trailer: "https://www.youtube.com/embed/b3fJ3wUrwO8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/lies-of-p-ps5-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1627720/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1627720/ss_2.jpg"
+  long: "A dark reimagining of Pinocchio filled with mechanical horrors and moral decay."
+
+- id: "p028"
+  title: "Ratchet & Clank: Rift Apart"
+  price: 59.99
+  developer: "Insomniac Games"
+  publisher: "PlayStation PC LLC"
+  release_date: "2023-07-26"
+  modes: "Singleplayer"
+  genres: ["Action", "Platformer", "Shooter"]
+  trailer: "https://www.youtube.com/embed/ai3o0XtrnM8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/ratchet-and-clank-rift-apart-ps5-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1895880/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1895880/ss_2.jpg"
+  long: "Dimension-hopping chaos rendered in next-gen fidelity."
+
+- id: "p029"
+  title: "Days Gone"
+  price: 49.99
+  developer: "Bend Studio"
+  publisher: "PlayStation PC LLC"
+  release_date: "2021-05-18"
+  modes: "Singleplayer"
+  genres: ["Action", "Survival", "Open World"]
+  trailer: "https://www.youtube.com/embed/FKtaOY9lMvM"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/Days-Gone-US.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1259420/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1259420/ss_2.jpg"
+  long: "Ride through a deadly world of bikers, Freakers, and broken promises."
+
+- id: "p030"
+  title: "Spider-Man Remastered"
+  price: 59.99
+  developer: "Insomniac Games"
+  publisher: "PlayStation PC LLC"
+  release_date: "2022-08-12"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Superhero"]
+  trailer: "https://www.youtube.com/embed/1E051WtpyWg"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/marvels-spider-man-ps4-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/ss_2.jpg"
+  long: "Swing through Marvel’s New York and protect the city from iconic villains."
+
+- id: "p031"
+  title: "Spider-Man: Miles Morales"
+  price: 49.99
+  developer: "Insomniac Games"
+  publisher: "PlayStation PC LLC"
+  release_date: "2022-11-18"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Superhero"]
+  trailer: "https://www.youtube.com/embed/gHzuHo80U2M"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/marvels-spiderman-miles-morales-ultimate-edition-ps5-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1817190/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1817190/ss_2.jpg"
+  long: "A heartfelt coming-of-age superhero story in snowy New York."
+
+- id: "p032"
+  title: "Returnal"
+  price: 59.99
+  developer: "Housemarque"
+  publisher: "PlayStation PC LLC"
+  release_date: "2023-02-15"
+  modes: "Singleplayer"
+  genres: ["Action", "Roguelike", "Sci-Fi"]
+  trailer: "https://www.youtube.com/embed/IfKn0EDC9pY"
+  images:
+    - "https://cdn1.epicgames.com/offer/4c461792757541e99c4a16c00834c956/EGS_Returnal_HousemarqueClimaxStudios_S2_1200x1600-617cb4daee4cf45fa937304bceb60a81"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1649240/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1649240/ss_2.jpg"
+  long: "Selene’s descent into madness and survival on the alien world Atropos."
+
+- id: "p033"
+  title: "Horizon Forbidden West Complete Edition"
+  price: 69.99
+  developer: "Guerrilla Games"
+  publisher: "PlayStation PC LLC"
+  release_date: "2024-03-21"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Open World"]
+  trailer: "https://www.youtube.com/embed/Lq594XmpPBg"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/horizon_forbiden_west_complete_edition_ps5-700x700-1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2454500/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2454500/ss_2.jpg"
+  long: "Aloy travels west to uncover new machines and ancient mysteries."
+
+- id: "p034"
+  title: "Alan Wake 2"
+  price: 49.99
+  developer: "Remedy Entertainment"
+  publisher: "Epic Games Publishing"
+  release_date: "2023-10-27"
+  modes: "Singleplayer"
+  genres: ["Thriller", "Horror", "Adventure"]
+  trailer: "https://www.youtube.com/embed/dlQ3FeNu5Yw"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp"
+    - "https://cdn2.unrealengine.com/alan-wake-2-ss1.jpg"
+    - "https://cdn2.unrealengine.com/alan-wake-2-ss2.jpg"
+  long: "Dual protagonists and dark storytelling in Remedy’s most ambitious horror yet."
+
+- id: "p035"
+  title: "Death Stranding Director’s Cut"
+  price: 49.99
+  developer: "Kojima Productions"
+  publisher: "505 Games"
+  release_date: "2022-03-30"
+  modes: "Singleplayer"
+  genres: ["Adventure", "Open World", "Sci-Fi"]
+  trailer: "https://www.youtube.com/embed/sJQk0jDZx8o"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/death_stranding_directors_cut_ps5-700x700h.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_2.jpg"
+  long: "Traverse a shattered America delivering hope, gear, and very breakable packages. Expanded tools, missions, and quality-of-life upgrades."
+
+- id: "p036"
+  title: "God of War Ragnarök"
+  price: 69.99
+  developer: "Santa Monica Studio"
+  publisher: "PlayStation PC LLC"
+  release_date: "2025-09-19"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Story Rich"]
+  trailer: "https://www.youtube.com/embed/EE-4GvjKcfs"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/god_of_war_ragnarok_ps5-700x700h.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2952500/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2952500/ss_2.jpg"
+  long: "The Norse saga concludes as Kratos and Atreus face Ragnarok."
+
+- id: "p037"
+  title: "Resident Evil 2 Remake"
+  price: 39.99
+  developer: "Capcom"
+  publisher: "Capcom"
+  release_date: "2019-01-25"
+  modes: "Singleplayer"
+  genres: ["Horror", "Survival", "Action"]
+  trailer: "https://www.youtube.com/embed/u3wS-Q2KBpk"
+  images:
+    - "https://upload.wikimedia.org/wikipedia/vi/f/fd/Resident_Evil_2_Remake.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/ss_2.jpg"
+  long: "Back to Raccoon City in a masterful reimagining: labyrinthine police station, scarce ammo, and relentless dread."
+
+
+
+- id: "p038"
+  title: "Armored Core VI: Fires of Rubicon"
+  price: 59.99
+  developer: "FromSoftware"
+  publisher: "Bandai Namco Entertainment"
+  release_date: "2023-08-25"
+  modes: "Singleplayer / Online PvP"
+  genres: ["Action", "Mech", "Shooter"]
+  trailer: "https://www.youtube.com/embed/bk7XYMZ9-x8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/armored-core-vi-fire-of-rubicon-ps5-00-700x700h.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/ss_2.jpg"
+  long: "Assemble, optimize, and pilot a hyper-agile mech in blistering missions and sweaty boss duels."
+
+- id: "p039"
+  title: "Dying Light 2 Stay Human"
+  price: 59.99
+  developer: "Techland"
+  publisher: "Techland"
+  release_date: "2022-02-04"
+  modes: "Singleplayer / Co-op"
+  genres: ["Action", "Parkour", "Survival"]
+  trailer: "https://www.youtube.com/embed/2MD4gTitmzw"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/Dying-Light-2-Stay-Human-ASIA.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/534380/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/534380/ss_2.jpg"
+  long: "Leap, craft, and fight your way through a decaying city in humanity’s last refuge."
+
+- id: "p040"
+  title: "Remnant II"
+  price: 49.99
+  developer: "Gunfire Games"
+  publisher: "Gearbox Publishing"
+  release_date: "2023-07-25"
+  modes: "Singleplayer / Co-op"
+  genres: ["Action", "Shooter", "Soulslike"]
+  trailer: "https://www.youtube.com/embed/xrYkiN6AVf8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/remnant-2-ps5-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1282100/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1282100/ss_2.jpg"
+  long: "Battle across shifting dimensions and take down colossal bosses with brutal co-op combat."
+
+- id: "p041"
+  title: "Nioh 2 – The Complete Edition"
+  price: 49.99
+  developer: "Team Ninja"
+  publisher: "KOEI TECMO GAMES"
+  release_date: "2021-02-05"
+  modes: "Singleplayer / Co-op"
+  genres: ["Action", "RPG", "Soulslike"]
+  trailer: "https://www.youtube.com/embed/9zIqU0Zq8hM"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/04/nioh_2_ps4.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1325200/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1325200/ss_2.jpg"
+  long: "Become a deadly half-yokai warrior in feudal Japan’s supernatural wars."
+
+- id: "p042"
+  title: "NieR: Automata"
+  price: 39.99
+  developer: "PlatinumGames"
+  publisher: "Square Enix"
+  release_date: "2017-03-17"
+  modes: "Singleplayer"
+  genres: ["Action", "RPG", "Story Rich"]
+  trailer: "https://www.youtube.com/embed/wJxNhJ8bjFk"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/04/nier_automata_game_of_the_yorha_edition_ps4.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/524220/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/524220/ss_2.jpg"
+  long: "Androids 2B and 9S fight to reclaim Earth in a hauntingly beautiful war against machines."
+
+- id: "p043"
+  title: "The Last of Us Part I"
+  price: 59.99
+  developer: "Naughty Dog"
+  publisher: "PlayStation PC LLC"
+  release_date: "2023-03-28"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Story Rich"]
+  trailer: "https://www.youtube.com/embed/W2Wnvvj33Wo"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/the-last-of-us-part-ii-ps4-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/ss_2.jpg"
+  long: "Joel and Ellie’s legendary story rebuilt for PC with new visuals and mechanics."
+
+- id: "p044"
+  title: "Mass Effect Legendary Edition"
+  price: 59.99
+  developer: "BioWare"
+  publisher: "Electronic Arts"
+  release_date: "2021-05-14"
+  modes: "Singleplayer"
+  genres: ["RPG", "Action", "Sci-Fi"]
+  trailer: "https://www.youtube.com/embed/8Zg3zU7kDyA"
+  images: 
+    - "https://m.media-amazon.com/images/I/71sjx9DL0KL.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/ss_2.jpg"
+  long: "The original Commander Shepard trilogy remastered with visual upgrades and unified QoL improvements."
+
+- id: "p045"
+  title: "Ghostrunner 2"
+  price: 39.99
+  developer: "One More Level"
+  publisher: "505 Games"
+  release_date: "2023-10-26"
+  modes: "Singleplayer"
+  genres: ["Action", "Cyberpunk", "Parkour"]
+  trailer: "https://www.youtube.com/embed/0TTJ5bM2F6I"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/04/ghostrunner_ps5.webp"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2144740/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2144740/ss_2.jpg"
+  long: "Slash, sprint, and ride through high-speed cyberpunk chaos with razor precision."
+
+- id: "p046"
+  title: "Persona 5 Royal"
+  price: 59.99
+  developer: "Atlus"
+  publisher: "SEGA"
+  release_date: "2022-10-21"
+  modes: "Singleplayer"
+  genres: ["RPG", "Turn-Based", "Story Rich"]
+  trailer: "https://www.youtube.com/embed/WJ7kJ-2g5n8"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/Persona-5-Secondhand.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1687950/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/1687950/ss_2.jpg"
+  long: "Lead the Phantom Thieves and change hearts in this stylish JRPG masterpiece."
+
+- id: "p047"
+  title: "Alan Wake Remastered"
+  price: 29.99
+  developer: "Remedy Entertainment"
+  publisher: "Epic Games Publishing"
+  release_date: "2021-10-05"
+  modes: "Singleplayer"
+  genres: ["Action", "Thriller", "Horror"]
+  trailer: "https://www.youtube.com/embed/WrHzlT9XfYk"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/alan-wake-remastered-ps4-700x700h.jpg"
+    - "https://cdn2.unrealengine.com/alanwake-remastered-screenshot-1.jpg"
+    - "https://cdn2.unrealengine.com/alanwake-remastered-screenshot-2.jpg"
+  long: "A psychological thriller blending action and mystery in a battle against darkness."
+
+- id: "p048"
+  title: "Resident Evil 3 Remake"
+  price: 39.99
+  developer: "Capcom"
+  publisher: "Capcom"
+  release_date: "2020-04-03"
+  modes: "Singleplayer"
+  genres: ["Action", "Horror", "Survival"]
+  trailer: "https://www.youtube.com/embed/PwYUu-FxHhA"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/resident_evil_3_us_00-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/952060/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/952060/ss_2.jpg"
+  long: "Jill Valentine’s escape from Raccoon City remade with modern visuals and mechanics."
+
+- id: "p049"
+  title: "Star Wars Jedi: Fallen Order"
+  price: 39.99
+  developer: "Respawn Entertainment"
+  publisher: "Electronic Arts"
+  release_date: "2019-11-15"
+  modes: "Singleplayer"
+  genres: ["Action", "Adventure", "Soulslite"]
+  trailer: "https://www.youtube.com/embed/0GLbwkfhYZk"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/star-wars-jedi-fallen-order-ps4-700x700h.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/952060/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/952060/ss_2.jpg"
+  long: "A young Padawan rebuilds his connection to the Force in a cinematic, exploration-driven romp."
+
+- id: "p050"
+  title: "Dishonored 2"
+  price: 29.99
+  developer: "Arkane Studios"
+  publisher: "Bethesda Softworks"
+  release_date: "2016-11-11"
+  modes: "Singleplayer"
+  genres: ["Stealth", "Action", "Immersive Sim"]
+  trailer: "https://www.youtube.com/embed/lNFtACeifcU"
+  images:
+    - "https://haloshop.vn/wp-content/uploads/2025/02/Dishonored-2-Secondhand.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_1.jpg"
+    - "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_2.jpg"
+  long: "God-tier level design and powers. Choose Emily or Corvo and break a conspiracy your way."
