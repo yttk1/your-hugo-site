@@ -261,9 +261,8 @@
     {{ block "main" . }}{{ end }}
   </main>
 
-  <footer>
-    © {{ now.Year }} Gamestore88. Built with Hugo.
-  </footer>
+  {{ partial "footer.html" . }}
+
 
   <script>
   function updateCartCount() {
