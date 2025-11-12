@@ -587,6 +587,20 @@
   paginationContainer.className = "pagination";
   grid.after(paginationContainer);
 
+  // Restore sort from URL or localStorage so UI and results match
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const urlSort = params.get("sort");
+    const savedSort = localStorage.getItem("productSort");
+    const desiredSort = urlSort || savedSort;
+    if (
+      desiredSort &&
+      Array.from(sortSelect.options).some(o => o.value === desiredSort)
+    ) {
+      sortSelect.value = desiredSort;
+    }
+  } catch (_) { /* no-op if disabled */ }
+
   toggles.forEach(btn => {
     btn.addEventListener("click", () => {
       const target = document.getElementById(btn.dataset.target);
@@ -773,9 +787,37 @@
   });
 
   input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
-  sortSelect.addEventListener("change", () => { currentPage = 1; doFilterAndSort(); });
+  sortSelect.addEventListener("change", () => {
+    currentPage = 1;
+    // Persist selection and reflect in URL for shareability
+    try {
+      localStorage.setItem("productSort", sortSelect.value);
+      const params = new URLSearchParams(window.location.search);
+      params.set("sort", sortSelect.value);
+      history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+    } catch (_) { /* ignore */ }
+    doFilterAndSort();
+  });
 
-  doFilterAndSort();
+  // Ensure correct sort after browser restores form state (back/forward cache)
+  window.addEventListener("pageshow", () => {
+    // If the browser restored the dropdown value, re-apply sorting
+    doFilterAndSort();
+  });
+
+  // Initial render (defer slightly to allow any form-value restoration)
+  setTimeout(() => {
+    // Sync URL with initial value if none provided
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("sort")) {
+        params.set("sort", sortSelect.value);
+        history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+      }
+      localStorage.setItem("productSort", sortSelect.value);
+    } catch (_) { /* ignore */ }
+    doFilterAndSort();
+  }, 0);
 });
 
   </script>
