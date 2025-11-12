@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>The Witcher 3: Wild Hunt | Game Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #f3f4f6;
+      --text: #111827;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      background-color: #212121;
+      color: #e0e0e0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #1A1A1A;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      margin-right: 1.5rem;
+    }
+    header a:hover { color: var(--primary); }
+    .cart-icon {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius);
+    }
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 90%;
+      margin: 2rem auto;
+    }
+    footer {
+      background: white;
+      text-align: center;
+      padding: 1rem;
+      color: #555;
+      font-size: 0.9rem;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="nav-left">
+    <a href="/" class="logo">
+      <img src="/favicon-32x32.png" alt="Gamestore88 Logo" class="logo-img">
+      <span class="logo-text">Home</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info" id="user-info">
+      <div class="user-icon" id="user-icon"></div>
+      <span id="user-display" class="username"></span>
+    </div>
+    <a href="#" id="login-link" class="logout-btn">Login</a>
+    <a href="/cart/" class="cart-icon" id="cart-link">🛒 <span id="cart-count">0</span></a>
+  </div>
+
+
+
+<style>
+
+ 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;  
+}
+
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+ 
+.logo-img {
+  height: 34px;
+  width: auto;
+  margin-right: 8px;
+  border-radius: 8px;
+}
+
+ 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+}
+
+ 
+.store-header {
+  background: linear-gradient(90deg, #0a0f1a 0%, #111827 100%);
+  color: #e2e8f0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+.logo-img {
+  height: 34px;
+  width: auto;
+  margin-right: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(96, 165, 250, 0.8);
+}
+
+ 
+.nav-links a {
+  color: #f7f4f4;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+ 
+.username {
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
+}
+ 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+ 
+.user-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #efefef, #6c6e70);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 200;
+  font-size: 0.9rem;
+  box-shadow: 0 0 6px rgba(152, 152, 154, 0.6);
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+ 
+.logout-btn {
+  color: #f87171;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ef4444;
+  text-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
+}
+
+ 
+.cart-icon {
+  background: linear-gradient(145deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+.cart-icon:hover {
+  transform: scale(1.05);
+}
+</style>
+</header>
+
+
+
+  <main>
+    
+
+
+
+
+
+<div class="game-container">
+
+  
+  <div class="gallery-container">
+    <div class="main-display" id="main-display">
+      
+        
+        
+        <iframe
+          id="main-media"
+          src="https://www.youtube.com/embed/c0i88t0Kacs?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      
+
+    </div>
+
+    <div class="thumbnails">
+      
+      
+        
+        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/c0i88t0Kacs','video')">
+          <img src="https://img.youtube.com/vi/c0i88t0Kacs/hqdefault.jpg" alt="Trailer thumbnail">
+          <div class="play-icon">▶</div>
+        </div>
+      
+
+      
+      
+        <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg" alt="The Witcher 3: Wild Hunt screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg','image')">
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_1.jpg" alt="The Witcher 3: Wild Hunt screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/292030\/ss_1.jpg','image')">
+      
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_2.jpg" alt="The Witcher 3: Wild Hunt screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/292030\/ss_2.jpg','image')">
+      
+    </div>
+  </div>
+
+  
+  <div class="game-details">
+    <h1 class="game-title">The Witcher 3: Wild Hunt</h1>
+    <p class="price">$39.99</p>
+
+    <br>
+
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Info</h2>
+      <hr class="section-divider">
+      <div class="meta">
+        <p><strong>Developer:</strong> CD Projekt Red</p>
+        <p><strong>Publisher:</strong> CD Projekt</p>
+        <p><strong>Release Date:</strong> 2015-05-19</p>
+        <p><strong>Modes:</strong> Singleplayer</p>
+        <p><strong>Genres:</strong> RPG, Action, Fantasy</p>
+      </div>
+    </div>
+
+    <br>
+    
+    <div class="section-block">
+      <h2 class="section-title">Game Description</h2>
+      <hr class="section-divider">
+      <p class="desc">Play as Geralt of Rivia, a monster slayer for hire, and hunt down the Child of Prophecy in a morally complex open world filled with monsters and intrigue.</p>
+    </div>
+
+    <br>
+    
+    <div class="buttons">
+      <button class="buy-now"
+        data-id="p010"
+        data-title="The Witcher 3: Wild Hunt"
+        data-price="39.99"
+        data-img="https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg">
+        Buy Now
+      </button>
+      <button class="add-to-cart"
+        data-id="p010"
+        data-title="The Witcher 3: Wild Hunt"
+        data-price="39.99"
+        data-img="https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg">
+        Add to Cart
+      </button>
+      <button class="share-btn" onclick="shareGame('The Witcher 3: Wild Hunt', 'http:\/\/localhost:1313\/products\/p010\/')">Share</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const addToCartBtn = document.querySelector(".add-to-cart");
+  const buyNowBtn = document.querySelector(".buy-now");
+
+  
+  addToCartBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
+
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in first.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
+
+    const key = `cart_${user}`;
+    let cart = JSON.parse(localStorage.getItem(key)) || [];
+    const existing = cart.find((p) => p.id === item.id);
+    if (existing) existing.qty += 1;
+    else cart.push(item);
+    localStorage.setItem(key, JSON.stringify(cart));
+
+    showToast(`🎮 ${item.title} added to cart!`, "success");
+    updateCartCount();
+    animateCartIcon();
+  });
+
+  
+  buyNowBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
+
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in to buy games.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
+    
+    const key = `checkout_${user}`;
+    localStorage.setItem(key, JSON.stringify([item]));
+
+    showToast("💳 Redirecting to payment...", "info");
+    setTimeout(() => (window.location.href = "/payment/"), 1000);
+  });
+});
+
+function showMedia(src, type) {
+  const display = document.getElementById("main-display");
+  display.innerHTML = ""; 
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Game image";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
+    img.style.borderRadius = "10px";
+    display.appendChild(img);
+  } else if (type === "video") {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "500";
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = "10px";
+    iframe.frameBorder = "0";
+    display.appendChild(iframe);
+  }
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+  const key = user ? `cart_${user}` : "cart";
+  const cart = JSON.parse(localStorage.getItem(key)) || [];
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+function animateCartIcon() {
+  const icon = document.getElementById("cart-link"); 
+  if (!icon) return;
+  icon.classList.add("cart-bounce");
+  setTimeout(() => icon.classList.remove("cart-bounce"), 500);
+}
+</script>
+
+
+
+<style>
+.game-container {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.trailer iframe {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.gallery img {
+  height: 160px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.game-details {
+  margin-top: 1rem;
+}
+.price {
+  color: #38bdf8;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.meta {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.desc {
+  color: #e2e8f0;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.buttons button {
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.buy-now {
+  background: linear-gradient(135deg, #9333ea, #6366f1);
+  color: white;
+}
+.buy-now:hover { background: linear-gradient(135deg, #7e22ce, #4f46e5); transform: scale(1.03); }
+.add-to-cart {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+.add-to-cart:hover { background: linear-gradient(135deg, #1d4ed8, #2563eb); transform: scale(1.03); }
+.share-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+.share-btn:hover { background: #475569; transform: scale(1.03); }
+
+.gallery-container {
+  margin-bottom: 2rem;
+}
+
+.main-display {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.main-display img,
+.main-display iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+ 
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.thumb {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+ 
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-thumb img {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.video-thumb:hover img {
+  filter: brightness(1);
+}
+
+ 
+.section-block {
+  margin-top: 2rem;
+}
+
+.section-title {
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.meta p {
+  margin: 0.2rem 0;
+}
+
+.desc {
+  color: #e2e8f0;
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.cart-bounce {
+  animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+</style>
+
+
+  </main>
+
+  <footer>
+    © 2025 Gamestore88. Built with Hugo.
+  </footer>
+
+  <script>
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const total = cart.reduce((sum, i) => sum + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+  updateCartCount();
+  window.addEventListener('storage', updateCartCount);
+  </script>
+
+ <script>
+  function updateHeader() {
+    const loginLink = document.getElementById('login-link');
+    const userDisplay = document.getElementById('user-display');
+    const cartLink = document.getElementById('cart-link');
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      
+      userDisplay.textContent = user;
+      userDisplay.style.display = "inline-block";
+
+      
+      const userIcon = document.getElementById('user-icon');
+      if (userIcon && user && user.length > 0) {
+        userIcon.textContent = user.charAt(0); 
+        userIcon.style.display = "flex";
+      }
+
+      loginLink.textContent = "Logout";
+      loginLink.href = "#";
+      loginLink.onclick = (e) => {
+        e.preventDefault();
+
+        
+        localStorage.removeItem('cart');
+        localStorage.removeItem(`cart_${user}`);
+        localStorage.removeItem('cart_guest');
+
+        
+        localStorage.removeItem('user');
+
+        
+        const countEl = document.getElementById('cart-count');
+        if (countEl) countEl.textContent = 0;
+
+        alert("Logged out — cart cleared!");
+        window.location.reload();
+      };
+    
+      cartLink.style.display = "inline-flex";
+    } else {
+      
+      userDisplay.style.display = "none";
+      cartLink.style.display = "none";
+      loginLink.textContent = "Login";
+      loginLink.href = "/login/";
+      loginLink.onclick = null;
+      const userIcon = document.getElementById('user-icon');
+      if (userIcon) userIcon.style.display = "none";
+
+    }
+  }
+
+  function updateCartCount() {
+    const allKeys = Object.keys(localStorage);
+    let cart = [];
+
+    const user = localStorage.getItem('user');
+    if (user && allKeys.includes(`cart_${user}`)) {
+      cart = JSON.parse(localStorage.getItem(`cart_${user}`)) || [];
+    } else if (allKeys.includes('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart')) || [];
+    }
+
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    const countEl = document.getElementById('cart-count');
+    if (countEl) countEl.textContent = total;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateHeader();
+    updateCartCount();
+  });
+
+  window.addEventListener("storage", () => {
+    updateHeader();
+    updateCartCount();
+  });
+
+  </script>
+
+
+<div id="toast-container"></div>
+
+
+<div id="confirm-modal" class="confirm-modal">
+  <div class="confirm-box">
+    <p id="confirm-message">Are you sure?</p>
+    <div class="confirm-actions">
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+function showToast(message, type = "info") {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+
+window.alert = function (message) {
+  showToast(message, "info");
+};
+
+ 
+window.customConfirm = function (message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("confirm-message");
+    const yes = document.getElementById("confirm-yes");
+    const no = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.add("active");
+
+    const cleanup = () => {
+      modal.classList.remove("active");
+      yes.removeEventListener("click", onYes);
+      no.removeEventListener("click", onNo);
+    };
+
+    const onYes = () => { cleanup(); resolve(true); };
+    const onNo = () => { cleanup(); resolve(false); };
+
+    yes.addEventListener("click", onYes);
+    no.addEventListener("click", onNo);
+  });
+};
+</script>
+
+<style>
+ 
+#toast-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+.toast {
+  opacity: 0;
+  transform: translateY(-10px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.toast.error { background: linear-gradient(135deg,#ef4444,#b91c1c); }
+.toast.warning { background: linear-gradient(135deg,#f97316,#ea580c); }
+.toast.info { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+
+ 
+.confirm-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+.confirm-modal.active {
+  display: flex;
+}
+.confirm-box {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  text-align: center;
+  min-width: 300px;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-actions button {
+  flex: 1;  
+  max-width: 120px;
+  min-width: 100px;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#confirm-yes {
+  background: #22c55e;
+  color: white;
+}
+#confirm-no {
+  background: #ef4444;
+  color: white;
+}
+
+#confirm-yes:hover { background: #16a34a; transform: scale(1.03); }
+#confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
+
+</style>
+
+</body>
+</html>
