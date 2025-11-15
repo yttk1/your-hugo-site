@@ -301,7 +301,7 @@
 
   
   <div class="gallery-container">
-    <div class="main-display" id="main-display">
+    <div class="main-display is-video" id="main-display">
       
         
         
@@ -330,9 +330,9 @@
       
         <img src="https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/71LAxrvyNoL.jpg','image')">
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_91f39b6e22b7f8c8f3e6c31b76326e44aa4c8bb2.jpg" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/275850\/ss_91f39b6e22b7f8c8f3e6c31b76326e44aa4c8bb2.jpg','image')">
+        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf\/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833','image')">
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/275850/ss_07b0111d93db03777dfb04d0dca46a7f3d16052c.jpg" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/275850\/ss_07b0111d93db03777dfb04d0dca46a7f3d16052c.jpg','image')">
+        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/71f533720e58e1fb5dd61f23388abfe4f9caa6b5/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/71f533720e58e1fb5dd61f23388abfe4f9caa6b5\/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833','image')">
       
     </div>
   </div>
@@ -353,7 +353,7 @@
         <p><strong>Publisher:</strong> Hello Games</p>
         <p><strong>Release Date:</strong> 2016-08-12</p>
         <p><strong>Modes:</strong> Singleplayer / Multiplayer</p>
-        <p><strong>Genres:</strong> Adventure, Exploration, Sci-Fi</p>
+        <p><strong>Genres:</strong> Adventure, Open World, Simulation</p>
       </div>
     </div>
 
@@ -451,21 +451,23 @@ document.addEventListener("DOMContentLoaded", () => {
 function showMedia(src, type) {
   const display = document.getElementById("main-display");
   display.innerHTML = ""; 
+  display.classList.toggle("is-video", type === "video");
+  display.classList.toggle("is-image", type === "image");
 
   if (type === "image") {
     const img = document.createElement("img");
     img.src = src;
     img.alt = "Game image";
     img.style.width = "100%";
-    img.style.height = "100%";
+    img.style.height = "auto";
     img.style.objectFit = "contain";
     img.style.borderRadius = "10px";
     display.appendChild(img);
   } else if (type === "video") {
     const iframe = document.createElement("iframe");
     iframe.src = src;
-    iframe.width = "100%";
-    iframe.height = "500";
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
     iframe.allowFullscreen = true;
     iframe.style.borderRadius = "10px";
     iframe.frameBorder = "0";
@@ -577,18 +579,33 @@ function animateCartIcon() {
   background: #111827;
   border-radius: 12px;
   overflow: hidden;
-  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
-.main-display img,
+.main-display.is-video {
+  aspect-ratio: 16 / 9;
+}
+
+.main-display.is-image {
+  aspect-ratio: auto;
+}
+
+.main-display img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
 .main-display iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  border: 0;
   border-radius: 10px;
 }
 

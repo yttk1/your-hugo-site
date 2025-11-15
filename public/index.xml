@@ -36,10 +36,24 @@
       <description></description>
     </item>
     <item>
+      <title>Astro Bot</title>
+      <link>http://localhost:1313/products/p042/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p042/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Baldur’s Gate 3</title>
       <link>http://localhost:1313/products/p008/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p008/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blue Prince</title>
+      <link>http://localhost:1313/products/p040/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p040/</guid>
       <description></description>
     </item>
     <item>
@@ -57,6 +71,13 @@
       <description></description>
     </item>
     <item>
+      <title>Clair Obscur: Expedition 33</title>
+      <link>http://localhost:1313/products/p050/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p050/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Cyberpunk 2077</title>
       <link>http://localhost:1313/products/p001/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -68,13 +89,6 @@
       <link>http://localhost:1313/products/p021/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p021/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Days Gone</title>
-      <link>http://localhost:1313/products/p029/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p029/</guid>
       <description></description>
     </item>
     <item>
@@ -96,13 +110,6 @@
       <link>http://localhost:1313/products/p024/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p024/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Dishonored 2</title>
-      <link>http://localhost:1313/products/p050/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p050/</guid>
       <description></description>
     </item>
     <item>
@@ -190,6 +197,13 @@
       <description></description>
     </item>
     <item>
+      <title>Hollow Knight: Silksong</title>
+      <link>http://localhost:1313/products/p048/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p048/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Horizon Forbidden West Complete Edition</title>
       <link>http://localhost:1313/products/p033/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -204,6 +218,20 @@
       <description></description>
     </item>
     <item>
+      <title>It Takes Two</title>
+      <link>http://localhost:1313/products/p020/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p020/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kingdom Come: Deliverance II</title>
+      <link>http://localhost:1313/products/p041/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p041/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Lies of P</title>
       <link>http://localhost:1313/products/p027/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -215,27 +243,6 @@
       <link>http://localhost:1313/products/p044/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p044/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monster Hunter: World</title>
-      <link>http://localhost:1313/products/p020/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p020/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>NieR: Automata</title>
-      <link>http://localhost:1313/products/p042/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p042/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Nioh 2 – The Complete Edition</title>
-      <link>http://localhost:1313/products/p041/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p041/</guid>
       <description></description>
     </item>
     <item>
@@ -271,27 +278,6 @@
       <link>http://localhost:1313/products/p009/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p009/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Remnant II</title>
-      <link>http://localhost:1313/products/p040/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p040/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Resident Evil 2 Remake</title>
-      <link>http://localhost:1313/products/p037/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p037/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Resident Evil 3 Remake</title>
-      <link>http://localhost:1313/products/p048/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/products/p048/</guid>
       <description></description>
     </item>
     <item>
@@ -351,6 +337,13 @@
       <description></description>
     </item>
     <item>
+      <title>Split Fiction</title>
+      <link>http://localhost:1313/products/p037/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p037/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Star Wars Jedi: Fallen Order</title>
       <link>http://localhost:1313/products/p049/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -362,6 +355,13 @@
       <link>http://localhost:1313/products/p003/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p003/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Elder Scrolls V: Skyrim</title>
+      <link>http://localhost:1313/products/p029/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/p029/</guid>
       <description></description>
     </item>
     <item>

@@ -12,7 +12,11 @@
   </url><url>
     <loc>http://localhost:1313/products/p026/</loc>
   </url><url>
+    <loc>http://localhost:1313/products/p042/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p008/</loc>
+  </url><url>
+    <loc>http://localhost:1313/products/p040/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
@@ -22,19 +26,17 @@
   </url><url>
     <loc>http://localhost:1313/products/p004/</loc>
   </url><url>
+    <loc>http://localhost:1313/products/p050/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p001/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p021/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p029/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p019/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p035/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p024/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p050/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p015/</loc>
   </url><url>
@@ -60,21 +62,21 @@
   </url><url>
     <loc>http://localhost:1313/products/p012/</loc>
   </url><url>
+    <loc>http://localhost:1313/products/p048/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p033/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p025/</loc>
+  </url><url>
+    <loc>http://localhost:1313/products/p020/</loc>
+  </url><url>
+    <loc>http://localhost:1313/products/p041/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p027/</loc>
   </url><url>
     <loc>http://localhost:1313/login/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p044/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p020/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p042/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p041/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p005/</loc>
   </url><url>
@@ -89,12 +91,6 @@
     <loc>http://localhost:1313/products/p028/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p009/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p040/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p037/</loc>
-  </url><url>
-    <loc>http://localhost:1313/products/p048/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p011/</loc>
   </url><url>
@@ -114,11 +110,15 @@
   </url><url>
     <loc>http://localhost:1313/products/p031/</loc>
   </url><url>
+    <loc>http://localhost:1313/products/p037/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p049/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p003/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1313/products/p029/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p043/</loc>
   </url><url>
