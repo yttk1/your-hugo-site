@@ -18,6 +18,12 @@
   </url><url>
     <loc>http://localhost:1313/checkout/</loc>
   </url><url>
+    <loc>http://localhost:1313/policies/</loc>
+  </url><url>
+    <loc>http://localhost:1313/policies/warranty/</loc>
+  </url><url>
+    <loc>http://localhost:1313/policies/returns/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p004/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p001/</loc>
@@ -61,6 +67,8 @@
     <loc>http://localhost:1313/products/p033/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p025/</loc>
+  </url><url>
+    <loc>http://localhost:1313/policies/guide/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p027/</loc>
   </url><url>
@@ -117,6 +125,8 @@
     <loc>http://localhost:1313/products/p016/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p010/</loc>
+  </url><url>
+    <loc>http://localhost:1313/policies/shipping/</loc>
   </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>

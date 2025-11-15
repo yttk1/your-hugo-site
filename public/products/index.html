@@ -2612,24 +2612,43 @@
 
     
     <div class="footer-col">
-      <h3>Chính Sách</h3>
-      <ul>
-        <li><a href="#">Bảo Hành</a></li>
-        <li><a href="#">Đổi Trả</a></li>
-        <li><a href="#">Vận Chuyển</a></li>
-        <li><a href="#">Hướng Dẫn Mua Hàng</a></li>
+      <h3>CHÍNH SÁCH</h3>
+      <ul class="footer-links">
+        
+          <li><a href="/policies/warranty/">Chính Sách Bảo Hành</a></li>
+        
+          <li><a href="/policies/returns/">Chính Sách Đổi Trả</a></li>
+        
+          <li><a href="/policies/shipping/">Vận Chuyển</a></li>
+        
+          <li><a href="/policies/guide/">Hướng Dẫn Mua Hàng</a></li>
+        
       </ul>
     </div>
+
+
+
+
+
 
     
     <div class="footer-col">
       <h3>Theo Dõi Chúng Tôi</h3>
       <div class="footer-social">
-        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="discord"><i class="fab fa-discord"></i></a>
-        <a href="#" class="tiktok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://web.facebook.com/minhquuan102" target="_blank" class="social-btn facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
       </div>
+
       <h3>Thời Gian Làm Việc</h3>
       <ul>
         <li>Thứ 2 – Thứ 7: 9h00 – 20h00</li>
@@ -2714,19 +2733,90 @@
   margin: 1.2rem 0;         
 }
 
-.footer-social a {
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social-btn {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: #1f2937;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 1.2rem;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
+
+ 
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.social-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.facebook {
+  background: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.4);
+}
+.facebook:hover {
+  background: #0d6efd;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.7);
+}
+
+.youtube {
+  background: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+.youtube:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+}
+
+.discord {
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+.discord:hover {
+  background: #4752c4;
+  box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
+}
+
+.tiktok {
+  background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.4);
+}
+.tiktok:hover {
+  background: linear-gradient(135deg, #fe2c55, #000000, #25f4ee);
+  box-shadow: 0 0 18px rgba(254, 44, 85, 0.7);
+}
+
+ 
+.social-btn:hover {
+  transform: translateY(-4px);
+}
+
 
 .footer-social a:hover {
   transform: translateY(-4px);
