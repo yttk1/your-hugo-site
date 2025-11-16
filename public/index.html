@@ -627,6 +627,98 @@ overflow-y: hidden;
 }
 
 
+ 
+.platform-section {
+  margin: 80px 0;
+  margin-bottom: -60px;
+  text-align: center;
+}
+
+.platform-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 25px;
+  text-shadow: 0 0 18px rgba(255,255,255,0.35);
+}
+
+ 
+.platform-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+
+ 
+.platform-card {
+  position: relative;
+  width: 250px;
+  height: 240px;
+
+  background-size: cover;         
+  background-position: center;    
+  background-repeat: no-repeat;   
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  text-decoration: none;
+  color: #fff;
+
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.55);
+}
+
+ 
+.platform-card.ps5 {
+  background-image: url("https://product.hstatic.net/200000637319/product/image_-_2025-01-10t102030.103_49503ed1f83144baaa327d1af9f7e0b6_master.png");
+}
+
+.platform-card.ps4 {
+  background-image: url("https://media.ldlc.com/r1600/ld/products/00/03/83/35/LD0003833580_2.jpg");
+}
+
+ 
+.platform-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  z-index: 1;
+}
+
+ 
+.platform-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 24px rgba(90,160,255,0.6);
+}
+
+
+ 
+.platform-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  padding-bottom: 16px;
+  align-items: center;
+  gap: 10px;
+
+  padding-bottom: 16px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+ 
+   
+
+
   </style>
 </head>
 <body>
@@ -962,6 +1054,24 @@ overflow-y: hidden;
     </div>
 
     <button class="genres-arrow g-next">›</button>
+  </div>
+</section>
+
+<section class="platform-section">
+  <h2 class="platform-title">Choose Your Platform</h2>
+
+  <div class="platform-grid">
+    <a href="/products/?compat=ps5" class="platform-card ps5">
+      <div class="platform-label">
+        PS5
+      </div>
+    </a>
+
+    <a href="/products/?compat=ps4" class="platform-card ps4">
+      <div class="platform-label">
+        PS4
+      </div>
+    </a>
   </div>
 </section>
 
