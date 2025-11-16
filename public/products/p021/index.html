@@ -2,7 +2,7 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/g88.png">
   <title>Dark Souls III | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -23,16 +23,23 @@
       min-height: 100vh;
     }
     header {
-      background: #1A1A1A;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+       
+      background: rgba(26, 26, 26, 0.75);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+
     header a {
       text-decoration: none;
       color: var(--text);
@@ -66,8 +73,8 @@
   <header>
   <div class="nav-left">
     <a href="/" class="logo">
-      <img src="/favicon-32x32.png" alt="Gamestore88 Logo" class="logo-img">
-      <span class="logo-text">Home</span>
+      <img src="/g88.png" alt="Gamestore88 Logo" class="logo-img">
+      <span class="logo-text">Game88™</span>
     </a>
     <nav class="nav-links">
       <a href="/products/">Products</a>
@@ -121,15 +128,41 @@
 }
 
 .nav-links a {
-  color: #94a3b8;
+  position: relative;
+  color: #e5e5e5;
+  margin-left: 1.5rem;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+ 
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #38bdf8;
+  border-radius: 2px;
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
   color: #38bdf8;
 }
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+ 
+.nav-links a.active::after {
+  width: 100%;
+}
+
 
  
 .store-header {
@@ -1208,6 +1241,25 @@ window.customConfirm = function (message) {
 #confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
 
 </style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const current = window.location.pathname;
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    const href = link.getAttribute("href");
+
+    
+    if (current === "/" && href === "/") {
+      link.classList.add("active");
+    }
+    
+    else if (href !== "/" && current.startsWith(href)) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
