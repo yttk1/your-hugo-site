@@ -6,6 +6,9 @@
   <title>Our Games | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+      html {
+    overflow-y: scroll !important;
+  }
     :root {
       --primary: #2563eb;
       --secondary: #f3f4f6;
@@ -15,7 +18,7 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--secondary);
-      background-color: #212121;
+      background-color: #131420;
       color: #e0e0e0;
       margin: 0;
       display: flex;
@@ -28,7 +31,7 @@
       z-index: 10;
 
        
-      background: rgba(26, 26, 26, 0.75);
+      background: rgba(15, 23, 36, 0.75);
       backdrop-filter: blur(16px) saturate(140%);
       -webkit-backdrop-filter: blur(16px) saturate(140%);
 
@@ -67,6 +70,141 @@
       font-size: 0.9rem;
       border-top: 1px solid #e5e7eb;
     }
+
+     
+
+    .nav-right {
+  visibility: hidden;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(180deg, #1a1d23, #13161a);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+ 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6cb5ff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+ 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-links a {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #dce3ec;
+  padding: 5px 6px;
+  border-radius: 4px;
+  transition: 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: #7cc7ff;
+}
+
+.nav-links a.active {
+  color: #7cc7ff;
+  border-bottom: 2px solid #7cc7ff;
+}
+
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+ 
+.login-btn, .logout-btn {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  color: #ffb3b3;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.login-btn:hover, .logout-btn:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.cart-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  background: #3d9ce5;
+  color: white;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+ 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dce3ec, #8c9aa8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #071018;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.username {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+}
+
+
   </style>
 </head>
 <body>
@@ -96,195 +234,7 @@
 <style>
 
  
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 2rem;  
-}
 
- 
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #38bdf8;
-  font-weight: 700;
-  font-size: 1.2rem;
-}
-
- 
-.logo-img {
-  height: 34px;
-  width: auto;
-  margin-right: 8px;
-  border-radius: 8px;
-}
-
- 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  position: relative;
-  color: #e5e5e5;
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  padding-bottom: 4px;
-  transition: color 0.25s ease;
-}
-
- 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: #38bdf8;
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #38bdf8;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
- 
-.nav-links a.active::after {
-  width: 100%;
-}
-
-
- 
-.store-header {
-  background: linear-gradient(90deg, #0a0f1a 0%, #111827 100%);
-  color: #e2e8f0;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
- 
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #38bdf8;
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-}
-
-.logo-img {
-  height: 34px;
-  width: auto;
-  margin-right: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.logo:hover .logo-img {
-  transform: scale(1.05);
-  box-shadow: 0 0 14px rgba(96, 165, 250, 0.8);
-}
-
- 
-.nav-links a {
-  color: #f7f4f4;
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.25s ease, text-shadow 0.25s ease;
-}
-
-.nav-links a:hover {
-  color: #38bdf8;
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-}
-
- 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
- 
-.username {
-  font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
-}
- 
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
- 
-.user-icon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #efefef, #6c6e70);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 200;
-  font-size: 0.9rem;
-  box-shadow: 0 0 6px rgba(152, 152, 154, 0.6);
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-}
-
- 
-.logout-btn {
-  color: #f87171;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-  color: #ef4444;
-  text-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
-}
-
- 
-.cart-icon {
-  background: linear-gradient(145deg, #2563eb, #1d4ed8);
-  color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
-}
-
-.cart-icon:hover {
-  transform: scale(1.05);
-}
 </style>
 </header>
 
@@ -292,22 +242,343 @@
 
   <main>
     
-  <section class="store-layout">
-    
-    
-    
-    <aside class="filter-sidebar">
+    <section class="store-layout">
       
-      <div class="filter-group">
-        <button class="filter-toggle" data-target="genres">
-          Genres <span class="arrow">▼</span>
-        </button>
+      
+      
+      <aside class="filter-sidebar">
+        
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="genres">
+            Genres <span class="arrow">▼</span>
+          </button>
 
-        <div class="filter-options" id="genres">
-          <div class="filter-scroll">
-            
-            
+          <div class="filter-options" id="genres">
+            <div class="filter-scroll">
               
+              
+                
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                    
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                    
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                    
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                    
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                    
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
                 
                   
                 
@@ -320,1784 +591,1478 @@
                   
                 
               
-            
-              
                 
-              
-                
-              
-                
-              
-            
-              
+                  
                 
                   
                 
               
                 
-              
-            
-              
-                
+                  
+                    
                   
                 
-              
-            
-              
+                  
                 
                   
                 
               
                 
-              
-                
-              
-            
-              
-                
-              
-                
                   
-                
-              
-            
-              
                 
                   
                 
               
                 
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
+                  
                 
                   
                 
-              
-                
-              
-            
-              
-                
-              
-                
+                  
+                    
                   
                 
               
-            
               
-                
+              <div class="filter-item" data-genre="action">
+                <span class="checkbox"></span>
+                <span class="label">Action</span>
+              </div>
+              
+              <div class="filter-item" data-genre="adventure">
+                <span class="checkbox"></span>
+                <span class="label">Adventure</span>
+              </div>
+              
+              <div class="filter-item" data-genre="co-op">
+                <span class="checkbox"></span>
+                <span class="label">Co-op</span>
+              </div>
+              
+              <div class="filter-item" data-genre="horror">
+                <span class="checkbox"></span>
+                <span class="label">Horror</span>
+              </div>
+              
+              <div class="filter-item" data-genre="metroidvania">
+                <span class="checkbox"></span>
+                <span class="label">Metroidvania</span>
+              </div>
+              
+              <div class="filter-item" data-genre="open world">
+                <span class="checkbox"></span>
+                <span class="label">Open World</span>
+              </div>
+              
+              <div class="filter-item" data-genre="platform">
+                <span class="checkbox"></span>
+                <span class="label">Platform</span>
+              </div>
+              
+              <div class="filter-item" data-genre="platformer">
+                <span class="checkbox"></span>
+                <span class="label">Platformer</span>
+              </div>
+              
+              <div class="filter-item" data-genre="puzzle">
+                <span class="checkbox"></span>
+                <span class="label">Puzzle</span>
+              </div>
+              
+              <div class="filter-item" data-genre="roguelike">
+                <span class="checkbox"></span>
+                <span class="label">Roguelike</span>
+              </div>
+              
+              <div class="filter-item" data-genre="rpg">
+                <span class="checkbox"></span>
+                <span class="label">RPG</span>
+              </div>
+              
+              <div class="filter-item" data-genre="shooter">
+                <span class="checkbox"></span>
+                <span class="label">Shooter</span>
+              </div>
+              
+              <div class="filter-item" data-genre="simulation">
+                <span class="checkbox"></span>
+                <span class="label">Simulation</span>
+              </div>
+              
+              <div class="filter-item" data-genre="sports">
+                <span class="checkbox"></span>
+                <span class="label">Sports</span>
+              </div>
+              
+              <div class="filter-item" data-genre="strategy">
+                <span class="checkbox"></span>
+                <span class="label">Strategy</span>
+              </div>
+              
+              <div class="filter-item" data-genre="turn-based">
+                <span class="checkbox"></span>
+                <span class="label">Turn-Based</span>
+              </div>
               
-                
-              
-                
-              
-            
-              
-                
-                  
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-                  
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-                  
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-                  
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-            
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-                  
-                
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-            
-              
-                
-              
-                
-              
-                
-                  
-                
-              
-            
-            
-            <div class="filter-item" data-genre="action">
-              <span class="checkbox"></span>
-              <span class="label">Action</span>
             </div>
-            
-            <div class="filter-item" data-genre="adventure">
-              <span class="checkbox"></span>
-              <span class="label">Adventure</span>
-            </div>
-            
-            <div class="filter-item" data-genre="co-op">
-              <span class="checkbox"></span>
-              <span class="label">Co-op</span>
-            </div>
-            
-            <div class="filter-item" data-genre="horror">
-              <span class="checkbox"></span>
-              <span class="label">Horror</span>
-            </div>
-            
-            <div class="filter-item" data-genre="metroidvania">
-              <span class="checkbox"></span>
-              <span class="label">Metroidvania</span>
-            </div>
-            
-            <div class="filter-item" data-genre="open world">
-              <span class="checkbox"></span>
-              <span class="label">Open World</span>
-            </div>
-            
-            <div class="filter-item" data-genre="platform">
-              <span class="checkbox"></span>
-              <span class="label">Platform</span>
-            </div>
-            
-            <div class="filter-item" data-genre="platformer">
-              <span class="checkbox"></span>
-              <span class="label">Platformer</span>
-            </div>
-            
-            <div class="filter-item" data-genre="puzzle">
-              <span class="checkbox"></span>
-              <span class="label">Puzzle</span>
-            </div>
-            
-            <div class="filter-item" data-genre="roguelike">
-              <span class="checkbox"></span>
-              <span class="label">Roguelike</span>
-            </div>
-            
-            <div class="filter-item" data-genre="rpg">
-              <span class="checkbox"></span>
-              <span class="label">RPG</span>
-            </div>
-            
-            <div class="filter-item" data-genre="shooter">
-              <span class="checkbox"></span>
-              <span class="label">Shooter</span>
-            </div>
-            
-            <div class="filter-item" data-genre="simulation">
-              <span class="checkbox"></span>
-              <span class="label">Simulation</span>
-            </div>
-            
-            <div class="filter-item" data-genre="sports">
-              <span class="checkbox"></span>
-              <span class="label">Sports</span>
-            </div>
-            
-            <div class="filter-item" data-genre="strategy">
-              <span class="checkbox"></span>
-              <span class="label">Strategy</span>
-            </div>
-            
-            <div class="filter-item" data-genre="turn-based">
-              <span class="checkbox"></span>
-              <span class="label">Turn-Based</span>
-            </div>
-            
+            <button class="clear-filters-link clear-genres">Clear genres</button>
           </div>
-          <button class="clear-filters-link clear-genres">Clear genres</button>
         </div>
-      </div>
 
-      
-      <div class="filter-group">
-        <button class="filter-toggle" data-target="modes">
-          Modes <span class="arrow">▼</span>
-        </button>
+        
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="modes">
+            Modes <span class="arrow">▼</span>
+          </button>
 
-        <div class="filter-options" id="modes">
-          <div class="filter-scroll">
-            <div class="filter-item" data-mode="multiplayer">
-              <span class="checkbox"></span>
-              <span class="label">Multiplayer</span>
+          <div class="filter-options" id="modes">
+            <div class="filter-scroll">
+              <div class="filter-item" data-mode="multiplayer">
+                <span class="checkbox"></span>
+                <span class="label">Multiplayer</span>
+              </div>
+              <div class="filter-item" data-mode="singleplayer">
+                <span class="checkbox"></span>
+                <span class="label">Singleplayer</span>
+              </div>
+              <div class="filter-item" data-mode="co-op">
+                <span class="checkbox"></span>
+                <span class="label">Co-op</span>
+              </div>
             </div>
-            <div class="filter-item" data-mode="singleplayer">
-              <span class="checkbox"></span>
-              <span class="label">Singleplayer</span>
-            </div>
-            <div class="filter-item" data-mode="co-op">
-              <span class="checkbox"></span>
-              <span class="label">Co-op</span>
-            </div>
+            <button class="clear-filters-link clear-modes">Clear modes</button>
           </div>
-          <button class="clear-filters-link clear-modes">Clear modes</button>
         </div>
-      </div>
-    </aside>
+      </aside>
 
 
-
-    
-    <div class="products-section">
-      <h1 class="page-title">🎮 Our Games</h1>
 
       
-      <div class="search-container">
-        <div class="search-bar">
-          <span class="search-icon">🔎</span>
-          <input id="search-bar" placeholder="Search for games..." aria-label="Search" />
+      <div class="products-section">
+        <h1 class="page-title">🎮 Our Games</h1>
+
+        
+        <div class="search-container">
+          <div class="search-bar">
+            <span class="search-icon">🔎</span>
+            <input id="search-bar" placeholder="Search for games..." aria-label="Search" />
+          </div>
+        </div>
+
+        
+        <div class="sort-bar">
+          <div class="sort-right">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="alphabet">A–Z</option>
+              <option value="alphabet-desc">Z–A</option>
+              <option value="price">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="release">Release: Newest</option>
+              <option value="release-old">Release: Oldest</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="no-results" class="no-results">😢 No games found.</p>
+
+        
+        <div class="products-grid" id="products-grid">
+          
+          <article class="product-card"
+            data-title="cyberpunk 2077"
+            data-price="59.99"
+            data-release="2020-12-10"
+            data-genres="Action,RPG,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p001/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/Cyberpunk-2077-Secondhand.jpg" alt="Cyberpunk 2077" />
+              </div>
+              <h3>Cyberpunk 2077</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="elden ring"
+            data-price="69.99"
+            data-release="2022-02-25"
+            data-genres="Action,RPG,Open World"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p002/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring" />
+              </div>
+              <h3>Elden Ring</h3>
+              <p class="price">$69.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="stardew valley"
+            data-price="14.99"
+            data-release="2016-02-26"
+            data-genres="Simulation,RPG"
+            data-modes="singleplayer,co-op">
+
+            
+            <a href="/products/p003/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://newgamesportal.com/pe/wp-content/uploads/2023/11/Stardew-Valley-PS5_13_11zon.webp" alt="Stardew Valley" />
+              </div>
+              <h3>Stardew Valley</h3>
+              <p class="price">$14.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="civilization vi"
+            data-price="29.99"
+            data-release="2016-10-21"
+            data-genres="Strategy"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p004/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/sid-meiers-civilization-vi-ps4-700x700h-1.jpg" alt="Civilization VI" />
+              </div>
+              <h3>Civilization VI</h3>
+              <p class="price">$29.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="no man’s sky"
+            data-price="59.99"
+            data-release="2016-08-12"
+            data-genres="Adventure,Open World,Simulation"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p005/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg" alt="No Man’s Sky" />
+              </div>
+              <h3>No Man’s Sky</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="hades"
+            data-price="24.99"
+            data-release="2020-09-17"
+            data-genres="Action,Roguelike"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p006/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades" />
+              </div>
+              <h3>Hades</h3>
+              <p class="price">$24.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="ea sports fc 26"
+            data-price="69.99"
+            data-release="2025-09-26"
+            data-genres="Sports,Simulation"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p007/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26" />
+              </div>
+              <h3>EA SPORTS FC 26</h3>
+              <p class="price">$69.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="baldur’s gate 3"
+            data-price="59.99"
+            data-release="2023-08-03"
+            data-genres="RPG,Adventure"
+            data-modes="singleplayer,multiplayer,co-op">
+
+            
+            <a href="/products/p008/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/baldur-gate-3-ps5-700x700h.webp" alt="Baldur’s Gate 3" />
+              </div>
+              <h3>Baldur’s Gate 3</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="red dead redemption 2"
+            data-price="59.99"
+            data-release="2019-11-05"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p009/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/red-dead-redemption-2-ps4-700x700h.jpg" alt="Red Dead Redemption 2" />
+              </div>
+              <h3>Red Dead Redemption 2</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="the witcher 3: wild hunt"
+            data-price="39.99"
+            data-release="2015-05-19"
+            data-genres="RPG,Action,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p010/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg" alt="The Witcher 3: Wild Hunt" />
+              </div>
+              <h3>The Witcher 3: Wild Hunt</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="resident evil 4 remake"
+            data-price="39.99"
+            data-release="2023-03-24"
+            data-genres="Horror,Action"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p011/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-4-remake-ps5-700x700h.jpg" alt="Resident Evil 4 Remake" />
+              </div>
+              <h3>Resident Evil 4 Remake</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="hollow knight"
+            data-price="14.99"
+            data-release="2017-02-24"
+            data-genres="Action,Platformer"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p012/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/719&#43;fL1LgML._AC_UF1000,1000_QL80_.jpg" alt="Hollow Knight" />
+              </div>
+              <h3>Hollow Knight</h3>
+              <p class="price">$14.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="ghost of tsushima director’s cut"
+            data-price="59.99"
+            data-release="2024-05-16"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer,co-op">
+
+            
+            <a href="/products/p013/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/Ghost-of-Tsushima_-Director_s-Cut-US.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT" />
+              </div>
+              <h3>Ghost of Tsushima DIRECTOR’S CUT</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="helldivers 2"
+            data-price="39.99"
+            data-release="2024-02-08"
+            data-genres="Shooter,Action"
+            data-modes="multiplayer,co-op">
+
+            
+            <a href="/products/p014/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp" alt="Helldivers 2" />
+              </div>
+              <h3>Helldivers 2</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="doom eternal"
+            data-price="39.99"
+            data-release="2020-03-20"
+            data-genres="Shooter,Action"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p015/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/81Jy-EnYnOL.jpg" alt="DOOM Eternal" />
+              </div>
+              <h3>DOOM Eternal</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="the sims 4"
+            data-price="49.99"
+            data-release="2014-09-02"
+            data-genres="Simulation"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p016/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/71XyC8lNCIL._AC_UF1000,1000_QL80_.jpg" alt="The Sims 4" />
+              </div>
+              <h3>The Sims 4</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="grand theft auto v"
+            data-price="29.99"
+            data-release="2015-04-14"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p017/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/grand-theft-auto-v-ps5-700x700h.webp" alt="Grand Theft Auto V" />
+              </div>
+              <h3>Grand Theft Auto V</h3>
+              <p class="price">$29.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="sekiro: shadows die twice"
+            data-price="59.99"
+            data-release="2019-03-22"
+            data-genres="Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p018/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/sekiro-shadows-die-twice-ps4-700x700h.jpg" alt="Sekiro: Shadows Die Twice" />
+              </div>
+              <h3>Sekiro: Shadows Die Twice</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="dead cells"
+            data-price="24.99"
+            data-release="2018-08-07"
+            data-genres="Action,Roguelike,Platformer"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p019/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/81YGxLQiERL.jpg" alt="Dead Cells" />
+              </div>
+              <h3>Dead Cells</h3>
+              <p class="price">$24.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="it takes two"
+            data-price="39.99"
+            data-release="2021-03-26"
+            data-genres="Action,Adventure,Co-op"
+            data-modes="co-op">
+
+            
+            <a href="/products/p020/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/It-Takes-Two-US.jpg" alt="It Takes Two" />
+              </div>
+              <h3>It Takes Two</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="dark souls iii"
+            data-price="59.99"
+            data-release="2016-04-11"
+            data-genres="Action,RPG"
+            data-modes="singleplayer,multiplayer">
+
+            
+            <a href="/products/p021/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/06/DARK-SOUL-III-THE-FIRE-FADES-EDITION-COMPLETE-EDITION_00.webp" alt="Dark Souls III" />
+              </div>
+              <h3>Dark Souls III</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="resident evil village"
+            data-price="39.99"
+            data-release="2021-05-07"
+            data-genres="Horror,Action"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p022/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-village-ps4-700x700h.jpg" alt="Resident Evil Village" />
+              </div>
+              <h3>Resident Evil Village</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="god of war"
+            data-price="49.99"
+            data-release="2022-01-14"
+            data-genres="Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p023/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/711lrrvzt&#43;L.jpg" alt="God of War" />
+              </div>
+              <h3>God of War</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="detroit: become human"
+            data-price="39.99"
+            data-release="2020-06-18"
+            data-genres="Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p024/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/71mMQEAs&#43;vL._SX522_.jpg" alt="Detroit: Become Human" />
+              </div>
+              <h3>Detroit: Become Human</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="horizon zero dawn complete edition"
+            data-price="49.99"
+            data-release="2020-08-07"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p025/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/horizon-zero-dawn-complele-edition-ps4-700x700h.jpg" alt="Horizon Zero Dawn Complete Edition" />
+              </div>
+              <h3>Horizon Zero Dawn Complete Edition</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="assassin’s creed mirage"
+            data-price="49.99"
+            data-release="2023-10-05"
+            data-genres="Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p026/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp" alt="Assassin’s Creed Mirage" />
+              </div>
+              <h3>Assassin’s Creed Mirage</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="lies of p"
+            data-price="59.99"
+            data-release="2023-09-18"
+            data-genres="Action,RPG"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p027/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/lies-of-p-ps5-700x700h.jpg" alt="Lies of P" />
+              </div>
+              <h3>Lies of P</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="ratchet &amp; clank: rift apart"
+            data-price="59.99"
+            data-release="2023-07-26"
+            data-genres="Action,Platformer,Shooter"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p028/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/ratchet-and-clank-rift-apart-ps5-700x700h.jpg" alt="Ratchet &amp; Clank: Rift Apart" />
+              </div>
+              <h3>Ratchet &amp; Clank: Rift Apart</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="the elder scrolls v: skyrim"
+            data-price="39.99"
+            data-release="2011-11-11"
+            data-genres="Action,RPG,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p029/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-elder-scrolls-v-skyrim-special-edition-ps4-700x700h.jpg" alt="The Elder Scrolls V: Skyrim" />
+              </div>
+              <h3>The Elder Scrolls V: Skyrim</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="spider-man remastered"
+            data-price="59.99"
+            data-release="2022-08-12"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p030/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/marvels-spider-man-ps4-700x700h.jpg" alt="Spider-Man Remastered" />
+              </div>
+              <h3>Spider-Man Remastered</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="spider-man: miles morales"
+            data-price="49.99"
+            data-release="2022-11-18"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p031/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/marvels-spiderman-miles-morales-ultimate-edition-ps5-700x700h.jpg" alt="Spider-Man: Miles Morales" />
+              </div>
+              <h3>Spider-Man: Miles Morales</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="returnal"
+            data-price="59.99"
+            data-release="2023-02-15"
+            data-genres="Action,Roguelike,Shooter"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p032/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://cdn1.epicgames.com/offer/4c461792757541e99c4a16c00834c956/EGS_Returnal_HousemarqueClimaxStudios_S2_1200x1600-617cb4daee4cf45fa937304bceb60a81" alt="Returnal" />
+              </div>
+              <h3>Returnal</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="horizon forbidden west complete edition"
+            data-price="59.99"
+            data-release="2024-03-21"
+            data-genres="Action,Adventure,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p033/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/horizon_forbiden_west_complete_edition_ps5-700x700-1.jpg" alt="Horizon Forbidden West Complete Edition" />
+              </div>
+              <h3>Horizon Forbidden West Complete Edition</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="alan wake 2"
+            data-price="59.99"
+            data-release="2023-10-27"
+            data-genres="Horror,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p034/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp" alt="Alan Wake 2" />
+              </div>
+              <h3>Alan Wake 2</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="death stranding director’s cut"
+            data-price="49.99"
+            data-release="2022-03-30"
+            data-genres="Adventure,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p035/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/death_stranding_directors_cut_ps5-700x700h.webp" alt="Death Stranding Director’s Cut" />
+              </div>
+              <h3>Death Stranding Director’s Cut</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="god of war ragnarök"
+            data-price="59.99"
+            data-release="2025-09-19"
+            data-genres="Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p036/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/god_of_war_ragnarok_ps5-700x700h.webp" alt="God of War Ragnarök" />
+              </div>
+              <h3>God of War Ragnarök</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="split fiction"
+            data-price="49.99"
+            data-release="2025-03-06"
+            data-genres="Action,Adventure,Platform"
+            data-modes="co-op">
+
+            
+            <a href="/products/p037/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/split_fiction_ps5-700x700h.jpg" alt="Split Fiction" />
+              </div>
+              <h3>Split Fiction</h3>
+              <p class="price">$49.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="armored core vi: fires of rubicon"
+            data-price="59.99"
+            data-release="2023-08-25"
+            data-genres="Action,Shooter"
+            data-modes="singleplayer,online pvp">
+
+            
+            <a href="/products/p038/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/armored-core-vi-fire-of-rubicon-ps5-00-700x700h.webp" alt="Armored Core VI: Fires of Rubicon" />
+              </div>
+              <h3>Armored Core VI: Fires of Rubicon</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="dying light 2 stay human"
+            data-price="59.99"
+            data-release="2022-02-04"
+            data-genres="Action,Open World"
+            data-modes="singleplayer,co-op">
+
+            
+            <a href="/products/p039/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/Dying-Light-2-Stay-Human-ASIA.jpg" alt="Dying Light 2 Stay Human" />
+              </div>
+              <h3>Dying Light 2 Stay Human</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="blue prince"
+            data-price="29.99"
+            data-release="2025-04-10"
+            data-genres="Puzzle,Adventure,Roguelike"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p040/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/81LYEcUbzLL._AC_UF894,1000_QL80_.jpg" alt="Blue Prince" />
+              </div>
+              <h3>Blue Prince</h3>
+              <p class="price">$29.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="kingdom come: deliverance ii"
+            data-price="59.99"
+            data-release="2025-02-04"
+            data-genres="Action,RPG,Open World"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p041/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/kingdom_come_deliverance_2_us_00-700x700h.jpg" alt="Kingdom Come: Deliverance II" />
+              </div>
+              <h3>Kingdom Come: Deliverance II</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="astro bot"
+            data-price="59.99"
+            data-release="2024-09-06"
+            data-genres="Action,Platform,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p042/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/astro_bot_ps5-700x700h-1.webp" alt="Astro Bot" />
+              </div>
+              <h3>Astro Bot</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="the last of us part i"
+            data-price="59.99"
+            data-release="2023-03-28"
+            data-genres="Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p043/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-last-of-us-part-ii-ps4-700x700h.jpg" alt="The Last of Us Part I" />
+              </div>
+              <h3>The Last of Us Part I</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="mass effect legendary edition"
+            data-price="59.99"
+            data-release="2021-05-14"
+            data-genres="RPG,Action"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p044/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://m.media-amazon.com/images/I/71sjx9DL0KL.jpg" alt="Mass Effect Legendary Edition" />
+              </div>
+              <h3>Mass Effect Legendary Edition</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="ghostrunner 2"
+            data-price="39.99"
+            data-release="2023-10-26"
+            data-genres="Action"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p045/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/04/ghostrunner_ps5.webp" alt="Ghostrunner 2" />
+              </div>
+              <h3>Ghostrunner 2</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="persona 5 royal"
+            data-price="59.99"
+            data-release="2022-10-21"
+            data-genres="RPG"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p046/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/Persona-5-Secondhand.jpg" alt="Persona 5 Royal" />
+              </div>
+              <h3>Persona 5 Royal</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="alan wake remastered"
+            data-price="29.99"
+            data-release="2021-10-05"
+            data-genres="Horror,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p047/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan-wake-remastered-ps4-700x700h.jpg" alt="Alan Wake Remastered" />
+              </div>
+              <h3>Alan Wake Remastered</h3>
+              <p class="price">$29.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="hollow knight: silksong"
+            data-price="19.99"
+            data-release="2025-09-04"
+            data-genres="Metroidvania,Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p048/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://images.pushsquare.com/3e136187a1eee/hollow-knight-silksong-cover.cover_large.jpg" alt="Hollow Knight: Silksong" />
+              </div>
+              <h3>Hollow Knight: Silksong</h3>
+              <p class="price">$19.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="star wars jedi: fallen order"
+            data-price="39.99"
+            data-release="2019-11-15"
+            data-genres="Action,Adventure"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p049/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/02/star-wars-jedi-fallen-order-ps4-700x700h.jpg" alt="Star Wars Jedi: Fallen Order" />
+              </div>
+              <h3>Star Wars Jedi: Fallen Order</h3>
+              <p class="price">$39.99</p>
+            </a>
+          </article>
+          
+          <article class="product-card"
+            data-title="clair obscur: expedition 33"
+            data-price="59.99"
+            data-release="2025-10-03"
+            data-genres="Action,RPG,Turn-Based"
+            data-modes="singleplayer">
+
+            
+            <a href="/products/p050/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="https://haloshop.vn/wp-content/uploads/2025/03/clair_obscur_expedition_33_us_ps5-1.webp" alt="Clair Obscur: Expedition 33" />
+              </div>
+              <h3>Clair Obscur: Expedition 33</h3>
+              <p class="price">$59.99</p>
+            </a>
+          </article>
+          
         </div>
       </div>
+    </section>
 
-      
-      <div class="sort-bar">
-        <div class="sort-right">
-          <label for="sort-select">Sort by:</label>
-          <select id="sort-select">
-            <option value="alphabet">A–Z</option>
-            <option value="alphabet-desc">Z–A</option>
-            <option value="price">Price: Low → High</option>
-            <option value="price-desc">Price: High → Low</option>
-            <option value="release">Release: Newest</option>
-            <option value="release-old">Release: Oldest</option>
-          </select>
-        </div>
-      </div>
 
-      <p id="no-results" class="no-results">😢 No games found.</p>
-
-      
-      <div class="products-grid" id="products-grid">
-        
-        <article class="product-card"
-          data-title="cyberpunk 2077"
-          data-price="59.99"
-          data-release="2020-12-10"
-          data-genres="Action,RPG,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p001/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/Cyberpunk-2077-Secondhand.jpg" alt="Cyberpunk 2077" />
-            </div>
-            <h3>Cyberpunk 2077</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="elden ring"
-          data-price="69.99"
-          data-release="2022-02-25"
-          data-genres="Action,RPG,Open World"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p002/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring" />
-            </div>
-            <h3>Elden Ring</h3>
-            <p class="price">$69.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="stardew valley"
-          data-price="14.99"
-          data-release="2016-02-26"
-          data-genres="Simulation,RPG"
-          data-modes="singleplayer,co-op">
-
-          
-          <a href="/products/p003/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://newgamesportal.com/pe/wp-content/uploads/2023/11/Stardew-Valley-PS5_13_11zon.webp" alt="Stardew Valley" />
-            </div>
-            <h3>Stardew Valley</h3>
-            <p class="price">$14.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="civilization vi"
-          data-price="29.99"
-          data-release="2016-10-21"
-          data-genres="Strategy"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p004/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/sid-meiers-civilization-vi-ps4-700x700h-1.jpg" alt="Civilization VI" />
-            </div>
-            <h3>Civilization VI</h3>
-            <p class="price">$29.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="no man’s sky"
-          data-price="59.99"
-          data-release="2016-08-12"
-          data-genres="Adventure,Open World,Simulation"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p005/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg" alt="No Man’s Sky" />
-            </div>
-            <h3>No Man’s Sky</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="hades"
-          data-price="24.99"
-          data-release="2020-09-17"
-          data-genres="Action,Roguelike"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p006/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades" />
-            </div>
-            <h3>Hades</h3>
-            <p class="price">$24.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="ea sports fc 26"
-          data-price="69.99"
-          data-release="2025-09-26"
-          data-genres="Sports,Simulation"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p007/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26" />
-            </div>
-            <h3>EA SPORTS FC 26</h3>
-            <p class="price">$69.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="baldur’s gate 3"
-          data-price="59.99"
-          data-release="2023-08-03"
-          data-genres="RPG,Adventure"
-          data-modes="singleplayer,multiplayer,co-op">
-
-          
-          <a href="/products/p008/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/baldur-gate-3-ps5-700x700h.webp" alt="Baldur’s Gate 3" />
-            </div>
-            <h3>Baldur’s Gate 3</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="red dead redemption 2"
-          data-price="59.99"
-          data-release="2019-11-05"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p009/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/red-dead-redemption-2-ps4-700x700h.jpg" alt="Red Dead Redemption 2" />
-            </div>
-            <h3>Red Dead Redemption 2</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="the witcher 3: wild hunt"
-          data-price="39.99"
-          data-release="2015-05-19"
-          data-genres="RPG,Action,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p010/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg" alt="The Witcher 3: Wild Hunt" />
-            </div>
-            <h3>The Witcher 3: Wild Hunt</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="resident evil 4 remake"
-          data-price="39.99"
-          data-release="2023-03-24"
-          data-genres="Horror,Action"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p011/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-4-remake-ps5-700x700h.jpg" alt="Resident Evil 4 Remake" />
-            </div>
-            <h3>Resident Evil 4 Remake</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="hollow knight"
-          data-price="14.99"
-          data-release="2017-02-24"
-          data-genres="Action,Platformer"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p012/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/719&#43;fL1LgML._AC_UF1000,1000_QL80_.jpg" alt="Hollow Knight" />
-            </div>
-            <h3>Hollow Knight</h3>
-            <p class="price">$14.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="ghost of tsushima director’s cut"
-          data-price="59.99"
-          data-release="2024-05-16"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer,co-op">
-
-          
-          <a href="/products/p013/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/Ghost-of-Tsushima_-Director_s-Cut-US.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT" />
-            </div>
-            <h3>Ghost of Tsushima DIRECTOR’S CUT</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="helldivers 2"
-          data-price="39.99"
-          data-release="2024-02-08"
-          data-genres="Shooter,Action"
-          data-modes="multiplayer,co-op">
-
-          
-          <a href="/products/p014/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp" alt="Helldivers 2" />
-            </div>
-            <h3>Helldivers 2</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="doom eternal"
-          data-price="39.99"
-          data-release="2020-03-20"
-          data-genres="Shooter,Action"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p015/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/81Jy-EnYnOL.jpg" alt="DOOM Eternal" />
-            </div>
-            <h3>DOOM Eternal</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="the sims 4"
-          data-price="49.99"
-          data-release="2014-09-02"
-          data-genres="Simulation"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p016/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/71XyC8lNCIL._AC_UF1000,1000_QL80_.jpg" alt="The Sims 4" />
-            </div>
-            <h3>The Sims 4</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="grand theft auto v"
-          data-price="29.99"
-          data-release="2015-04-14"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p017/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/grand-theft-auto-v-ps5-700x700h.webp" alt="Grand Theft Auto V" />
-            </div>
-            <h3>Grand Theft Auto V</h3>
-            <p class="price">$29.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="sekiro: shadows die twice"
-          data-price="59.99"
-          data-release="2019-03-22"
-          data-genres="Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p018/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/sekiro-shadows-die-twice-ps4-700x700h.jpg" alt="Sekiro: Shadows Die Twice" />
-            </div>
-            <h3>Sekiro: Shadows Die Twice</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="dead cells"
-          data-price="24.99"
-          data-release="2018-08-07"
-          data-genres="Action,Roguelike,Platformer"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p019/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/81YGxLQiERL.jpg" alt="Dead Cells" />
-            </div>
-            <h3>Dead Cells</h3>
-            <p class="price">$24.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="it takes two"
-          data-price="39.99"
-          data-release="2021-03-26"
-          data-genres="Action,Adventure,Co-op"
-          data-modes="co-op">
-
-          
-          <a href="/products/p020/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/It-Takes-Two-US.jpg" alt="It Takes Two" />
-            </div>
-            <h3>It Takes Two</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="dark souls iii"
-          data-price="59.99"
-          data-release="2016-04-11"
-          data-genres="Action,RPG"
-          data-modes="singleplayer,multiplayer">
-
-          
-          <a href="/products/p021/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/06/DARK-SOUL-III-THE-FIRE-FADES-EDITION-COMPLETE-EDITION_00.webp" alt="Dark Souls III" />
-            </div>
-            <h3>Dark Souls III</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="resident evil village"
-          data-price="39.99"
-          data-release="2021-05-07"
-          data-genres="Horror,Action"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p022/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-village-ps4-700x700h.jpg" alt="Resident Evil Village" />
-            </div>
-            <h3>Resident Evil Village</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="god of war"
-          data-price="49.99"
-          data-release="2022-01-14"
-          data-genres="Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p023/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://images-na.ssl-images-amazon.com/images/I/711lrrvzt&#43;L.jpg" alt="God of War" />
-            </div>
-            <h3>God of War</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="detroit: become human"
-          data-price="39.99"
-          data-release="2020-06-18"
-          data-genres="Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p024/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/71mMQEAs&#43;vL._SX522_.jpg" alt="Detroit: Become Human" />
-            </div>
-            <h3>Detroit: Become Human</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="horizon zero dawn complete edition"
-          data-price="49.99"
-          data-release="2020-08-07"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p025/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/horizon-zero-dawn-complele-edition-ps4-700x700h.jpg" alt="Horizon Zero Dawn Complete Edition" />
-            </div>
-            <h3>Horizon Zero Dawn Complete Edition</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="assassin’s creed mirage"
-          data-price="49.99"
-          data-release="2023-10-05"
-          data-genres="Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p026/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp" alt="Assassin’s Creed Mirage" />
-            </div>
-            <h3>Assassin’s Creed Mirage</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="lies of p"
-          data-price="59.99"
-          data-release="2023-09-18"
-          data-genres="Action,RPG"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p027/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/lies-of-p-ps5-700x700h.jpg" alt="Lies of P" />
-            </div>
-            <h3>Lies of P</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="ratchet &amp; clank: rift apart"
-          data-price="59.99"
-          data-release="2023-07-26"
-          data-genres="Action,Platformer,Shooter"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p028/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/ratchet-and-clank-rift-apart-ps5-700x700h.jpg" alt="Ratchet &amp; Clank: Rift Apart" />
-            </div>
-            <h3>Ratchet &amp; Clank: Rift Apart</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="the elder scrolls v: skyrim"
-          data-price="39.99"
-          data-release="2011-11-11"
-          data-genres="Action,RPG,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p029/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-elder-scrolls-v-skyrim-special-edition-ps4-700x700h.jpg" alt="The Elder Scrolls V: Skyrim" />
-            </div>
-            <h3>The Elder Scrolls V: Skyrim</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="spider-man remastered"
-          data-price="59.99"
-          data-release="2022-08-12"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p030/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/marvels-spider-man-ps4-700x700h.jpg" alt="Spider-Man Remastered" />
-            </div>
-            <h3>Spider-Man Remastered</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="spider-man: miles morales"
-          data-price="49.99"
-          data-release="2022-11-18"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p031/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/marvels-spiderman-miles-morales-ultimate-edition-ps5-700x700h.jpg" alt="Spider-Man: Miles Morales" />
-            </div>
-            <h3>Spider-Man: Miles Morales</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="returnal"
-          data-price="59.99"
-          data-release="2023-02-15"
-          data-genres="Action,Roguelike,Shooter"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p032/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://cdn1.epicgames.com/offer/4c461792757541e99c4a16c00834c956/EGS_Returnal_HousemarqueClimaxStudios_S2_1200x1600-617cb4daee4cf45fa937304bceb60a81" alt="Returnal" />
-            </div>
-            <h3>Returnal</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="horizon forbidden west complete edition"
-          data-price="59.99"
-          data-release="2024-03-21"
-          data-genres="Action,Adventure,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p033/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/horizon_forbiden_west_complete_edition_ps5-700x700-1.jpg" alt="Horizon Forbidden West Complete Edition" />
-            </div>
-            <h3>Horizon Forbidden West Complete Edition</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="alan wake 2"
-          data-price="59.99"
-          data-release="2023-10-27"
-          data-genres="Horror,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p034/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp" alt="Alan Wake 2" />
-            </div>
-            <h3>Alan Wake 2</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="death stranding director’s cut"
-          data-price="49.99"
-          data-release="2022-03-30"
-          data-genres="Adventure,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p035/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/death_stranding_directors_cut_ps5-700x700h.webp" alt="Death Stranding Director’s Cut" />
-            </div>
-            <h3>Death Stranding Director’s Cut</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="god of war ragnarök"
-          data-price="59.99"
-          data-release="2025-09-19"
-          data-genres="Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p036/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/god_of_war_ragnarok_ps5-700x700h.webp" alt="God of War Ragnarök" />
-            </div>
-            <h3>God of War Ragnarök</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="split fiction"
-          data-price="49.99"
-          data-release="2025-03-06"
-          data-genres="Action,Adventure,Platform"
-          data-modes="co-op">
-
-          
-          <a href="/products/p037/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/split_fiction_ps5-700x700h.jpg" alt="Split Fiction" />
-            </div>
-            <h3>Split Fiction</h3>
-            <p class="price">$49.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="armored core vi: fires of rubicon"
-          data-price="59.99"
-          data-release="2023-08-25"
-          data-genres="Action,Shooter"
-          data-modes="singleplayer,online pvp">
-
-          
-          <a href="/products/p038/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/armored-core-vi-fire-of-rubicon-ps5-00-700x700h.webp" alt="Armored Core VI: Fires of Rubicon" />
-            </div>
-            <h3>Armored Core VI: Fires of Rubicon</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="dying light 2 stay human"
-          data-price="59.99"
-          data-release="2022-02-04"
-          data-genres="Action,Open World"
-          data-modes="singleplayer,co-op">
-
-          
-          <a href="/products/p039/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/Dying-Light-2-Stay-Human-ASIA.jpg" alt="Dying Light 2 Stay Human" />
-            </div>
-            <h3>Dying Light 2 Stay Human</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="blue prince"
-          data-price="29.99"
-          data-release="2025-04-10"
-          data-genres="Puzzle,Adventure,Roguelike"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p040/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/81LYEcUbzLL._AC_UF894,1000_QL80_.jpg" alt="Blue Prince" />
-            </div>
-            <h3>Blue Prince</h3>
-            <p class="price">$29.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="kingdom come: deliverance ii"
-          data-price="59.99"
-          data-release="2025-02-04"
-          data-genres="Action,RPG,Open World"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p041/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/kingdom_come_deliverance_2_us_00-700x700h.jpg" alt="Kingdom Come: Deliverance II" />
-            </div>
-            <h3>Kingdom Come: Deliverance II</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="astro bot"
-          data-price="59.99"
-          data-release="2024-09-06"
-          data-genres="Action,Platform,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p042/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/astro_bot_ps5-700x700h-1.webp" alt="Astro Bot" />
-            </div>
-            <h3>Astro Bot</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="the last of us part i"
-          data-price="59.99"
-          data-release="2023-03-28"
-          data-genres="Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p043/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-last-of-us-part-ii-ps4-700x700h.jpg" alt="The Last of Us Part I" />
-            </div>
-            <h3>The Last of Us Part I</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="mass effect legendary edition"
-          data-price="59.99"
-          data-release="2021-05-14"
-          data-genres="RPG,Action"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p044/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://m.media-amazon.com/images/I/71sjx9DL0KL.jpg" alt="Mass Effect Legendary Edition" />
-            </div>
-            <h3>Mass Effect Legendary Edition</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="ghostrunner 2"
-          data-price="39.99"
-          data-release="2023-10-26"
-          data-genres="Action"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p045/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/04/ghostrunner_ps5.webp" alt="Ghostrunner 2" />
-            </div>
-            <h3>Ghostrunner 2</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="persona 5 royal"
-          data-price="59.99"
-          data-release="2022-10-21"
-          data-genres="RPG"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p046/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/Persona-5-Secondhand.jpg" alt="Persona 5 Royal" />
-            </div>
-            <h3>Persona 5 Royal</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="alan wake remastered"
-          data-price="29.99"
-          data-release="2021-10-05"
-          data-genres="Horror,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p047/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan-wake-remastered-ps4-700x700h.jpg" alt="Alan Wake Remastered" />
-            </div>
-            <h3>Alan Wake Remastered</h3>
-            <p class="price">$29.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="hollow knight: silksong"
-          data-price="19.99"
-          data-release="2025-09-04"
-          data-genres="Metroidvania,Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p048/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://images.pushsquare.com/3e136187a1eee/hollow-knight-silksong-cover.cover_large.jpg" alt="Hollow Knight: Silksong" />
-            </div>
-            <h3>Hollow Knight: Silksong</h3>
-            <p class="price">$19.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="star wars jedi: fallen order"
-          data-price="39.99"
-          data-release="2019-11-15"
-          data-genres="Action,Adventure"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p049/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/02/star-wars-jedi-fallen-order-ps4-700x700h.jpg" alt="Star Wars Jedi: Fallen Order" />
-            </div>
-            <h3>Star Wars Jedi: Fallen Order</h3>
-            <p class="price">$39.99</p>
-          </a>
-        </article>
-        
-        <article class="product-card"
-          data-title="clair obscur: expedition 33"
-          data-price="59.99"
-          data-release="2025-10-03"
-          data-genres="Action,RPG,Turn-Based"
-          data-modes="singleplayer">
-
-          
-          <a href="/products/p050/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="https://haloshop.vn/wp-content/uploads/2025/03/clair_obscur_expedition_33_us_ps5-1.webp" alt="Clair Obscur: Expedition 33" />
-            </div>
-            <h3>Clair Obscur: Expedition 33</h3>
-            <p class="price">$59.99</p>
-          </a>
-        </article>
-        
-      </div>
-    </div>
-  </section>
-
-
-  <style>
-   
-  .products-section {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    color: #f5f5f5;
-  }
-  .page-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #e5e5e5;
-  }
-
-   
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0.5rem;
-  }
-  .search-bar {
-    display: flex;
-    align-items: center;
-    background: #4e4e4e;
-    border-radius: 9999px;
-    padding: 0.6rem 1rem;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: inset 0 0 6px rgba(255,255,255,0.05);
-  }
-  .search-bar input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #f0f0f0;
-    font-size: 1rem;
-    padding-left: 0.5rem;
-  }
-  .search-bar input::placeholder {
-    color: #b0adad;
-  }
-  .search-icon {
-    opacity: 0.6;
-  }
-
-   
-  .sort-bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0.5rem 0 1.5rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.8rem;
-  }
-  .sort-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .sort-right label {
-    color: #ccc;
-    font-weight: 500;
-  }
-  #sort-select {
-    background: transparent;
-    color: #bb86fc;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    transition: color 0.2s;
-  }
-  #sort-select:hover {
-    color: #d3b2ff;
-  }
-
-   
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    justify-items: center;
-    align-items: start;
-    padding: 1rem;
-  }
-
-   
-  .product-card {
-    width: 100%;
-    max-width: 220px;  
-    background: #2b2b2b;
-    color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 0.5rem;
-  }
-
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
-  }
-
-   
-  .thumb-wrap {
-    background: #111;
-    border-radius: 8px 8px 0 0;
-    width: 100%;
-    height: 280px;  
-    overflow: hidden;
-  }
-
-
-  .product-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;  
-    display: block;
-    border-radius: 0;  
-    object-position: top center;  
-  }
-
-   
-  .product-card h3 {
-    margin: 0.6rem 0.8rem 0.2rem;
-    font-size: 0.95rem;
-    color: #f5f5f5;
-    line-height: 1.3;
-    text-align: left;
-    min-height: 2.6rem;  
-  }
-
-  .product-card .price {
-    margin: 0.2rem 0.8rem 0.8rem;
-    text-align: left;
-    font-weight: 700;
-    color: #64b5f6;
-    font-size: 0.9rem;
-  }
-
-   
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    justify-items: center;
-    align-items: start;
-    padding: 1rem;
-  }
-
-   
-  @media (max-width: 1200px) {
-    .products-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 900px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .products-grid { grid-template-columns: 1fr; }
-  }
-
-   
-  .store-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    <style>
      
-    align-self: stretch;
-  }
-
-   
-  .filter-sidebar {
-    width: 200px;
-    flex-shrink: 0;
-    position: relative;    
-    top: auto;
-    margin-left: -140px;
-    padding-top: 13.5rem;
-    color: #e5e5e5;
-    font-size: 0.9rem;
-  }
-
-   
-  .products-section {
-    flex: 1;
-    min-width: 0;
-  }
-
-   
-  .filter-group {
-    margin-bottom: 1rem;
-  }
-
-  .filter-toggle {
-    background: none;
-    color: #f3f3f3;
-    font-weight: 600;
-    font-size: 0.95rem;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0.4rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    transition: color 0.2s ease;
-  }
-  .filter-toggle:hover {
-    color: #a855f7;
-  }
-
-  .filter-toggle .arrow {
-    font-size: 0.75rem;
-    transition: transform 0.2s ease;
-  }
-  .filter-toggle.active .arrow {
-    transform: rotate(180deg);
-  }
-
-   
-  .filter-options {
-    display: none;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.4rem;
-    padding-left: 0.3rem;
-  }
-  .filter-options.active {
-    display: flex;
-  }
-
-   
-  .filter-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.2rem;
-    border-radius: 6px;
-    transition: background 0.15s;
-  }
-  .filter-item:hover {
-    background: rgba(168, 85, 247, 0.12);
-  }
-
-  .checkbox {
-    width: 15px;
-    height: 15px;
-    border-radius: 3px;
-    border: 2px solid #666;
-    display: inline-block;
-    position: relative;
-    transition: all 0.15s;
-  }
-
-   
-  .filter-item.active .checkbox {
-    background: #a855f7;
-    border-color: #a855f7;
-  }
-  .filter-item.active .checkbox::after {
-    content: "✔";
-    position: absolute;
-    color: #fff;
-    top: -1px;
-    left: 3px;
-    font-size: 0.7rem;
-  }
-
-   
-  .filter-item.exclude .checkbox {
-    background: #a09e9e;
-    border-color: #a09e9e;
-  }
-  .filter-item.exclude .checkbox::after {
-    content: "✖";
-    position: absolute;
-    color: #fff;
-    top: -1px;
-    left: 3px;
-    font-size: 0.7rem;
-  }
-
-   
-  .clear-filters-link {
-    background: none;
-    border: none;
-    color: #a855f7;
-    text-decoration: underline;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin-top: -0.7rem;
-    text-align: left;
-    padding-left: 0.2rem;
-    transition: color 0.2s;
-  }
-  .clear-filters-link:hover {
-    color: #c084fc;
-  }
-
-   
-  @media (max-width: 900px) {
-    .store-layout {
-      flex-direction: column;
+    .products-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      color: #f5f5f5;
     }
-    .filter-sidebar {
-      width: 100%;
-      margin-left: 0;
+    .page-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #e5e5e5;
+    }
+
+     
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .search-bar {
       position: relative;
-      top: 0;
+      width: 50%;
+      max-width: 640px;
     }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.6rem;
+      border-radius: 10px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.03);
+    }
+
+    .search-bar input:focus {
+      border-color: #4ea8ff;
+      box-shadow: 0 0 8px rgba(78,168,255,0.4);
+      outline: none;
+    }
+
+    .search-bar input::placeholder {
+      color: #94a3b8;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 46%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+
+     
+    .sort-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0.5rem 0 1.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.8rem;
+    }
+    .sort-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sort-right label {
+      color: #ccc;
+      font-weight: 500;
+    }
+    #sort-select {
+      background: transparent;
+      color: #7cc7ff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      transition: color 0.2s;
+    }
+    #sort-select:hover {
+      color: #7cc7ff;
+    }
+
+     
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      justify-items: center;
+      align-items: start;
+      padding: 1rem;
+    }
+
+     
+    .product-card {
+      width: 100%;
+      max-width: 220px;  
+      background: #2b2b2b;
+      color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
+    }
+
+     
+    .thumb-wrap {
+      background: #111;
+      border-radius: 8px 8px 0 0;
+      width: 100%;
+      height: 280px;  
+      overflow: hidden;
+    }
+
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  
+      display: block;
+      border-radius: 0;  
+      object-position: top center;  
+    }
+
+     
+    .product-card h3 {
+      margin: 0.6rem 0.8rem 0.2rem;
+      font-size: 0.95rem;
+      color: #f5f5f5;
+      line-height: 1.3;
+      text-align: left;
+      min-height: 2.6rem;  
+    }
+
+    .product-card .price {
+      margin: 0.2rem 0.8rem 0.8rem;
+      text-align: left;
+      font-weight: 700;
+      color: #64b5f6;
+      font-size: 0.9rem;
+    }
+
+     
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      justify-items: center;
+      align-items: start;
+      padding: 1rem;
+    }
+
+     
+    @media (max-width: 1200px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+     
+    .store-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1rem;
+       
+      align-self: stretch;
+    }
+
+     
+    .filter-sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      position: relative;    
+      top: auto;
+      margin-left: -140px;
+      padding-top: 13.5rem;
+      color: #e5e5e5;
+      font-size: 0.9rem;
+    }
+
+     
+    .products-section {
+      flex: 1;
+      min-width: 0;
+    }
+
+     
+    .filter-group {
+      margin-bottom: 1rem;
+    }
+
+    .filter-toggle {
+      background: none;
+      color: #f3f3f3;
+      font-weight: 600;
+      font-size: 0.95rem;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      transition: color 0.2s ease;
+    }
+    .filter-toggle:hover {
+      color: #7cc7ff;
+    }
+
+    .filter-toggle .arrow {
+      font-size: 0.75rem;
+      transition: transform 0.2s ease;
+    }
+    .filter-toggle.active .arrow {
+      transform: rotate(180deg);
+    }
+
+     
+    .filter-options {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      padding-left: 0.3rem;
+    }
+    .filter-options.active {
+      display: flex;
+    }
+
+     
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0.25rem 0.2rem;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .filter-item:hover {
+      background: rgba(85, 155, 247, 0.12);
+    }
+
+    .checkbox {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      border: 2px solid #666;
+      display: inline-block;
+      position: relative;
+      transition: all 0.15s;
+    }
+
+     
+    .filter-item.active .checkbox {
+      background: #008efb;
+      border-color: #0091ff;
+    }
+    .filter-item.active .checkbox::after {
+      content: "✔";
+      position: absolute;
+      color: #fff;
+      top: -1px;
+      left: 3px;
+      font-size: 0.7rem;
+    }
+
+     
+    .filter-item.exclude .checkbox {
+      background: #a09e9e;
+      border-color: #a09e9e;
+    }
+    .filter-item.exclude .checkbox::after {
+      content: "✖";
+      position: absolute;
+      color: #fff;
+      top: -1px;
+      left: 3px;
+      font-size: 0.7rem;
+    }
+
+     
+    .clear-filters-link {
+      background: none;
+      border: none;
+      color: #7cc7ff;
+      text-decoration: underline;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: -0.7rem;
+      text-align: left;
+      padding-left: 0.2rem;
+      transition: color 0.2s;
+    }
+    .clear-filters-link:hover {
+      color: #7cc7ff;
+    }
+
+     
+    @media (max-width: 900px) {
+      .store-layout {
+        flex-direction: column;
+      }
+      .filter-sidebar {
+        width: 100%;
+        margin-left: 0;
+        position: relative;
+        top: 0;
+      }
+    }
+
+     
+     
+    .filter-options {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      padding-left: 0.3rem;
+    }
+
+    .filter-options.active {
+      display: flex;
+    }
+
+     
+    .filter-scroll {
+      max-height: 250px;         
+      overflow-y: auto;
+      margin-bottom: 0.8rem;
+      scrollbar-width: thin;
+      scrollbar-color: #6cb9f5 #2b2b2b;
+    }
+
+    .filter-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .filter-scroll::-webkit-scrollbar-thumb {
+      background: #7cc7ff;
+      border-radius: 3px;
+    }
+    .filter-scroll::-webkit-scrollbar-track {
+      background: #2b2b2b;
+    }
+
+  .pagination {
+    text-align: center;
+    margin: 2rem 0;
   }
 
-   
-   
-  .filter-options {
-    display: none;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.4rem;
-    padding-left: 0.3rem;
-  }
-
-  .filter-options.active {
-    display: flex;
-  }
-
-   
-  .filter-scroll {
-    max-height: 250px;         
-    overflow-y: auto;
-    margin-bottom: 0.8rem;
-    scrollbar-width: thin;
-    scrollbar-color: #a855f7 #2b2b2b;
-  }
-
-  .filter-scroll::-webkit-scrollbar {
-    width: 6px;
-  }
-  .filter-scroll::-webkit-scrollbar-thumb {
-    background: #a855f7;
-    border-radius: 3px;
-  }
-  .filter-scroll::-webkit-scrollbar-track {
-    background: #2b2b2b;
-  }
-
-.pagination {
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.pagination-list.fixed-size {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0 auto;
-  min-width: 420px;  
-}
-
-.pagination-list li {
-  width: 2rem;
-  text-align: center;
-  color: #ccc;
-}
-
-.pagination-list a,
-.pagination-list span {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  color: #e2e2e2;
-  transition: all 0.2s;
-}
-
-.pagination-list a:hover {
-  background: #3a3a3a;
-  color: #a855f7;
-}
-
-.pagination-list .active {
-  background: #a855f7;
-  color: #fff;
-  font-weight: 700;
-}
-
-.pagination-list .disabled {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.pagination-list .dots {
-  pointer-events: none;
-  opacity: 0.6;
-  font-weight: bold;
-}
-
-@media (max-width: 500px) {
   .pagination-list.fixed-size {
-    min-width: 320px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0 auto;
+    min-width: 420px;  
+  }
+
+  .pagination-list li {
+    width: 2rem;
+    text-align: center;
+    color: #ccc;
+  }
+
+  .pagination-list a,
+  .pagination-list span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #e2e2e2;
+    transition: all 0.2s;
+  }
+
+  .pagination-list a:hover {
+    background: #3a3a3a;
+    color: #7cc7ff;
+  }
+
+  .pagination-list .active {
+    background: #4788ba;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .pagination-list .disabled {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .pagination-list .dots {
+    pointer-events: none;
+    opacity: 0.6;
+    font-weight: bold;
+  }
+
+  @media (max-width: 500px) {
+    .pagination-list.fixed-size {
+      min-width: 320px;
+    }
   }
 }
 
@@ -2162,69 +2127,119 @@
       btn.classList.toggle("active");
       target.classList.toggle("active");
     });
-  });
 
-  function buildPagination(totalPages) {
-    paginationContainer.innerHTML = "";
-    if (totalPages <= 1) return;
+    function buildPagination(totalPages) {
+      paginationContainer.innerHTML = "";
+      if (totalPages <= 1) return;
 
-    const ul = document.createElement("ul");
-    ul.className = "pagination-list fixed-size";
+      const ul = document.createElement("ul");
+      ul.className = "pagination-list fixed-size";
 
-    const MAX_VISIBLE = 7; 
+      const MAX_VISIBLE = 7; 
 
-    const addItem = (label, page, type = "page", active = false, disabled = false) => {
-      const li = document.createElement("li");
-      if (type === "dots") {
-        li.innerHTML = `<span class="dots">…</span>`;
-      } else if (disabled) {
-        li.innerHTML = `<span class="disabled">${label}</span>`;
-      } else if (active) {
-        li.innerHTML = `<span class="active">${label}</span>`;
-      } else {
-        li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+      const addItem = (label, page, type = "page", active = false, disabled = false) => {
+        const li = document.createElement("li");
+        if (type === "dots") {
+          li.innerHTML = `<span class="dots">…</span>`;
+        } else if (disabled) {
+          li.innerHTML = `<span class="disabled">${label}</span>`;
+        } else if (active) {
+          li.innerHTML = `<span class="active">${label}</span>`;
+        } else {
+          li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+        }
+        ul.appendChild(li);
+      };
+
+      
+      addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
+
+      
+      addItem(1, 1, "page", currentPage === 1);
+
+      let start = Math.max(2, currentPage - 1);
+      let end = Math.min(totalPages - 1, currentPage + 1);
+
+      
+      if (currentPage <= 3) {
+        start = 2;
+        end = Math.min(4, totalPages - 1);
       }
-      ul.appendChild(li);
-    };
+      
+      else if (currentPage >= totalPages - 2) {
+        end = totalPages - 1;
+        start = Math.max(totalPages - 3, 2);
+      }
 
-    
-    addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
+      
+      if (start > 2) addItem("…", null, "dots");
 
-    
-    addItem(1, 1, "page", currentPage === 1);
+      
+      for (let i = start; i <= end; i++) {
+        addItem(i, i, "page", i === currentPage);
+      }
 
-    let start = Math.max(2, currentPage - 1);
-    let end = Math.min(totalPages - 1, currentPage + 1);
+      
+      if (end < totalPages - 1) addItem("…", null, "dots");
 
-    
-    if (currentPage <= 3) {
-      start = 2;
-      end = Math.min(4, totalPages - 1);
+      
+      if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
+
+      
+      addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
+
+      paginationContainer.appendChild(ul);
+
+      ul.querySelectorAll("a[data-page]").forEach(a => {
+        a.addEventListener("click", e => {
+          e.preventDefault();
+          currentPage = parseInt(a.dataset.page);
+          doFilterAndSort();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
     }
-    
-    else if (currentPage >= totalPages - 2) {
-      end = totalPages - 1;
-      start = Math.max(totalPages - 3, 2);
-    }
 
-    
-    if (start > 2) addItem("…", null, "dots");
 
-    
-    for (let i = start; i <= end; i++) {
-      addItem(i, i, "page", i === currentPage);
-    }
+    function doFilterAndSort() {
+      const q = input.value.trim().toLowerCase();
+      const sortBy = sortSelect.value;
+      let visibleCards = [];
 
-    
-    if (end < totalPages - 1) addItem("…", null, "dots");
+      const sorted = [...cards].sort((a, b) => {
+        const titleA = (a.dataset.title || "").toLowerCase();
+        const titleB = (b.dataset.title || "").toLowerCase();
+        const priceA = parseFloat(a.dataset.price) || 0;
+        const priceB = parseFloat(b.dataset.price) || 0;
+        const dateA = new Date(a.dataset.release || "1970-01-01");
+        const dateB = new Date(b.dataset.release || "1970-01-01");
+        switch (sortBy) {
+          case "alphabet": return titleA.localeCompare(titleB);
+          case "alphabet-desc": return titleB.localeCompare(titleA);
+          case "price": return priceA - priceB;
+          case "price-desc": return priceB - priceA;
+          case "release": return dateB - dateA;
+          case "release-old": return dateA - dateB;
+          default: return 0;
+        }
+      });
 
-    
-    if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
+      grid.innerHTML = "";
+      sorted.forEach(card => {
+        const title = (card.dataset.title || "").toLowerCase();
+        const genres = (card.dataset.genres || "").toLowerCase().split(",");
+        const modes = (card.dataset.modes || "").toLowerCase().split(",");
+        const matchesSearch = !q || title.includes(q);
+        const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
+        const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
+        const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
+        const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
+        if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude)
+          visibleCards.push(card);
+      });
 
-    
-    addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
-
-    paginationContainer.appendChild(ul);
+      const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+      if (currentPage > totalPages) currentPage = totalPages || 1;
 
     ul.querySelectorAll("a[data-page]").forEach(a => {
       a.addEventListener("click", e => {
@@ -2243,42 +2258,48 @@
     });
   }
 
+      noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+      buildPagination(totalPages);
+    }
 
-  function doFilterAndSort() {
-    const q = input.value.trim().toLowerCase();
-    const sortBy = sortSelect.value;
-    let visibleCards = [];
-
-    const sorted = [...cards].sort((a, b) => {
-      const titleA = (a.dataset.title || "").toLowerCase();
-      const titleB = (b.dataset.title || "").toLowerCase();
-      const priceA = parseFloat(a.dataset.price) || 0;
-      const priceB = parseFloat(b.dataset.price) || 0;
-      const dateA = new Date(a.dataset.release || "1970-01-01");
-      const dateB = new Date(b.dataset.release || "1970-01-01");
-      switch (sortBy) {
-        case "alphabet": return titleA.localeCompare(titleB);
-        case "alphabet-desc": return titleB.localeCompare(titleA);
-        case "price": return priceA - priceB;
-        case "price-desc": return priceB - priceA;
-        case "release": return dateB - dateA;
-        case "release-old": return dateA - dateB;
-        default: return 0;
-      }
+    genreItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const genre = item.dataset.genre;
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+          item.classList.add("exclude");
+          includeGenres.delete(genre);
+          excludeGenres.add(genre);
+        } else if (item.classList.contains("exclude")) {
+          item.classList.remove("exclude");
+          excludeGenres.delete(genre);
+        } else {
+          item.classList.add("active");
+          includeGenres.add(genre);
+        }
+        currentPage = 1;
+        doFilterAndSort();
+      });
     });
 
-    grid.innerHTML = "";
-    sorted.forEach(card => {
-      const title = (card.dataset.title || "").toLowerCase();
-      const genres = (card.dataset.genres || "").toLowerCase().split(",");
-      const modes = (card.dataset.modes || "").toLowerCase().split(",");
-      const matchesSearch = !q || title.includes(q);
-      const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
-      const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
-      const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
-      const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
-      if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude)
-        visibleCards.push(card);
+    modeItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const mode = item.dataset.mode;
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+          item.classList.add("exclude");
+          includeModes.delete(mode);
+          excludeModes.add(mode);
+        } else if (item.classList.contains("exclude")) {
+          item.classList.remove("exclude");
+          excludeModes.delete(mode);
+        } else {
+          item.classList.add("active");
+          includeModes.add(mode);
+        }
+        currentPage = 1;
+        doFilterAndSort();
+      });
     });
 
     const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
@@ -2319,41 +2340,18 @@
       currentPage = 1;
       doFilterAndSort();
     });
-  });
 
-  modeItems.forEach(item => {
-    item.addEventListener("click", () => {
-      const mode = item.dataset.mode;
-      if (item.classList.contains("active")) {
-        item.classList.remove("active");
-        item.classList.add("exclude");
-        includeModes.delete(mode);
-        excludeModes.add(mode);
-      } else if (item.classList.contains("exclude")) {
-        item.classList.remove("exclude");
-        excludeModes.delete(mode);
-      } else {
-        item.classList.add("active");
-        includeModes.add(mode);
-      }
+    clearModesBtn.addEventListener("click", () => {
+      includeModes.clear();
+      excludeModes.clear();
+      modeItems.forEach(i => i.classList.remove("active", "exclude"));
       currentPage = 1;
       doFilterAndSort();
     });
-  });
 
-  clearGenresBtn.addEventListener("click", () => {
-    includeGenres.clear();
-    excludeGenres.clear();
-    genreItems.forEach(i => i.classList.remove("active", "exclude"));
-    currentPage = 1;
-    doFilterAndSort();
-  });
+    input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
+    sortSelect.addEventListener("change", () => { currentPage = 1; doFilterAndSort(); });
 
-  clearModesBtn.addEventListener("click", () => {
-    includeModes.clear();
-    excludeModes.clear();
-    modeItems.forEach(i => i.classList.remove("active", "exclude"));
-    currentPage = 1;
     doFilterAndSort();
   });
 
@@ -2701,95 +2699,78 @@
 
 
 
-  <script>
-  function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const total = cart.reduce((sum, i) => sum + i.qty, 0);
-    document.getElementById('cart-count').textContent = total;
+<script>
+function updateHeader() {
+  const user = localStorage.getItem('user');
+  const userDisplay = document.getElementById('user-display');
+  const userIcon = document.getElementById('user-icon');
+  const loginLink = document.getElementById('login-link');
+  const cartLink = document.getElementById('cart-link');
+
+  if (!userDisplay || !userIcon || !loginLink) return;
+
+  if (user) {
+    userDisplay.textContent = user;
+    userDisplay.style.display = "inline-block";
+
+    userIcon.textContent = user.charAt(0).toUpperCase();
+    userIcon.style.display = "flex";
+
+    loginLink.textContent = "Logout";
+    loginLink.href = "#";
+    loginLink.onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      window.location.reload();
+    };
+
+    cartLink.style.display = "inline-flex";
+  } else {
+    userDisplay.textContent = "";
+    userDisplay.style.display = "none";
+    userIcon.style.display = "none";
+
+    loginLink.textContent = "Login";
+    loginLink.href = "/login/";
+    loginLink.onclick = null;
+
+    cartLink.style.display = "none";
   }
+
+  
+  document.querySelector('.nav-right').style.visibility = "visible";
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+
+  
+  const key = user ? `cart_${user}` : "cart";
+
+  let cart;
+  try {
+    cart = JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    cart = [];
+  }
+
+  const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeader();
   updateCartCount();
-  window.addEventListener('storage', updateCartCount);
-  </script>
+});
 
- <script>
-  function updateHeader() {
-    const loginLink = document.getElementById('login-link');
-    const userDisplay = document.getElementById('user-display');
-    const cartLink = document.getElementById('cart-link');
-    const user = localStorage.getItem('user');
-
-    if (user) {
-      
-      userDisplay.textContent = user;
-      userDisplay.style.display = "inline-block";
-
-      
-      const userIcon = document.getElementById('user-icon');
-      if (userIcon && user && user.length > 0) {
-        userIcon.textContent = user.charAt(0); 
-        userIcon.style.display = "flex";
-      }
-
-      loginLink.textContent = "Logout";
-      loginLink.href = "#";
-      loginLink.onclick = (e) => {
-        e.preventDefault();
-
-        
-        localStorage.removeItem('cart');
-        localStorage.removeItem(`cart_${user}`);
-        localStorage.removeItem('cart_guest');
-
-        
-        localStorage.removeItem('user');
-
-        
-        const countEl = document.getElementById('cart-count');
-        if (countEl) countEl.textContent = 0;
-
-        alert("Logged out — cart cleared!");
-        window.location.reload();
-      };
-    
-      cartLink.style.display = "inline-flex";
-    } else {
-      
-      userDisplay.style.display = "none";
-      cartLink.style.display = "none";
-      loginLink.textContent = "Login";
-      loginLink.href = "/login/";
-      loginLink.onclick = null;
-      const userIcon = document.getElementById('user-icon');
-      if (userIcon) userIcon.style.display = "none";
-
-    }
-  }
-
-  function updateCartCount() {
-    const allKeys = Object.keys(localStorage);
-    let cart = [];
-
-    const user = localStorage.getItem('user');
-    if (user && allKeys.includes(`cart_${user}`)) {
-      cart = JSON.parse(localStorage.getItem(`cart_${user}`)) || [];
-    } else if (allKeys.includes('cart')) {
-      cart = JSON.parse(localStorage.getItem('cart')) || [];
-    }
-
-    const total = cart.reduce((sum, item) => sum + item.qty, 0);
-    const countEl = document.getElementById('cart-count');
-    if (countEl) countEl.textContent = total;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    updateHeader();
-    updateCartCount();
-  });
-
-  window.addEventListener("storage", () => {
-    updateHeader();
-    updateCartCount();
-  });
+window.addEventListener("storage", () => {
+  updateHeader();
+  updateCartCount();
+});
+</script>
 
   </script>
 
