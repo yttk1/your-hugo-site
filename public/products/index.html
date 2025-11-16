@@ -489,6 +489,8 @@
                   
                 
                   
+                    
+                  
                 
                   
                 
@@ -695,6 +697,11 @@
                 <span class="label">Turn-Based</span>
               </div>
               
+              <div class="filter-item" data-genre="war">
+                <span class="checkbox"></span>
+                <span class="label">War</span>
+              </div>
+              
             </div>
             <button class="clear-filters-link clear-genres">Clear genres</button>
           </div>
@@ -724,8 +731,31 @@
             <button class="clear-filters-link clear-modes">Clear modes</button>
           </div>
         </div>
-      </aside>
+        
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="compat">
+            Platform <span class="arrow">▼</span>
+          </button>
 
+          <div class="filter-options" id="compat">
+            <div class="filter-scroll">
+              <div class="filter-item" data-compat="ps5">
+                <span class="checkbox"></span>
+                <span class="label">PS5</span>
+              </div>
+
+              <div class="filter-item" data-compat="ps4">
+                <span class="checkbox"></span>
+                <span class="label">PS4</span>
+              </div>
+            </div>
+
+            <button class="clear-filters-link clear-compat">
+              Clear compatibility
+            </button>
+          </div>
+        </div>
+      </aside>
 
 
       
@@ -755,7 +785,13 @@
           </div>
         </div>
 
-        <p id="no-results" class="no-results">😢 No games found.</p>
+        <div id="no-results" class="no-results">
+          <span class="emoji">🔍</span>
+          <strong>No matching games found</strong>
+          <div style="margin-top: .4rem; font-size: .95rem; color:#c7dfff;">
+            Try adjusting your filters or search.
+          </div>
+        </div>
 
         
         <div class="products-grid" id="products-grid">
@@ -765,6 +801,8 @@
             data-price="59.99"
             data-release="2020-12-10"
             data-genres="action,rpg,open world"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -784,6 +822,8 @@
             data-release="2022-02-25"
             data-genres="action,rpg,open world"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -801,6 +841,8 @@
             data-price="14.99"
             data-release="2016-02-26"
             data-genres="simulation,rpg"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer,co-op">
 
@@ -820,6 +862,8 @@
             data-release="2016-10-21"
             data-genres="strategy"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -837,6 +881,8 @@
             data-price="59.99"
             data-release="2016-08-12"
             data-genres="adventure,open world,simulation"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer,multiplayer">
 
@@ -856,6 +902,8 @@
             data-release="2020-09-17"
             data-genres="action,roguelike"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -873,6 +921,8 @@
             data-price="69.99"
             data-release="2025-09-26"
             data-genres="sports,simulation"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer,multiplayer">
 
@@ -892,6 +942,8 @@
             data-release="2023-08-03"
             data-genres="rpg,adventure"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer,multiplayer,co-op">
 
             
@@ -909,6 +961,8 @@
             data-price="59.99"
             data-release="2019-11-05"
             data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer,multiplayer">
 
@@ -928,6 +982,8 @@
             data-release="2015-05-19"
             data-genres="rpg,action,open world"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -945,6 +1001,8 @@
             data-price="39.99"
             data-release="2023-03-24"
             data-genres="horror,action"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -964,6 +1022,8 @@
             data-release="2017-02-24"
             data-genres="action,platformer"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -981,6 +1041,8 @@
             data-price="59.99"
             data-release="2023-05-16"
             data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer,co-op">
 
@@ -1000,6 +1062,8 @@
             data-release="2024-02-08"
             data-genres="shooter,action"
 
+            data-compatibility="ps5"
+
             data-modes="multiplayer,co-op">
 
             
@@ -1017,6 +1081,8 @@
             data-price="39.99"
             data-release="2020-03-20"
             data-genres="shooter,action"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer,multiplayer">
 
@@ -1036,6 +1102,8 @@
             data-release="2014-09-02"
             data-genres="simulation"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1053,6 +1121,8 @@
             data-price="29.99"
             data-release="2015-04-14"
             data-genres="action,adventure,open world"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer,multiplayer">
 
@@ -1072,6 +1142,8 @@
             data-release="2019-03-22"
             data-genres="action,adventure"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1089,6 +1161,8 @@
             data-price="24.99"
             data-release="2018-08-07"
             data-genres="action,roguelike,platformer"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -1108,6 +1182,8 @@
             data-release="2021-03-26"
             data-genres="action,adventure"
 
+            data-compatibility="ps4"
+
             data-modes="co-op">
 
             
@@ -1125,6 +1201,8 @@
             data-price="59.99"
             data-release="2016-04-11"
             data-genres="action,rpg"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer,multiplayer">
 
@@ -1144,6 +1222,8 @@
             data-release="2021-05-07"
             data-genres="horror,action"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1161,6 +1241,8 @@
             data-price="49.99"
             data-release="2022-01-14"
             data-genres="action,adventure"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -1180,6 +1262,8 @@
             data-release="2020-06-18"
             data-genres="adventure"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1197,6 +1281,8 @@
             data-price="49.99"
             data-release="2020-08-07"
             data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -1216,6 +1302,8 @@
             data-release="2023-10-05"
             data-genres="action,adventure"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1233,6 +1321,8 @@
             data-price="59.99"
             data-release="2023-09-18"
             data-genres="action,rpg"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -1252,6 +1342,8 @@
             data-release="2023-07-26"
             data-genres="action,platformer,shooter"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1269,6 +1361,8 @@
             data-price="39.99"
             data-release="2011-11-11"
             data-genres="action,rpg,open world"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -1288,6 +1382,8 @@
             data-release="2022-08-12"
             data-genres="action,adventure,open world"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1306,6 +1402,8 @@
             data-release="2022-11-18"
             data-genres="action,adventure,open world"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1319,19 +1417,21 @@
           </article>
           
           <article class="product-card"
-            data-title="returnal"
+            data-title="battlefield 6"
             data-price="59.99"
-            data-release="2023-02-15"
-            data-genres="action,roguelike,shooter"
+            data-release="2025-10-10"
+            data-genres="action,war,shooter"
 
-            data-modes="singleplayer">
+            data-compatibility="ps5"
+
+            data-modes="multiplayer">
 
             
             <a href="/products/p032/" class="product-link">
               <div class="thumb-wrap">
-                <img src="https://cdn1.epicgames.com/offer/4c461792757541e99c4a16c00834c956/EGS_Returnal_HousemarqueClimaxStudios_S2_1200x1600-617cb4daee4cf45fa937304bceb60a81" alt="Returnal" />
+                <img src="https://haloshop.vn/wp-content/uploads/2025/10/BATTLEFIELD-6-00.webp" alt="Battlefield 6" />
               </div>
-              <h3>Returnal</h3>
+              <h3>Battlefield 6</h3>
               <p class="price">$59.99</p>
             </a>
           </article>
@@ -1341,6 +1441,8 @@
             data-price="59.99"
             data-release="2024-03-21"
             data-genres="action,adventure,open world"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -1360,6 +1462,8 @@
             data-release="2023-10-27"
             data-genres="horror,adventure"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1377,6 +1481,8 @@
             data-price="49.99"
             data-release="2022-03-30"
             data-genres="adventure,open world"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -1396,6 +1502,8 @@
             data-release="2025-09-19"
             data-genres="action,adventure"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1413,6 +1521,8 @@
             data-price="49.99"
             data-release="2025-03-06"
             data-genres="action,adventure,platform"
+
+            data-compatibility="ps5"
 
             data-modes="co-op">
 
@@ -1432,6 +1542,8 @@
             data-release="2023-08-25"
             data-genres="action,shooter"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer,online pvp">
 
             
@@ -1449,6 +1561,8 @@
             data-price="59.99"
             data-release="2022-02-04"
             data-genres="action,open world"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer,co-op">
 
@@ -1468,6 +1582,8 @@
             data-release="2025-04-10"
             data-genres="puzzle,adventure,roguelike"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1485,6 +1601,8 @@
             data-price="59.99"
             data-release="2025-02-04"
             data-genres="action,rpg,open world"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -1504,6 +1622,8 @@
             data-release="2024-09-06"
             data-genres="action,platform,adventure"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1521,6 +1641,8 @@
             data-price="59.99"
             data-release="2023-03-28"
             data-genres="action,adventure"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -1540,6 +1662,8 @@
             data-release="2021-05-14"
             data-genres="rpg,action"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1557,6 +1681,8 @@
             data-price="39.99"
             data-release="2023-10-26"
             data-genres="action"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -1576,6 +1702,8 @@
             data-release="2022-10-21"
             data-genres="rpg"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1593,6 +1721,8 @@
             data-price="29.99"
             data-release="2021-10-05"
             data-genres="horror,adventure"
+
+            data-compatibility="ps4"
 
             data-modes="singleplayer">
 
@@ -1612,6 +1742,8 @@
             data-release="2025-09-04"
             data-genres="metroidvania,action,adventure"
 
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1630,6 +1762,8 @@
             data-release="2019-11-15"
             data-genres="action,adventure"
 
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1647,6 +1781,8 @@
             data-price="59.99"
             data-release="2025-10-03"
             data-genres="action,rpg,turn-based"
+
+            data-compatibility="ps5"
 
             data-modes="singleplayer">
 
@@ -2107,6 +2243,33 @@
   }
 
 
+  .no-results {
+  display: none;
+  text-align: center;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  width: min(420px, 90%);
+  font-size: 1.2rem;
+  color: #9cc9ff;
+  box-shadow: 0 0 25px rgba(78, 168, 255, 0.1);
+  animation: fadeIn 0.35s ease;
+}
+
+.no-results .emoji {
+  display: block;
+  font-size: 2.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.8rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
     </style>
 
 <script>
@@ -2118,6 +2281,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let excludeGenres = new Set();
     let includeModes = new Set();
     let excludeModes = new Set();
+    let includeCompat = new Set();
+    
+
     let currentPage = 1;
     const ITEMS_PER_PAGE = 16;
 
@@ -2133,6 +2299,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const modeItems = document.querySelectorAll("[data-mode]");
     const clearGenresBtn = document.querySelector(".clear-genres");
     const clearModesBtn = document.querySelector(".clear-modes");
+    const compatItems = document.querySelectorAll("[data-compat]");
+    const clearCompatBtn = document.querySelector(".clear-compat");
+
 
     
 
@@ -2147,6 +2316,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (p.has("modes")) p.get("modes").split(",").forEach(m => includeModes.add(m));
         if (p.has("xmodes")) p.get("xmodes").split(",").forEach(m => excludeModes.add(m));
+
+        if (p.has("compat")) p.get("compat").split(",").forEach(c => includeCompat.add(c));
+        
 
         if (p.has("page")) currentPage = parseInt(p.get("page")) || 1;
     }
@@ -2165,6 +2337,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (includeModes.has(m)) item.classList.add("active");
             if (excludeModes.has(m)) item.classList.add("exclude");
         });
+
+        compatItems.forEach(item => {
+          const c = item.dataset.compat;
+          if (includeCompat.has(c)) item.classList.add("active");
+          
+        });
+
     }
 
     
@@ -2179,6 +2358,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (excludeGenres.size) p.set("xgenres", [...excludeGenres].join(","));
         if (includeModes.size) p.set("modes", [...includeModes].join(","));
         if (excludeModes.size) p.set("xmodes", [...excludeModes].join(","));
+        if (includeCompat.size) p.set("compat", [...includeCompat].join(","));
+        
+
 
         p.set("page", currentPage);
 
@@ -2212,12 +2394,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const title = card.dataset.title;
             const genres = card.dataset.genres.split(",");
             const modes = card.dataset.modes.split(",");
+            const compat = card.dataset.compatibility;  
 
             if (q && !title.includes(q)) return;
             if (includeGenres.size && ![...includeGenres].some(g => genres.includes(g))) return;
             if ([...excludeGenres].some(g => genres.includes(g))) return;
             if (includeModes.size && ![...includeModes].some(m => modes.includes(m))) return;
             if ([...excludeModes].some(m => modes.includes(m))) return;
+
+            if (includeCompat.size && !includeCompat.has(compat)) return;
+            
 
             visible.push(card);
         });
@@ -2334,6 +2520,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    compatItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const c = item.dataset.compat;
+
+            const alreadyActive = item.classList.contains("active");
+
+            
+            includeCompat.clear();
+            compatItems.forEach(i => i.classList.remove("active"));
+
+            
+            if (!alreadyActive) {
+                item.classList.add("active");
+                includeCompat.add(c);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
+    });
+
+
+
     
 
     clearGenresBtn.addEventListener("click", () => {
@@ -2354,6 +2564,13 @@ document.addEventListener("DOMContentLoaded", () => {
         updateURL();
     });
 
+    clearCompatBtn.addEventListener("click", () => {
+        includeCompat.clear();
+        compatItems.forEach(i => i.classList.remove("active"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
     
 
     input.addEventListener("input", () => {
@@ -2375,6 +2592,9 @@ document.addEventListener("DOMContentLoaded", () => {
     doFilterAndSort();
     updateURL();
 });
+
+
+
 </script>
 
 
