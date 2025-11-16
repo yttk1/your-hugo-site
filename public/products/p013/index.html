@@ -328,11 +328,35 @@
 
       
       
-        <img src="https://haloshop.vn/wp-content/uploads/2025/02/Ghost-of-Tsushima_-Director_s-Cut-US.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/Ghost-of-Tsushima_-Director_s-Cut-US.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Ghost of Tsushima DIRECTOR’S CUT screenshot"
+          onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/Ghost-of-Tsushima_-Director_s-Cut-US.jpg','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/Ghost-of-Tsushima_-Director_s-Cut-US.jpg','image'); }">
+          <img src="https://haloshop.vn/wp-content/uploads/2025/02/Ghost-of-Tsushima_-Director_s-Cut-US.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_1.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/2215430\/ss_1.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Ghost of Tsushima DIRECTOR’S CUT screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2215430\/ss_d60e16422fc1605181e0fedee3e2cfc1e02c750e.1920x1080.jpg?t=1761681181','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2215430\/ss_d60e16422fc1605181e0fedee3e2cfc1e02c750e.1920x1080.jpg?t=1761681181','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2215430/ss_d60e16422fc1605181e0fedee3e2cfc1e02c750e.1920x1080.jpg?t=1761681181" alt="Ghost of Tsushima DIRECTOR’S CUT screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/ss_2.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/2215430\/ss_2.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Ghost of Tsushima DIRECTOR’S CUT screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2215430\/ss_bd593bab36968778b95ed4a1a12ec82d2350d351.1920x1080.jpg?t=1761681181','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2215430\/ss_bd593bab36968778b95ed4a1a12ec82d2350d351.1920x1080.jpg?t=1761681181','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2215430/ss_bd593bab36968778b95ed4a1a12ec82d2350d351.1920x1080.jpg?t=1761681181" alt="Ghost of Tsushima DIRECTOR’S CUT screenshot">
+        </div>
       
     </div>
   </div>
@@ -608,12 +632,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 

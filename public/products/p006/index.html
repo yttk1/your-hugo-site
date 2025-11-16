@@ -307,7 +307,7 @@
         
         <iframe
           id="main-media"
-          src="https://www.youtube.com/embed/91t0ha9x5EE?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+          src="https://www.youtube.com/embed/mD8x5xLHRho?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen>
@@ -320,19 +320,43 @@
       
       
         
-        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/91t0ha9x5EE','video')">
-          <img src="https://img.youtube.com/vi/91t0ha9x5EE/hqdefault.jpg" alt="Trailer thumbnail">
+        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/mD8x5xLHRho','video')">
+          <img src="https://img.youtube.com/vi/mD8x5xLHRho/hqdefault.jpg" alt="Trailer thumbnail">
           <div class="play-icon">▶</div>
         </div>
       
 
       
       
-        <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades screenshot" class="thumb" onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Hades screenshot"
+          onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/m.media-amazon.com\/images\/I\/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg','image'); }">
+          <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Hades screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1145360\/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Hades screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/1145360\/ss_c0fed447426b69981cf1721756acf75369801b31.1920x1080.jpg?t=1758127023','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/1145360\/ss_c0fed447426b69981cf1721756acf75369801b31.1920x1080.jpg?t=1758127023','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/ss_c0fed447426b69981cf1721756acf75369801b31.1920x1080.jpg?t=1758127023" alt="Hades screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg" alt="Hades screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/1145360\/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Hades screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/1145360\/ss_8a9f0953e8a014bd3df2789c2835cb787cd3764d.1920x1080.jpg?t=1758127023','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/1145360\/ss_8a9f0953e8a014bd3df2789c2835cb787cd3764d.1920x1080.jpg?t=1758127023','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/ss_8a9f0953e8a014bd3df2789c2835cb787cd3764d.1920x1080.jpg?t=1758127023" alt="Hades screenshot">
+        </div>
       
     </div>
   </div>
@@ -353,7 +377,7 @@
         <p><strong>Publisher:</strong> Supergiant Games</p>
         <p><strong>Release Date:</strong> 2020-09-17</p>
         <p><strong>Modes:</strong> Singleplayer</p>
-        <p><strong>Genres:</strong> Action, Roguelike, Indie</p>
+        <p><strong>Genres:</strong> Action, Roguelike</p>
       </div>
     </div>
 
@@ -608,12 +632,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 

@@ -1,0 +1,82 @@
+* [33m9856c6d[m[33m ([m[1;32mmain[m[33m)[m update images and videos for games
+[31m|[m * [33m76d157d[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #11 from yttk1/KIEN
+[31m|[m[31m/[m[33m|[m 
+[31m|[m * [33m2eb4973[m[33m ([m[1;31morigin/KIEN[m[33m)[m improved header
+[31m|[m [33m|[m * [33m7902dca[m[33m ([m[1;31morigin/Quan[m[33m)[m more features for footer
+[31m|[m [33m|[m * [33m616554e[m  add footer
+[31m|[m [33m|[m[31m/[m  
+[31m|[m[31m/[m[33m|[m   
+* [33m|[m [33mee71b23[m[33m ([m[1;31morigin/Huy[m[33m)[m Persist pagination page in URL/localStorage; restore on load and back; sync across interactions
+* [33m|[m [33mb0e512f[m Persist and restore product sort; sync ?sort=; handle back/forward
+* [33m|[m [33m2fb0e04[m Merge pull request #9 from yttk1/KIEN
+[35m|[m[33m\[m[33m|[m 
+[35m|[m * [33m2eb4e3f[m chay script markdown
+* [36m|[m [33mf094e16[m Merge pull request #8 from yttk1/KIEN
+[1;31m|[m[36m\[m[36m|[m 
+[1;31m|[m *   [33ma5dad3d[m Merge branch 'main' into KIEN
+[1;31m|[m [1;33m|[m[1;31m\[m  
+[1;31m|[m [1;33m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;33m|[m   
+* [1;33m|[m [33m0b54bd3[m[33m ([m[1;32mHuy[m[33m)[m added more games
+* [1;33m|[m [33m5f57d8e[m your add new games
+* [1;33m|[m   [33m7ed168e[m Merge pull request #7 from yttk1/KIEN
+[1;35m|[m[1;36m\[m [1;33m\[m  
+* [1;36m\[m [1;33m\[m   [33m018b5f0[m Merge pull request #6 from yttk1/KIEN
+[31m|[m[32m\[m [1;36m\[m [1;33m\[m  
+* [32m\[m [1;36m\[m [1;33m\[m   [33m9363a6c[m Merge pull request #5 from yttk1/KIEN
+[33m|[m[34m\[m [32m\[m [1;36m\[m [1;33m\[m  
+[33m|[m [34m|[m [32m|[m [1;36m|[m * [33m86c7c36[m pages and more games
+[33m|[m [34m|[m [32m|[m [1;36m|[m[1;36m/[m  
+[33m|[m [34m|[m [32m|[m * [33m817fb7c[m fix filter not working
+[33m|[m [34m|[m [32m|[m * [33mf2fa6f5[m reworked some and added another filter
+[33m|[m [34m|[m [32m|[m[32m/[m  
+[33m|[m [34m|[m * [33m22d6556[m add genre filter
+[33m|[m [34m|[m[34m/[m  
+[33m|[m * [33mbd3adf6[m improve single game layout
+[33m|[m [34m|[m * [33ma07dbaf[m[33m ([m[1;31morigin/dev-tri[m[33m)[m Generate product markdown files and setup dev branch
+[33m|[m [34m|[m * [33m00fa982[m Generate product markdown files and setup dev branch
+[33m|[m [34m|[m[33m/[m  
+[33m|[m[33m/[m[34m|[m   
+* [34m|[m [33m5cd69f1[m Merge pull request #4 from yttk1/KIEN
+[36m|[m[34m\[m[34m|[m 
+[36m|[m * [33m0f1e261[m enhanced game gallery
+[36m|[m[36m/[m  
+*   [33mded7a3d[m Merge pull request #3 from yttk1/Quan
+[1;32m|[m[1;33m\[m  
+[1;32m|[m *   [33m2250c53[m Merge branch 'main' of https://github.com/yttk1/your-hugo-site
+[1;32m|[m [1;34m|[m[1;32m\[m  
+[1;32m|[m [1;34m|[m[1;32m/[m  
+[1;32m|[m[1;32m/[m[1;34m|[m   
+* [1;34m|[m   [33m37d9eef[m Merge pull request #2 from yttk1/backup
+[1;36m|[m[31m\[m [1;34m\[m  
+[1;36m|[m * [1;34m|[m [33ma827163[m[33m ([m[1;31morigin/backup[m[33m)[m ps5
+[1;36m|[m * [1;34m|[m [33m59ae32c[m backup 1
+* [31m|[m [1;34m|[m [33m2290d1c[m adding credit card verification
+* [31m|[m [1;34m|[m   [33m49b6eb6[m Merge branch 'main' of https://github.com/yttk1/your-hugo-site
+[32m|[m[33m\[m [31m\[m [1;34m\[m  
+[32m|[m * [31m|[m [1;34m|[m [33m536ba6f[m Merge pull request #1 from yttk1/KIEN
+[32m|[m [34m|[m[31m\[m[31m|[m [1;34m|[m 
+[32m|[m [34m|[m * [1;34m|[m [33m2538d96[m add sorting
+[32m|[m [34m|[m[34m/[m [1;34m/[m  
+[32m|[m * [1;34m|[m [33ma2f690c[m change game theme
+* [35m|[m [1;34m|[m [33mcfe4bc7[m Cleanup: remove accidental :Zone.Identifier ADS files
+[35m|[m [35m|[m * [33m09f8d84[m  change the about
+[35m|[m [35m|[m[35m/[m  
+[35m|[m * [33m45c5749[m minor tweaks
+[35m|[m * [33m3717ec1[m new alert
+[35m|[m[35m/[m  
+* [33m1c88a54[m added games
+* [33mf6425e1[m its now a game store
+* [33m5b04d61[m Add favicon
+* [33m56e5b83[m icon
+* [33me2d16a7[m[33m ([m[1;31morigin/new-feature[m[33m)[m clear cart on login
+* [33mc956b44[m Updated homepage video, login system, and header behavior
+* [33m080539c[m Fix homepage and add redirects for Netlify
+[35m|[m * [33mb635267[m[33m ([m[1;31morigin/Phu[m[33m)[m check
+[35m|[m[35m/[m  
+* [33m25de763[m Updated homepage content and CSS styling
+* [33mceed0a4[m Updated homepage content and CSS styling
+* [33m7d0365e[m first commit
+* [33mc623d43[m first commit
+* [33med7ef78[m first commit
+* [33m62c5472[m Initial commit

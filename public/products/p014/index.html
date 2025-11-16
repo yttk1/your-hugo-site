@@ -307,7 +307,7 @@
         
         <iframe
           id="main-media"
-          src="https://www.youtube.com/embed/vxPLqwM_4cE?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+          src="https://www.youtube.com/embed/UC5EpJR0GBQ?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen>
@@ -320,19 +320,43 @@
       
       
         
-        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/vxPLqwM_4cE','video')">
-          <img src="https://img.youtube.com/vi/vxPLqwM_4cE/hqdefault.jpg" alt="Trailer thumbnail">
+        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/UC5EpJR0GBQ','video')">
+          <img src="https://img.youtube.com/vi/UC5EpJR0GBQ/hqdefault.jpg" alt="Trailer thumbnail">
           <div class="play-icon">▶</div>
         </div>
       
 
       
       
-        <img src="https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp" alt="Helldivers 2 screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/helldivers2_ps5_00-700x700h.webp','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Helldivers 2 screenshot"
+          onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/helldivers2_ps5_00-700x700h.webp','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/helldivers2_ps5_00-700x700h.webp','image'); }">
+          <img src="https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp" alt="Helldivers 2 screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/553850/ss_193f7c44a7c6b0dfc2ebcf32b602bb8cc926c35d.jpg" alt="Helldivers 2 screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/553850\/ss_193f7c44a7c6b0dfc2ebcf32b602bb8cc926c35d.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Helldivers 2 screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/553850\/ss_0c79f56fc7be1bd0102f2ca1c92c8f0900daf4fb.1920x1080.jpg?t=1757033568','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/553850\/ss_0c79f56fc7be1bd0102f2ca1c92c8f0900daf4fb.1920x1080.jpg?t=1757033568','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/553850/ss_0c79f56fc7be1bd0102f2ca1c92c8f0900daf4fb.1920x1080.jpg?t=1757033568" alt="Helldivers 2 screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/553850/ss_f1d57f3de6a875ce91d22242f8e88f10cc3199a8.jpg" alt="Helldivers 2 screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/553850\/ss_f1d57f3de6a875ce91d22242f8e88f10cc3199a8.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Helldivers 2 screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/553850\/ss_50afbbc4d811c38fe9f64c1fc8d7eb9d9da6d24c.1920x1080.jpg?t=1757033568','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/553850\/ss_50afbbc4d811c38fe9f64c1fc8d7eb9d9da6d24c.1920x1080.jpg?t=1757033568','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/553850/ss_50afbbc4d811c38fe9f64c1fc8d7eb9d9da6d24c.1920x1080.jpg?t=1757033568" alt="Helldivers 2 screenshot">
+        </div>
       
     </div>
   </div>
@@ -353,7 +377,7 @@
         <p><strong>Publisher:</strong> PlayStation PC LLC</p>
         <p><strong>Release Date:</strong> 2024-02-08</p>
         <p><strong>Modes:</strong> Multiplayer / Co-op</p>
-        <p><strong>Genres:</strong> Shooter, Action, Co-op</p>
+        <p><strong>Genres:</strong> Shooter, Action</p>
       </div>
     </div>
 
@@ -608,12 +632,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 

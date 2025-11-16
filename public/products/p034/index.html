@@ -328,11 +328,35 @@
 
       
       
-        <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp" alt="Alan Wake 2 screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/alan_wake_2_deluxe_edition_ps5-700x700h.webp','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Alan Wake 2 screenshot"
+          onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/alan_wake_2_deluxe_edition_ps5-700x700h.webp','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/alan_wake_2_deluxe_edition_ps5-700x700h.webp','image'); }">
+          <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp" alt="Alan Wake 2 screenshot">
+        </div>
       
-        <img src="https://cdn2.unrealengine.com/alan-wake-2-ss1.jpg" alt="Alan Wake 2 screenshot" class="thumb" onclick="showMedia('https:\/\/cdn2.unrealengine.com\/alan-wake-2-ss1.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Alan Wake 2 screenshot"
+          onclick="showMedia('https:\/\/gmedia.playstation.com\/is\/image\/SIEPDC\/alan_wake_2_06072023_02-ps5-en-07jun23?$1600px$','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/gmedia.playstation.com\/is\/image\/SIEPDC\/alan_wake_2_06072023_02-ps5-en-07jun23?$1600px$','image'); }">
+          <img src="https://gmedia.playstation.com/is/image/SIEPDC/alan_wake_2_06072023_02-ps5-en-07jun23?$1600px$" alt="Alan Wake 2 screenshot">
+        </div>
       
-        <img src="https://cdn2.unrealengine.com/alan-wake-2-ss2.jpg" alt="Alan Wake 2 screenshot" class="thumb" onclick="showMedia('https:\/\/cdn2.unrealengine.com\/alan-wake-2-ss2.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Alan Wake 2 screenshot"
+          onclick="showMedia('https:\/\/gmedia.playstation.com\/is\/image\/SIEPDC\/alan_wake_2_06072023_03-ps5-en-07jun23?$1600px$','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/gmedia.playstation.com\/is\/image\/SIEPDC\/alan_wake_2_06072023_03-ps5-en-07jun23?$1600px$','image'); }">
+          <img src="https://gmedia.playstation.com/is/image/SIEPDC/alan_wake_2_06072023_03-ps5-en-07jun23?$1600px$" alt="Alan Wake 2 screenshot">
+        </div>
       
     </div>
   </div>
@@ -340,7 +364,7 @@
   
   <div class="game-details">
     <h1 class="game-title">Alan Wake 2</h1>
-    <p class="price">$49.99</p>
+    <p class="price">$59.99</p>
 
     <br>
 
@@ -353,7 +377,7 @@
         <p><strong>Publisher:</strong> Epic Games Publishing</p>
         <p><strong>Release Date:</strong> 2023-10-27</p>
         <p><strong>Modes:</strong> Singleplayer</p>
-        <p><strong>Genres:</strong> Thriller, Horror, Adventure</p>
+        <p><strong>Genres:</strong> Horror, Adventure</p>
       </div>
     </div>
 
@@ -371,14 +395,14 @@
       <button class="buy-now"
         data-id="p034"
         data-title="Alan Wake 2"
-        data-price="49.99"
+        data-price="59.99"
         data-img="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp">
         Buy Now
       </button>
       <button class="add-to-cart"
         data-id="p034"
         data-title="Alan Wake 2"
-        data-price="49.99"
+        data-price="59.99"
         data-img="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp">
         Add to Cart
       </button>
@@ -608,12 +632,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 
