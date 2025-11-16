@@ -20,10 +20,6 @@
   </url><url>
     <loc>http://localhost:1313/policies/</loc>
   </url><url>
-    <loc>http://localhost:1313/policies/warranty/</loc>
-  </url><url>
-    <loc>http://localhost:1313/policies/returns/</loc>
-  </url><url>
     <loc>http://localhost:1313/products/p004/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p001/</loc>
@@ -68,8 +64,6 @@
   </url><url>
     <loc>http://localhost:1313/products/p025/</loc>
   </url><url>
-    <loc>http://localhost:1313/policies/guide/</loc>
-  </url><url>
     <loc>http://localhost:1313/products/p027/</loc>
   </url><url>
     <loc>http://localhost:1313/login/</loc>
@@ -90,6 +84,8 @@
   </url><url>
     <loc>http://localhost:1313/products/p046/</loc>
   </url><url>
+    <loc>http://localhost:1313/policies/guide/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p028/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p009/</loc>
@@ -104,9 +100,13 @@
   </url><url>
     <loc>http://localhost:1313/products/p022/</loc>
   </url><url>
+    <loc>http://localhost:1313/policies/returns/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/p032/</loc>
   </url><url>
     <loc>http://localhost:1313/products/p018/</loc>
+  </url><url>
+    <loc>http://localhost:1313/policies/shipping/</loc>
   </url><url>
     <loc>http://localhost:1313/signup/</loc>
   </url><url>
@@ -126,7 +126,7 @@
   </url><url>
     <loc>http://localhost:1313/products/p010/</loc>
   </url><url>
-    <loc>http://localhost:1313/policies/shipping/</loc>
+    <loc>http://localhost:1313/policies/warranty/</loc>
   </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>

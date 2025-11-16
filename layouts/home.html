@@ -1,68 +1,411 @@
 {{ define "main" }}
-<section class="hero">
-  <div class="video-container">
-  <iframe
-    id="bg-video"
-    src="https://www.youtube.com/embed/nMBBXqu0OLE?autoplay=1&mute=1&loop=1&playlist=nMBBXqu0OLE&controls=0&showinfo=0&modestbranding=1"
-    frameborder="0"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gamestore88 — Home</title>
+  <style>
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-blocker {
+      position: absolute;
+      inset: 0;
+      pointer-events: auto;   /* <- IMPORTANT */
+    }
+
+    :root{
+      --bg:#111213;
+      --panel: rgba(255,255,255,0.03);
+      --panel-2: rgba(255,255,255,0.06);
+      --muted: #cbd5e1;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#fff}
+    a{color:inherit}
+
+    /* NAVBAR */
+    .navbar{
+      position:fixed; top:0; left:0; right:0; height:64px;
+      display:flex; align-items:center; gap:24px; padding:0 24px;
+      background: rgba(10,10,10,0.65);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index:999;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
+    .brand .logo{width:38px;height:38px;border-radius:8px;background:#ff4d6d}
+    .navlinks{display:flex;gap:18px;margin-left:8px}
+    .navlinks a{padding:8px 10px;border-radius:8px;text-decoration:none;color:#ddd}
+    .navlinks a.active{color:#60a5fa;font-weight:700}
+    .nav-right{margin-left:auto;display:flex;gap:12px;align-items:center}
+
+    main{position:relative; z-index:3; padding:24px 16px 80px; max-width:1300px; margin:0 auto; margin-top: 88px}
+
+    /* ---------- Hero Carousel 16:9 ---------- */
+    .hero-carousel{ position:relative; width:100%; max-width:1400px; aspect-ratio:16/9; margin:12px auto; border-radius:10px; overflow:hidden; background:#000; }
+    .hc-slides{ position:relative; width:100%; height:100%; }
+
+    .hc-slide{ position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .6s ease, transform .6s; transform:scale(1.02) }
+    .hc-slide[aria-hidden="false"]{ opacity:1; pointer-events:auto; transform:scale(1) }
+
+    .hc-media{ position:absolute; inset:0; width:100%; height:100%; display:block; overflow:hidden; background:#000 }
+    .hc-media img{ width:100%; height:100%; object-fit:cover; display:block }
+    .hc-media iframe{ width:100%; height:100%; border:0; display:block }
+
+    /* TOP-LEFT inner */
+    .hc-inner-top-left{ position:absolute; top:6%; left:6%; transform:none; z-index:3; max-width:44%; color:#fff; text-align:left; }
+    .hc-inner-top-left .hc-title{ font-size:2.6rem; margin:6px 0; font-weight:800; text-shadow:0 6px 20px rgba(0,0,0,0.6) }
+    .hc-tags{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
+    .tag{ background:rgba(255,255,255,0.95); color:#071218; padding:7px 10px; border-radius:6px; font-weight:700; text-decoration:none }
+
+    .hc-ctas{ display:flex; gap:10px; margin-top:8px }
+    .btn{ padding:8px 14px; border-radius:999px; text-decoration:none; font-weight:800; font-size:0.9rem; display:inline-flex; align-items:center; gap:8px }
+    .btn.primary{ background:linear-gradient(135deg,#10b981,#059669); color:#051814 }
+    .btn.ghost{ background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.12) }
+
+    .hc-arrow{ position:absolute; top:50%; transform:translateY(-50%); width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.55); color:#fff; border:0; z-index:5; display:flex; align-items:center; justify-content:center; cursor:pointer }
+    .hc-prev{ left:14px } .hc-next{ right:14px }
+    .hc-dots{ position:absolute; left:50%; transform:translateX(-50%); bottom:12px; display:flex; gap:8px; z-index:6 }
+    .hc-dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.25) }
+    .hc-dot.active{ background:#fff }
+
+    /* ---------- New Releases (portrait cards slider) ---------- */
+    .new-releases{ margin:36px 0; padding:0 6px }
+    .section-title{ font-size:1.6rem; color:#fff; margin:0 0 12px; }
+    .nr-wrapper{ position:relative; display:flex; align-items:center; gap:12px }
+    .nr-track{ display:flex; gap:16px; overflow:hidden; scroll-behavior:smooth; padding:8px 4px; width:100% }
+    .nr-card{ min-width:160px; width:160px; background:rgba(255,255,255,0.03); border-radius:10px; text-decoration:none; color:inherit; box-shadow:0 8px 20px rgba(0,0,0,0.5); transition:transform .18s }
+    .nr-card:hover{ transform:translateY(-6px) }
+    .nr-media{ width:100%; aspect-ratio:2/3; overflow:hidden; background:#111; border-radius:8px 8px 0 0; display:flex; align-items:center; justify-content:center }
+    .nr-media img{ width:100%; height:100%; object-fit:contain; background:#0b0b0b; display:block } /* portrait, contain to avoid crop */
+    .nr-meta{ padding:10px; text-align:left }
+    .nr-meta h4{ margin:0 0 6px; font-size:1rem }
+    .nr-meta p{ margin:0; color:#cbd5e1 }
+
+    .nr-arrow{ width:48px; height:48px; border-radius:8px; background:rgba(0,0,0,0.6); color:#fff; border:0; display:flex; align-items:center; justify-content:center; cursor:pointer }
+
+    /* ---------- Popular by Genres ---------- */
+    .popular-genres{ margin:46px 0; padding:0 6px }
+    .genres-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; align-items:stretch }
+    .genre-card{ position:relative; overflow:hidden; border-radius:14px; text-decoration:none; color:#fff; display:block; height:220px; background:#0b0b0b }
+    .genre-card img{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.45) }
+    .genre-card span{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3; background:rgba(255,255,255,0.95); color:#0b1220; padding:12px 20px; border-radius:8px; font-weight:800; letter-spacing:0.06em }
+
+    /* small screens */
+    @media (max-width:1000px){
+      .hc-inner-top-left{ max-width:60% }
+      .hc-title{ font-size:2.2rem }
+      .nr-card{ min-width:140px; width:140px }
+    }
+    @media (max-width:640px){
+      .hero-carousel{ aspect-ratio:16/9; margin:12px; border-radius:8px }
+      .hc-inner-top-left{ left:5%; top:4%; max-width:80% }
+      .hc-title{ font-size:1.6rem }
+      .nr-card{ min-width:120px; width:120px }
+      .genre-card{ height:160px }
+      .hc-arrow{ display:none }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <!-- <header class="navbar" role="navigation" aria-label="Top navigation">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <span>Gamestore88</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a class="active" href="/">Home</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="/login" style="color:#ff7b8d; font-weight:700;">Login</a>
+    </div>
+  </header> -->
+
+  <main>
+
+   <!-- HERO CAROUSEL (all slides use YouTube iframe like Cyberpunk) -->
+<section class="hero-carousel" aria-label="Featured games carousel">
+  <div class="hc-slides">
+    <!-- Cyberpunk 2077 (p001) - keep as before -->
+    <article class="hc-slide" data-id="p001" aria-hidden="false">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&playsinline=1&playlist=qIcTM8WXFjk"
+          title="Cyberpunk trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-blocker"></div>
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p001" class="tag">Action</a>
+          <a href="/products/p001" class="tag">RPG</a>
+          <a href="/products/p001" class="tag">Open World</a>
+        </div>
+        <h2 class="hc-title">Cyberpunk 2077</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p001">View Games</a>
+          <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Elden Ring (p002) -->
+    <article class="hc-slide" data-id="p002" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/E3Huy2cdih0?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=E3Huy2cdih0"
+          title="Elden Ring trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p002" class="tag">Action</a>
+          <a href="/products/p002" class="tag">RPG</a>
+          <a href="/products/p002" class="tag">Fantasy</a>
+        </div>
+        <h2 class="hc-title">Elden Ring</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p002">View Games</a>
+          <a class="btn ghost" href="/products/p002">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Stardew Valley (p003) -->
+    <article class="hc-slide" data-id="p003" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/8A7A1X1TVNc?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=8A7A1X1TVNc"
+          title="Stardew Valley trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p003" class="tag">Indie</a>
+          <a href="/products/p003" class="tag">Simulation</a>
+          <a href="/products/p003" class="tag">Farming</a>
+        </div>
+        <h2 class="hc-title">Stardew Valley</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p003">View Games</a>
+          <a class="btn ghost" href="/products/p003">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Hades (p006) -->
+    <article class="hc-slide" data-id="p006" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/RXq0yBmfiC8?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=RXq0yBmfiC8"
+          title="Hades trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p006" class="tag">Action</a>
+          <a href="/products/p006" class="tag">Roguelike</a>
+          <a href="/products/p006" class="tag">Indie</a>
+        </div>
+        <h2 class="hc-title">Hades</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p006">View Games</a>
+          <a class="btn ghost" href="/products/p006">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- EA SPORTS FC 26 (p007) -->
+    <article class="hc-slide" data-id="p007" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/TSi0iJYSQ24?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=TSi0iJYSQ24"
+          title="EA SPORTS FC 26 trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p007" class="tag">Sports</a>
+        </div>
+        <h2 class="hc-title">EA SPORTS FC 26</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p007">View Games</a>
+          <a class="btn ghost" href="/products/p007">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
   </div>
-  <div class="overlay">
-    <h1>Welcome to Gamestore88</h1>
-    <p>Your one-stop shop for cheap games 🎮</p>
-    <a href="/products/" class="btn">Shop Now</a>
-  </div>
+
+  <!-- Controls -->
+  <button class="hc-arrow hc-prev" aria-label="Previous slide">‹</button>
+  <button class="hc-arrow hc-next" aria-label="Next slide">›</button>
+
+  <!-- Indicators -->
+  <div class="hc-dots" role="tablist" aria-label="Slide indicators"></div>
 </section>
 
+    <!-- NEW RELEASES -->
+    <section class="new-releases" aria-label="New Releases">
+      <h3 class="section-title">New Releases</h3>
+      <div class="nr-wrapper">
+        <button class="nr-arrow nr-prev" aria-label="Prev">‹</button>
+        <div class="nr-track" id="nr-track">
+          <a class="nr-card" href="/products/p007">
+            <div class="nr-media"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26"></div>
+            <div class="nr-meta"><h4>EA SPORTS FC 26</h4><p>$64.99</p></div>
+          </a>
 
-<style>
-.video-container {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-}
+          <a class="nr-card" href="/products/p002">
+            <div class="nr-media"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring"></div>
+            <div class="nr-meta"><h4>Elden Ring</h4><p>$69.99</p></div>
+          </a>
 
-.video-container iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* So user can't click */
-}
-.overlay {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  background: rgba(235, 2, 2, 0.45);
-  padding: 2rem;
-  border-radius: 12px;
-}
+          <a class="nr-card" href="/products/p006">
+            <div class="nr-media"><img loading="lazy" src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades"></div>
+            <div class="nr-meta"><h4>Hades</h4><p>$24.99</p></div>
+          </a>
 
-.btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #3b82f6, #9333ea);
-  color: white;
-  padding: 0.9rem 2rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(147, 51, 234, 0.4);
-  transition: all 0.3s ease;
-}
+          <a class="nr-card" href="/products/p001">
+            <div class="nr-media"><img loading="lazy" src="https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png" alt="Cyberpunk 2077"></div>
+            <div class="nr-meta"><h4>Cyberpunk 2077</h4><p>$59.99</p></div>
+          </a>
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
-  background: linear-gradient(135deg, #2563eb, #7e22ce);
-}
+          <a class="nr-card" href="/products/p003">
+            <div class="nr-media"><img loading="lazy" src="https://mudishop.com.br/wp-content/uploads/2024/05/job-4.jpg" alt="Stardew Valley"></div>
+            <div class="nr-meta"><h4>Stardew Valley</h4><p>$14.99</p></div>
+          </a>
+        </div>
+        <button class="nr-arrow nr-next" aria-label="Next">›</button>
+      </div>
+    </section>
 
-</style>
+    <!-- POPULAR BY GENRES -->
+    <section class="popular-genres" aria-label="Popular by Genres">
+      <h3 class="section-title">Popular by Genres</h3>
+      <div class="genres-grid">
+        <a href="/products/?genre=Action" class="genre-card"><img loading="lazy" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg" alt="Action"><span>Action</span></a>
+        <a href="/products/?genre=RPG" class="genre-card"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="RPG"><span>RPG</span></a>
+        <a href="/products/?genre=Strategy" class="genre-card"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg" alt="Strategy"><span>Strategy</span></a>
+        <a href="/products/?genre=Indie" class="genre-card"><img loading="lazy" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Indie"><span>Indie</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+/* Carousel logic — AUTOPLAY DISABLED (manual controls only) */
+(function(){
+  const container = document.querySelector('.hero-carousel');
+  if(!container) return;
+
+  const slides = Array.from(container.querySelectorAll('.hc-slide'));
+  const nextBtn = container.querySelector('.hc-next');
+  const prevBtn = container.querySelector('.hc-prev');
+  const dotsWrap = container.querySelector('.hc-dots');
+
+  // find initial slide (fallback to 0)
+  let current = slides.findIndex(s => s.getAttribute('aria-hidden') === 'false');
+  if (current < 0) current = 0;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'hc-dot' + (i === current ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  // set slide and ensure only active iframe has autoplay params
+  function setSlide(index){
+    index = (index + slides.length) % slides.length;
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
+    Array.from(dotsWrap.children).forEach((d,i)=> d.classList.toggle('active', i===index));
+
+    // manage iframe autoplay: add autoplay for active, remove for inactive
+    slides.forEach((s,i)=>{
+      const iframe = s.querySelector('iframe');
+      if(!iframe) return;
+      // normalize src base (keep original without duplicated params)
+      let src = iframe.getAttribute('data-src') || iframe.src || '';
+      // store original source if not stored yet
+      if(!iframe.getAttribute('data-src')) iframe.setAttribute('data-src', src);
+
+      if(i === index){
+        // ensure autoplay & mute for active slide
+        if(!src.includes('autoplay=1')) {
+          src = src + (src.includes('?') ? '&autoplay=1&mute=1' : '?autoplay=1&mute=1');
+        }
+      } else {
+        // remove autoplay/mute params for inactive slides
+        src = src.replace(/(&|\?)autoplay=1/g, '').replace(/(&|\?)mute=1/g, '');
+      }
+      // assign back (doing full assign reduces risk of duplicates)
+      iframe.src = src;
+    });
+
+    current = index;
+  }
+
+  function goTo(i){ setSlide(i); }
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  // controls
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  // keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // init — DO NOT start any interval/timer (autoplay disabled)
+  setSlide(current);
+
+  // touch swipe support
+  let sx = 0;
+  container.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  container.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - sx;
+    if (Math.abs(diff) > 40) diff < 0 ? next() : prev();
+  });
+
+})();
+</script>
+</body>
+</html>
+
 {{ end }}
