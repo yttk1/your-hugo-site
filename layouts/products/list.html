@@ -95,7 +95,12 @@
             data-title="{{ lower .title }}"
             data-price="{{ .price }}"
             data-release="{{ .release_date }}"
-            data-genres="{{ delimit .genres "," }}"
+            data-genres="{{- $clean := slice -}}
+            {{- range .genres -}}
+              {{- $clean = $clean | append (lower (trim . " ")) -}}
+            {{- end -}}
+            {{- delimit $clean "," -}}"
+
             data-modes="{{- with .modes -}}
               {{- $m := trim . " " -}}
               {{- if gt (len $m) 0 -}}
@@ -577,8 +582,22 @@
 
     </style>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================
+       0) Declare state FIRST
+    ====================================== */
+    let includeGenres = new Set();
+    let excludeGenres = new Set();
+    let includeModes = new Set();
+    let excludeModes = new Set();
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 16;
+
+    /* =====================================
+       1) DOM refs (must come BEFORE applyUI)
+    ====================================== */
     const input = document.getElementById("search-bar");
     const sortSelect = document.getElementById("sort-select");
     const grid = document.getElementById("products-grid");
@@ -590,207 +609,258 @@
     const clearGenresBtn = document.querySelector(".clear-genres");
     const clearModesBtn = document.querySelector(".clear-modes");
 
-    let includeGenres = new Set();
-    let excludeGenres = new Set();
-    let includeModes = new Set();
-    let excludeModes = new Set();
+    /* =====================================
+       2) Load URL → STATE
+    ====================================== */
+    function loadFromURL() {
+        const p = new URLSearchParams(location.search);
 
-    const ITEMS_PER_PAGE = 16;
-    let currentPage = 1;
+        if (p.has("q")) input.value = p.get("q");
+        if (p.has("sort")) sortSelect.value = p.get("sort");
+
+        if (p.has("genres")) p.get("genres").split(",").forEach(g => includeGenres.add(g));
+        if (p.has("xgenres")) p.get("xgenres").split(",").forEach(g => excludeGenres.add(g));
+
+        if (p.has("modes")) p.get("modes").split(",").forEach(m => includeModes.add(m));
+        if (p.has("xmodes")) p.get("xmodes").split(",").forEach(m => excludeModes.add(m));
+
+        if (p.has("page")) currentPage = parseInt(p.get("page")) || 1;
+    }
+
+    /* =====================================
+       3) Apply state → UI checkboxes
+    ====================================== */
+    function applyURLStateToUI() {
+        genreItems.forEach(item => {
+            const g = item.dataset.genre;
+            if (includeGenres.has(g)) item.classList.add("active");
+            if (excludeGenres.has(g)) item.classList.add("exclude");
+        });
+
+        modeItems.forEach(item => {
+            const m = item.dataset.mode;
+            if (includeModes.has(m)) item.classList.add("active");
+            if (excludeModes.has(m)) item.classList.add("exclude");
+        });
+    }
+
+    /* =====================================
+       4) Save → URL
+    ====================================== */
+    function updateURL() {
+        const p = new URLSearchParams();
+
+        if (input.value.trim()) p.set("q", input.value.trim());
+        p.set("sort", sortSelect.value);
+
+        if (includeGenres.size) p.set("genres", [...includeGenres].join(","));
+        if (excludeGenres.size) p.set("xgenres", [...excludeGenres].join(","));
+        if (includeModes.size) p.set("modes", [...includeModes].join(","));
+        if (excludeModes.size) p.set("xmodes", [...excludeModes].join(","));
+
+        p.set("page", currentPage);
+
+        history.replaceState(null, "", "?" + p.toString());
+    }
+
+    /* =====================================
+       5) Filtering + Sorting
+    ====================================== */
+    function doFilterAndSort() {
+        const q = input.value.toLowerCase().trim();
+        const sortBy = sortSelect.value;
+
+        let visible = [];
+
+        let sorted = [...cards].sort((a, b) => {
+            const A = a.dataset, B = b.dataset;
+            switch (sortBy) {
+                case "alphabet": return A.title.localeCompare(B.title);
+                case "alphabet-desc": return B.title.localeCompare(A.title);
+                case "price": return A.price - B.price;
+                case "price-desc": return B.price - A.price;
+                case "release": return new Date(B.release) - new Date(A.release);
+                case "release-old": return new Date(A.release) - new Date(B.release);
+            }
+            return 0;
+        });
+
+        grid.innerHTML = "";
+
+        sorted.forEach(card => {
+            const title = card.dataset.title;
+            const genres = card.dataset.genres.split(",");
+            const modes = card.dataset.modes.split(",");
+
+            if (q && !title.includes(q)) return;
+            if (includeGenres.size && ![...includeGenres].some(g => genres.includes(g))) return;
+            if ([...excludeGenres].some(g => genres.includes(g))) return;
+            if (includeModes.size && ![...includeModes].some(m => modes.includes(m))) return;
+            if ([...excludeModes].some(m => modes.includes(m))) return;
+
+            visible.push(card);
+        });
+
+        const total = Math.ceil(visible.length / ITEMS_PER_PAGE);
+        if (currentPage > total) currentPage = total || 1;
+
+        visible
+            .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+            .forEach(c => grid.appendChild(c));
+
+        noResults.style.display = visible.length ? "none" : "block";
+
+        buildPagination(total);
+    }
+
+    /* =====================================
+       6) Pagination
+    ====================================== */
     const paginationContainer = document.createElement("div");
     paginationContainer.className = "pagination";
     grid.after(paginationContainer);
 
+    function buildPagination(totalPages) {
+        paginationContainer.innerHTML = "";
+        if (totalPages <= 1) return;
+
+        const ul = document.createElement("ul");
+        ul.className = "pagination-list fixed-size";
+
+        function add(label, page, active = false, disabled = false) {
+            const li = document.createElement("li");
+            if (disabled) li.innerHTML = `<span class="disabled">${label}</span>`;
+            else if (active) li.innerHTML = `<span class="active">${label}</span>`;
+            else li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+            ul.appendChild(li);
+        }
+
+        add("‹", currentPage - 1, false, currentPage === 1);
+        for (let i = 1; i <= totalPages; i++) add(i, i, i === currentPage);
+        add("›", currentPage + 1, false, currentPage === totalPages);
+
+        paginationContainer.appendChild(ul);
+
+        ul.querySelectorAll("a").forEach(a => {
+            a.addEventListener("click", e => {
+                e.preventDefault();
+                currentPage = parseInt(a.dataset.page);
+                doFilterAndSort();
+                updateURL();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    }
+
+    /* =====================================
+       7) Dropdown Fix — your broken part
+    ====================================== */
     toggles.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = document.getElementById(btn.dataset.target);
-        btn.classList.toggle("active");
-        target.classList.toggle("active");
-      });
+        btn.addEventListener("click", () => {
+            const target = document.getElementById(btn.dataset.target);
+            btn.classList.toggle("active");
+            target.classList.toggle("active");
+        });
     });
 
-    function buildPagination(totalPages) {
-      paginationContainer.innerHTML = "";
-      if (totalPages <= 1) return;
-
-      const ul = document.createElement("ul");
-      ul.className = "pagination-list fixed-size";
-
-      const MAX_VISIBLE = 7; // total slots including first/last & "..." placeholders
-
-      const addItem = (label, page, type = "page", active = false, disabled = false) => {
-        const li = document.createElement("li");
-        if (type === "dots") {
-          li.innerHTML = `<span class="dots">…</span>`;
-        } else if (disabled) {
-          li.innerHTML = `<span class="disabled">${label}</span>`;
-        } else if (active) {
-          li.innerHTML = `<span class="active">${label}</span>`;
-        } else {
-          li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
-        }
-        ul.appendChild(li);
-      };
-
-      // ← Prev arrow (invisible but occupies space when disabled)
-      addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
-
-      // always include first page
-      addItem(1, 1, "page", currentPage === 1);
-
-      let start = Math.max(2, currentPage - 1);
-      let end = Math.min(totalPages - 1, currentPage + 1);
-
-      // if too close to start
-      if (currentPage <= 3) {
-        start = 2;
-        end = Math.min(4, totalPages - 1);
-      }
-      // if too close to end
-      else if (currentPage >= totalPages - 2) {
-        end = totalPages - 1;
-        start = Math.max(totalPages - 3, 2);
-      }
-
-      // show left dots if needed
-      if (start > 2) addItem("…", null, "dots");
-
-      // show middle range
-      for (let i = start; i <= end; i++) {
-        addItem(i, i, "page", i === currentPage);
-      }
-
-      // show right dots if needed
-      if (end < totalPages - 1) addItem("…", null, "dots");
-
-      // always include last page
-      if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
-
-      // → Next arrow
-      addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
-
-      paginationContainer.appendChild(ul);
-
-      ul.querySelectorAll("a[data-page]").forEach(a => {
-        a.addEventListener("click", e => {
-          e.preventDefault();
-          currentPage = parseInt(a.dataset.page);
-          doFilterAndSort();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
-    }
-
-
-    function doFilterAndSort() {
-      const q = input.value.trim().toLowerCase();
-      const sortBy = sortSelect.value;
-      let visibleCards = [];
-
-      const sorted = [...cards].sort((a, b) => {
-        const titleA = (a.dataset.title || "").toLowerCase();
-        const titleB = (b.dataset.title || "").toLowerCase();
-        const priceA = parseFloat(a.dataset.price) || 0;
-        const priceB = parseFloat(b.dataset.price) || 0;
-        const dateA = new Date(a.dataset.release || "1970-01-01");
-        const dateB = new Date(b.dataset.release || "1970-01-01");
-        switch (sortBy) {
-          case "alphabet": return titleA.localeCompare(titleB);
-          case "alphabet-desc": return titleB.localeCompare(titleA);
-          case "price": return priceA - priceB;
-          case "price-desc": return priceB - priceA;
-          case "release": return dateB - dateA;
-          case "release-old": return dateA - dateB;
-          default: return 0;
-        }
-      });
-
-      grid.innerHTML = "";
-      sorted.forEach(card => {
-        const title = (card.dataset.title || "").toLowerCase();
-        const genres = (card.dataset.genres || "").toLowerCase().split(",");
-        const modes = (card.dataset.modes || "").toLowerCase().split(",");
-        const matchesSearch = !q || title.includes(q);
-        const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
-        const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
-        const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
-        const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
-        if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude)
-          visibleCards.push(card);
-      });
-
-      const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
-      if (currentPage > totalPages) currentPage = totalPages || 1;
-
-      const start = (currentPage - 1) * ITEMS_PER_PAGE;
-      const end = start + ITEMS_PER_PAGE;
-      visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
-
-      noResults.style.display = visibleCards.length === 0 ? "block" : "none";
-      buildPagination(totalPages);
-    }
-
+    /* =====================================
+       8) Filter Click Logic
+    ====================================== */
     genreItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const genre = item.dataset.genre;
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-          item.classList.add("exclude");
-          includeGenres.delete(genre);
-          excludeGenres.add(genre);
-        } else if (item.classList.contains("exclude")) {
-          item.classList.remove("exclude");
-          excludeGenres.delete(genre);
-        } else {
-          item.classList.add("active");
-          includeGenres.add(genre);
-        }
-        currentPage = 1;
-        doFilterAndSort();
-      });
+        item.addEventListener("click", () => {
+            const g = item.dataset.genre;
+
+            if (item.classList.contains("active")) {
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeGenres.delete(g);
+                excludeGenres.add(g);
+            }
+            else if (item.classList.contains("exclude")) {
+                item.classList.remove("exclude");
+                excludeGenres.delete(g);
+            }
+            else {
+                item.classList.add("active");
+                includeGenres.add(g);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
     });
 
     modeItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const mode = item.dataset.mode;
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-          item.classList.add("exclude");
-          includeModes.delete(mode);
-          excludeModes.add(mode);
-        } else if (item.classList.contains("exclude")) {
-          item.classList.remove("exclude");
-          excludeModes.delete(mode);
-        } else {
-          item.classList.add("active");
-          includeModes.add(mode);
-        }
-        currentPage = 1;
-        doFilterAndSort();
-      });
+        item.addEventListener("click", () => {
+            const m = item.dataset.mode;
+
+            if (item.classList.contains("active")) {
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeModes.delete(m);
+                excludeModes.add(m);
+            }
+            else if (item.classList.contains("exclude")) {
+                item.classList.remove("exclude");
+                excludeModes.delete(m);
+            }
+            else {
+                item.classList.add("active");
+                includeModes.add(m);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
     });
 
+    /* =====================================
+       9) Clear filters
+    ====================================== */
     clearGenresBtn.addEventListener("click", () => {
-      includeGenres.clear();
-      excludeGenres.clear();
-      genreItems.forEach(i => i.classList.remove("active", "exclude"));
-      currentPage = 1;
-      doFilterAndSort();
+        includeGenres.clear();
+        excludeGenres.clear();
+        genreItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
     });
 
     clearModesBtn.addEventListener("click", () => {
-      includeModes.clear();
-      excludeModes.clear();
-      modeItems.forEach(i => i.classList.remove("active", "exclude"));
-      currentPage = 1;
-      doFilterAndSort();
+        includeModes.clear();
+        excludeModes.clear();
+        modeItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
     });
 
-    input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
-    sortSelect.addEventListener("change", () => { currentPage = 1; doFilterAndSort(); });
+    /* =====================================
+       10) Search + Sort
+    ====================================== */
+    input.addEventListener("input", () => {
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
 
+    sortSelect.addEventListener("change", () => {
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
+
+    /* =====================================
+       FINAL INIT (correct order)
+    ====================================== */
+    loadFromURL();
+    applyURLStateToUI();
     doFilterAndSort();
-  });
+    updateURL();
+});
+</script>
 
-    </script>
+
     {{ end }}
