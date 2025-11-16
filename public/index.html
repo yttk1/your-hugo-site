@@ -367,23 +367,6 @@
     text-align: left;
     z-index: 3;
     }
-    .popular-genres .genre-card span {
-    background: rgba(255, 255, 255, 0.15);  
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    color: #fff;  
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    pointer-events: none;
-    }
-
     
     .hc-inner-top-left .hc-title{ font-size:2.6rem; margin:6px 0; font-weight:800; text-shadow:0 6px 20px rgba(0,0,0,0.6) }
     .hc-tags{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
@@ -420,7 +403,22 @@
     .genres-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; align-items:stretch }
     .genre-card{ position:relative; overflow:hidden; border-radius:14px; text-decoration:none; color:#fff; display:block; height:220px; background:#0b0b0b }
     .genre-card img{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.45) }
-    .genre-card span{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3; background:rgba(255,255,255,0.95); color:#0b1220; padding:12px 20px; border-radius:8px; font-weight:800; letter-spacing:0.06em }
+    .genre-card span{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.25);  
+      backdrop-filter: blur(8px);             
+      -webkit-backdrop-filter: blur(8px);     
+      color: #fff;                             
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
 
      
     @media (max-width:1000px){
