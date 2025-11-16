@@ -216,7 +216,7 @@
       <span class="logo-text">Game88™</span>
     </a>
     <nav class="nav-links">
-      <a href="/products/">Products</a>
+      <a href="/products/">Browse</a>
       <a href="/about/">About</a>
     </nav>
   </div>
@@ -243,6 +243,20 @@
 
   <main>
     
+<section class="home-hero-banner custom-bg-banner" >
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">Discover <span>Top Games</span></h1>
+
+    <p class="hero-subtitle">
+      Explore our premium collection of official game titles, unbeatable deals,
+      and new releases.
+    </p>
+
+    <a href="/products/" class="hero-btn">Discover Now</a>
+  </div>
+</section>
 
 <!doctype html>
 <html lang="en">
@@ -251,6 +265,104 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gamestore88 — Home</title>
   <style>
+     
+ 
+ 
+
+
+.custom-bg-banner {
+  position: relative;
+  width: 99.4vw;                
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;          
+  margin-right: 50vw;
+
+  top: -5.4%;
+
+  height: 390px;               
+  background-image: url('/game-banner.png');
+  background-size: cover;      
+  background-size: 99% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+  margin-bottom: -100px;
+}
+
+ 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(1px);
+  background: linear-gradient(
+    90deg,
+    rgba(11, 40, 72, 0.9),
+    rgba(20, 15, 60, 0.7),
+    rgba(68, 57, 63, 0.6)
+  );
+}
+
+ 
+.hero-content {
+  position: relative;
+  text-align: center;
+  margin-left: 30%;
+  max-width: 600px;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.6rem;
+}
+
+.hero-title span {
+  color: #ff4655;
+}
+
+.hero-subtitle {
+  color: #dcdcdc;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.3rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.hero-btn:hover {
+  background: #fff;
+  color: #111;
+}
+
+ 
+@media (max-width: 900px) {
+  .custom-bg-banner {
+    height: 300px;
+  }
+  .hero-content {
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+}
+
+
+
+
+
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -327,7 +439,7 @@
     .btn.primary{ background:linear-gradient(135deg,#10b981,#059669); color:#051814 }
     .btn.ghost{ background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.12) }
 
-    .hc-arrow{ position:absolute; top:50%; transform:translateY(-50%); width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.55); color:#fff; border:0; z-index:5; display:flex; align-items:center; justify-content:center; cursor:pointer }
+    .hc-arrow{ position:absolute; top:40%; transform:translateY(-50%); width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.55); color:#fff; border:0; z-index:5; display:flex; align-items:center; justify-content:center; cursor:pointer }
     .hc-prev{ left:14px } .hc-next{ right:14px }
     .hc-dots{ position:absolute; left:50%; transform:translateX(-50%); bottom:12px; display:flex; gap:8px; z-index:6 }
     .hc-dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.25) }
@@ -340,11 +452,44 @@
     .nr-track{ display:flex; gap:16px; overflow:hidden; scroll-behavior:smooth; padding:8px 4px; width:100% }
     .nr-card{ min-width:160px; width:160px; background:rgba(255,255,255,0.03); border-radius:10px; text-decoration:none; color:inherit; box-shadow:0 8px 20px rgba(0,0,0,0.5); transition:transform .18s }
     .nr-card:hover{ transform:translateY(-6px) }
-    .nr-media{ width:100%; aspect-ratio:2/3; overflow:hidden; background:#111; border-radius:8px 8px 0 0; display:flex; align-items:center; justify-content:center }
-    .nr-media img{ width:100%; height:100%; object-fit:contain; background:#0b0b0b; display:block }  
+    .nr-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 2.5;       
+overflow-x: auto;      
+overflow-y: hidden;    
+
+    background: #0b0b0b;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nr-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          
+    object-position: center top;
+    display: block;
+  }
+
+  .nr-meta p {
+  position: bottom;
+  bottom: 6px;
+  right: 10px;
+  margin: 0;
+
+  color: #3b82f6;      
+  font-weight: 700;
+  font-size: 1rem;
+  z-index: 9;          
+  pointer-events: none;
+}
+
     .nr-meta{ padding:10px; text-align:left }
     .nr-meta h4{ margin:0 0 6px; font-size:1rem }
-    .nr-meta p{ margin:0; color:#cbd5e1 }
+     
 
     .nr-arrow{ width:48px; height:48px; border-radius:8px; background:rgba(0,0,0,0.6); color:#fff; border:0; display:flex; align-items:center; justify-content:center; cursor:pointer }
 
@@ -417,6 +562,70 @@
       }
     }
 
+     
+.genres-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.genres-track {
+  display: flex;
+  gap: 18px;
+  transition: transform 0.45s ease;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 10px 4px;
+}
+
+.genre-card {
+  min-width: 240px;
+  width: 240px;
+  height: 220px;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  background: #0b0b0b;
+  flex-shrink: 0;
+}
+
+.genre-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+.genre-card span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 20px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+ 
+.genres-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 10;
+}
+
 
   </style>
 </head>
@@ -428,7 +637,7 @@
   <main>
 
    
-<h3 class="section-title featured-title">Featured & Recommended</h3>
+<h3 class="section-title featured-title">FEATURED GAMES</h3>
 <section class="hero-carousel" aria-label="Featured games carousel">
   <div class="hc-slides">
     
@@ -565,49 +774,197 @@
 
     
     <section class="new-releases" aria-label="New Releases">
-      <h3 class="section-title">New Releases</h3>
-      <div class="nr-wrapper">
-        <button class="nr-arrow nr-prev" aria-label="Prev">‹</button>
-        <div class="nr-track" id="nr-track">
-          <a class="nr-card" href="/products/p007">
-            <div class="nr-media"><img loading="lazy" src="https://cdn.ozone.ro/media/catalog/product/cache/1/image/400x498/a4e40ebdc3e371adff845072e1c73f37/e/a/89440a20ffc1a06a7ec3ca2889625fde/ea-sports-fc-26-ps5-30.jpg" alt="EA SPORTS FC 26"></div>
-            <div class="nr-meta"><h4>EA SPORTS FC 26</h4><p>$64.99</p></div>
-          </a>
+  <h3 class="section-title">New Releases</h3>
 
-          <a class="nr-card" href="/products/p002">
-            <div class="nr-media"><img loading="lazy" src="https://gamescentermexico.com/files/images/productos/1639688402-elden-ring-ps5-pre-orden.jpg" alt="Elden Ring"></div>
-            <div class="nr-meta"><h4>Elden Ring</h4><p>$69.99</p></div>
-          </a>
+  <div class="nr-wrapper">
+    <button class="nr-arrow nr-prev" aria-label="Prev">‹</button>
 
-          <a class="nr-card" href="/products/p006">
-            <div class="nr-media"><img loading="lazy" src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades"></div>
-            <div class="nr-meta"><h4>Hades</h4><p>$24.99</p></div>
-          </a>
+    <div class="nr-track" id="nr-track">
+      
+      
+        <a class="nr-card" href="/products/p050">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/03/clair_obscur_expedition_33_us_ps5-1.webp" alt="Clair Obscur: Expedition 33">
+          </div>
+          <div class="nr-meta">
+            <h4>Clair Obscur: Expedition 33</h4>
+            <p>$59.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p007">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26">
+          </div>
+          <div class="nr-meta">
+            <h4>EA SPORTS FC 26</h4>
+            <p>$69.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p036">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/god_of_war_ragnarok_ps5-700x700h.webp" alt="God of War Ragnarök">
+          </div>
+          <div class="nr-meta">
+            <h4>God of War Ragnarök</h4>
+            <p>$59.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p048">
+          <div class="nr-media">
+            <img loading="lazy" src="https://images.pushsquare.com/3e136187a1eee/hollow-knight-silksong-cover.cover_large.jpg" alt="Hollow Knight: Silksong">
+          </div>
+          <div class="nr-meta">
+            <h4>Hollow Knight: Silksong</h4>
+            <p>$19.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p040">
+          <div class="nr-media">
+            <img loading="lazy" src="https://m.media-amazon.com/images/I/81LYEcUbzLL._AC_UF894,1000_QL80_.jpg" alt="Blue Prince">
+          </div>
+          <div class="nr-meta">
+            <h4>Blue Prince</h4>
+            <p>$29.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p037">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/split_fiction_ps5-700x700h.jpg" alt="Split Fiction">
+          </div>
+          <div class="nr-meta">
+            <h4>Split Fiction</h4>
+            <p>$49.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p041">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/kingdom_come_deliverance_2_us_00-700x700h.jpg" alt="Kingdom Come: Deliverance II">
+          </div>
+          <div class="nr-meta">
+            <h4>Kingdom Come: Deliverance II</h4>
+            <p>$59.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p042">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/astro_bot_ps5-700x700h-1.webp" alt="Astro Bot">
+          </div>
+          <div class="nr-meta">
+            <h4>Astro Bot</h4>
+            <p>$59.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p033">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/horizon_forbiden_west_complete_edition_ps5-700x700-1.jpg" alt="Horizon Forbidden West Complete Edition">
+          </div>
+          <div class="nr-meta">
+            <h4>Horizon Forbidden West Complete Edition</h4>
+            <p>$59.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p014">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp" alt="Helldivers 2">
+          </div>
+          <div class="nr-meta">
+            <h4>Helldivers 2</h4>
+            <p>$39.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p034">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp" alt="Alan Wake 2">
+          </div>
+          <div class="nr-meta">
+            <h4>Alan Wake 2</h4>
+            <p>$59.99</p>
+          </div>
+        </a>
+      
+        <a class="nr-card" href="/products/p045">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/04/ghostrunner_ps5.webp" alt="Ghostrunner 2">
+          </div>
+          <div class="nr-meta">
+            <h4>Ghostrunner 2</h4>
+            <p>$39.99</p>
+          </div>
+        </a>
+      
+    </div>
 
-          <a class="nr-card" href="/products/p001">
-            <div class="nr-media"><img loading="lazy" src="https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png" alt="Cyberpunk 2077"></div>
-            <div class="nr-meta"><h4>Cyberpunk 2077</h4><p>$59.99</p></div>
-          </a>
-
-          <a class="nr-card" href="/products/p003">
-            <div class="nr-media"><img loading="lazy" src="https://mudishop.com.br/wp-content/uploads/2024/05/job-4.jpg" alt="Stardew Valley"></div>
-            <div class="nr-meta"><h4>Stardew Valley</h4><p>$14.99</p></div>
-          </a>
-        </div>
-        <button class="nr-arrow nr-next" aria-label="Next">›</button>
-      </div>
-    </section>
+    <button class="nr-arrow nr-next" aria-label="Next">›</button>
+  </div>
+</section>
 
     
-    <section class="popular-genres" aria-label="Popular by Genres">
-      <h3 class="section-title">Popular by Genres</h3>
-      <div class="genres-grid">
-        <a href="/products/?genre=Action" class="genre-card"><img loading="lazy" src="https://assets-prd.ignimgs.com/2023/12/12/turbo-overkill-1702370714781.jpeg" alt="Action"><span>Action</span></a>
-        <a href="/products/?genre=RPG" class="genre-card"><img loading="lazy" src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:3587,ch:2018,q:80,w:2560/zqUhepZrjQiMstyDcVVedN.jpg" alt="RPG"><span>RPG</span></a>
-        <a href="/products/?genre=Strategy" class="genre-card"><img loading="lazy" src="https://i.ytimg.com/vi/4LCYYsmBJlU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLClFn4FEaulAc0Kptj7hmgnIrQNJw" alt="Strategy"><span>Strategy</span></a>
-        <a href="/products/?genre=Indie" class="genre-card"><img loading="lazy" src="https://www.spieltimes.io/wp-content/uploads/2024/08/The-Rise-of-Indie-Games-A-New-Era-in-Gaming.webp" alt="Indie"><span>Indie</span></a>
-      </div>
-    </section>
+
+<section class="popular-genres" aria-label="Popular by Genres">
+  <h3 class="section-title">Popular by Genres</h3>
+
+  <div class="genres-wrapper">
+    <button class="genres-arrow g-prev">‹</button>
+
+    <div class="genres-track" id="genres-track">
+
+      
+      <a href="/products/?genre=Action" class="genre-card">
+        <img loading="lazy" src="https://assets-prd.ignimgs.com/2023/12/12/turbo-overkill-1702370714781.jpeg">
+        <span>Action</span>
+      </a>
+
+      <a href="/products/?genre=RPG" class="genre-card">
+        <img loading="lazy" src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:3587,ch:2018,q:80,w:2560/zqUhepZrjQiMstyDcVVedN.jpg">
+        <span>RPG</span>
+      </a>
+
+      <a href="/products/?genre=Strategy" class="genre-card">
+        <img loading="lazy" src="https://i.ytimg.com/vi/4LCYYsmBJlU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLClFn4FEaulAc0Kptj7hmgnIrQNJw">
+        <span>Strategy</span>
+      </a>
+
+      <a href="/products/?genre=Indie" class="genre-card">
+        <img loading="lazy" src="https://www.spieltimes.io/wp-content/uploads/2024/08/The-Rise-of-Indie-Games-A-New-Era-in-Gaming.webp">
+        <span>Indie</span>
+      </a>
+
+      <a href="/products/?genre=Racing" class="genre-card">
+        <img loading="lazy" src="https://us.v-cdn.net/6036147/uploads/KYI2ZI1HK95C/l-10-4-1200x675.jpg">
+        <span>Racing</span>
+      </a>
+
+      <a href="/products/?genre=Horror" class="genre-card">
+        <img loading="lazy" src="https://www.nyfa.edu/wp-content/uploads/2022/11/springtrap.jpg">
+        <span>Horror</span>
+      </a>
+
+      <a href="/products/?genre=Sports" class="genre-card">
+        <img loading="lazy" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlmcXxvpUAZwZTP9dhaNkzlyxIPEmZfHzwqQ&s">
+        <span>Sports</span>
+      </a>
+
+      <a href="/products/?genre=Adventure" class="genre-card">
+        <img loading="lazy" src="https://i.guim.co.uk/img/media/67edb515d6a2b19ef10b002c6bdd44b40b284316/112_0_1734_1041/master/1734.jpg?width=1200&quality=85&auto=format&fit=max&s=4c6c02528f857ee541c6d0fb92cf2b64">
+        <span>Adventure</span>
+      </a>
+
+    </div>
+
+    <button class="genres-arrow g-next">›</button>
+  </div>
+</section>
+
 
   </main>
 
@@ -692,6 +1049,97 @@
   });
 
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.getElementById("nr-track");
+  const prev = document.querySelector(".nr-prev");
+  const next = document.querySelector(".nr-next");
+
+  if (!track) return;
+
+  const cards = Array.from(track.children);
+  const cardWidth = cards[0].offsetWidth + 16; 
+
+  
+
+  const cloneCount = 6; 
+
+  const firstClones = cards.slice(0, cloneCount).map(c => c.cloneNode(true));
+  const lastClones = cards.slice(-cloneCount).map(c => c.cloneNode(true));
+
+  
+  lastClones.forEach(clone => track.insertBefore(clone, track.firstChild));
+  firstClones.forEach(clone => track.appendChild(clone));
+
+  
+  track.scrollLeft = cloneCount * cardWidth;
+
+
+  
+
+  track.addEventListener("scroll", () => {
+    if (track.scrollLeft <= 0) {
+      
+      track.scrollLeft = cards.length * cardWidth;
+    } 
+    else if (track.scrollLeft >= (cards.length + cloneCount) * cardWidth) {
+      
+      track.scrollLeft = cloneCount * cardWidth;
+    }
+  });
+
+
+  
+
+  prev.addEventListener("click", () => {
+    track.scrollBy({ left: -cardWidth, behavior: "smooth" });
+  });
+
+  next.addEventListener("click", () => {
+    track.scrollBy({ left: cardWidth, behavior: "smooth" });
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.getElementById("genres-track");
+  const prev = document.querySelector(".g-prev");
+  const next = document.querySelector(".g-next");
+
+  const cards = Array.from(track.children);
+  const cardWidth = cards[0].offsetWidth + 18; 
+  const visible = 4; 
+  const cloneCount = visible;
+
+  
+  const firstClones = cards.slice(0, cloneCount).map(c => c.cloneNode(true));
+  const lastClones = cards.slice(-cloneCount).map(c => c.cloneNode(true));
+
+  lastClones.forEach(c => track.insertBefore(c, track.firstChild));
+  firstClones.forEach(c => track.appendChild(c));
+
+  track.scrollLeft = cloneCount * cardWidth;
+
+  track.addEventListener("scroll", () => {
+    if (track.scrollLeft <= 0) {
+      track.scrollLeft = cards.length * cardWidth;
+    }
+    else if (track.scrollLeft >= (cards.length + cloneCount) * cardWidth) {
+      track.scrollLeft = cloneCount * cardWidth;
+    }
+  });
+
+  next.addEventListener("click", () => {
+    track.scrollBy({ left: cardWidth * visible, behavior: "smooth" });
+  });
+
+  prev.addEventListener("click", () => {
+    track.scrollBy({ left: -cardWidth * visible, behavior: "smooth" });
+  });
+});
+
+
+
 </script>
 </body>
 </html>
@@ -766,7 +1214,7 @@
         <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
           <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+        <a href="https://discord.gg/JGBRw7Z" target="_blank" class="social-btn discord" title="Discord">
           <i class="fab fa-discord"></i>
         </a>
         <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
