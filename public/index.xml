@@ -50,20 +50,6 @@
       <description></description>
     </item>
     <item>
-      <title>Chính Sách Bảo Hành</title>
-      <link>http://localhost:1313/policies/warranty/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/policies/warranty/</guid>
-      <description>&lt;p&gt;warranty&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Chính Sách Đổi Trả</title>
-      <link>http://localhost:1313/policies/returns/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/policies/returns/</guid>
-      <description>&lt;p&gt;returns&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Civilization VI</title>
       <link>http://localhost:1313/products/p004/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -218,13 +204,6 @@
       <description></description>
     </item>
     <item>
-      <title>Hướng Dẫn Mua Hàng</title>
-      <link>http://localhost:1313/policies/guide/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/policies/guide/</guid>
-      <description>&lt;p&gt;guide&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Lies of P</title>
       <link>http://localhost:1313/products/p027/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -272,6 +251,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p046/</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Purchase Guide</title>
+      <link>http://localhost:1313/policies/guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/policies/guide/</guid>
+      <description>&lt;p&gt;guide&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ratchet &amp; Clank: Rift Apart</title>
@@ -323,6 +309,13 @@
       <description></description>
     </item>
     <item>
+      <title>Return &amp; Exchange Policy</title>
+      <link>http://localhost:1313/policies/returns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/policies/returns/</guid>
+      <description>&lt;p&gt;returns&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Returnal</title>
       <link>http://localhost:1313/products/p032/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -335,6 +328,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/products/p018/</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Shipping Policy</title>
+      <link>http://localhost:1313/policies/shipping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/policies/shipping/</guid>
+      <description>&lt;p&gt;shipping&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spider-Man Remastered</title>
@@ -386,11 +386,11 @@
       <description></description>
     </item>
     <item>
-      <title>Vận Chuyển</title>
-      <link>http://localhost:1313/policies/shipping/</link>
+      <title>Warranty Policy</title>
+      <link>http://localhost:1313/policies/warranty/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/policies/shipping/</guid>
-      <description>&lt;p&gt;shipping&lt;/p&gt;</description>
+      <guid>http://localhost:1313/policies/warranty/</guid>
+      <description>&lt;p&gt;warranty&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

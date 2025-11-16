@@ -1,4 +1,4 @@
 ---
-title: "Chính Sách Bảo Hành"
+title: "Warranty Policy"
 ---
 warranty

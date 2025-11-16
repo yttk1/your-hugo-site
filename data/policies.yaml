@@ -1,37 +1,37 @@
 policies:
   - id: "warranty"
-    title: "Chính Sách Bảo Hành"
-    short: "Thông tin bảo hành sản phẩm."
+    title: "Warranty Policy"
+    short: "Product warranty information."
     content: |
-      ## Chính Sách Bảo Hành
-      Tất cả sản phẩm được bảo hành 12 tháng theo quy định của nhà sản xuất.
+      ## Warranty Policy
+      All products come with a 12-month warranty in accordance with the manufacturer’s regulations.
 
-      Các trường hợp không được bảo hành:
-      - Rơi vỡ
-      - Ngấm nước
-      - Tự ý sửa chữa
+      Cases not eligible for warranty:
+      - Physical damage
+      - Water damage
+      - Unauthorized repairs
 
-      **Thời gian xử lý:** 7–14 ngày.
+      **Processing time:** 7–14 days.
 
   - id: "returns"
-    title: "Chính Sách Đổi Trả"
-    short: "Đổi trả trong 7 ngày."
+    title: "Return & Exchange Policy"
+    short: "7-day return and exchange."
     content: |
-      ## Chính Sách Đổi Trả
-      Sản phẩm còn nguyên hộp và chưa kích hoạt được đổi trả trong vòng 7 ngày.
+      ## Return & Exchange Policy
+      Products that remain sealed and have not been activated are eligible for return or exchange within 7 days.
 
   - id: "shipping"
-    title: "Vận Chuyển"
-    short: "Miễn phí đơn hàng trên 500.000₫."
+    title: "Shipping Policy"
+    short: "Free shipping on orders over 500,000₫."
     content: |
-      ## Chính Sách Vận Chuyển
-      Miễn phí vận chuyển cho đơn hàng trên 500k, giao hàng toàn quốc.
+      ## Shipping Policy
+      Free nationwide shipping for orders over 500,000₫.
 
   - id: "guide"
-    title: "Hướng Dẫn Mua Hàng"
-    short: "Quy trình mua hàng đơn giản."
+    title: "Purchase Guide"
+    short: "Simple purchasing process."
     content: |
-      ## Hướng Dẫn Mua Hàng
-      1. Chọn sản phẩm  
-      2. Thêm vào giỏ  
-      3. Thanh toán  
+      ## Purchase Guide
+      1. Select a product  
+      2. Add to cart  
+      3. Proceed to payment  

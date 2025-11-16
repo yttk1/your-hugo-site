@@ -1,4 +1,4 @@
 ---
-title: "Hướng Dẫn Mua Hàng"
+title: "Purchase Guide"
 --- 
 guide
