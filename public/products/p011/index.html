@@ -328,11 +328,35 @@
 
       
       
-        <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-4-remake-ps5-700x700h.jpg" alt="Resident Evil 4 Remake screenshot" class="thumb" onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/resident-evil-4-remake-ps5-700x700h.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Resident Evil 4 Remake screenshot"
+          onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/resident-evil-4-remake-ps5-700x700h.jpg','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/resident-evil-4-remake-ps5-700x700h.jpg','image'); }">
+          <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-4-remake-ps5-700x700h.jpg" alt="Resident Evil 4 Remake screenshot">
+        </div>
       
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/ss_59d1b19964cc532213df92c8287b75a0bffeb33c.1920x1080.jpg?t=1736385712" alt="Resident Evil 4 Remake screenshot" class="thumb" onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2050650\/ss_59d1b19964cc532213df92c8287b75a0bffeb33c.1920x1080.jpg?t=1736385712','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Resident Evil 4 Remake screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2050650\/ss_59d1b19964cc532213df92c8287b75a0bffeb33c.1920x1080.jpg?t=1736385712','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2050650\/ss_59d1b19964cc532213df92c8287b75a0bffeb33c.1920x1080.jpg?t=1736385712','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/ss_59d1b19964cc532213df92c8287b75a0bffeb33c.1920x1080.jpg?t=1736385712" alt="Resident Evil 4 Remake screenshot">
+        </div>
       
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/ss_0554b945aafc847d55f780f7968de00aafa968a3.1920x1080.jpg?t=1736385712" alt="Resident Evil 4 Remake screenshot" class="thumb" onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2050650\/ss_0554b945aafc847d55f780f7968de00aafa968a3.1920x1080.jpg?t=1736385712','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show Resident Evil 4 Remake screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2050650\/ss_0554b945aafc847d55f780f7968de00aafa968a3.1920x1080.jpg?t=1736385712','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/2050650\/ss_0554b945aafc847d55f780f7968de00aafa968a3.1920x1080.jpg?t=1736385712','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/ss_0554b945aafc847d55f780f7968de00aafa968a3.1920x1080.jpg?t=1736385712" alt="Resident Evil 4 Remake screenshot">
+        </div>
       
     </div>
   </div>
@@ -608,12 +632,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 

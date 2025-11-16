@@ -328,11 +328,35 @@
 
       
       
-        <img src="https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/71LAxrvyNoL.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show No Man’s Sky screenshot"
+          onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/71LAxrvyNoL.jpg','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/m.media-amazon.com\/images\/I\/71LAxrvyNoL.jpg','image'); }">
+          <img src="https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg" alt="No Man’s Sky screenshot">
+        </div>
       
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf\/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show No Man’s Sky screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf\/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf\/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf/ss_d8de91e4a87f0e2c0fb70c84bd0f798bd4617eaf.1920x1080.jpg?t=1762511833" alt="No Man’s Sky screenshot">
+        </div>
       
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/71f533720e58e1fb5dd61f23388abfe4f9caa6b5/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833" alt="No Man’s Sky screenshot" class="thumb" onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/71f533720e58e1fb5dd61f23388abfe4f9caa6b5\/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show No Man’s Sky screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/71f533720e58e1fb5dd61f23388abfe4f9caa6b5\/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/275850\/71f533720e58e1fb5dd61f23388abfe4f9caa6b5\/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/71f533720e58e1fb5dd61f23388abfe4f9caa6b5/ss_71f533720e58e1fb5dd61f23388abfe4f9caa6b5.1920x1080.jpg?t=1762511833" alt="No Man’s Sky screenshot">
+        </div>
       
     </div>
   </div>
@@ -608,12 +632,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 
