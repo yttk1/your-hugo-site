@@ -1,0 +1,37 @@
+policies:
+  - id: "warranty"
+    title: "Warranty Policy"
+    short: "Product warranty information."
+    content: |
+      ## Warranty Policy
+      All products come with a 12-month warranty in accordance with the manufacturer’s regulations.
+
+      Cases not eligible for warranty:
+      - Physical damage
+      - Water damage
+      - Unauthorized repairs
+
+      **Processing time:** 7–14 days.
+
+  - id: "returns"
+    title: "Return & Exchange Policy"
+    short: "7-day return and exchange."
+    content: |
+      ## Return & Exchange Policy
+      Products that remain sealed and have not been activated are eligible for return or exchange within 7 days.
+
+  - id: "shipping"
+    title: "Shipping Policy"
+    short: "Free shipping on orders over 500,000₫."
+    content: |
+      ## Shipping Policy
+      Free nationwide shipping for orders over 500,000₫.
+
+  - id: "guide"
+    title: "Purchase Guide"
+    short: "Simple purchasing process."
+    content: |
+      ## Purchase Guide
+      1. Select a product  
+      2. Add to cart  
+      3. Proceed to payment  

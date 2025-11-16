@@ -278,11 +278,35 @@
 
       
       
-        <img src="https://m.media-amazon.com/images/I/81Jy-EnYnOL.jpg" alt="DOOM Eternal screenshot" class="thumb" onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/81Jy-EnYnOL.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show DOOM Eternal screenshot"
+          onclick="showMedia('https:\/\/m.media-amazon.com\/images\/I\/81Jy-EnYnOL.jpg','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/m.media-amazon.com\/images\/I\/81Jy-EnYnOL.jpg','image'); }">
+          <img src="https://m.media-amazon.com/images/I/81Jy-EnYnOL.jpg" alt="DOOM Eternal screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/782330/ss_1.jpg" alt="DOOM Eternal screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/782330\/ss_1.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show DOOM Eternal screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/782330\/ss_4f93a7c5003d49cb32f6c0c6e547452b284580a0.1920x1080.jpg?t=1755109910','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/782330\/ss_4f93a7c5003d49cb32f6c0c6e547452b284580a0.1920x1080.jpg?t=1755109910','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/782330/ss_4f93a7c5003d49cb32f6c0c6e547452b284580a0.1920x1080.jpg?t=1755109910" alt="DOOM Eternal screenshot">
+        </div>
       
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/782330/ss_2.jpg" alt="DOOM Eternal screenshot" class="thumb" onclick="showMedia('https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/782330\/ss_2.jpg','image')">
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show DOOM Eternal screenshot"
+          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/782330\/ss_7e6a2148321c8024285e3924903d8897cac95358.1920x1080.jpg?t=1755109910','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/782330\/ss_7e6a2148321c8024285e3924903d8897cac95358.1920x1080.jpg?t=1755109910','image'); }">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/782330/ss_7e6a2148321c8024285e3924903d8897cac95358.1920x1080.jpg?t=1755109910" alt="DOOM Eternal screenshot">
+        </div>
       
     </div>
   </div>
@@ -303,7 +327,7 @@
         <p><strong>Publisher:</strong> Bethesda Softworks</p>
         <p><strong>Release Date:</strong> 2020-03-20</p>
         <p><strong>Modes:</strong> Singleplayer / Multiplayer</p>
-        <p><strong>Genres:</strong> Action, Shooter, FPS</p>
+        <p><strong>Genres:</strong> Shooter, Action</p>
       </div>
     </div>
 
@@ -558,12 +582,16 @@ function animateCartIcon() {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 
@@ -649,9 +677,304 @@ function animateCartIcon() {
 
   </main>
 
-  <footer>
-    © 2025 Gamestore88. Built with Hugo.
-  </footer>
+  <div class="footer-accent"></div>
+<footer class="gamestore-footer">
+  <div class="footer-content">
+    
+    <div class="footer-col">
+      <h2 class="footer-logo">GAME<span>STORE88</span></h2>
+      <p class="footer-desc">
+        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+      </p>
+      <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="/">HomePage</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/checkout/">Payment</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Policies</h3>
+      <ul class="footer-links">
+        
+          <li><a href="/policies/warranty/">Warranty Policy</a></li>
+        
+          <li><a href="/policies/returns/">Return &amp; Exchange Policy</a></li>
+        
+          <li><a href="/policies/shipping/">Shipping Policy</a></li>
+        
+          <li><a href="/policies/guide/">Purchase Guide</a></li>
+        
+      </ul>
+    </div>
+
+
+
+
+
+
+    
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="footer-social">
+        <a href="https://web.facebook.com/minhquuan102" target="_blank" class="social-btn facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+
+      <h3>Business Hours</h3>
+      <ul>
+        <li>Monday – Saturday: 9h00 – 20h00</li>
+        <li>Sunday: 9h00 – 19h00</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 GameStore88. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+ 
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: #facc15;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.footer-logo span {
+  color: #3b82f6;
+}
+.footer-desc {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-col a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: #3b82f6;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  gap: 1.2rem;              
+  margin: 1.2rem 0;         
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+ 
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.social-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.facebook {
+  background: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.4);
+}
+.facebook:hover {
+  background: #0d6efd;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.7);
+}
+
+.youtube {
+  background: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+.youtube:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+}
+
+.discord {
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+.discord:hover {
+  background: #4752c4;
+  box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
+}
+
+.tiktok {
+  background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.4);
+}
+.tiktok:hover {
+  background: linear-gradient(135deg, #fe2c55, #000000, #25f4ee);
+  box-shadow: 0 0 18px rgba(254, 44, 85, 0.7);
+}
+
+ 
+.social-btn:hover {
+  transform: translateY(-4px);
+}
+
+
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: #2563eb;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+.footer-social a:hover {
+  background: #0ea5e9;
+  box-shadow: 0 0 12px #0ea5e9, 0 0 24px #0ea5e9;
+}
+
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s ease;
+  font-size: 1.1rem;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+  background: #3b82f6;
+  box-shadow: 0 0 12px #2563eb;
+}
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #9333ea, #facc15);
+  background-size: 300% 300%;
+  animation: glow 4s ease infinite;
+}
+@keyframes glow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+ 
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-col i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.footer-col h3 {
+  text-align: center;
+}
+.footer-col ul, .footer-col p {
+  text-align: center;
+}
+
+
+</style>
+
+
 
 <script>
 function updateHeader() {

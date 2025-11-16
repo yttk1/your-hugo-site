@@ -308,7 +308,33 @@
     .hc-media iframe{ width:100%; height:100%; border:0; display:block }
 
      
-    .hc-inner-top-left{ position:absolute; top:6%; left:6%; transform:none; z-index:3; max-width:44%; color:#fff; text-align:left; }
+    .hc-inner-top-left {
+    position: absolute;
+    bottom: 6%;    
+    left: 6%;
+    max-width: 44%;
+    color: #fff;
+    text-align: left;
+    z-index: 3;
+    }
+    .popular-genres .genre-card span {
+    background: rgba(255, 255, 255, 0.15);  
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;  
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    }
+
+    
     .hc-inner-top-left .hc-title{ font-size:2.6rem; margin:6px 0; font-weight:800; text-shadow:0 6px 20px rgba(0,0,0,0.6) }
     .hc-tags{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
     .tag{ background:rgba(255,255,255,0.95); color:#071218; padding:7px 10px; border-radius:6px; font-weight:700; text-decoration:none }
@@ -360,6 +386,44 @@
       .genre-card{ height:160px }
       .hc-arrow{ display:none }
     }
+          .featured-title {
+      text-align: center;         
+      font-size: 2rem;
+      color: #ffffff;             
+      font-weight: 800;
+      margin: 20px 0;
+      
+       
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 30px #fff,
+        0 0 40px #fff;
+      
+      animation: glow-white 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-white {
+      from {
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 20px #fff,
+          0 0 30px #fff,
+          0 0 40px #fff;
+      }
+      to {
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #fff,
+          0 0 30px #fff,
+          0 0 40px #fff,
+          0 0 50px #fff;
+      }
+    }
+
+
   </style>
 </head>
 <body>
@@ -370,6 +434,7 @@
   <main>
 
    
+<h3 class="section-title featured-title">Featured & Recommended</h3>
 <section class="hero-carousel" aria-label="Featured games carousel">
   <div class="hc-slides">
     
@@ -511,12 +576,12 @@
         <button class="nr-arrow nr-prev" aria-label="Prev">‹</button>
         <div class="nr-track" id="nr-track">
           <a class="nr-card" href="/products/p007">
-            <div class="nr-media"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26"></div>
+            <div class="nr-media"><img loading="lazy" src="https://cdn.ozone.ro/media/catalog/product/cache/1/image/400x498/a4e40ebdc3e371adff845072e1c73f37/e/a/89440a20ffc1a06a7ec3ca2889625fde/ea-sports-fc-26-ps5-30.jpg" alt="EA SPORTS FC 26"></div>
             <div class="nr-meta"><h4>EA SPORTS FC 26</h4><p>$64.99</p></div>
           </a>
 
           <a class="nr-card" href="/products/p002">
-            <div class="nr-media"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring"></div>
+            <div class="nr-media"><img loading="lazy" src="https://gamescentermexico.com/files/images/productos/1639688402-elden-ring-ps5-pre-orden.jpg" alt="Elden Ring"></div>
             <div class="nr-meta"><h4>Elden Ring</h4><p>$69.99</p></div>
           </a>
 
@@ -543,10 +608,10 @@
     <section class="popular-genres" aria-label="Popular by Genres">
       <h3 class="section-title">Popular by Genres</h3>
       <div class="genres-grid">
-        <a href="/products/?genre=Action" class="genre-card"><img loading="lazy" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg" alt="Action"><span>Action</span></a>
-        <a href="/products/?genre=RPG" class="genre-card"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="RPG"><span>RPG</span></a>
-        <a href="/products/?genre=Strategy" class="genre-card"><img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/02/civilization_7_us_ps5_00-700x700h.jpg" alt="Strategy"><span>Strategy</span></a>
-        <a href="/products/?genre=Indie" class="genre-card"><img loading="lazy" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg" alt="Indie"><span>Indie</span></a>
+        <a href="/products/?genre=Action" class="genre-card"><img loading="lazy" src="https://assets-prd.ignimgs.com/2023/12/12/turbo-overkill-1702370714781.jpeg" alt="Action"><span>Action</span></a>
+        <a href="/products/?genre=RPG" class="genre-card"><img loading="lazy" src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:3587,ch:2018,q:80,w:2560/zqUhepZrjQiMstyDcVVedN.jpg" alt="RPG"><span>RPG</span></a>
+        <a href="/products/?genre=Strategy" class="genre-card"><img loading="lazy" src="https://i.ytimg.com/vi/4LCYYsmBJlU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLClFn4FEaulAc0Kptj7hmgnIrQNJw" alt="Strategy"><span>Strategy</span></a>
+        <a href="/products/?genre=Indie" class="genre-card"><img loading="lazy" src="https://www.spieltimes.io/wp-content/uploads/2024/08/The-Rise-of-Indie-Games-A-New-Era-in-Gaming.webp" alt="Indie"><span>Indie</span></a>
       </div>
     </section>
 
@@ -640,9 +705,304 @@
 
   </main>
 
-  <footer>
-    © 2025 Gamestore88. Built with Hugo.
-  </footer>
+  <div class="footer-accent"></div>
+<footer class="gamestore-footer">
+  <div class="footer-content">
+    
+    <div class="footer-col">
+      <h2 class="footer-logo">GAME<span>STORE88</span></h2>
+      <p class="footer-desc">
+        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+      </p>
+      <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="/">HomePage</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/checkout/">Payment</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Policies</h3>
+      <ul class="footer-links">
+        
+          <li><a href="/policies/warranty/">Warranty Policy</a></li>
+        
+          <li><a href="/policies/returns/">Return &amp; Exchange Policy</a></li>
+        
+          <li><a href="/policies/shipping/">Shipping Policy</a></li>
+        
+          <li><a href="/policies/guide/">Purchase Guide</a></li>
+        
+      </ul>
+    </div>
+
+
+
+
+
+
+    
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="footer-social">
+        <a href="https://web.facebook.com/minhquuan102" target="_blank" class="social-btn facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+
+      <h3>Business Hours</h3>
+      <ul>
+        <li>Monday – Saturday: 9h00 – 20h00</li>
+        <li>Sunday: 9h00 – 19h00</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 GameStore88. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+ 
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: #facc15;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.footer-logo span {
+  color: #3b82f6;
+}
+.footer-desc {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-col a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: #3b82f6;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  gap: 1.2rem;              
+  margin: 1.2rem 0;         
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+ 
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.social-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.facebook {
+  background: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.4);
+}
+.facebook:hover {
+  background: #0d6efd;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.7);
+}
+
+.youtube {
+  background: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+.youtube:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+}
+
+.discord {
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+.discord:hover {
+  background: #4752c4;
+  box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
+}
+
+.tiktok {
+  background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.4);
+}
+.tiktok:hover {
+  background: linear-gradient(135deg, #fe2c55, #000000, #25f4ee);
+  box-shadow: 0 0 18px rgba(254, 44, 85, 0.7);
+}
+
+ 
+.social-btn:hover {
+  transform: translateY(-4px);
+}
+
+
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: #2563eb;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+.footer-social a:hover {
+  background: #0ea5e9;
+  box-shadow: 0 0 12px #0ea5e9, 0 0 24px #0ea5e9;
+}
+
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s ease;
+  font-size: 1.1rem;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+  background: #3b82f6;
+  box-shadow: 0 0 12px #2563eb;
+}
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #9333ea, #facc15);
+  background-size: 300% 300%;
+  animation: glow 4s ease infinite;
+}
+@keyframes glow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+ 
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-col i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.footer-col h3 {
+  text-align: center;
+}
+.footer-col ul, .footer-col p {
+  text-align: center;
+}
+
+
+</style>
+
+
 
 <script>
 function updateHeader() {

@@ -573,40 +573,68 @@
       min-width: 320px;
     }
   }
+}
 
 
-    </style>
+  </style>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("search-bar");
-    const sortSelect = document.getElementById("sort-select");
-    const grid = document.getElementById("products-grid");
-    const cards = Array.from(document.querySelectorAll(".product-card"));
-    const noResults = document.getElementById("no-results");
-    const toggles = document.querySelectorAll(".filter-toggle");
-    const genreItems = document.querySelectorAll("[data-genre]");
-    const modeItems = document.querySelectorAll("[data-mode]");
-    const clearGenresBtn = document.querySelector(".clear-genres");
-    const clearModesBtn = document.querySelector(".clear-modes");
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("search-bar");
+  const sortSelect = document.getElementById("sort-select");
+  const grid = document.getElementById("products-grid");
+  const cards = Array.from(document.querySelectorAll(".product-card"));
+  const noResults = document.getElementById("no-results");
+  const toggles = document.querySelectorAll(".filter-toggle");
+  const genreItems = document.querySelectorAll("[data-genre]");
+  const modeItems = document.querySelectorAll("[data-mode]");
+  const clearGenresBtn = document.querySelector(".clear-genres");
+  const clearModesBtn = document.querySelector(".clear-modes");
 
-    let includeGenres = new Set();
-    let excludeGenres = new Set();
-    let includeModes = new Set();
-    let excludeModes = new Set();
+  let includeGenres = new Set();
+  let excludeGenres = new Set();
+  let includeModes = new Set();
+  let excludeModes = new Set();
 
-    const ITEMS_PER_PAGE = 16;
-    let currentPage = 1;
-    const paginationContainer = document.createElement("div");
-    paginationContainer.className = "pagination";
-    grid.after(paginationContainer);
+  const ITEMS_PER_PAGE = 16;
+  let currentPage = 1;
+  const paginationContainer = document.createElement("div");
+  paginationContainer.className = "pagination";
+  grid.after(paginationContainer);
 
-    toggles.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = document.getElementById(btn.dataset.target);
-        btn.classList.toggle("active");
-        target.classList.toggle("active");
-      });
+  // Restore sort from URL or localStorage so UI and results match
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const urlSort = params.get("sort");
+    const savedSort = localStorage.getItem("productSort");
+    const desiredSort = urlSort || savedSort;
+    if (
+      desiredSort &&
+      Array.from(sortSelect.options).some(o => o.value === desiredSort)
+    ) {
+      sortSelect.value = desiredSort;
+    }
+  } catch (_) { /* no-op if disabled */ }
+
+  // Restore current page from URL or localStorage
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const urlPageRaw = params.get("page");
+    const urlPage = urlPageRaw ? parseInt(urlPageRaw, 10) : NaN;
+    const savedPageRaw = localStorage.getItem("productPage");
+    const savedPage = savedPageRaw ? parseInt(savedPageRaw, 10) : NaN;
+    if (Number.isFinite(urlPage) && urlPage > 0) {
+      currentPage = urlPage;
+    } else if (Number.isFinite(savedPage) && savedPage > 0) {
+      currentPage = savedPage;
+    }
+  } catch (_) { /* ignore */ }
+
+  toggles.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = document.getElementById(btn.dataset.target);
+      btn.classList.toggle("active");
+      target.classList.toggle("active");
     });
 
     function buildPagination(totalPages) {
@@ -722,9 +750,22 @@
       const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
       if (currentPage > totalPages) currentPage = totalPages || 1;
 
-      const start = (currentPage - 1) * ITEMS_PER_PAGE;
-      const end = start + ITEMS_PER_PAGE;
-      visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
+    ul.querySelectorAll("a[data-page]").forEach(a => {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        currentPage = parseInt(a.dataset.page);
+        // Persist and reflect current page in URL
+        try {
+          localStorage.setItem("productPage", String(currentPage));
+          const params = new URLSearchParams(window.location.search);
+          params.set("page", String(currentPage));
+          history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+        } catch (_) { /* ignore */ }
+        doFilterAndSort();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  }
 
       noResults.style.display = visibleCards.length === 0 ? "block" : "none";
       buildPagination(totalPages);
@@ -770,10 +811,41 @@
       });
     });
 
-    clearGenresBtn.addEventListener("click", () => {
-      includeGenres.clear();
-      excludeGenres.clear();
-      genreItems.forEach(i => i.classList.remove("active", "exclude"));
+    const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+    if (currentPage > totalPages) currentPage = totalPages || 1;
+    if (currentPage < 1) currentPage = 1;
+
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
+
+    noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+    // Persist current page and sort in URL/localStorage so back button restores state
+    try {
+      localStorage.setItem("productPage", String(currentPage));
+      const params = new URLSearchParams(window.location.search);
+      params.set("page", String(currentPage));
+      params.set("sort", sortSelect.value);
+      history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+    } catch (_) { /* ignore */ }
+    buildPagination(totalPages);
+  }
+
+  genreItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const genre = item.dataset.genre;
+      if (item.classList.contains("active")) {
+        item.classList.remove("active");
+        item.classList.add("exclude");
+        includeGenres.delete(genre);
+        excludeGenres.add(genre);
+      } else if (item.classList.contains("exclude")) {
+        item.classList.remove("exclude");
+        excludeGenres.delete(genre);
+      } else {
+        item.classList.add("active");
+        includeGenres.add(genre);
+      }
       currentPage = 1;
       doFilterAndSort();
     });
@@ -792,5 +864,46 @@
     doFilterAndSort();
   });
 
-    </script>
-    {{ end }}
+  input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
+  sortSelect.addEventListener("change", () => {
+    currentPage = 1;
+    // Persist selection and reflect in URL for shareability
+    try {
+      localStorage.setItem("productSort", sortSelect.value);
+      localStorage.setItem("productPage", "1");
+      const params = new URLSearchParams(window.location.search);
+      params.set("sort", sortSelect.value);
+      params.set("page", "1");
+      history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+    } catch (_) { /* ignore */ }
+    doFilterAndSort();
+  });
+
+  // Ensure correct sort after browser restores form state (back/forward cache)
+  window.addEventListener("pageshow", () => {
+    // If the browser restored the dropdown value, re-apply sorting
+    doFilterAndSort();
+  });
+
+  // Initial render (defer slightly to allow any form-value restoration)
+  setTimeout(() => {
+    // Sync URL with initial value if none provided
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("sort")) {
+        params.set("sort", sortSelect.value);
+        history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+      }
+      if (!params.has("page")) {
+        params.set("page", String(currentPage));
+        history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
+      }
+      localStorage.setItem("productSort", sortSelect.value);
+      localStorage.setItem("productPage", String(currentPage));
+    } catch (_) { /* ignore */ }
+    doFilterAndSort();
+  }, 0);
+});
+
+  </script>
+  {{ end }}

@@ -1,19 +1,19 @@
 - name: "Trần Trung Kiên"
-  photo: "/images/team/alice.jpg"
+  photo: "/images/alice.jpg"
   intro: "Project Lead — passionate about web development and team collaboration."
 
 - name: "Nguyễn Hoàng Minh Quân"
-  photo: "/images/team/benjamin.jpg"
-  intro: "Backend Engineer — builds reliable APIs and manages server logic."
+  photo: "/images/anh1.jpg"
+  intro: "Siêu cấp hướng lội - thích chơi đàn piano và thư pháp"
 
 - name: "Nguyễn Thanh Phú"
-  photo: "/images/team/camille.jpg"
+  photo: "/images/camille.jpg"
   intro: "UI/UX Designer — creates clean and modern designs for better user experiences."
 
 - name: "Đặng Phú Trí"
-  photo: "/images/team/duc.jpg"
+  photo: "/images/duc.jpg"
   intro: "DevOps Engineer — automates deployments and ensures smooth operation."
 
 - name: "Nguyễn Khánh Huy"
-  photo: "/images/team/eve.jpg"
+  photo: "/images/eve.jpg"
   intro: "Marketing Lead — focuses on storytelling and engaging users effectively."
