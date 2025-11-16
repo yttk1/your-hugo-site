@@ -1,562 +1,577 @@
-  {{ define "main" }}
-  <section class="store-layout">
-    <!-- 🎚 Sidebar Filter -->
-    <!-- 🎚 Sidebar Filter -->
-    <!-- 🎚 Sidebar Filter -->
-    <aside class="filter-sidebar">
-      <!-- 🎚 GENRES FILTER -->
-      <div class="filter-group">
-        <button class="filter-toggle" data-target="genres">
-          Genres <span class="arrow">▼</span>
-        </button>
+    {{ define "main" }}
+    <section class="store-layout">
+      <!-- 🎚 Sidebar Filter -->
+      <!-- 🎚 Sidebar Filter -->
+      <!-- 🎚 Sidebar Filter -->
+      <aside class="filter-sidebar">
+        <!-- 🎚 GENRES FILTER -->
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="genres">
+            Genres <span class="arrow">▼</span>
+          </button>
 
-        <div class="filter-options" id="genres">
-          <div class="filter-scroll">
-            {{ $genres := slice }}
-            {{ range site.Data.products }}
-              {{ range .genres }}
-                {{ if not (in $genres .) }}
-                  {{ $genres = $genres | append . }}
+          <div class="filter-options" id="genres">
+            <div class="filter-scroll">
+              {{ $genres := slice }}
+              {{ range site.Data.products }}
+                {{ range .genres }}
+                  {{ if not (in $genres .) }}
+                    {{ $genres = $genres | append . }}
+                  {{ end }}
                 {{ end }}
               {{ end }}
-            {{ end }}
-            {{ range sort $genres }}
-            <div class="filter-item" data-genre="{{ . | lower }}">
-              <span class="checkbox"></span>
-              <span class="label">{{ . }}</span>
+              {{ range sort $genres }}
+              <div class="filter-item" data-genre="{{ . | lower }}">
+                <span class="checkbox"></span>
+                <span class="label">{{ . }}</span>
+              </div>
+              {{ end }}
             </div>
-            {{ end }}
+            <button class="clear-filters-link clear-genres">Clear genres</button>
           </div>
-          <button class="clear-filters-link clear-genres">Clear genres</button>
         </div>
-      </div>
 
-      <!-- 🎮 MODES FILTER -->
-      <div class="filter-group">
-        <button class="filter-toggle" data-target="modes">
-          Modes <span class="arrow">▼</span>
-        </button>
+        <!-- 🎮 MODES FILTER -->
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="modes">
+            Modes <span class="arrow">▼</span>
+          </button>
 
-        <div class="filter-options" id="modes">
-          <div class="filter-scroll">
-            <div class="filter-item" data-mode="multiplayer">
-              <span class="checkbox"></span>
-              <span class="label">Multiplayer</span>
+          <div class="filter-options" id="modes">
+            <div class="filter-scroll">
+              <div class="filter-item" data-mode="multiplayer">
+                <span class="checkbox"></span>
+                <span class="label">Multiplayer</span>
+              </div>
+              <div class="filter-item" data-mode="singleplayer">
+                <span class="checkbox"></span>
+                <span class="label">Singleplayer</span>
+              </div>
+              <div class="filter-item" data-mode="co-op">
+                <span class="checkbox"></span>
+                <span class="label">Co-op</span>
+              </div>
             </div>
-            <div class="filter-item" data-mode="singleplayer">
-              <span class="checkbox"></span>
-              <span class="label">Singleplayer</span>
-            </div>
-            <div class="filter-item" data-mode="co-op">
-              <span class="checkbox"></span>
-              <span class="label">Co-op</span>
-            </div>
+            <button class="clear-filters-link clear-modes">Clear modes</button>
           </div>
-          <button class="clear-filters-link clear-modes">Clear modes</button>
         </div>
-      </div>
-    </aside>
+      </aside>
 
 
 
-    <!-- 🎮 Main Product Section -->
-    <div class="products-section">
-      <h1 class="page-title">🎮 Our Games</h1>
+      <!-- 🎮 Main Product Section -->
+      <div class="products-section">
+        <h1 class="page-title">🎮 Our Games</h1>
 
-      <!-- 🔍 Search Bar -->
-      <div class="search-container">
-        <div class="search-bar">
-          <span class="search-icon">🔎</span>
-          <input id="search-bar" placeholder="Search for games..." aria-label="Search" />
+        <!-- 🔍 Search Bar -->
+        <div class="search-container">
+          <div class="search-bar">
+            <span class="search-icon">🔎</span>
+            <input id="search-bar" placeholder="Search for games..." aria-label="Search" />
+          </div>
         </div>
-      </div>
 
-      <!-- ⚙️ Sort Controls -->
-      <div class="sort-bar">
-        <div class="sort-right">
-          <label for="sort-select">Sort by:</label>
-          <select id="sort-select">
-            <option value="alphabet">A–Z</option>
-            <option value="alphabet-desc">Z–A</option>
-            <option value="price">Price: Low → High</option>
-            <option value="price-desc">Price: High → Low</option>
-            <option value="release">Release: Newest</option>
-            <option value="release-old">Release: Oldest</option>
-          </select>
+        <!-- ⚙️ Sort Controls -->
+        <div class="sort-bar">
+          <div class="sort-right">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="alphabet">A–Z</option>
+              <option value="alphabet-desc">Z–A</option>
+              <option value="price">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="release">Release: Newest</option>
+              <option value="release-old">Release: Oldest</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <p id="no-results" class="no-results">😢 No games found.</p>
+        <p id="no-results" class="no-results">😢 No games found.</p>
 
-      <!-- 📦 Product Grid -->
-      <div class="products-grid" id="products-grid">
-        {{ range site.Data.products }}
-        <article class="product-card"
-          data-title="{{ lower .title }}"
-          data-price="{{ .price }}"
-          data-release="{{ .release_date }}"
-          data-genres="{{ delimit .genres "," }}"
-          data-modes="{{- with .modes -}}
-            {{- $m := trim . " " -}}
-            {{- if gt (len $m) 0 -}}
-              {{- if in $m "/" -}}
-                {{- $parts := split $m "/" -}}
-                {{- $clean := slice -}}
-                {{- range $parts -}}
-                  {{- if gt (len (trim . " ")) 0 -}}
-                    {{- $clean = $clean | append (lower (trim . " ")) -}}
+        <!-- 📦 Product Grid -->
+        <div class="products-grid" id="products-grid">
+          {{ range site.Data.products }}
+          <article class="product-card"
+            data-title="{{ lower .title }}"
+            data-price="{{ .price }}"
+            data-release="{{ .release_date }}"
+            data-genres="{{ delimit .genres "," }}"
+            data-modes="{{- with .modes -}}
+              {{- $m := trim . " " -}}
+              {{- if gt (len $m) 0 -}}
+                {{- if in $m "/" -}}
+                  {{- $parts := split $m "/" -}}
+                  {{- $clean := slice -}}
+                  {{- range $parts -}}
+                    {{- if gt (len (trim . " ")) 0 -}}
+                      {{- $clean = $clean | append (lower (trim . " ")) -}}
+                    {{- end -}}
                   {{- end -}}
+                  {{- delimit $clean "," -}}
+                {{- else -}}
+                  {{- lower $m -}}
                 {{- end -}}
-                {{- delimit $clean "," -}}
               {{- else -}}
-                {{- lower $m -}}
+                none
               {{- end -}}
             {{- else -}}
               none
-            {{- end -}}
-          {{- else -}}
-            none
-          {{- end -}}">
+            {{- end -}}">
 
-          
-          <a href="/products/{{ .id }}/" class="product-link">
-            <div class="thumb-wrap">
-              <img src="{{ index .images 0 }}" alt="{{ .title }}" />
-            </div>
-            <h3>{{ .title }}</h3>
-            <p class="price">${{ printf "%.2f" .price }}</p>
-          </a>
-        </article>
-        {{ end }}
+            
+            <a href="/products/{{ .id }}/" class="product-link">
+              <div class="thumb-wrap">
+                <img src="{{ index .images 0 }}" alt="{{ .title }}" />
+              </div>
+              <h3>{{ .title }}</h3>
+              <p class="price">${{ printf "%.2f" .price }}</p>
+            </a>
+          </article>
+          {{ end }}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 
-  <style>
-  /* ===== Base Layout ===== */
-  .products-section {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    color: #f5f5f5;
-  }
-  .page-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #e5e5e5;
-  }
-
-  /* ===== Search Bar ===== */
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0.5rem;
-  }
-  .search-bar {
-    display: flex;
-    align-items: center;
-    background: #4e4e4e;
-    border-radius: 9999px;
-    padding: 0.6rem 1rem;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: inset 0 0 6px rgba(255,255,255,0.05);
-  }
-  .search-bar input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #f0f0f0;
-    font-size: 1rem;
-    padding-left: 0.5rem;
-  }
-  .search-bar input::placeholder {
-    color: #b0adad;
-  }
-  .search-icon {
-    opacity: 0.6;
-  }
-
-  /* ===== Sort Bar ===== */
-  .sort-bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0.5rem 0 1.5rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.8rem;
-  }
-  .sort-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .sort-right label {
-    color: #ccc;
-    font-weight: 500;
-  }
-  #sort-select {
-    background: transparent;
-    color: #bb86fc;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    transition: color 0.2s;
-  }
-  #sort-select:hover {
-    color: #d3b2ff;
-  }
-
-  /* ===== Product Grid ===== */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    justify-items: center;
-    align-items: start;
-    padding: 1rem;
-  }
-
-  /* ===== Product Card ===== */
-  .product-card {
-    width: 100%;
-    max-width: 220px; /* slightly narrower for 4 clean cards per row */
-    background: #2b2b2b;
-    color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 0.5rem;
-  }
-
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
-  }
-
-  /* ===== Image Area ===== */
-  .thumb-wrap {
-    background: #111;
-    border-radius: 8px 8px 0 0;
-    width: 100%;
-    height: 280px; /* fixed compact height for PS5 cases */
-    overflow: hidden;
-  }
-
-
-  .product-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* fills the frame, no black bars */
-    display: block;
-    border-radius: 0; /* keep square edges like PS5 box */
-    object-position: top center; /* keeps PS5 header visible */
-  }
-
-  /* ===== Game Info ===== */
-  .product-card h3 {
-    margin: 0.6rem 0.8rem 0.2rem;
-    font-size: 0.95rem;
-    color: #f5f5f5;
-    line-height: 1.3;
-    text-align: left;
-    min-height: 2.6rem; /* keeps uniform height for titles */
-  }
-
-  .product-card .price {
-    margin: 0.2rem 0.8rem 0.8rem;
-    text-align: left;
-    font-weight: 700;
-    color: #64b5f6;
-    font-size: 0.9rem;
-  }
-
-  /* ===== Product Grid ===== */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    justify-items: center;
-    align-items: start;
-    padding: 1rem;
-  }
-
-  /* ===== Responsive Grid ===== */
-  @media (max-width: 1200px) {
-    .products-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 900px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .products-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ===== Layout Fix: Sidebar scrolls naturally with product list ===== */
-  .store-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    /* 🧩 Key: allow natural height so sticky can work */
-    align-self: stretch;
-  }
-
-  /* Sidebar stays beside the list but scrolls *with* the page */
-  .filter-sidebar {
-    width: 200px;
-    flex-shrink: 0;
-    position: relative;   /* 👈 not sticky or fixed */
-    top: auto;
-    margin-left: -140px;
-    padding-top: 13.5rem;
-    color: #e5e5e5;
-    font-size: 0.9rem;
-  }
-
-  /* Let product list take remaining space */
-  .products-section {
-    flex: 1;
-    min-width: 0;
-  }
-
-  /* ===== Accordion Header ===== */
-  .filter-group {
-    margin-bottom: 1rem;
-  }
-
-  .filter-toggle {
-    background: none;
-    color: #f3f3f3;
-    font-weight: 600;
-    font-size: 0.95rem;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0.4rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    transition: color 0.2s ease;
-  }
-  .filter-toggle:hover {
-    color: #a855f7;
-  }
-
-  .filter-toggle .arrow {
-    font-size: 0.75rem;
-    transition: transform 0.2s ease;
-  }
-  .filter-toggle.active .arrow {
-    transform: rotate(180deg);
-  }
-
-  /* ===== Collapsible Options ===== */
-  .filter-options {
-    display: none;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.4rem;
-    padding-left: 0.3rem;
-  }
-  .filter-options.active {
-    display: flex;
-  }
-
-  /* ===== Checkbox Items ===== */
-  .filter-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.2rem;
-    border-radius: 6px;
-    transition: background 0.15s;
-  }
-  .filter-item:hover {
-    background: rgba(168, 85, 247, 0.12);
-  }
-
-  .checkbox {
-    width: 15px;
-    height: 15px;
-    border-radius: 3px;
-    border: 2px solid #666;
-    display: inline-block;
-    position: relative;
-    transition: all 0.15s;
-  }
-
-  /* ✅ Include */
-  .filter-item.active .checkbox {
-    background: #a855f7;
-    border-color: #a855f7;
-  }
-  .filter-item.active .checkbox::after {
-    content: "✔";
-    position: absolute;
-    color: #fff;
-    top: -1px;
-    left: 3px;
-    font-size: 0.7rem;
-  }
-
-  /* 🚫 Exclude */
-  .filter-item.exclude .checkbox {
-    background: #a09e9e;
-    border-color: #a09e9e;
-  }
-  .filter-item.exclude .checkbox::after {
-    content: "✖";
-    position: absolute;
-    color: #fff;
-    top: -1px;
-    left: 3px;
-    font-size: 0.7rem;
-  }
-
-  /* ====== Clear Filters (Purple Bold Link) ====== */
-  .clear-filters-link {
-    background: none;
-    border: none;
-    color: #a855f7;
-    text-decoration: underline;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin-top: -0.7rem;
-    text-align: left;
-    padding-left: 0.2rem;
-    transition: color 0.2s;
-  }
-  .clear-filters-link:hover {
-    color: #c084fc;
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 900px) {
-    .store-layout {
-      flex-direction: column;
+    <style>
+    /* ===== Base Layout ===== */
+    .products-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      color: #f5f5f5;
     }
-    .filter-sidebar {
-      width: 100%;
-      margin-left: 0;
+    .page-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #e5e5e5;
+    }
+
+    /* ===== Steam-Style Search Bar ===== */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .search-bar {
       position: relative;
-      top: 0;
+      width: 50%;
+      max-width: 640px;
     }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.6rem;
+      border-radius: 10px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.03);
+    }
+
+    .search-bar input:focus {
+      border-color: #4ea8ff;
+      box-shadow: 0 0 8px rgba(78,168,255,0.4);
+      outline: none;
+    }
+
+    .search-bar input::placeholder {
+      color: #94a3b8;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 46%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+
+    /* ===== Sort Bar ===== */
+    .sort-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0.5rem 0 1.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.8rem;
+    }
+    .sort-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sort-right label {
+      color: #ccc;
+      font-weight: 500;
+    }
+    #sort-select {
+      background: transparent;
+      color: #7cc7ff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      transition: color 0.2s;
+    }
+    #sort-select:hover {
+      color: #7cc7ff;
+    }
+
+    /* ===== Product Grid ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      justify-items: center;
+      align-items: start;
+      padding: 1rem;
+    }
+
+    /* ===== Product Card ===== */
+    .product-card {
+      width: 100%;
+      max-width: 220px; /* slightly narrower for 4 clean cards per row */
+      background: #2b2b2b;
+      color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
+    }
+
+    /* ===== Image Area ===== */
+    .thumb-wrap {
+      background: #111;
+      border-radius: 8px 8px 0 0;
+      width: 100%;
+      height: 280px; /* fixed compact height for PS5 cases */
+      overflow: hidden;
+    }
+
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* fills the frame, no black bars */
+      display: block;
+      border-radius: 0; /* keep square edges like PS5 box */
+      object-position: top center; /* keeps PS5 header visible */
+    }
+
+    /* ===== Game Info ===== */
+    .product-card h3 {
+      margin: 0.6rem 0.8rem 0.2rem;
+      font-size: 0.95rem;
+      color: #f5f5f5;
+      line-height: 1.3;
+      text-align: left;
+      min-height: 2.6rem; /* keeps uniform height for titles */
+    }
+
+    .product-card .price {
+      margin: 0.2rem 0.8rem 0.8rem;
+      text-align: left;
+      font-weight: 700;
+      color: #64b5f6;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Product Grid ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      justify-items: center;
+      align-items: start;
+      padding: 1rem;
+    }
+
+    /* ===== Responsive Grid ===== */
+    @media (max-width: 1200px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Layout Fix: Sidebar scrolls naturally with product list ===== */
+    .store-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      /* 🧩 Key: allow natural height so sticky can work */
+      align-self: stretch;
+    }
+
+    /* Sidebar stays beside the list but scrolls *with* the page */
+    .filter-sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      position: relative;   /* 👈 not sticky or fixed */
+      top: auto;
+      margin-left: -140px;
+      padding-top: 13.5rem;
+      color: #e5e5e5;
+      font-size: 0.9rem;
+    }
+
+    /* Let product list take remaining space */
+    .products-section {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ===== Accordion Header ===== */
+    .filter-group {
+      margin-bottom: 1rem;
+    }
+
+    .filter-toggle {
+      background: none;
+      color: #f3f3f3;
+      font-weight: 600;
+      font-size: 0.95rem;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      transition: color 0.2s ease;
+    }
+    .filter-toggle:hover {
+      color: #7cc7ff;
+    }
+
+    .filter-toggle .arrow {
+      font-size: 0.75rem;
+      transition: transform 0.2s ease;
+    }
+    .filter-toggle.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* ===== Collapsible Options ===== */
+    .filter-options {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      padding-left: 0.3rem;
+    }
+    .filter-options.active {
+      display: flex;
+    }
+
+    /* ===== Checkbox Items ===== */
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0.25rem 0.2rem;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .filter-item:hover {
+      background: rgba(85, 155, 247, 0.12);
+    }
+
+    .checkbox {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      border: 2px solid #666;
+      display: inline-block;
+      position: relative;
+      transition: all 0.15s;
+    }
+
+    /* ✅ Include */
+    .filter-item.active .checkbox {
+      background: #008efb;
+      border-color: #0091ff;
+    }
+    .filter-item.active .checkbox::after {
+      content: "✔";
+      position: absolute;
+      color: #fff;
+      top: -1px;
+      left: 3px;
+      font-size: 0.7rem;
+    }
+
+    /* 🚫 Exclude */
+    .filter-item.exclude .checkbox {
+      background: #a09e9e;
+      border-color: #a09e9e;
+    }
+    .filter-item.exclude .checkbox::after {
+      content: "✖";
+      position: absolute;
+      color: #fff;
+      top: -1px;
+      left: 3px;
+      font-size: 0.7rem;
+    }
+
+    /* ====== Clear Filters (Purple Bold Link) ====== */
+    .clear-filters-link {
+      background: none;
+      border: none;
+      color: #7cc7ff;
+      text-decoration: underline;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: -0.7rem;
+      text-align: left;
+      padding-left: 0.2rem;
+      transition: color 0.2s;
+    }
+    .clear-filters-link:hover {
+      color: #7cc7ff;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .store-layout {
+        flex-direction: column;
+      }
+      .filter-sidebar {
+        width: 100%;
+        margin-left: 0;
+        position: relative;
+        top: 0;
+      }
+    }
+
+    /* ===== Limit genre list height with scroll ===== */
+    /* ===== Limit genre list height with scroll (Clear button stays fixed below) ===== */
+    .filter-options {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      padding-left: 0.3rem;
+    }
+
+    .filter-options.active {
+      display: flex;
+    }
+
+    /* Wrap only the genre items in a scrollable container */
+    .filter-scroll {
+      max-height: 250px;        /* shows around 10 items */
+      overflow-y: auto;
+      margin-bottom: 0.8rem;
+      scrollbar-width: thin;
+      scrollbar-color: #6cb9f5 #2b2b2b;
+    }
+
+    .filter-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .filter-scroll::-webkit-scrollbar-thumb {
+      background: #7cc7ff;
+      border-radius: 3px;
+    }
+    .filter-scroll::-webkit-scrollbar-track {
+      background: #2b2b2b;
+    }
+
+  .pagination {
+    text-align: center;
+    margin: 2rem 0;
   }
 
-  /* ===== Limit genre list height with scroll ===== */
-  /* ===== Limit genre list height with scroll (Clear button stays fixed below) ===== */
-  .filter-options {
-    display: none;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-top: 0.4rem;
-    padding-left: 0.3rem;
-  }
-
-  .filter-options.active {
-    display: flex;
-  }
-
-  /* Wrap only the genre items in a scrollable container */
-  .filter-scroll {
-    max-height: 250px;        /* shows around 10 items */
-    overflow-y: auto;
-    margin-bottom: 0.8rem;
-    scrollbar-width: thin;
-    scrollbar-color: #a855f7 #2b2b2b;
-  }
-
-  .filter-scroll::-webkit-scrollbar {
-    width: 6px;
-  }
-  .filter-scroll::-webkit-scrollbar-thumb {
-    background: #a855f7;
-    border-radius: 3px;
-  }
-  .filter-scroll::-webkit-scrollbar-track {
-    background: #2b2b2b;
-  }
-
-.pagination {
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.pagination-list.fixed-size {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0 auto;
-  min-width: 420px; /* stays constant — adjust to your layout */
-}
-
-.pagination-list li {
-  width: 2rem;
-  text-align: center;
-  color: #ccc;
-}
-
-.pagination-list a,
-.pagination-list span {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  color: #e2e2e2;
-  transition: all 0.2s;
-}
-
-.pagination-list a:hover {
-  background: #3a3a3a;
-  color: #a855f7;
-}
-
-.pagination-list .active {
-  background: #a855f7;
-  color: #fff;
-  font-weight: 700;
-}
-
-.pagination-list .disabled {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.pagination-list .dots {
-  pointer-events: none;
-  opacity: 0.6;
-  font-weight: bold;
-}
-
-@media (max-width: 500px) {
   .pagination-list.fixed-size {
-    min-width: 320px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0 auto;
+    min-width: 420px; /* stays constant — adjust to your layout */
+  }
+
+  .pagination-list li {
+    width: 2rem;
+    text-align: center;
+    color: #ccc;
+  }
+
+  .pagination-list a,
+  .pagination-list span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #e2e2e2;
+    transition: all 0.2s;
+  }
+
+  .pagination-list a:hover {
+    background: #3a3a3a;
+    color: #7cc7ff;
+  }
+
+  .pagination-list .active {
+    background: #4788ba;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .pagination-list .disabled {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .pagination-list .dots {
+    pointer-events: none;
+    opacity: 0.6;
+    font-weight: bold;
+  }
+
+  @media (max-width: 500px) {
+    .pagination-list.fixed-size {
+      min-width: 320px;
+    }
   }
 }
 
@@ -621,69 +636,119 @@
       btn.classList.toggle("active");
       target.classList.toggle("active");
     });
-  });
 
-  function buildPagination(totalPages) {
-    paginationContainer.innerHTML = "";
-    if (totalPages <= 1) return;
+    function buildPagination(totalPages) {
+      paginationContainer.innerHTML = "";
+      if (totalPages <= 1) return;
 
-    const ul = document.createElement("ul");
-    ul.className = "pagination-list fixed-size";
+      const ul = document.createElement("ul");
+      ul.className = "pagination-list fixed-size";
 
-    const MAX_VISIBLE = 7; // total slots including first/last & "..." placeholders
+      const MAX_VISIBLE = 7; // total slots including first/last & "..." placeholders
 
-    const addItem = (label, page, type = "page", active = false, disabled = false) => {
-      const li = document.createElement("li");
-      if (type === "dots") {
-        li.innerHTML = `<span class="dots">…</span>`;
-      } else if (disabled) {
-        li.innerHTML = `<span class="disabled">${label}</span>`;
-      } else if (active) {
-        li.innerHTML = `<span class="active">${label}</span>`;
-      } else {
-        li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+      const addItem = (label, page, type = "page", active = false, disabled = false) => {
+        const li = document.createElement("li");
+        if (type === "dots") {
+          li.innerHTML = `<span class="dots">…</span>`;
+        } else if (disabled) {
+          li.innerHTML = `<span class="disabled">${label}</span>`;
+        } else if (active) {
+          li.innerHTML = `<span class="active">${label}</span>`;
+        } else {
+          li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+        }
+        ul.appendChild(li);
+      };
+
+      // ← Prev arrow (invisible but occupies space when disabled)
+      addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
+
+      // always include first page
+      addItem(1, 1, "page", currentPage === 1);
+
+      let start = Math.max(2, currentPage - 1);
+      let end = Math.min(totalPages - 1, currentPage + 1);
+
+      // if too close to start
+      if (currentPage <= 3) {
+        start = 2;
+        end = Math.min(4, totalPages - 1);
       }
-      ul.appendChild(li);
-    };
+      // if too close to end
+      else if (currentPage >= totalPages - 2) {
+        end = totalPages - 1;
+        start = Math.max(totalPages - 3, 2);
+      }
 
-    // ← Prev arrow (invisible but occupies space when disabled)
-    addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
+      // show left dots if needed
+      if (start > 2) addItem("…", null, "dots");
 
-    // always include first page
-    addItem(1, 1, "page", currentPage === 1);
+      // show middle range
+      for (let i = start; i <= end; i++) {
+        addItem(i, i, "page", i === currentPage);
+      }
 
-    let start = Math.max(2, currentPage - 1);
-    let end = Math.min(totalPages - 1, currentPage + 1);
+      // show right dots if needed
+      if (end < totalPages - 1) addItem("…", null, "dots");
 
-    // if too close to start
-    if (currentPage <= 3) {
-      start = 2;
-      end = Math.min(4, totalPages - 1);
+      // always include last page
+      if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
+
+      // → Next arrow
+      addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
+
+      paginationContainer.appendChild(ul);
+
+      ul.querySelectorAll("a[data-page]").forEach(a => {
+        a.addEventListener("click", e => {
+          e.preventDefault();
+          currentPage = parseInt(a.dataset.page);
+          doFilterAndSort();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
     }
-    // if too close to end
-    else if (currentPage >= totalPages - 2) {
-      end = totalPages - 1;
-      start = Math.max(totalPages - 3, 2);
-    }
 
-    // show left dots if needed
-    if (start > 2) addItem("…", null, "dots");
 
-    // show middle range
-    for (let i = start; i <= end; i++) {
-      addItem(i, i, "page", i === currentPage);
-    }
+    function doFilterAndSort() {
+      const q = input.value.trim().toLowerCase();
+      const sortBy = sortSelect.value;
+      let visibleCards = [];
 
-    // show right dots if needed
-    if (end < totalPages - 1) addItem("…", null, "dots");
+      const sorted = [...cards].sort((a, b) => {
+        const titleA = (a.dataset.title || "").toLowerCase();
+        const titleB = (b.dataset.title || "").toLowerCase();
+        const priceA = parseFloat(a.dataset.price) || 0;
+        const priceB = parseFloat(b.dataset.price) || 0;
+        const dateA = new Date(a.dataset.release || "1970-01-01");
+        const dateB = new Date(b.dataset.release || "1970-01-01");
+        switch (sortBy) {
+          case "alphabet": return titleA.localeCompare(titleB);
+          case "alphabet-desc": return titleB.localeCompare(titleA);
+          case "price": return priceA - priceB;
+          case "price-desc": return priceB - priceA;
+          case "release": return dateB - dateA;
+          case "release-old": return dateA - dateB;
+          default: return 0;
+        }
+      });
 
-    // always include last page
-    if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
+      grid.innerHTML = "";
+      sorted.forEach(card => {
+        const title = (card.dataset.title || "").toLowerCase();
+        const genres = (card.dataset.genres || "").toLowerCase().split(",");
+        const modes = (card.dataset.modes || "").toLowerCase().split(",");
+        const matchesSearch = !q || title.includes(q);
+        const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
+        const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
+        const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
+        const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
+        if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude)
+          visibleCards.push(card);
+      });
 
-    // → Next arrow
-    addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
-
-    paginationContainer.appendChild(ul);
+      const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+      if (currentPage > totalPages) currentPage = totalPages || 1;
 
     ul.querySelectorAll("a[data-page]").forEach(a => {
       a.addEventListener("click", e => {
@@ -702,42 +767,48 @@
     });
   }
 
+      noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+      buildPagination(totalPages);
+    }
 
-  function doFilterAndSort() {
-    const q = input.value.trim().toLowerCase();
-    const sortBy = sortSelect.value;
-    let visibleCards = [];
-
-    const sorted = [...cards].sort((a, b) => {
-      const titleA = (a.dataset.title || "").toLowerCase();
-      const titleB = (b.dataset.title || "").toLowerCase();
-      const priceA = parseFloat(a.dataset.price) || 0;
-      const priceB = parseFloat(b.dataset.price) || 0;
-      const dateA = new Date(a.dataset.release || "1970-01-01");
-      const dateB = new Date(b.dataset.release || "1970-01-01");
-      switch (sortBy) {
-        case "alphabet": return titleA.localeCompare(titleB);
-        case "alphabet-desc": return titleB.localeCompare(titleA);
-        case "price": return priceA - priceB;
-        case "price-desc": return priceB - priceA;
-        case "release": return dateB - dateA;
-        case "release-old": return dateA - dateB;
-        default: return 0;
-      }
+    genreItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const genre = item.dataset.genre;
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+          item.classList.add("exclude");
+          includeGenres.delete(genre);
+          excludeGenres.add(genre);
+        } else if (item.classList.contains("exclude")) {
+          item.classList.remove("exclude");
+          excludeGenres.delete(genre);
+        } else {
+          item.classList.add("active");
+          includeGenres.add(genre);
+        }
+        currentPage = 1;
+        doFilterAndSort();
+      });
     });
 
-    grid.innerHTML = "";
-    sorted.forEach(card => {
-      const title = (card.dataset.title || "").toLowerCase();
-      const genres = (card.dataset.genres || "").toLowerCase().split(",");
-      const modes = (card.dataset.modes || "").toLowerCase().split(",");
-      const matchesSearch = !q || title.includes(q);
-      const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
-      const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
-      const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
-      const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
-      if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude)
-        visibleCards.push(card);
+    modeItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const mode = item.dataset.mode;
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+          item.classList.add("exclude");
+          includeModes.delete(mode);
+          excludeModes.add(mode);
+        } else if (item.classList.contains("exclude")) {
+          item.classList.remove("exclude");
+          excludeModes.delete(mode);
+        } else {
+          item.classList.add("active");
+          includeModes.add(mode);
+        }
+        currentPage = 1;
+        doFilterAndSort();
+      });
     });
 
     const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
@@ -778,41 +849,18 @@
       currentPage = 1;
       doFilterAndSort();
     });
-  });
 
-  modeItems.forEach(item => {
-    item.addEventListener("click", () => {
-      const mode = item.dataset.mode;
-      if (item.classList.contains("active")) {
-        item.classList.remove("active");
-        item.classList.add("exclude");
-        includeModes.delete(mode);
-        excludeModes.add(mode);
-      } else if (item.classList.contains("exclude")) {
-        item.classList.remove("exclude");
-        excludeModes.delete(mode);
-      } else {
-        item.classList.add("active");
-        includeModes.add(mode);
-      }
+    clearModesBtn.addEventListener("click", () => {
+      includeModes.clear();
+      excludeModes.clear();
+      modeItems.forEach(i => i.classList.remove("active", "exclude"));
       currentPage = 1;
       doFilterAndSort();
     });
-  });
 
-  clearGenresBtn.addEventListener("click", () => {
-    includeGenres.clear();
-    excludeGenres.clear();
-    genreItems.forEach(i => i.classList.remove("active", "exclude"));
-    currentPage = 1;
-    doFilterAndSort();
-  });
+    input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
+    sortSelect.addEventListener("change", () => { currentPage = 1; doFilterAndSort(); });
 
-  clearModesBtn.addEventListener("click", () => {
-    includeModes.clear();
-    excludeModes.clear();
-    modeItems.forEach(i => i.classList.remove("active", "exclude"));
-    currentPage = 1;
     doFilterAndSort();
   });
 

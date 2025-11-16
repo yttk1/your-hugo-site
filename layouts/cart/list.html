@@ -96,12 +96,19 @@ document.getElementById('purchase-btn').addEventListener('click', () => {
 </script>
 
 <style>
-.cart-container {
-  background: white;
+#cart-container {
+  background: #1e293b;
   padding: 2rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  color: white;
+  max-width: 800px;
+  margin: 2rem auto;
+
+  /* 👇 NEW: Forces stable height, prevents header jump */
+  min-height: calc(100vh - 160px);
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
