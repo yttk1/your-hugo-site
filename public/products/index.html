@@ -172,7 +172,7 @@
   gap: 6px;
 
   padding: 6px 12px;
-  background: #3d9ce5;
+  background: #1d4dae;
   color: white;
   border-radius: 6px;
   font-weight: 700;
@@ -2064,68 +2064,40 @@
       min-width: 320px;
     }
   }
-}
 
 
-  </style>
+    </style>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("search-bar");
-  const sortSelect = document.getElementById("sort-select");
-  const grid = document.getElementById("products-grid");
-  const cards = Array.from(document.querySelectorAll(".product-card"));
-  const noResults = document.getElementById("no-results");
-  const toggles = document.querySelectorAll(".filter-toggle");
-  const genreItems = document.querySelectorAll("[data-genre]");
-  const modeItems = document.querySelectorAll("[data-mode]");
-  const clearGenresBtn = document.querySelector(".clear-genres");
-  const clearModesBtn = document.querySelector(".clear-modes");
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("search-bar");
+    const sortSelect = document.getElementById("sort-select");
+    const grid = document.getElementById("products-grid");
+    const cards = Array.from(document.querySelectorAll(".product-card"));
+    const noResults = document.getElementById("no-results");
+    const toggles = document.querySelectorAll(".filter-toggle");
+    const genreItems = document.querySelectorAll("[data-genre]");
+    const modeItems = document.querySelectorAll("[data-mode]");
+    const clearGenresBtn = document.querySelector(".clear-genres");
+    const clearModesBtn = document.querySelector(".clear-modes");
 
-  let includeGenres = new Set();
-  let excludeGenres = new Set();
-  let includeModes = new Set();
-  let excludeModes = new Set();
+    let includeGenres = new Set();
+    let excludeGenres = new Set();
+    let includeModes = new Set();
+    let excludeModes = new Set();
 
-  const ITEMS_PER_PAGE = 16;
-  let currentPage = 1;
-  const paginationContainer = document.createElement("div");
-  paginationContainer.className = "pagination";
-  grid.after(paginationContainer);
+    const ITEMS_PER_PAGE = 16;
+    let currentPage = 1;
+    const paginationContainer = document.createElement("div");
+    paginationContainer.className = "pagination";
+    grid.after(paginationContainer);
 
-  
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const urlSort = params.get("sort");
-    const savedSort = localStorage.getItem("productSort");
-    const desiredSort = urlSort || savedSort;
-    if (
-      desiredSort &&
-      Array.from(sortSelect.options).some(o => o.value === desiredSort)
-    ) {
-      sortSelect.value = desiredSort;
-    }
-  } catch (_) {   }
-
-  
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const urlPageRaw = params.get("page");
-    const urlPage = urlPageRaw ? parseInt(urlPageRaw, 10) : NaN;
-    const savedPageRaw = localStorage.getItem("productPage");
-    const savedPage = savedPageRaw ? parseInt(savedPageRaw, 10) : NaN;
-    if (Number.isFinite(urlPage) && urlPage > 0) {
-      currentPage = urlPage;
-    } else if (Number.isFinite(savedPage) && savedPage > 0) {
-      currentPage = savedPage;
-    }
-  } catch (_) {   }
-
-  toggles.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = document.getElementById(btn.dataset.target);
-      btn.classList.toggle("active");
-      target.classList.toggle("active");
+    toggles.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = document.getElementById(btn.dataset.target);
+        btn.classList.toggle("active");
+        target.classList.toggle("active");
+      });
     });
 
     function buildPagination(totalPages) {
@@ -2241,22 +2213,9 @@
       const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
       if (currentPage > totalPages) currentPage = totalPages || 1;
 
-    ul.querySelectorAll("a[data-page]").forEach(a => {
-      a.addEventListener("click", e => {
-        e.preventDefault();
-        currentPage = parseInt(a.dataset.page);
-        
-        try {
-          localStorage.setItem("productPage", String(currentPage));
-          const params = new URLSearchParams(window.location.search);
-          params.set("page", String(currentPage));
-          history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
-        } catch (_) {   }
-        doFilterAndSort();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    });
-  }
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
 
       noResults.style.display = visibleCards.length === 0 ? "block" : "none";
       buildPagination(totalPages);
@@ -2302,41 +2261,10 @@
       });
     });
 
-    const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
-    if (currentPage > totalPages) currentPage = totalPages || 1;
-    if (currentPage < 1) currentPage = 1;
-
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    const end = start + ITEMS_PER_PAGE;
-    visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
-
-    noResults.style.display = visibleCards.length === 0 ? "block" : "none";
-    
-    try {
-      localStorage.setItem("productPage", String(currentPage));
-      const params = new URLSearchParams(window.location.search);
-      params.set("page", String(currentPage));
-      params.set("sort", sortSelect.value);
-      history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
-    } catch (_) {   }
-    buildPagination(totalPages);
-  }
-
-  genreItems.forEach(item => {
-    item.addEventListener("click", () => {
-      const genre = item.dataset.genre;
-      if (item.classList.contains("active")) {
-        item.classList.remove("active");
-        item.classList.add("exclude");
-        includeGenres.delete(genre);
-        excludeGenres.add(genre);
-      } else if (item.classList.contains("exclude")) {
-        item.classList.remove("exclude");
-        excludeGenres.delete(genre);
-      } else {
-        item.classList.add("active");
-        includeGenres.add(genre);
-      }
+    clearGenresBtn.addEventListener("click", () => {
+      includeGenres.clear();
+      excludeGenres.clear();
+      genreItems.forEach(i => i.classList.remove("active", "exclude"));
       currentPage = 1;
       doFilterAndSort();
     });
@@ -2355,63 +2283,35 @@
     doFilterAndSort();
   });
 
-  input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
-  sortSelect.addEventListener("change", () => {
-    currentPage = 1;
+    </script>
     
-    try {
-      localStorage.setItem("productSort", sortSelect.value);
-      localStorage.setItem("productPage", "1");
-      const params = new URLSearchParams(window.location.search);
-      params.set("sort", sortSelect.value);
-      params.set("page", "1");
-      history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
-    } catch (_) {   }
-    doFilterAndSort();
-  });
-
-  
-  window.addEventListener("pageshow", () => {
-    
-    doFilterAndSort();
-  });
-
-  
-  setTimeout(() => {
-    
-    try {
-      const params = new URLSearchParams(window.location.search);
-      if (!params.has("sort")) {
-        params.set("sort", sortSelect.value);
-        history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
-      }
-      if (!params.has("page")) {
-        params.set("page", String(currentPage));
-        history.replaceState(null, "", `${location.pathname}?${params.toString()}`);
-      }
-      localStorage.setItem("productSort", sortSelect.value);
-      localStorage.setItem("productPage", String(currentPage));
-    } catch (_) {   }
-    doFilterAndSort();
-  }, 0);
-});
-
-  </script>
-  
   </main>
 
   <div class="footer-accent"></div>
 <footer class="gamestore-footer">
   <div class="footer-content">
     
-    <div class="footer-col">
-      <h2 class="footer-logo">GAME<span>STORE88</span></h2>
+    <div class="footer-col footer-brand">
+      <div class="footer-logo-row">
+        <img src="/g88.png" alt="GameStore88 Logo" class="footer-logo-img-left">
+
+        <h2 class="footer-logo">GAME<span>88™</span></h2>
+      </div>
+
       <p class="footer-desc">
         GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
       </p>
+
       <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
       <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        227 Nguyen Van Cu, Cho Quan District, Ho Chi Minh City, Vietnam
+        <a href="https://maps.google.com/?q=123 Gaming Street, Ho Chi Minh City"></a>
+      </p>
     </div>
+
+    
 
     
     <div class="footer-col">
@@ -2419,7 +2319,7 @@
       <ul>
         <li><a href="/">HomePage</a></li>
         <li><a href="/products/">Products</a></li>
-        <li><a href="/checkout/">Payment</a></li>
+        
         <li><a href="/about/">About</a></li>
       </ul>
     </div>
@@ -2439,7 +2339,6 @@
         
       </ul>
     </div>
-
 
 
 
@@ -2471,6 +2370,11 @@
     </div>
   </div>
 
+  <div class="sponsor-bottom">
+    <span>Sponsored by</span>
+    <img src="/playstation.png" class="sponsor-logo-bottom" alt="PlayStation">
+  </div>
+
   <div class="footer-bottom">
     <p>© 2025 GameStore88. All Rights Reserved.</p>
   </div>
@@ -2480,6 +2384,57 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;  
+}
+
+ 
+.footer-logo-img-left {
+  width: 50px;
+  height: 40px;
+
+  object-fit: cover;
+  border-radius: 12px;               
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+ 
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-logo span {
+  color: #3b82f6;
+}
+
+.footer-logo-img-left {
+  position: relative;
+  top: -6px;    
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;
+
+  --footer-logo-offset: 1px;     
+  position: relative;
+  top: var(--footer-logo-offset);
+}
+
  
 .gamestore-footer {
   background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
@@ -2541,34 +2496,42 @@
 
 .footer-social {
   display: flex;
-  justify-content: center;  
-  align-items: center;      
-  gap: 1.2rem;              
-  margin: 1.2rem 0;         
+  justify-content: center;    
+  align-items: center;        
+  gap: 1.2rem;
+  margin: 1.5rem auto;        
+  width: 100%;                
+  text-align: center;
 }
 
-.footer-social {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
+ 
 .social-btn {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 1.3rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
+
+.social-btn i {
+  position: absolute;
+  inset: 0;                  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.2rem;         
+  line-height: 1;            
+
+  transform: translateY(1px);    
+}
+
 
  
 .social-btn::before {
@@ -2693,7 +2656,47 @@
 .footer-col ul, .footer-col p {
   text-align: center;
 }
+.footer-address {
+  color: #9ca3af;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
 
+.footer-address i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.sponsor-bottom {
+  margin-top: -5rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-align: center;
+  width: 100%;
+}
+
+.sponsor-bottom span {
+  font-size: 1.2rem;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+  color: #facc15;                      
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.45);
+}
+
+.sponsor-logo-bottom {
+  height: 30px;      
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+}
 
 </style>
 
