@@ -103,3 +103,16 @@
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c69cb9f949e5d2a22a60e9ed6a5f67e4f9f511b1.jpg"
     - "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_3560c1bcefe715a8c6c47b6b675826bdb6f4ac52.jpg"
   long: "The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience powered by community feedback, Manager Live Challenges that bring fresh storylines to the new season, and Archetypes inspired by greats of the game."
+  
+- id: "p008"
+  title: "Battlefield 6"
+  price: 69.99
+  developer: "DICE"
+  publisher: "Electronic Arts"
+  release_date: "TBD"
+  modes: "Singleplayer / Multiplayer"
+  genres: ["Shooter", "FPS", "Multiplayer"]
+  trailer: "https://www.youtube.com/embed/pgNCgJG0vnY"
+  images:
+    - "https://m.media-amazon.com/images/I/81-ZPHWE9VL.jpg"
+  long: "Experience large-scale warfare with cutting-edge visuals, chaotic multiplayer battles, and cinematic singleplayer moments. Battlefield 6 brings intense combined-arms combat to the next generation."
