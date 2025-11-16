@@ -55,8 +55,31 @@
             <button class="clear-filters-link clear-modes">Clear modes</button>
           </div>
         </div>
-      </aside>
+        
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="compat">
+            Platform <span class="arrow">▼</span>
+          </button>
 
+          <div class="filter-options" id="compat">
+            <div class="filter-scroll">
+              <div class="filter-item" data-compat="ps5">
+                <span class="checkbox"></span>
+                <span class="label">PS5</span>
+              </div>
+
+              <div class="filter-item" data-compat="ps4">
+                <span class="checkbox"></span>
+                <span class="label">PS4</span>
+              </div>
+            </div>
+
+            <button class="clear-filters-link clear-compat">
+              Clear compatibility
+            </button>
+          </div>
+        </div>
+      </aside>
 
 
       <!-- 🎮 Main Product Section -->
@@ -86,7 +109,13 @@
           </div>
         </div>
 
-        <p id="no-results" class="no-results">😢 No games found.</p>
+        <div id="no-results" class="no-results">
+          <span class="emoji">🔍</span>
+          <strong>No matching games found</strong>
+          <div style="margin-top: .4rem; font-size: .95rem; color:#c7dfff;">
+            Try adjusting your filters or search.
+          </div>
+        </div>
 
         <!-- 📦 Product Grid -->
         <div class="products-grid" id="products-grid">
@@ -100,6 +129,8 @@
               {{- $clean = $clean | append (lower (trim . " ")) -}}
             {{- end -}}
             {{- delimit $clean "," -}}"
+
+            data-compatibility="{{ .compatibility | lower }}"
 
             data-modes="{{- with .modes -}}
               {{- $m := trim . " " -}}
@@ -580,6 +611,33 @@
   }
 
 
+  .no-results {
+  display: none;
+  text-align: center;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  width: min(420px, 90%);
+  font-size: 1.2rem;
+  color: #9cc9ff;
+  box-shadow: 0 0 25px rgba(78, 168, 255, 0.1);
+  animation: fadeIn 0.35s ease;
+}
+
+.no-results .emoji {
+  display: block;
+  font-size: 2.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.8rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
     </style>
 
 <script>
@@ -592,6 +650,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let excludeGenres = new Set();
     let includeModes = new Set();
     let excludeModes = new Set();
+    let includeCompat = new Set();
+    // let excludeCompat = new Set();
+
     let currentPage = 1;
     const ITEMS_PER_PAGE = 16;
 
@@ -608,6 +669,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const modeItems = document.querySelectorAll("[data-mode]");
     const clearGenresBtn = document.querySelector(".clear-genres");
     const clearModesBtn = document.querySelector(".clear-modes");
+    const compatItems = document.querySelectorAll("[data-compat]");
+    const clearCompatBtn = document.querySelector(".clear-compat");
+
 
     /* =====================================
        2) Load URL → STATE
@@ -623,6 +687,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (p.has("modes")) p.get("modes").split(",").forEach(m => includeModes.add(m));
         if (p.has("xmodes")) p.get("xmodes").split(",").forEach(m => excludeModes.add(m));
+
+        if (p.has("compat")) p.get("compat").split(",").forEach(c => includeCompat.add(c));
+        // if (p.has("xcompat")) p.get("xcompat").split(",").forEach(c => excludeCompat.add(c));
 
         if (p.has("page")) currentPage = parseInt(p.get("page")) || 1;
     }
@@ -642,6 +709,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (includeModes.has(m)) item.classList.add("active");
             if (excludeModes.has(m)) item.classList.add("exclude");
         });
+
+        compatItems.forEach(item => {
+          const c = item.dataset.compat;
+          if (includeCompat.has(c)) item.classList.add("active");
+          // if (excludeCompat.has(c)) item.classList.add("exclude");
+        });
+
     }
 
     /* =====================================
@@ -657,6 +731,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (excludeGenres.size) p.set("xgenres", [...excludeGenres].join(","));
         if (includeModes.size) p.set("modes", [...includeModes].join(","));
         if (excludeModes.size) p.set("xmodes", [...excludeModes].join(","));
+        if (includeCompat.size) p.set("compat", [...includeCompat].join(","));
+        // if (excludeCompat.size) p.set("xcompat", [...excludeCompat].join(","));
+
 
         p.set("page", currentPage);
 
@@ -691,12 +768,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const title = card.dataset.title;
             const genres = card.dataset.genres.split(",");
             const modes = card.dataset.modes.split(",");
+            const compat = card.dataset.compatibility;  
 
             if (q && !title.includes(q)) return;
             if (includeGenres.size && ![...includeGenres].some(g => genres.includes(g))) return;
             if ([...excludeGenres].some(g => genres.includes(g))) return;
             if (includeModes.size && ![...includeModes].some(m => modes.includes(m))) return;
             if ([...excludeModes].some(m => modes.includes(m))) return;
+
+            if (includeCompat.size && !includeCompat.has(compat)) return;
+            // if (excludeCompat.has(compat)) return;
 
             visible.push(card);
         });
@@ -816,6 +897,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    compatItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const c = item.dataset.compat;
+
+            const alreadyActive = item.classList.contains("active");
+
+            // Clear all first
+            includeCompat.clear();
+            compatItems.forEach(i => i.classList.remove("active"));
+
+            // If clicking a non-active option → activate it
+            if (!alreadyActive) {
+                item.classList.add("active");
+                includeCompat.add(c);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
+    });
+
+
+
     /* =====================================
        9) Clear filters
     ====================================== */
@@ -837,6 +942,13 @@ document.addEventListener("DOMContentLoaded", () => {
         updateURL();
     });
 
+    clearCompatBtn.addEventListener("click", () => {
+        includeCompat.clear();
+        compatItems.forEach(i => i.classList.remove("active"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
     /* =====================================
        10) Search + Sort
     ====================================== */
@@ -860,6 +972,9 @@ document.addEventListener("DOMContentLoaded", () => {
     doFilterAndSort();
     updateURL();
 });
+
+
+
 </script>
 
 
