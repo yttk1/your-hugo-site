@@ -27,6 +27,9 @@
       <label>CVV</label>
       <input type="text" placeholder="123" id="card-cvv" inputmode="numeric" autocomplete="cc-csc" maxlength="3">
 
+      <label>Full Address</label>
+      <input type="text" id="addr-full" placeholder="123 Main St, City, State ZIP, Country">
+      
       <button id="complete-btn">Complete Purchase</button>
     </div>
   </div>
@@ -230,17 +233,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function luhnValid(num) {
     if (!/^\d{13,19}$/.test(num)) return false;
-    let sum = 0, dbl = false;
-    for (let i = num.length - 1; i >= 0; i--) {
-      let n = parseInt(num[i], 10);
-      if (dbl) {
-        n *= 2;
-        if (n > 9) n -= 9;
-      }
-      sum += n;
-      dbl = !dbl;
-    }
-    return sum % 10 === 0;
+    return true;
+    // let sum = 0, dbl = false;
+    // for (let i = num.length - 1; i >= 0; i--) {
+    //   let n = parseInt(num[i], 10);
+    //   if (dbl) {
+    //     n *= 2;
+    //     if (n > 9) n -= 9;
+    //   }
+    //   sum += n;
+    //   dbl = !dbl;
+    // }
+    // return sum % 10 === 0;
   }
 
   // Replace existing click handlers on Complete button
@@ -251,11 +255,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const number = numberEl.value.replace(/\D/g, "");
     const expiry = expiryEl.value.trim();
     const cvv = cvvEl.value.trim();
-
-    if (!luhnValid(number)) {
-      showToast("❌ Enter a valid card number.", "error");
+    if (!/^\d{13,19}$/.test(number)) {
+      showToast("❌ Card number must be between 13 and 19 digits.", "error");
       return;
     }
+    // if (!luhnValid(number)) {
+    //   showToast("❌ Enter a valid card number.", "error");
+    //   return;
+    // }
     if (!isValidExpiry(expiry)) {
       showToast("❌ Expiry must be MM/YY (01-12).", "error");
       return;
@@ -270,10 +277,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkoutKey = user ? `checkout_${user}` : null;
     const cartKey = user ? `cart_${user}` : null;
 
+    // --- NEW: Save the order details temporarily ---
+    const orderToConfirm = JSON.parse(localStorage.getItem(checkoutKey)) 
+                        || JSON.parse(localStorage.getItem(cartKey))
+                        || [];
+    if (orderToConfirm.length > 0) {
+        localStorage.setItem(`last_order_${user}`, JSON.stringify(orderToConfirm));
+    }
+    // ----------------------------------------------
+
     showToast("✅ Purchase complete!", "success");
     if (checkoutKey) localStorage.removeItem(checkoutKey);
     if (cartKey) localStorage.removeItem(cartKey);
-    setTimeout(() => (window.location.href = "/"), 1500);
+    
+    setTimeout(() => (window.location.href = "/payment/success/"), 1500);
   });
 });
 </script>

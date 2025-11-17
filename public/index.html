@@ -250,7 +250,7 @@
     <h1 class="hero-title">Discover <span>Top Games</span></h1>
 
     <p class="hero-subtitle">
-      Explore our premium collection of official game titles, unbeatable deals,
+      Explore our premium collection of official PLAYSTATION game titles, unbeatable deals,
       and new releases.
     </p>
 
@@ -324,7 +324,7 @@
 }
 
 .hero-subtitle {
-  color: #dcdcdc;
+  color: #ffffff;
   font-size: 1.1rem;
   line-height: 1.5;
   margin-bottom: 1.3rem;
@@ -627,6 +627,98 @@ overflow-y: hidden;
 }
 
 
+ 
+.platform-section {
+  margin: 80px 0;
+  margin-bottom: -60px;
+  text-align: center;
+}
+
+.platform-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 25px;
+  text-shadow: 0 0 18px rgba(255,255,255,0.35);
+}
+
+ 
+.platform-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+
+ 
+.platform-card {
+  position: relative;
+  width: 250px;
+  height: 240px;
+
+  background-size: cover;         
+  background-position: center;    
+  background-repeat: no-repeat;   
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  text-decoration: none;
+  color: #fff;
+
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.55);
+}
+
+ 
+.platform-card.ps5 {
+  background-image: url("https://product.hstatic.net/200000637319/product/image_-_2025-01-10t102030.103_49503ed1f83144baaa327d1af9f7e0b6_master.png");
+}
+
+.platform-card.ps4 {
+  background-image: url("https://media.ldlc.com/r1600/ld/products/00/03/83/35/LD0003833580_2.jpg");
+}
+
+ 
+.platform-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  z-index: 1;
+}
+
+ 
+.platform-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 24px rgba(90,160,255,0.6);
+}
+
+
+ 
+.platform-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  padding-bottom: 16px;
+  align-items: center;
+  gap: 10px;
+
+  padding-bottom: 16px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+ 
+   
+
+
   </style>
 </head>
 <body>
@@ -782,6 +874,16 @@ overflow-y: hidden;
     <div class="nr-track" id="nr-track">
       
       
+        <a class="nr-card" href="/products/p032">
+          <div class="nr-media">
+            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/10/BATTLEFIELD-6-00.webp" alt="Battlefield 6">
+          </div>
+          <div class="nr-meta">
+            <h4>Battlefield 6</h4>
+            <p>$69.99</p>
+          </div>
+        </a>
+      
         <a class="nr-card" href="/products/p050">
           <div class="nr-media">
             <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/03/clair_obscur_expedition_33_us_ps5-1.webp" alt="Clair Obscur: Expedition 33">
@@ -892,16 +994,6 @@ overflow-y: hidden;
           </div>
         </a>
       
-        <a class="nr-card" href="/products/p045">
-          <div class="nr-media">
-            <img loading="lazy" src="https://haloshop.vn/wp-content/uploads/2025/04/ghostrunner_ps5.webp" alt="Ghostrunner 2">
-          </div>
-          <div class="nr-meta">
-            <h4>Ghostrunner 2</h4>
-            <p>$39.99</p>
-          </div>
-        </a>
-      
     </div>
 
     <button class="nr-arrow nr-next" aria-label="Next">›</button>
@@ -919,42 +1011,42 @@ overflow-y: hidden;
     <div class="genres-track" id="genres-track">
 
       
-      <a href="/products/?genre=Action" class="genre-card">
+      <a href="/products/?genres=action" class="genre-card">
         <img loading="lazy" src="https://assets-prd.ignimgs.com/2023/12/12/turbo-overkill-1702370714781.jpeg">
         <span>Action</span>
       </a>
 
-      <a href="/products/?genre=RPG" class="genre-card">
+      <a href="/products/?genres=rpg" class="genre-card">
         <img loading="lazy" src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:3587,ch:2018,q:80,w:2560/zqUhepZrjQiMstyDcVVedN.jpg">
         <span>RPG</span>
       </a>
 
-      <a href="/products/?genre=Strategy" class="genre-card">
+      <a href="/products/?genres=strategy" class="genre-card">
         <img loading="lazy" src="https://i.ytimg.com/vi/4LCYYsmBJlU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLClFn4FEaulAc0Kptj7hmgnIrQNJw">
         <span>Strategy</span>
       </a>
 
-      <a href="/products/?genre=Indie" class="genre-card">
+      <a href="/products/?genres=indie" class="genre-card">
         <img loading="lazy" src="https://www.spieltimes.io/wp-content/uploads/2024/08/The-Rise-of-Indie-Games-A-New-Era-in-Gaming.webp">
         <span>Indie</span>
       </a>
 
-      <a href="/products/?genre=Racing" class="genre-card">
+      <a href="/products/?genres=racing" class="genre-card">
         <img loading="lazy" src="https://us.v-cdn.net/6036147/uploads/KYI2ZI1HK95C/l-10-4-1200x675.jpg">
         <span>Racing</span>
       </a>
 
-      <a href="/products/?genre=Horror" class="genre-card">
+      <a href="/products/?genres=horror" class="genre-card">
         <img loading="lazy" src="https://www.nyfa.edu/wp-content/uploads/2022/11/springtrap.jpg">
         <span>Horror</span>
       </a>
 
-      <a href="/products/?genre=Sports" class="genre-card">
+      <a href="/products/?genres=sports" class="genre-card">
         <img loading="lazy" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlmcXxvpUAZwZTP9dhaNkzlyxIPEmZfHzwqQ&s">
         <span>Sports</span>
       </a>
 
-      <a href="/products/?genre=Adventure" class="genre-card">
+      <a href="/products/?genres=adventure" class="genre-card">
         <img loading="lazy" src="https://i.guim.co.uk/img/media/67edb515d6a2b19ef10b002c6bdd44b40b284316/112_0_1734_1041/master/1734.jpg?width=1200&quality=85&auto=format&fit=max&s=4c6c02528f857ee541c6d0fb92cf2b64">
         <span>Adventure</span>
       </a>
@@ -962,6 +1054,24 @@ overflow-y: hidden;
     </div>
 
     <button class="genres-arrow g-next">›</button>
+  </div>
+</section>
+
+<section class="platform-section">
+  <h2 class="platform-title">Choose Your Platform</h2>
+
+  <div class="platform-grid">
+    <a href="/products/?compat=ps5" class="platform-card ps5">
+      <div class="platform-label">
+        PS5
+      </div>
+    </a>
+
+    <a href="/products/?compat=ps4" class="platform-card ps4">
+      <div class="platform-label">
+        PS4
+      </div>
+    </a>
   </div>
 </section>
 
@@ -1159,7 +1269,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <p class="footer-desc">
-        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+        GameStore88 — A leading provider of genuine, official PLAYSTATION game titles. We deliver the best gaming experience at competitive and reasonable prices.
       </p>
 
       <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>

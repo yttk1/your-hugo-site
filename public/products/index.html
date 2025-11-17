@@ -410,88 +410,86 @@
                 
                   
                 
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
+                  
+                
+                  
+                
+              
+                
+                  
+                
                   
                     
-                  
-                
-              
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
-                  
-                
-                  
-                
-              
-                
-                  
-                
                   
                 
                   
@@ -634,11 +632,6 @@
                 <span class="label">Adventure</span>
               </div>
               
-              <div class="filter-item" data-genre="co-op">
-                <span class="checkbox"></span>
-                <span class="label">Co-op</span>
-              </div>
-              
               <div class="filter-item" data-genre="horror">
                 <span class="checkbox"></span>
                 <span class="label">Horror</span>
@@ -704,6 +697,11 @@
                 <span class="label">Turn-Based</span>
               </div>
               
+              <div class="filter-item" data-genre="war">
+                <span class="checkbox"></span>
+                <span class="label">War</span>
+              </div>
+              
             </div>
             <button class="clear-filters-link clear-genres">Clear genres</button>
           </div>
@@ -733,8 +731,31 @@
             <button class="clear-filters-link clear-modes">Clear modes</button>
           </div>
         </div>
-      </aside>
+        
+        <div class="filter-group">
+          <button class="filter-toggle" data-target="compat">
+            Platform <span class="arrow">▼</span>
+          </button>
 
+          <div class="filter-options" id="compat">
+            <div class="filter-scroll">
+              <div class="filter-item" data-compat="ps5">
+                <span class="checkbox"></span>
+                <span class="label">PS5</span>
+              </div>
+
+              <div class="filter-item" data-compat="ps4">
+                <span class="checkbox"></span>
+                <span class="label">PS4</span>
+              </div>
+            </div>
+
+            <button class="clear-filters-link clear-compat">
+              Clear platforms
+            </button>
+          </div>
+        </div>
+      </aside>
 
 
       
@@ -764,7 +785,13 @@
           </div>
         </div>
 
-        <p id="no-results" class="no-results">😢 No games found.</p>
+        <div id="no-results" class="no-results">
+          <span class="emoji">🔍</span>
+          <strong>No matching games found</strong>
+          <div style="margin-top: .4rem; font-size: .95rem; color:#c7dfff;">
+            Try adjusting your filters or search.
+          </div>
+        </div>
 
         
         <div class="products-grid" id="products-grid">
@@ -773,7 +800,10 @@
             data-title="cyberpunk 2077"
             data-price="59.99"
             data-release="2020-12-10"
-            data-genres="Action,RPG,Open World"
+            data-genres="action,rpg,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -790,7 +820,10 @@
             data-title="elden ring"
             data-price="69.99"
             data-release="2022-02-25"
-            data-genres="Action,RPG,Open World"
+            data-genres="action,rpg,open world"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -807,7 +840,10 @@
             data-title="stardew valley"
             data-price="14.99"
             data-release="2016-02-26"
-            data-genres="Simulation,RPG"
+            data-genres="simulation,rpg"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer,co-op">
 
             
@@ -824,7 +860,10 @@
             data-title="civilization vi"
             data-price="29.99"
             data-release="2016-10-21"
-            data-genres="Strategy"
+            data-genres="strategy"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -841,7 +880,10 @@
             data-title="no man’s sky"
             data-price="59.99"
             data-release="2016-08-12"
-            data-genres="Adventure,Open World,Simulation"
+            data-genres="adventure,open world,simulation"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -858,7 +900,10 @@
             data-title="hades"
             data-price="24.99"
             data-release="2020-09-17"
-            data-genres="Action,Roguelike"
+            data-genres="action,roguelike"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -875,7 +920,10 @@
             data-title="ea sports fc 26"
             data-price="69.99"
             data-release="2025-09-26"
-            data-genres="Sports,Simulation"
+            data-genres="sports,simulation"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -892,7 +940,10 @@
             data-title="baldur’s gate 3"
             data-price="59.99"
             data-release="2023-08-03"
-            data-genres="RPG,Adventure"
+            data-genres="rpg,adventure"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer,multiplayer,co-op">
 
             
@@ -909,7 +960,10 @@
             data-title="red dead redemption 2"
             data-price="59.99"
             data-release="2019-11-05"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -926,7 +980,10 @@
             data-title="the witcher 3: wild hunt"
             data-price="39.99"
             data-release="2015-05-19"
-            data-genres="RPG,Action,Open World"
+            data-genres="rpg,action,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -943,7 +1000,10 @@
             data-title="resident evil 4 remake"
             data-price="39.99"
             data-release="2023-03-24"
-            data-genres="Horror,Action"
+            data-genres="horror,action"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -960,7 +1020,10 @@
             data-title="hollow knight"
             data-price="14.99"
             data-release="2017-02-24"
-            data-genres="Action,Platformer"
+            data-genres="action,platformer"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -977,7 +1040,10 @@
             data-title="ghost of tsushima director’s cut"
             data-price="59.99"
             data-release="2023-05-16"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,co-op">
 
             
@@ -994,7 +1060,10 @@
             data-title="helldivers 2"
             data-price="39.99"
             data-release="2024-02-08"
-            data-genres="Shooter,Action"
+            data-genres="shooter,action"
+
+            data-compatibility="ps5"
+
             data-modes="multiplayer,co-op">
 
             
@@ -1011,7 +1080,10 @@
             data-title="doom eternal"
             data-price="39.99"
             data-release="2020-03-20"
-            data-genres="Shooter,Action"
+            data-genres="shooter,action"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -1028,7 +1100,10 @@
             data-title="the sims 4"
             data-price="49.99"
             data-release="2014-09-02"
-            data-genres="Simulation"
+            data-genres="simulation"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1045,7 +1120,10 @@
             data-title="grand theft auto v"
             data-price="29.99"
             data-release="2015-04-14"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -1062,7 +1140,10 @@
             data-title="sekiro: shadows die twice"
             data-price="59.99"
             data-release="2019-03-22"
-            data-genres="Action,Adventure"
+            data-genres="action,adventure"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1079,7 +1160,10 @@
             data-title="dead cells"
             data-price="24.99"
             data-release="2018-08-07"
-            data-genres="Action,Roguelike,Platformer"
+            data-genres="action,roguelike,platformer"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1096,7 +1180,10 @@
             data-title="it takes two"
             data-price="39.99"
             data-release="2021-03-26"
-            data-genres="Action,Adventure,Co-op"
+            data-genres="action,adventure"
+
+            data-compatibility="ps4"
+
             data-modes="co-op">
 
             
@@ -1113,7 +1200,10 @@
             data-title="dark souls iii"
             data-price="59.99"
             data-release="2016-04-11"
-            data-genres="Action,RPG"
+            data-genres="action,rpg"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,multiplayer">
 
             
@@ -1130,7 +1220,10 @@
             data-title="resident evil village"
             data-price="39.99"
             data-release="2021-05-07"
-            data-genres="Horror,Action"
+            data-genres="horror,action"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1147,7 +1240,10 @@
             data-title="god of war"
             data-price="49.99"
             data-release="2022-01-14"
-            data-genres="Action,Adventure"
+            data-genres="action,adventure"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1164,7 +1260,10 @@
             data-title="detroit: become human"
             data-price="39.99"
             data-release="2020-06-18"
-            data-genres="Adventure"
+            data-genres="adventure"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1181,7 +1280,10 @@
             data-title="horizon zero dawn complete edition"
             data-price="49.99"
             data-release="2020-08-07"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1198,7 +1300,10 @@
             data-title="assassin’s creed mirage"
             data-price="49.99"
             data-release="2023-10-05"
-            data-genres="Action,Adventure"
+            data-genres="action,adventure"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1215,7 +1320,10 @@
             data-title="lies of p"
             data-price="59.99"
             data-release="2023-09-18"
-            data-genres="Action,RPG"
+            data-genres="action,rpg"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1232,7 +1340,10 @@
             data-title="ratchet &amp; clank: rift apart"
             data-price="59.99"
             data-release="2023-07-26"
-            data-genres="Action,Platformer,Shooter"
+            data-genres="action,platformer,shooter"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1249,7 +1360,10 @@
             data-title="the elder scrolls v: skyrim"
             data-price="39.99"
             data-release="2011-11-11"
-            data-genres="Action,RPG,Open World"
+            data-genres="action,rpg,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1266,7 +1380,10 @@
             data-title="spider-man remastered"
             data-price="59.99"
             data-release="2022-08-12"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1283,7 +1400,10 @@
             data-title="spider-man: miles morales"
             data-price="49.99"
             data-release="2022-11-18"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1297,19 +1417,22 @@
           </article>
           
           <article class="product-card"
-            data-title="returnal"
-            data-price="59.99"
-            data-release="2023-02-15"
-            data-genres="Action,Roguelike,Shooter"
-            data-modes="singleplayer">
+            data-title="battlefield 6"
+            data-price="69.99"
+            data-release="2025-10-10"
+            data-genres="action,war,shooter"
+
+            data-compatibility="ps5"
+
+            data-modes="multiplayer">
 
             
             <a href="/products/p032/" class="product-link">
               <div class="thumb-wrap">
-                <img src="https://cdn1.epicgames.com/offer/4c461792757541e99c4a16c00834c956/EGS_Returnal_HousemarqueClimaxStudios_S2_1200x1600-617cb4daee4cf45fa937304bceb60a81" alt="Returnal" />
+                <img src="https://haloshop.vn/wp-content/uploads/2025/10/BATTLEFIELD-6-00.webp" alt="Battlefield 6" />
               </div>
-              <h3>Returnal</h3>
-              <p class="price">$59.99</p>
+              <h3>Battlefield 6</h3>
+              <p class="price">$69.99</p>
             </a>
           </article>
           
@@ -1317,7 +1440,10 @@
             data-title="horizon forbidden west complete edition"
             data-price="59.99"
             data-release="2024-03-21"
-            data-genres="Action,Adventure,Open World"
+            data-genres="action,adventure,open world"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1334,7 +1460,10 @@
             data-title="alan wake 2"
             data-price="59.99"
             data-release="2023-10-27"
-            data-genres="Horror,Adventure"
+            data-genres="horror,adventure"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1351,7 +1480,10 @@
             data-title="death stranding director’s cut"
             data-price="49.99"
             data-release="2022-03-30"
-            data-genres="Adventure,Open World"
+            data-genres="adventure,open world"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1368,7 +1500,10 @@
             data-title="god of war ragnarök"
             data-price="59.99"
             data-release="2025-09-19"
-            data-genres="Action,Adventure"
+            data-genres="action,adventure"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1385,7 +1520,10 @@
             data-title="split fiction"
             data-price="49.99"
             data-release="2025-03-06"
-            data-genres="Action,Adventure,Platform"
+            data-genres="action,adventure,platform"
+
+            data-compatibility="ps5"
+
             data-modes="co-op">
 
             
@@ -1402,7 +1540,10 @@
             data-title="armored core vi: fires of rubicon"
             data-price="59.99"
             data-release="2023-08-25"
-            data-genres="Action,Shooter"
+            data-genres="action,shooter"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer,online pvp">
 
             
@@ -1419,7 +1560,10 @@
             data-title="dying light 2 stay human"
             data-price="59.99"
             data-release="2022-02-04"
-            data-genres="Action,Open World"
+            data-genres="action,open world"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer,co-op">
 
             
@@ -1436,7 +1580,10 @@
             data-title="blue prince"
             data-price="29.99"
             data-release="2025-04-10"
-            data-genres="Puzzle,Adventure,Roguelike"
+            data-genres="puzzle,adventure,roguelike"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1453,7 +1600,10 @@
             data-title="kingdom come: deliverance ii"
             data-price="59.99"
             data-release="2025-02-04"
-            data-genres="Action,RPG,Open World"
+            data-genres="action,rpg,open world"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1470,7 +1620,10 @@
             data-title="astro bot"
             data-price="59.99"
             data-release="2024-09-06"
-            data-genres="Action,Platform,Adventure"
+            data-genres="action,platform,adventure"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1487,7 +1640,10 @@
             data-title="the last of us part i"
             data-price="59.99"
             data-release="2023-03-28"
-            data-genres="Action,Adventure"
+            data-genres="action,adventure"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1504,7 +1660,10 @@
             data-title="mass effect legendary edition"
             data-price="59.99"
             data-release="2021-05-14"
-            data-genres="RPG,Action"
+            data-genres="rpg,action"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1521,7 +1680,10 @@
             data-title="ghostrunner 2"
             data-price="39.99"
             data-release="2023-10-26"
-            data-genres="Action"
+            data-genres="action"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1538,7 +1700,10 @@
             data-title="persona 5 royal"
             data-price="59.99"
             data-release="2022-10-21"
-            data-genres="RPG"
+            data-genres="rpg"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1555,7 +1720,10 @@
             data-title="alan wake remastered"
             data-price="29.99"
             data-release="2021-10-05"
-            data-genres="Horror,Adventure"
+            data-genres="horror,adventure"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1572,7 +1740,10 @@
             data-title="hollow knight: silksong"
             data-price="19.99"
             data-release="2025-09-04"
-            data-genres="Metroidvania,Action,Adventure"
+            data-genres="metroidvania,action,adventure"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -1589,7 +1760,10 @@
             data-title="star wars jedi: fallen order"
             data-price="39.99"
             data-release="2019-11-15"
-            data-genres="Action,Adventure"
+            data-genres="action,adventure"
+
+            data-compatibility="ps4"
+
             data-modes="singleplayer">
 
             
@@ -1606,7 +1780,10 @@
             data-title="clair obscur: expedition 33"
             data-price="59.99"
             data-release="2025-10-03"
-            data-genres="Action,RPG,Turn-Based"
+            data-genres="action,rpg,turn-based"
+
+            data-compatibility="ps5"
+
             data-modes="singleplayer">
 
             
@@ -2066,10 +2243,52 @@
   }
 
 
+  .no-results {
+  display: none;
+  text-align: center;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  width: min(420px, 90%);
+  font-size: 1.2rem;
+  color: #9cc9ff;
+  box-shadow: 0 0 25px rgba(78, 168, 255, 0.1);
+  animation: fadeIn 0.35s ease;
+}
+
+.no-results .emoji {
+  display: block;
+  font-size: 2.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.8rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
     </style>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    
+
+    let includeGenres = new Set();
+    let excludeGenres = new Set();
+    let includeModes = new Set();
+    let excludeModes = new Set();
+    let includeCompat = new Set();
+    
+
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 16;
+
+    
+
     const input = document.getElementById("search-bar");
     const sortSelect = document.getElementById("sort-select");
     const grid = document.getElementById("products-grid");
@@ -2080,210 +2299,305 @@
     const modeItems = document.querySelectorAll("[data-mode]");
     const clearGenresBtn = document.querySelector(".clear-genres");
     const clearModesBtn = document.querySelector(".clear-modes");
+    const compatItems = document.querySelectorAll("[data-compat]");
+    const clearCompatBtn = document.querySelector(".clear-compat");
 
-    let includeGenres = new Set();
-    let excludeGenres = new Set();
-    let includeModes = new Set();
-    let excludeModes = new Set();
 
-    const ITEMS_PER_PAGE = 16;
-    let currentPage = 1;
+    
+
+    function loadFromURL() {
+        const p = new URLSearchParams(location.search);
+
+        if (p.has("q")) input.value = p.get("q");
+        if (p.has("sort")) sortSelect.value = p.get("sort");
+
+        if (p.has("genres")) p.get("genres").split(",").forEach(g => includeGenres.add(g));
+        if (p.has("xgenres")) p.get("xgenres").split(",").forEach(g => excludeGenres.add(g));
+
+        if (p.has("modes")) p.get("modes").split(",").forEach(m => includeModes.add(m));
+        if (p.has("xmodes")) p.get("xmodes").split(",").forEach(m => excludeModes.add(m));
+
+        if (p.has("compat")) p.get("compat").split(",").forEach(c => includeCompat.add(c));
+        
+
+        if (p.has("page")) currentPage = parseInt(p.get("page")) || 1;
+    }
+
+    
+
+    function applyURLStateToUI() {
+        genreItems.forEach(item => {
+            const g = item.dataset.genre;
+            if (includeGenres.has(g)) item.classList.add("active");
+            if (excludeGenres.has(g)) item.classList.add("exclude");
+        });
+
+        modeItems.forEach(item => {
+            const m = item.dataset.mode;
+            if (includeModes.has(m)) item.classList.add("active");
+            if (excludeModes.has(m)) item.classList.add("exclude");
+        });
+
+        compatItems.forEach(item => {
+          const c = item.dataset.compat;
+          if (includeCompat.has(c)) item.classList.add("active");
+          
+        });
+
+    }
+
+    
+
+    function updateURL() {
+        const p = new URLSearchParams();
+
+        if (input.value.trim()) p.set("q", input.value.trim());
+        p.set("sort", sortSelect.value);
+
+        if (includeGenres.size) p.set("genres", [...includeGenres].join(","));
+        if (excludeGenres.size) p.set("xgenres", [...excludeGenres].join(","));
+        if (includeModes.size) p.set("modes", [...includeModes].join(","));
+        if (excludeModes.size) p.set("xmodes", [...excludeModes].join(","));
+        if (includeCompat.size) p.set("compat", [...includeCompat].join(","));
+        
+
+
+        p.set("page", currentPage);
+
+        history.replaceState(null, "", "?" + p.toString());
+    }
+
+    
+
+    function doFilterAndSort() {
+        const q = input.value.toLowerCase().trim();
+        const sortBy = sortSelect.value;
+
+        let visible = [];
+
+        let sorted = [...cards].sort((a, b) => {
+            const A = a.dataset, B = b.dataset;
+            switch (sortBy) {
+                case "alphabet": return A.title.localeCompare(B.title);
+                case "alphabet-desc": return B.title.localeCompare(A.title);
+                case "price": return A.price - B.price;
+                case "price-desc": return B.price - A.price;
+                case "release": return new Date(B.release) - new Date(A.release);
+                case "release-old": return new Date(A.release) - new Date(B.release);
+            }
+            return 0;
+        });
+
+        grid.innerHTML = "";
+
+        sorted.forEach(card => {
+            const title = card.dataset.title;
+            const genres = card.dataset.genres.split(",");
+            const modes = card.dataset.modes.split(",");
+            const compat = card.dataset.compatibility;  
+
+            if (q && !title.includes(q)) return;
+            if (includeGenres.size && ![...includeGenres].some(g => genres.includes(g))) return;
+            if ([...excludeGenres].some(g => genres.includes(g))) return;
+            if (includeModes.size && ![...includeModes].some(m => modes.includes(m))) return;
+            if ([...excludeModes].some(m => modes.includes(m))) return;
+
+            if (includeCompat.size && !includeCompat.has(compat)) return;
+            
+
+            visible.push(card);
+        });
+
+        const total = Math.ceil(visible.length / ITEMS_PER_PAGE);
+        if (currentPage > total) currentPage = total || 1;
+
+        visible
+            .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+            .forEach(c => grid.appendChild(c));
+
+        noResults.style.display = visible.length ? "none" : "block";
+
+        buildPagination(total);
+    }
+
+    
+
     const paginationContainer = document.createElement("div");
     paginationContainer.className = "pagination";
     grid.after(paginationContainer);
 
+    function buildPagination(totalPages) {
+        paginationContainer.innerHTML = "";
+        if (totalPages <= 1) return;
+
+        const ul = document.createElement("ul");
+        ul.className = "pagination-list fixed-size";
+
+        function add(label, page, active = false, disabled = false) {
+            const li = document.createElement("li");
+            if (disabled) li.innerHTML = `<span class="disabled">${label}</span>`;
+            else if (active) li.innerHTML = `<span class="active">${label}</span>`;
+            else li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+            ul.appendChild(li);
+        }
+
+        add("‹", currentPage - 1, false, currentPage === 1);
+        for (let i = 1; i <= totalPages; i++) add(i, i, i === currentPage);
+        add("›", currentPage + 1, false, currentPage === totalPages);
+
+        paginationContainer.appendChild(ul);
+
+        ul.querySelectorAll("a").forEach(a => {
+            a.addEventListener("click", e => {
+                e.preventDefault();
+                currentPage = parseInt(a.dataset.page);
+                doFilterAndSort();
+                updateURL();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    }
+
+    
+
     toggles.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = document.getElementById(btn.dataset.target);
-        btn.classList.toggle("active");
-        target.classList.toggle("active");
-      });
+        btn.addEventListener("click", () => {
+            const target = document.getElementById(btn.dataset.target);
+            btn.classList.toggle("active");
+            target.classList.toggle("active");
+        });
     });
 
-    function buildPagination(totalPages) {
-      paginationContainer.innerHTML = "";
-      if (totalPages <= 1) return;
-
-      const ul = document.createElement("ul");
-      ul.className = "pagination-list fixed-size";
-
-      const MAX_VISIBLE = 7; 
-
-      const addItem = (label, page, type = "page", active = false, disabled = false) => {
-        const li = document.createElement("li");
-        if (type === "dots") {
-          li.innerHTML = `<span class="dots">…</span>`;
-        } else if (disabled) {
-          li.innerHTML = `<span class="disabled">${label}</span>`;
-        } else if (active) {
-          li.innerHTML = `<span class="active">${label}</span>`;
-        } else {
-          li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
-        }
-        ul.appendChild(li);
-      };
-
-      
-      addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
-
-      
-      addItem(1, 1, "page", currentPage === 1);
-
-      let start = Math.max(2, currentPage - 1);
-      let end = Math.min(totalPages - 1, currentPage + 1);
-
-      
-      if (currentPage <= 3) {
-        start = 2;
-        end = Math.min(4, totalPages - 1);
-      }
-      
-      else if (currentPage >= totalPages - 2) {
-        end = totalPages - 1;
-        start = Math.max(totalPages - 3, 2);
-      }
-
-      
-      if (start > 2) addItem("…", null, "dots");
-
-      
-      for (let i = start; i <= end; i++) {
-        addItem(i, i, "page", i === currentPage);
-      }
-
-      
-      if (end < totalPages - 1) addItem("…", null, "dots");
-
-      
-      if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
-
-      
-      addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
-
-      paginationContainer.appendChild(ul);
-
-      ul.querySelectorAll("a[data-page]").forEach(a => {
-        a.addEventListener("click", e => {
-          e.preventDefault();
-          currentPage = parseInt(a.dataset.page);
-          doFilterAndSort();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
-    }
-
-
-    function doFilterAndSort() {
-      const q = input.value.trim().toLowerCase();
-      const sortBy = sortSelect.value;
-      let visibleCards = [];
-
-      const sorted = [...cards].sort((a, b) => {
-        const titleA = (a.dataset.title || "").toLowerCase();
-        const titleB = (b.dataset.title || "").toLowerCase();
-        const priceA = parseFloat(a.dataset.price) || 0;
-        const priceB = parseFloat(b.dataset.price) || 0;
-        const dateA = new Date(a.dataset.release || "1970-01-01");
-        const dateB = new Date(b.dataset.release || "1970-01-01");
-        switch (sortBy) {
-          case "alphabet": return titleA.localeCompare(titleB);
-          case "alphabet-desc": return titleB.localeCompare(titleA);
-          case "price": return priceA - priceB;
-          case "price-desc": return priceB - priceA;
-          case "release": return dateB - dateA;
-          case "release-old": return dateA - dateB;
-          default: return 0;
-        }
-      });
-
-      grid.innerHTML = "";
-      sorted.forEach(card => {
-        const title = (card.dataset.title || "").toLowerCase();
-        const genres = (card.dataset.genres || "").toLowerCase().split(",");
-        const modes = (card.dataset.modes || "").toLowerCase().split(",");
-        const matchesSearch = !q || title.includes(q);
-        const matchesInclude = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
-        const matchesExclude = [...excludeGenres].some(g => genres.includes(g));
-        const matchesModeInclude = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
-        const matchesModeExclude = [...excludeModes].some(m => modes.includes(m));
-        if (matchesSearch && matchesInclude && !matchesExclude && matchesModeInclude && !matchesModeExclude)
-          visibleCards.push(card);
-      });
-
-      const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
-      if (currentPage > totalPages) currentPage = totalPages || 1;
-
-      const start = (currentPage - 1) * ITEMS_PER_PAGE;
-      const end = start + ITEMS_PER_PAGE;
-      visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
-
-      noResults.style.display = visibleCards.length === 0 ? "block" : "none";
-      buildPagination(totalPages);
-    }
+    
 
     genreItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const genre = item.dataset.genre;
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-          item.classList.add("exclude");
-          includeGenres.delete(genre);
-          excludeGenres.add(genre);
-        } else if (item.classList.contains("exclude")) {
-          item.classList.remove("exclude");
-          excludeGenres.delete(genre);
-        } else {
-          item.classList.add("active");
-          includeGenres.add(genre);
-        }
-        currentPage = 1;
-        doFilterAndSort();
-      });
+        item.addEventListener("click", () => {
+            const g = item.dataset.genre;
+
+            if (item.classList.contains("active")) {
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeGenres.delete(g);
+                excludeGenres.add(g);
+            }
+            else if (item.classList.contains("exclude")) {
+                item.classList.remove("exclude");
+                excludeGenres.delete(g);
+            }
+            else {
+                item.classList.add("active");
+                includeGenres.add(g);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
     });
 
     modeItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const mode = item.dataset.mode;
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-          item.classList.add("exclude");
-          includeModes.delete(mode);
-          excludeModes.add(mode);
-        } else if (item.classList.contains("exclude")) {
-          item.classList.remove("exclude");
-          excludeModes.delete(mode);
-        } else {
-          item.classList.add("active");
-          includeModes.add(mode);
-        }
-        currentPage = 1;
-        doFilterAndSort();
-      });
+        item.addEventListener("click", () => {
+            const m = item.dataset.mode;
+
+            if (item.classList.contains("active")) {
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeModes.delete(m);
+                excludeModes.add(m);
+            }
+            else if (item.classList.contains("exclude")) {
+                item.classList.remove("exclude");
+                excludeModes.delete(m);
+            }
+            else {
+                item.classList.add("active");
+                includeModes.add(m);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
     });
 
+    compatItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const c = item.dataset.compat;
+
+            const alreadyActive = item.classList.contains("active");
+
+            
+            includeCompat.clear();
+            compatItems.forEach(i => i.classList.remove("active"));
+
+            
+            if (!alreadyActive) {
+                item.classList.add("active");
+                includeCompat.add(c);
+            }
+
+            currentPage = 1;
+            doFilterAndSort();
+            updateURL();
+        });
+    });
+
+
+
+    
+
     clearGenresBtn.addEventListener("click", () => {
-      includeGenres.clear();
-      excludeGenres.clear();
-      genreItems.forEach(i => i.classList.remove("active", "exclude"));
-      currentPage = 1;
-      doFilterAndSort();
+        includeGenres.clear();
+        excludeGenres.clear();
+        genreItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
     });
 
     clearModesBtn.addEventListener("click", () => {
-      includeModes.clear();
-      excludeModes.clear();
-      modeItems.forEach(i => i.classList.remove("active", "exclude"));
-      currentPage = 1;
-      doFilterAndSort();
+        includeModes.clear();
+        excludeModes.clear();
+        modeItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
     });
 
-    input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
-    sortSelect.addEventListener("change", () => { currentPage = 1; doFilterAndSort(); });
+    clearCompatBtn.addEventListener("click", () => {
+        includeCompat.clear();
+        compatItems.forEach(i => i.classList.remove("active"));
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
+    
 
+    input.addEventListener("input", () => {
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
+
+    sortSelect.addEventListener("change", () => {
+        currentPage = 1;
+        doFilterAndSort();
+        updateURL();
+    });
+
+    
+
+    loadFromURL();
+    applyURLStateToUI();
     doFilterAndSort();
-  });
+    updateURL();
+});
 
-    </script>
+
+
+</script>
+
+
     
   </main>
 
@@ -2299,7 +2613,7 @@
       </div>
 
       <p class="footer-desc">
-        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+        GameStore88 — A leading provider of genuine, official PLAYSTATION game titles. We deliver the best gaming experience at competitive and reasonable prices.
       </p>
 
       <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>

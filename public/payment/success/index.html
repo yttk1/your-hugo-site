@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="/g88.png">
-  <title>Assassin’s Creed Mirage | Game Store</title>
+  <title>Order Success | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
       html {
@@ -242,437 +242,250 @@
 
   <main>
     
-
-
-
-
-
-<div class="game-container">
-
-  
-  <div class="gallery-container">
-    <div class="main-display" id="main-display">
-      
+<section class="confirmation-page">
+    <div class="confirmation-box">
         
+        <span class="icon">🎉</span>
+        <h1>Order Confirmed!</h1>
+        <p class="message">Thank you for your purchase. Your order has been placed successfully and the game keys will be delivered to <strong id="user-email">your email</strong> shortly.</p>
         
-        <iframe
-          id="main-media"
-          src="https://www.youtube.com/embed/x55lAlFtXmw?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen>
-        </iframe>
-      
+        <div class="summary-details">
+            <h2>Order Summary</h2>
+            <div id="order-items" class="order-items">
+                <p>Loading order details...</p>
+            </div>
 
-    </div>
+            <div class="price-breakdown">
+                <p>Subtotal: <span id="subtotal-amount"></span></p>
+                <p>Tax (0%): <span id="tax-amount">$0.00</span></p>
+                <p class="total">Total Paid: <strong id="total-paid-amount"></strong></p>
+            </div>
 
-    <div class="thumbnails">
-      
-      
+            <div class="metadata">
+                <p><strong>Order Reference:</strong> <span id="order-ref">#G88-20251117-3785</span></p>
+                <p><strong>Payment Method:</strong> Visa/MasterCard</p>
+            </div>
+        </div>
         
-        <div class="thumb video-thumb" onclick="showMedia('https:\/\/www.youtube.com\/embed\/x55lAlFtXmw','video')">
-          <img src="https://img.youtube.com/vi/x55lAlFtXmw/hqdefault.jpg" alt="Trailer thumbnail">
-          <div class="play-icon">▶</div>
+        <div class="actions">
+            <a href="/products/" class="btn secondary-btn">Continue Shopping</a>
+            <a href="/" class="btn primary-btn">Go to Homepage</a>
         </div>
-      
-
-      
-      
-        <div
-          class="thumb image-thumb"
-          role="button"
-          tabindex="0"
-          aria-label="Show Assassin’s Creed Mirage screenshot"
-          onclick="showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/assasin-creed-mirage-ps5-700x700h.webp','image')"
-          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/haloshop.vn\/wp-content\/uploads\/2025\/02\/assasin-creed-mirage-ps5-700x700h.webp','image'); }">
-          <img src="https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp" alt="Assassin’s Creed Mirage screenshot">
-        </div>
-      
-        <div
-          class="thumb image-thumb"
-          role="button"
-          tabindex="0"
-          aria-label="Show Assassin’s Creed Mirage screenshot"
-          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/3035570\/ss_d2458dc72f538b42218cc16c0ce054810511bd81.1920x1080.jpg?t=1753294133','image')"
-          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/3035570\/ss_d2458dc72f538b42218cc16c0ce054810511bd81.1920x1080.jpg?t=1753294133','image'); }">
-          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3035570/ss_d2458dc72f538b42218cc16c0ce054810511bd81.1920x1080.jpg?t=1753294133" alt="Assassin’s Creed Mirage screenshot">
-        </div>
-      
-        <div
-          class="thumb image-thumb"
-          role="button"
-          tabindex="0"
-          aria-label="Show Assassin’s Creed Mirage screenshot"
-          onclick="showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/3035570\/ss_93780fe600368be8e4c3bb62469fb49390561300.1920x1080.jpg?t=1753294133','image')"
-          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('https:\/\/shared.fastly.steamstatic.com\/store_item_assets\/steam\/apps\/3035570\/ss_93780fe600368be8e4c3bb62469fb49390561300.1920x1080.jpg?t=1753294133','image'); }">
-          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3035570/ss_93780fe600368be8e4c3bb62469fb49390561300.1920x1080.jpg?t=1753294133" alt="Assassin’s Creed Mirage screenshot">
-        </div>
-      
+        
     </div>
-  </div>
+</section>
 
-  
-  <div class="game-details">
-    <h1 class="game-title">Assassin’s Creed Mirage</h1>
-    <p class="price">$49.99</p>
+<style>
+ 
+.confirmation-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  
+    padding: 4rem 2rem;
+    min-height: calc(100vh - var(--header-height, 80px));  
+    background: #0f172a;  
+    color: #f8fafc;
+}
 
-    <br>
+.confirmation-box {
+    transform: scale(0.8);
+    background: #1e293b;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    border-top: 5px solid #10b981;  
+}
 
-    
-    <div class="section-block">
-      <h2 class="section-title">Game Info</h2>
-      <hr class="section-divider">
-      <div class="meta">
-        <p><strong>Developer:</strong> Ubisoft Bordeaux</p>
-        <p><strong>Publisher:</strong> Ubisoft</p>
-        <p><strong>Release Date:</strong> 2023-10-05</p>
-        <p><strong>Modes:</strong> Singleplayer</p>
-        <p><strong>Genres:</strong> Action, Adventure</p>
-      </div>
-    </div>
+.confirmation-box .icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
 
-    <br>
-    
-    <div class="section-block">
-      <h2 class="section-title">Game Description</h2>
-      <hr class="section-divider">
-      <p class="desc">Basim’s rise from thief to master assassin unfolds in 9th-century Baghdad.</p>
-    </div>
+.confirmation-box h1 {
+    color: #10b981;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
 
-    <br>
-    
-    <div class="buttons">
-      <button class="buy-now"
-        data-id="p026"
-        data-title="Assassin’s Creed Mirage"
-        data-price="49.99"
-        data-img="https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp">
-        Buy Now
-      </button>
-      <button class="add-to-cart"
-        data-id="p026"
-        data-title="Assassin’s Creed Mirage"
-        data-price="49.99"
-        data-img="https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp">
-        Add to Cart
-      </button>
-      <button class="share-btn" onclick="shareGame('Assassin’s Creed Mirage', 'http:\/\/localhost:1313\/products\/p026\/')">Share</button>
-    </div>
-  </div>
-</div>
+.confirmation-box .message {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+ 
+.summary-details {
+    padding: 1.5rem;
+    background: #0f172a;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.summary-details h2 {
+    color: #cbd5e1;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
+
+.order-items {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    gap: 1rem;
+    text-align: left;
+}
+.order-item img {
+    width: 50px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.item-info {
+    flex: 1;
+}
+.item-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #f8fafc;
+}
+.item-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.price-breakdown {
+    border-top: 1px dashed #334155;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
+    font-size: 1rem;
+    color: #cbd5e1;
+}
+
+.price-breakdown p {
+    margin: 0.5rem 0;
+}
+.price-breakdown .total {
+    font-size: 1.3rem;
+    color: #10b981;
+}
+
+.metadata {
+    border-top: 1px solid #334155;
+    padding-top: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.metadata strong {
+    color: #f8fafc;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;  
+    margin-top: 2rem;  
+}
+
+ 
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;  
+    font-weight: 600;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+     
+    display: inline-block; 
+    min-width: 150px;  
+    text-align: center;
+}
+
+.primary-btn {
+    background: #10b981;
+    color: white;
+}
+.primary-btn:hover {
+    background: #059669;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid #4b5563   
+}
+.secondary-btn:hover {
+    background: #334155;
+    color: #f8fafc;
+}
+</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const addToCartBtn = document.querySelector(".add-to-cart");
-  const buyNowBtn = document.querySelector(".buy-now");
-
-  
-  addToCartBtn.addEventListener("click", (e) => {
-    const item = {
-      id: e.target.dataset.id,
-      title: e.target.dataset.title,
-      price: parseFloat(e.target.dataset.price),
-      img: e.target.dataset.img,
-      qty: 1,
-    };
-
     const user = localStorage.getItem("user");
-    if (!user) {
-      showToast("⚠️ Please log in first.", "warning");
-      setTimeout(() => (window.location.href = "/login/"), 1200);
-      return;
+    const orderContainer = document.getElementById("order-items");
+    const subtotalEl = document.getElementById("subtotal-amount");
+    const totalPaidEl = document.getElementById("total-paid-amount");
+    const userEmailEl = document.getElementById("user-email");
+    
+    
+    const orderKey = `last_order_${user}`;
+    let order = JSON.parse(localStorage.getItem(orderKey)) || [];
+    
+    
+    userEmailEl.textContent = user || "your email";
+
+    if (order.length === 0) {
+        orderContainer.innerHTML = `<p>Order details could not be retrieved. Please check your email for confirmation.</p>`;
+        subtotalEl.textContent = "$0.00";
+        totalPaidEl.textContent = "$0.00";
+        return;
     }
 
+    let total = 0;
+    
+    
+    orderContainer.innerHTML = order.map(item => {
+        const subtotal = (item.price * item.qty);
+        total += subtotal;
+        return `
+            <div class="order-item">
+                <img src="${item.img}" alt="${item.title}">
+                <div class="item-info">
+                    <h4>${item.title}</h4>
+                    <p>Qty: ${item.qty}</p>
+                </div>
+                <span>$${subtotal.toFixed(2)}</span>
+            </div>
+        `;
+    }).join("");
 
-    const key = `cart_${user}`;
-    let cart = JSON.parse(localStorage.getItem(key)) || [];
-    const existing = cart.find((p) => p.id === item.id);
-    if (existing) existing.qty += 1;
-    else cart.push(item);
-    localStorage.setItem(key, JSON.stringify(cart));
+    const subtotal = total;
+    const tax = 0; 
 
-    showToast(`🎮 ${item.title} added to cart!`, "success");
-    updateCartCount();
-    animateCartIcon();
-  });
-
-  
-  buyNowBtn.addEventListener("click", (e) => {
-    const item = {
-      id: e.target.dataset.id,
-      title: e.target.dataset.title,
-      price: parseFloat(e.target.dataset.price),
-      img: e.target.dataset.img,
-      qty: 1,
-    };
-
-    const user = localStorage.getItem("user");
-    if (!user) {
-      showToast("⚠️ Please log in to buy games.", "warning");
-      setTimeout(() => (window.location.href = "/login/"), 1200);
-      return;
-    }
+    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    totalPaidEl.textContent = `$${(subtotal + tax).toFixed(2)}`;
 
     
-    const key = `checkout_${user}`;
-    localStorage.setItem(key, JSON.stringify([item]));
-
-    showToast("💳 Redirecting to payment...", "info");
-    setTimeout(() => (window.location.href = "/payment/"), 1000);
-  });
+    localStorage.removeItem(orderKey);
 });
-
-function showMedia(src, type) {
-  const display = document.getElementById("main-display");
-  display.innerHTML = ""; 
-
-  if (type === "image") {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = "Game image";
-    img.style.width = "100%";
-    img.style.height = "100%";
-    img.style.objectFit = "contain";
-    img.style.borderRadius = "10px";
-    display.appendChild(img);
-  } else if (type === "video") {
-    const iframe = document.createElement("iframe");
-    iframe.src = src;
-    iframe.width = "100%";
-    iframe.height = "500";
-    iframe.allowFullscreen = true;
-    iframe.style.borderRadius = "10px";
-    iframe.frameBorder = "0";
-    display.appendChild(iframe);
-  }
-}
-
-function updateCartCount() {
-  const user = localStorage.getItem("user");
-  const key = user ? `cart_${user}` : "cart";
-  const cart = JSON.parse(localStorage.getItem(key)) || [];
-  const total = cart.reduce((sum, item) => sum + item.qty, 0);
-
-  const countEl = document.getElementById("cart-count");
-  if (countEl) countEl.textContent = total;
-}
-function animateCartIcon() {
-  const icon = document.getElementById("cart-link"); 
-  if (!icon) return;
-  icon.classList.add("cart-bounce");
-  setTimeout(() => icon.classList.remove("cart-bounce"), 500);
-}
 </script>
-
-
-
-<style>
-.game-container {
-  background: #0f172a;
-  color: #f8fafc;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-.trailer iframe {
-  border-radius: 10px;
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-.gallery {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  margin-bottom: 2rem;
-}
-.gallery img {
-  height: 160px;
-  border-radius: 8px;
-  transition: transform 0.2s;
-  cursor: pointer;
-}
-.gallery img:hover {
-  transform: scale(1.05);
-}
-.game-details {
-  margin-top: 1rem;
-}
-.price {
-  color: #38bdf8;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-.meta {
-  color: #94a3b8;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-.desc {
-  color: #e2e8f0;
-  margin: 1rem 0;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-.buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.buttons button {
-  padding: 0.8rem 1.4rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background 0.2s, transform 0.1s;
-}
-.buy-now {
-  background: linear-gradient(135deg, #9333ea, #6366f1);
-  color: white;
-}
-.buy-now:hover { background: linear-gradient(135deg, #7e22ce, #4f46e5); transform: scale(1.03); }
-.add-to-cart {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  color: white;
-}
-.add-to-cart:hover { background: linear-gradient(135deg, #1d4ed8, #2563eb); transform: scale(1.03); }
-.share-btn {
-  background: #334155;
-  color: #f8fafc;
-}
-.share-btn:hover { background: #475569; transform: scale(1.03); }
-
-.gallery-container {
-  margin-bottom: 2rem;
-}
-
-.main-display {
-  background: #111827;
-  border-radius: 12px;
-  overflow: hidden;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.main-display img,
-.main-display iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
- 
-.thumbnails {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
-}
-
-.thumb {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0b1424;
-}
-
-.thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-.thumb:hover {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
- 
-.video-thumb {
-  position: relative;
-}
-
-.video-thumb .play-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  color: white;
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
-  pointer-events: none;
-}
-
-.video-thumb img {
-  filter: brightness(0.8);
-  transition: filter 0.3s ease;
-}
-
-.video-thumb:hover img {
-  filter: brightness(1);
-}
-
- 
-.section-block {
-  margin-top: 2rem;
-}
-
-.section-title {
-  color: #f8fafc;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.section-divider {
-  border: none;
-  height: 2px;
-  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
-  margin-bottom: 1rem;
-}
-
-.meta {
-  color: #cbd5e1;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.meta p {
-  margin: 0.2rem 0;
-}
-
-.desc {
-  color: #e2e8f0;
-  margin-top: 0.8rem;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  white-space: pre-line;
-}
-.cart-bounce {
-  animation: bounce 0.4s ease;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-}
-
-</style>
 
 
   </main>
