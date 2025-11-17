@@ -1,0 +1,2896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/g88.png">
+  <title>Our Games | Game Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      html {
+    overflow-y: scroll !important;
+  }
+    :root {
+      --primary: #2563eb;
+      --secondary: #f3f4f6;
+      --text: #111827;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      background-color: #131420;
+      color: #e0e0e0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+       
+      background: rgba(15, 23, 36, 0.75);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    header a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      margin-right: 1.5rem;
+    }
+    header a:hover { color: var(--primary); }
+    .cart-icon {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius);
+    }
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 90%;
+      margin: 2rem auto;
+    }
+    footer {
+      background: white;
+      text-align: center;
+      padding: 1rem;
+      color: #555;
+      font-size: 0.9rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+     
+
+    .nav-right {
+  visibility: hidden;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(180deg, #1a1d23, #13161a);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+ 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6cb5ff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+ 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-links a {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #dce3ec;
+  padding: 5px 6px;
+  border-radius: 4px;
+  transition: 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: #7cc7ff;
+}
+
+.nav-links a.active {
+  color: #7cc7ff;
+  border-bottom: 2px solid #7cc7ff;
+}
+
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+ 
+.login-btn, .logout-btn {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  color: #ffb3b3;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.login-btn:hover, .logout-btn:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.cart-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  background: #1d4dae;
+  color: white;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+ 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dce3ec, #8c9aa8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #071018;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.username {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+  <div class="nav-left">
+    <a href="/" class="logo">
+      <img src="/g88.png" alt="Gamestore88 Logo" class="logo-img">
+      <span class="logo-text">Game88™</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info" id="user-info">
+      <div class="user-icon" id="user-icon"></div>
+      <span id="user-display" class="username"></span>
+    </div>
+    <a href="#" id="login-link" class="logout-btn">Login</a>
+    <a href="/cart/" class="cart-icon" id="cart-link">🛒 <span id="cart-count">0</span></a>
+  </div>
+
+
+
+<style>
+
+ 
+
+</style>
+</header>
+
+
+
+  <main>
+    
+<section class="store-layout">
+  <aside class="filter-sidebar">
+    <div class="filter-group">
+      <button class="filter-toggle" data-target="genres">
+        Genres <span class="arrow">▼</span>
+      </button>
+
+      <div class="filter-options active" id="genres">
+        <div class="filter-scroll">
+          
+          
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+          
+            
+              
+                
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+                
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+          
+            
+              
+            
+              
+                
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+                
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+                
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+                
+              
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+          
+            
+              
+            
+              
+            
+              
+                
+              
+            
+          
+          
+          <div class="filter-item" data-genre="action">
+            <span class="label">Action</span>
+          </div>
+          
+          <div class="filter-item" data-genre="adventure">
+            <span class="label">Adventure</span>
+          </div>
+          
+          <div class="filter-item" data-genre="co-op">
+            <span class="label">Co-op</span>
+          </div>
+          
+          <div class="filter-item" data-genre="horror">
+            <span class="label">Horror</span>
+          </div>
+          
+          <div class="filter-item" data-genre="metroidvania">
+            <span class="label">Metroidvania</span>
+          </div>
+          
+          <div class="filter-item" data-genre="open world">
+            <span class="label">Open World</span>
+          </div>
+          
+          <div class="filter-item" data-genre="platform">
+            <span class="label">Platform</span>
+          </div>
+          
+          <div class="filter-item" data-genre="platformer">
+            <span class="label">Platformer</span>
+          </div>
+          
+          <div class="filter-item" data-genre="puzzle">
+            <span class="label">Puzzle</span>
+          </div>
+          
+          <div class="filter-item" data-genre="roguelike">
+            <span class="label">Roguelike</span>
+          </div>
+          
+          <div class="filter-item" data-genre="rpg">
+            <span class="label">RPG</span>
+          </div>
+          
+          <div class="filter-item" data-genre="shooter">
+            <span class="label">Shooter</span>
+          </div>
+          
+          <div class="filter-item" data-genre="simulation">
+            <span class="label">Simulation</span>
+          </div>
+          
+          <div class="filter-item" data-genre="sports">
+            <span class="label">Sports</span>
+          </div>
+          
+          <div class="filter-item" data-genre="strategy">
+            <span class="label">Strategy</span>
+          </div>
+          
+          <div class="filter-item" data-genre="turn-based">
+            <span class="label">Turn-Based</span>
+          </div>
+          
+        </div>
+        <button class="clear-filters-link clear-genres">Clear genres</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <button class="filter-toggle" data-target="modes">
+        Modes <span class="arrow">▼</span>
+      </button>
+
+      <div class="filter-options active" id="modes">
+        <div class="filter-scroll">
+          <div class="filter-item" data-mode="multiplayer">
+            <span class="label">Multiplayer</span>
+          </div>
+          <div class="filter-item" data-mode="singleplayer">
+            <span class="label">Singleplayer</span>
+          </div>
+          <div class="filter-item" data-mode="co-op">
+            <span class="label">Co-op</span>
+          </div>
+        </div>
+        <button class="clear-filters-link clear-modes">Clear modes</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="products-section">
+    <h1 class="page-title">🎮 Our Games</h1>
+
+    <div class="search-bar-wrap">
+      <div class="search-bar">
+        <span class="search-icon">🔎</span>
+        <input id="search-bar" placeholder="Search for games..." aria-label="Search" />
+      </div>
+    </div>
+
+    <div class="sort-bar-wrap">
+      <div class="sort-dropdown" id="sortDropdown">
+        <button class="sort-button">
+          <span id="sort-label">Sort by: A–Z</span>
+          <span class="arrow">▼</span>
+        </button>
+        <ul class="sort-options">
+          <li data-value="alphabet">A–Z</li>
+          <li data-value="alphabet-desc">Z–A</li>
+          <li data-value="price">Price: Low → High</li>
+          <li data-value="price-desc">Price: High → Low</li>
+          <li data-value="release">Release: Newest</li>
+          <li data-value="release-old">Release: Oldest</li>
+        </ul>
+      </div>
+    </div>
+    
+    <p id="no-results" class="no-results">😢 No games found.</p>
+
+    <div class="products-grid" id="products-grid">
+      
+      <article class="product-card"
+        data-title="cyberpunk 2077"
+        data-price="59.99"
+        data-release="2020-12-10"
+        data-genres="Action,RPG,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p001/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/Cyberpunk-2077-Secondhand.jpg" alt="Cyberpunk 2077" />
+          </div>
+          <h3>Cyberpunk 2077</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="elden ring"
+        data-price="69.99"
+        data-release="2022-02-25"
+        data-genres="Action,RPG,Open World"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p002/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp" alt="Elden Ring" />
+          </div>
+          <h3>Elden Ring</h3>
+          <p class="price">$69.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="stardew valley"
+        data-price="14.99"
+        data-release="2016-02-26"
+        data-genres="Simulation,RPG"
+        data-modes="singleplayer,co-op">
+
+        <a href="/products/p003/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://newgamesportal.com/pe/wp-content/uploads/2023/11/Stardew-Valley-PS5_13_11zon.webp" alt="Stardew Valley" />
+          </div>
+          <h3>Stardew Valley</h3>
+          <p class="price">$14.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="civilization vi"
+        data-price="29.99"
+        data-release="2016-10-21"
+        data-genres="Strategy"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p004/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/sid-meiers-civilization-vi-ps4-700x700h-1.jpg" alt="Civilization VI" />
+          </div>
+          <h3>Civilization VI</h3>
+          <p class="price">$29.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="no man’s sky"
+        data-price="59.99"
+        data-release="2016-08-12"
+        data-genres="Adventure,Open World,Simulation"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p005/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/71LAxrvyNoL.jpg" alt="No Man’s Sky" />
+          </div>
+          <h3>No Man’s Sky</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="hades"
+        data-price="24.99"
+        data-release="2020-09-17"
+        data-genres="Action,Roguelike"
+        data-modes="singleplayer">
+
+        <a href="/products/p006/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades" />
+          </div>
+          <h3>Hades</h3>
+          <p class="price">$24.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="ea sports fc 26"
+        data-price="69.99"
+        data-release="2025-09-26"
+        data-genres="Sports,Simulation"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p007/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/08/EA-SPORTS-FC-26-PS5-00.webp" alt="EA SPORTS FC 26" />
+          </div>
+          <h3>EA SPORTS FC 26</h3>
+          <p class="price">$69.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="baldur’s gate 3"
+        data-price="59.99"
+        data-release="2023-08-03"
+        data-genres="RPG,Adventure"
+        data-modes="singleplayer,multiplayer,co-op">
+
+        <a href="/products/p008/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/baldur-gate-3-ps5-700x700h.webp" alt="Baldur’s Gate 3" />
+          </div>
+          <h3>Baldur’s Gate 3</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="red dead redemption 2"
+        data-price="59.99"
+        data-release="2019-11-05"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p009/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/red-dead-redemption-2-ps4-700x700h.jpg" alt="Red Dead Redemption 2" />
+          </div>
+          <h3>Red Dead Redemption 2</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="the witcher 3: wild hunt"
+        data-price="39.99"
+        data-release="2015-05-19"
+        data-genres="RPG,Action,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p010/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-witcher-3-wild-hunt-complete-edition-ps4-700x700h.jpg" alt="The Witcher 3: Wild Hunt" />
+          </div>
+          <h3>The Witcher 3: Wild Hunt</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="resident evil 4 remake"
+        data-price="39.99"
+        data-release="2023-03-24"
+        data-genres="Horror,Action"
+        data-modes="singleplayer">
+
+        <a href="/products/p011/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-4-remake-ps5-700x700h.jpg" alt="Resident Evil 4 Remake" />
+          </div>
+          <h3>Resident Evil 4 Remake</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="hollow knight"
+        data-price="14.99"
+        data-release="2017-02-24"
+        data-genres="Action,Platformer"
+        data-modes="singleplayer">
+
+        <a href="/products/p012/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/719&#43;fL1LgML._AC_UF1000,1000_QL80_.jpg" alt="Hollow Knight" />
+          </div>
+          <h3>Hollow Knight</h3>
+          <p class="price">$14.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="ghost of tsushima director’s cut"
+        data-price="59.99"
+        data-release="2024-05-16"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer,co-op">
+
+        <a href="/products/p013/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/Ghost-of-Tsushima_-Director_s-Cut-US.jpg" alt="Ghost of Tsushima DIRECTOR’S CUT" />
+          </div>
+          <h3>Ghost of Tsushima DIRECTOR’S CUT</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="helldivers 2"
+        data-price="39.99"
+        data-release="2024-02-08"
+        data-genres="Shooter,Action"
+        data-modes="multiplayer,co-op">
+
+        <a href="/products/p014/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/helldivers2_ps5_00-700x700h.webp" alt="Helldivers 2" />
+          </div>
+          <h3>Helldivers 2</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="doom eternal"
+        data-price="39.99"
+        data-release="2020-03-20"
+        data-genres="Shooter,Action"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p015/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/81Jy-EnYnOL.jpg" alt="DOOM Eternal" />
+          </div>
+          <h3>DOOM Eternal</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="the sims 4"
+        data-price="49.99"
+        data-release="2014-09-02"
+        data-genres="Simulation"
+        data-modes="singleplayer">
+
+        <a href="/products/p016/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/71XyC8lNCIL._AC_UF1000,1000_QL80_.jpg" alt="The Sims 4" />
+          </div>
+          <h3>The Sims 4</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="grand theft auto v"
+        data-price="29.99"
+        data-release="2015-04-14"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p017/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/grand-theft-auto-v-ps5-700x700h.webp" alt="Grand Theft Auto V" />
+          </div>
+          <h3>Grand Theft Auto V</h3>
+          <p class="price">$29.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="sekiro: shadows die twice"
+        data-price="59.99"
+        data-release="2019-03-22"
+        data-genres="Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p018/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/sekiro-shadows-die-twice-ps4-700x700h.jpg" alt="Sekiro: Shadows Die Twice" />
+          </div>
+          <h3>Sekiro: Shadows Die Twice</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="dead cells"
+        data-price="24.99"
+        data-release="2018-08-07"
+        data-genres="Action,Roguelike,Platformer"
+        data-modes="singleplayer">
+
+        <a href="/products/p019/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/81YGxLQiERL.jpg" alt="Dead Cells" />
+          </div>
+          <h3>Dead Cells</h3>
+          <p class="price">$24.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="it takes two"
+        data-price="39.99"
+        data-release="2021-03-26"
+        data-genres="Action,Adventure,Co-op"
+        data-modes="co-op">
+
+        <a href="/products/p020/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/It-Takes-Two-US.jpg" alt="It Takes Two" />
+          </div>
+          <h3>It Takes Two</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="dark souls iii"
+        data-price="59.99"
+        data-release="2016-04-11"
+        data-genres="Action,RPG"
+        data-modes="singleplayer,multiplayer">
+
+        <a href="/products/p021/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/06/DARK-SOUL-III-THE-FIRE-FADES-EDITION-COMPLETE-EDITION_00.webp" alt="Dark Souls III" />
+          </div>
+          <h3>Dark Souls III</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="resident evil village"
+        data-price="39.99"
+        data-release="2021-05-07"
+        data-genres="Horror,Action"
+        data-modes="singleplayer">
+
+        <a href="/products/p022/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/resident-evil-village-ps4-700x700h.jpg" alt="Resident Evil Village" />
+          </div>
+          <h3>Resident Evil Village</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="god of war"
+        data-price="49.99"
+        data-release="2022-01-14"
+        data-genres="Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p023/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/711lrrvzt&#43;L.jpg" alt="God of War" />
+          </div>
+          <h3>God of War</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="detroit: become human"
+        data-price="39.99"
+        data-release="2020-06-18"
+        data-genres="Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p024/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/71mMQEAs&#43;vL._SX522_.jpg" alt="Detroit: Become Human" />
+          </div>
+          <h3>Detroit: Become Human</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="horizon zero dawn complete edition"
+        data-price="49.99"
+        data-release="2020-08-07"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p025/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/horizon-zero-dawn-complele-edition-ps4-700x700h.jpg" alt="Horizon Zero Dawn Complete Edition" />
+          </div>
+          <h3>Horizon Zero Dawn Complete Edition</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="assassin’s creed mirage"
+        data-price="49.99"
+        data-release="2023-10-05"
+        data-genres="Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p026/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/assasin-creed-mirage-ps5-700x700h.webp" alt="Assassin’s Creed Mirage" />
+          </div>
+          <h3>Assassin’s Creed Mirage</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="lies of p"
+        data-price="59.99"
+        data-release="2023-09-18"
+        data-genres="Action,RPG"
+        data-modes="singleplayer">
+
+        <a href="/products/p027/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/lies-of-p-ps5-700x700h.jpg" alt="Lies of P" />
+          </div>
+          <h3>Lies of P</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="ratchet &amp; clank: rift apart"
+        data-price="59.99"
+        data-release="2023-07-26"
+        data-genres="Action,Platformer,Shooter"
+        data-modes="singleplayer">
+
+        <a href="/products/p028/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/ratchet-and-clank-rift-apart-ps5-700x700h.jpg" alt="Ratchet &amp; Clank: Rift Apart" />
+          </div>
+          <h3>Ratchet &amp; Clank: Rift Apart</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="the elder scrolls v: skyrim"
+        data-price="39.99"
+        data-release="2011-11-11"
+        data-genres="Action,RPG,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p029/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-elder-scrolls-v-skyrim-special-edition-ps4-700x700h.jpg" alt="The Elder Scrolls V: Skyrim" />
+          </div>
+          <h3>The Elder Scrolls V: Skyrim</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="spider-man remastered"
+        data-price="59.99"
+        data-release="2022-08-12"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p030/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/marvels-spider-man-ps4-700x700h.jpg" alt="Spider-Man Remastered" />
+          </div>
+          <h3>Spider-Man Remastered</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="spider-man: miles morales"
+        data-price="49.99"
+        data-release="2022-11-18"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p031/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/marvels-spiderman-miles-morales-ultimate-edition-ps5-700x700h.jpg" alt="Spider-Man: Miles Morales" />
+          </div>
+          <h3>Spider-Man: Miles Morales</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="returnal"
+        data-price="59.99"
+        data-release="2023-02-15"
+        data-genres="Action,Roguelike,Shooter"
+        data-modes="singleplayer">
+
+        <a href="/products/p032/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://cdn1.epicgames.com/offer/4c461792757541e99c4a16c00834c956/EGS_Returnal_HousemarqueClimaxStudios_S2_1200x1600-617cb4daee4cf45fa937304bceb60a81" alt="Returnal" />
+          </div>
+          <h3>Returnal</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="horizon forbidden west complete edition"
+        data-price="59.99"
+        data-release="2024-03-21"
+        data-genres="Action,Adventure,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p033/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/horizon_forbiden_west_complete_edition_ps5-700x700-1.jpg" alt="Horizon Forbidden West Complete Edition" />
+          </div>
+          <h3>Horizon Forbidden West Complete Edition</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="alan wake 2"
+        data-price="59.99"
+        data-release="2023-10-27"
+        data-genres="Horror,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p034/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan_wake_2_deluxe_edition_ps5-700x700h.webp" alt="Alan Wake 2" />
+          </div>
+          <h3>Alan Wake 2</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="death stranding director’s cut"
+        data-price="49.99"
+        data-release="2022-03-30"
+        data-genres="Adventure,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p035/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/death_stranding_directors_cut_ps5-700x700h.webp" alt="Death Stranding Director’s Cut" />
+          </div>
+          <h3>Death Stranding Director’s Cut</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="god of war ragnarök"
+        data-price="59.99"
+        data-release="2025-09-19"
+        data-genres="Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p036/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/god_of_war_ragnarok_ps5-700x700h.webp" alt="God of War Ragnarök" />
+          </div>
+          <h3>God of War Ragnarök</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="split fiction"
+        data-price="49.99"
+        data-release="2025-03-06"
+        data-genres="Action,Adventure,Platform"
+        data-modes="co-op">
+
+        <a href="/products/p037/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/split_fiction_ps5-700x700h.jpg" alt="Split Fiction" />
+          </div>
+          <h3>Split Fiction</h3>
+          <p class="price">$49.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="armored core vi: fires of rubicon"
+        data-price="59.99"
+        data-release="2023-08-25"
+        data-genres="Action,Shooter"
+        data-modes="singleplayer,online pvp">
+
+        <a href="/products/p038/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/armored-core-vi-fire-of-rubicon-ps5-00-700x700h.webp" alt="Armored Core VI: Fires of Rubicon" />
+          </div>
+          <h3>Armored Core VI: Fires of Rubicon</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="dying light 2 stay human"
+        data-price="59.99"
+        data-release="2022-02-04"
+        data-genres="Action,Open World"
+        data-modes="singleplayer,co-op">
+
+        <a href="/products/p039/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/Dying-Light-2-Stay-Human-ASIA.jpg" alt="Dying Light 2 Stay Human" />
+          </div>
+          <h3>Dying Light 2 Stay Human</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="blue prince"
+        data-price="29.99"
+        data-release="2025-04-10"
+        data-genres="Puzzle,Adventure,Roguelike"
+        data-modes="singleplayer">
+
+        <a href="/products/p040/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/81LYEcUbzLL._AC_UF894,1000_QL80_.jpg" alt="Blue Prince" />
+          </div>
+          <h3>Blue Prince</h3>
+          <p class="price">$29.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="kingdom come: deliverance ii"
+        data-price="59.99"
+        data-release="2025-02-04"
+        data-genres="Action,RPG,Open World"
+        data-modes="singleplayer">
+
+        <a href="/products/p041/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/kingdom_come_deliverance_2_us_00-700x700h.jpg" alt="Kingdom Come: Deliverance II" />
+          </div>
+          <h3>Kingdom Come: Deliverance II</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="astro bot"
+        data-price="59.99"
+        data-release="2024-09-06"
+        data-genres="Action,Platform,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p042/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/astro_bot_ps5-700x700h-1.webp" alt="Astro Bot" />
+          </div>
+          <h3>Astro Bot</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="the last of us part i"
+        data-price="59.99"
+        data-release="2023-03-28"
+        data-genres="Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p043/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/the-last-of-us-part-ii-ps4-700x700h.jpg" alt="The Last of Us Part I" />
+          </div>
+          <h3>The Last of Us Part I</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="mass effect legendary edition"
+        data-price="59.99"
+        data-release="2021-05-14"
+        data-genres="RPG,Action"
+        data-modes="singleplayer">
+
+        <a href="/products/p044/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://m.media-amazon.com/images/I/71sjx9DL0KL.jpg" alt="Mass Effect Legendary Edition" />
+          </div>
+          <h3>Mass Effect Legendary Edition</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="ghostrunner 2"
+        data-price="39.99"
+        data-release="2023-10-26"
+        data-genres="Action"
+        data-modes="singleplayer">
+
+        <a href="/products/p045/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/04/ghostrunner_ps5.webp" alt="Ghostrunner 2" />
+          </div>
+          <h3>Ghostrunner 2</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="persona 5 royal"
+        data-price="59.99"
+        data-release="2022-10-21"
+        data-genres="RPG"
+        data-modes="singleplayer">
+
+        <a href="/products/p046/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/Persona-5-Secondhand.jpg" alt="Persona 5 Royal" />
+          </div>
+          <h3>Persona 5 Royal</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="alan wake remastered"
+        data-price="29.99"
+        data-release="2021-10-05"
+        data-genres="Horror,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p047/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/alan-wake-remastered-ps4-700x700h.jpg" alt="Alan Wake Remastered" />
+          </div>
+          <h3>Alan Wake Remastered</h3>
+          <p class="price">$29.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="hollow knight: silksong"
+        data-price="19.99"
+        data-release="2025-09-04"
+        data-genres="Metroidvania,Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p048/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://images.pushsquare.com/3e136187a1eee/hollow-knight-silksong-cover.cover_large.jpg" alt="Hollow Knight: Silksong" />
+          </div>
+          <h3>Hollow Knight: Silksong</h3>
+          <p class="price">$19.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="star wars jedi: fallen order"
+        data-price="39.99"
+        data-release="2019-11-15"
+        data-genres="Action,Adventure"
+        data-modes="singleplayer">
+
+        <a href="/products/p049/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/02/star-wars-jedi-fallen-order-ps4-700x700h.jpg" alt="Star Wars Jedi: Fallen Order" />
+          </div>
+          <h3>Star Wars Jedi: Fallen Order</h3>
+          <p class="price">$39.99</p>
+        </a>
+      </article>
+      
+      <article class="product-card"
+        data-title="clair obscur: expedition 33"
+        data-price="59.99"
+        data-release="2025-10-03"
+        data-genres="Action,RPG,Turn-Based"
+        data-modes="singleplayer">
+
+        <a href="/products/p050/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="https://haloshop.vn/wp-content/uploads/2025/03/clair_obscur_expedition_33_us_ps5-1.webp" alt="Clair Obscur: Expedition 33" />
+          </div>
+          <h3>Clair Obscur: Expedition 33</h3>
+          <p class="price">$59.99</p>
+        </a>
+      </article>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+ 
+ 
+.store-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem; 
+  width: 1100px;
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0 1rem 0 0;
+  align-self: stretch;
+}
+
+.products-section {
+  flex: 1;
+  min-width: 0;
+  color: #f5f5f5;
+}
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #e5e5e5;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); 
+}
+
+ 
+.filter-sidebar {
+  width: 150px;
+  flex-shrink: 0;
+  position: relative; 
+  padding-top: 5rem; 
+  color: #e5e5e5;
+  font-size: 0.9rem;
+  overflow: visible;
+  height: auto; 
+  margin-left: max(0px, (100% - 1800px) / 2);
+}
+
+ 
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 2.2rem;
+  justify-items: center;
+  align-items: start;
+  padding: 0;
+}
+
+ 
+.product-card {
+  width: 110%; 
+  max-width: 250px; 
+  background: #2b2b2b;
+  color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
+}
+.thumb-wrap {
+  height: 280px;
+  overflow: hidden;
+}
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  object-position: top center;
+}
+.product-card h3 {
+  margin: 0.6rem 0.8rem 0.2rem;
+  font-size: 0.95rem;
+  min-height: 2.6rem;
+  text-shadow: none; 
+  word-wrap: break-word;
+}
+.product-card .price {
+  margin: 0.2rem 0.8rem 0.8rem;
+  font-weight: 700;
+  color: #64b5f6;
+  font-size: 0.9rem;
+}
+.product-card a {
+    color: #a0c2ff;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.product-card a:hover {
+    color: #64b5f6;
+}
+
+ 
+.filter-group {
+    margin-bottom: 2rem;
+}
+
+.filter-toggle {
+  background: none;
+  color: #f3f3f3;
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.6rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #333;
+  transition: color 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.filter-options {
+  display: flex; 
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  width: 100%; 
+}
+.filter-options:not(.active) {
+    display: none;
+}
+
+.filter-scroll {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 0.8rem;
+  padding-right: 5px; 
+  width: 100%; 
+  box-sizing: border-box; 
+  scrollbar-width: thin;
+  scrollbar-color: #0095ff transparent;
+}
+.filter-scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+.filter-scroll::-webkit-scrollbar-thumb {
+  background-color: #0095ff;
+  border-radius: 1px;
+  background-clip: padding-box;
+}
+
+.filter-item {
+  display: block;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 0.2rem;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-left 0.15s ease;
+  cursor: pointer;
+  font-weight: 500;
+  color: #c7d2e8;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+
+.filter-item:hover {
+    background-color: #333d52;
+    color: #fff;
+}
+
+.filter-item.active {
+    background-color: #21305c;
+    color: #a0c2ff;
+    border-left: 3px solid #64b5f6;
+}
+
+.filter-item.exclude {
+    background-color: #4a3434;
+    color: #ffc9c9;
+    opacity: 0.9;
+    border-left: 3px solid #ff7272;
+    text-decoration: line-through;
+}
+
+.clear-filters-link {
+  display: block;
+  background: #333;
+  border: 1px solid #444;
+  text-align: center;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: #a0c2ff;
+  width: 100%;
+  margin-top: 1rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.clear-filters-link:hover {
+    background: #444;
+    color: #fff;
+}
+
+
+ 
+.search-bar-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #0a002a;
+  border: 1px solid rgb(81, 81, 81);
+  border-radius: 9999px;
+  padding: 0.6rem 1rem;
+  width: 80%;
+  max-width: 650px;
+  backdrop-filter: blur(15px);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+.search-bar:focus-within {
+  border: 3px solid white;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4), inset 0 0 6px rgba(255, 255, 255, 0.1);
+}
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+.search-icon {
+  opacity: 0.6;
+}
+
+.sort-bar-wrap {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.sort-dropdown {
+  position: relative;
+  z-index: 10;
+}
+.sort-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(20, 24, 35, 0.92);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 240px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.sort-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+  outline: none;
+}
+.sort-button.active {
+  background: rgba(24, 28, 40, 0.94);
+}
+.arrow {
+  font-size: 0.88rem;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+}
+.sort-button.active .arrow {
+  transform: rotate(180deg);
+}
+.sort-options {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: rgba(20, 24, 35, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 15px;
+  list-style: none;
+  padding: 6px 0;
+  margin: 8px 0 0 0;
+  min-width: 240px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.995);
+  pointer-events: none;
+  transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1);
+}
+.sort-options.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.sort-options li {
+  padding: 10px 16px;
+  color: #f8fafc;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 120ms ease, color 120ms ease;
+  white-space: nowrap;
+}
+.sort-options li:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6f0ff;
+}
+
+
+ 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding: 0.5rem 0;
+}
+
+.pagination-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.75rem; 
+}
+
+.pagination-list li {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.pagination-list a, .pagination-list span {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    color: #a0c2ff;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    border: 1px solid transparent; 
+}
+
+.pagination-list a:hover {
+    background-color: #333d52;
+}
+
+.pagination-list .active {
+    background-color: #64b5f6;
+    color: #101525;
+    font-weight: 700;
+    cursor: default;
+}
+
+.pagination-list .disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-list .dots {
+    padding: 0.5rem 0;
+    color: #f3f3f3;
+}
+
+
+ 
+@media (max-width: 1200px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .store-layout { flex-direction: column; }
+  .filter-sidebar {
+    position: static; 
+    height: auto;
+    width: 100%;
+    padding-top: 0;
+    margin-left: 0; 
+  }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  
+  .search-bar-wrap { justify-content: flex-start; }
+  .search-bar { width: 100%; max-width: 100%; }
+
+  .sort-bar-wrap { justify-content: flex-start; }
+  .sort-dropdown { width: 100%; }
+  .sort-button, .sort-options { min-width: 100%; }
+  .sort-options { right: auto; left: 0; }
+}
+@media (max-width: 600px) {
+  .products-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("search-bar");
+    const sortButton = document.querySelector(".sort-button");
+    const sortLabel = document.getElementById("sort-label");
+    const sortOptions = document.querySelector(".sort-options");
+    const grid = document.getElementById("products-grid");
+    const cards = Array.from(document.querySelectorAll(".product-card"));
+    const noResults = document.getElementById("no-results");
+    const sortItems = sortOptions.querySelectorAll("li");
+
+    
+    const toggles = document.querySelectorAll(".filter-toggle");
+    const genreItems = document.querySelectorAll("[data-genre]");
+    const modeItems = document.querySelectorAll("[data-mode]");
+    const clearGenresBtn = document.querySelector(".clear-genres");
+    const clearModesBtn = document.querySelector(".clear-modes");
+    
+    
+    let includeGenres = new Set();
+    let excludeGenres = new Set();
+    let includeModes = new Set();
+    let excludeModes = new Set();
+
+    
+    const ITEMS_PER_PAGE = 16;
+    let currentPage = 1;
+    let currentSort = "alphabet"; 
+
+    
+    const paginationContainer = document.createElement("div");
+    paginationContainer.className = "pagination";
+    grid.after(paginationContainer);
+
+    function buildPagination(totalPages) {
+        paginationContainer.innerHTML = "";
+        if (totalPages <= 1) return;
+
+        const ul = document.createElement("ul");
+        ul.className = "pagination-list fixed-size";
+
+        const addItem = (label, page, type = "page", active = false, disabled = false) => {
+            const li = document.createElement("li");
+            if (type === "dots") {
+                li.innerHTML = `<span class="dots">…</span>`;
+            } else if (disabled) {
+                li.innerHTML = `<span class="disabled">${label}</span>`;
+            } else if (active) {
+                li.innerHTML = `<span class="active">${label}</span>`;
+            } else {
+                li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+            }
+            ul.appendChild(li);
+        };
+
+        const MAX_PAGES_DISPLAYED = 5; 
+        let startPage = Math.max(2, currentPage - Math.floor(MAX_PAGES_DISPLAYED / 2));
+        let endPage = Math.min(totalPages - 1, startPage + MAX_PAGES_DISPLAYED - 1);
+
+        
+        if (endPage - startPage + 1 < MAX_PAGES_DISPLAYED) {
+             startPage = Math.max(2, endPage - MAX_PAGES_DISPLAYED + 1);
+        }
+
+        addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
+        
+        if (totalPages > 0) addItem(1, 1, "page", currentPage === 1);
+        if (startPage > 2) addItem("…", null, "dots");
+
+        for (let i = startPage; i <= endPage; i++) {
+            if (i >= 2 && i <= totalPages - 1) {
+                addItem(i, i, "page", i === currentPage);
+            }
+        }
+        
+        if (endPage < totalPages - 1) addItem("…", null, "dots");
+        if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
+
+        addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
+
+        paginationContainer.appendChild(ul);
+
+        ul.querySelectorAll("a[data-page]").forEach(a => {
+            a.addEventListener("click", e => {
+                e.preventDefault();
+                currentPage = parseInt(a.dataset.page);
+                doFilterAndSort();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    }
+
+    
+    sortLabel.textContent = sortItems[0].textContent; 
+
+    sortButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        sortOptions.classList.toggle("active");
+        sortButton.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+        const sortDropdown = document.getElementById("sortDropdown");
+        if (!sortDropdown.contains(e.target)) {
+            sortOptions.classList.remove("active");
+            sortButton.classList.remove("active");
+        }
+    });
+
+    sortItems.forEach((item) => {
+        item.addEventListener("click", () => {
+            currentSort = item.dataset.value;
+            sortLabel.textContent = item.textContent;
+            
+            sortOptions.classList.remove("active");
+            sortButton.classList.remove("active");
+            
+            currentPage = 1;
+            doFilterAndSort();
+        });
+    });
+
+    
+    function doFilterAndSort() {
+        const q = input.value.trim().toLowerCase();
+        const sortBy = currentSort;
+        let visibleCards = [];
+
+        
+        const sorted = [...cards].sort((a, b) => {
+            const titleA = (a.dataset.title || "").toLowerCase();
+            const titleB = (b.dataset.title || "").toLowerCase();
+            const priceA = parseFloat(a.dataset.price) || 0;
+            const priceB = parseFloat(b.dataset.price) || 0;
+            const dateA = new Date(a.dataset.release || "1970-01-01");
+            const dateB = new Date(b.dataset.release || "1970-01-01");
+            switch (sortBy) {
+                case "alphabet": return titleA.localeCompare(titleB);
+                case "alphabet-desc": return titleB.localeCompare(titleA);
+                case "price": return priceA - priceB;
+                case "price-desc": return priceB - priceA;
+                case "release": return dateB - dateA;
+                case "release-old": return dateA - dateB;
+                default: return 0;
+            }
+        });
+
+        
+        sorted.forEach(card => {
+            const title = (card.dataset.title || "").toLowerCase();
+            const genres = (card.dataset.genres || "").toLowerCase().split(",");
+            const modes = (card.dataset.modes || "").toLowerCase().split(",");
+            
+            const matchesSearch = !q || title.includes(q);
+            
+            
+            const matchesIncludeGenre = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
+            const matchesExcludeGenre = [...excludeGenres].some(g => genres.includes(g));
+
+            
+            const matchesIncludeMode = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
+            const matchesExcludeMode = [...excludeModes].some(m => modes.includes(m));
+            
+            if (matchesSearch && matchesIncludeGenre && !matchesExcludeGenre && matchesIncludeMode && !matchesExcludeMode) {
+                visibleCards.push(card);
+            }
+        });
+
+        
+        const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+        if (currentPage > totalPages) currentPage = totalPages || 1;
+
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        
+        grid.innerHTML = "";
+        visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
+
+        noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+        buildPagination(totalPages);
+    }
+
+    
+    toggles.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = document.getElementById(btn.dataset.target);
+            btn.classList.toggle("active");
+            target.classList.toggle("active");
+            btn.querySelector(".arrow").style.transform = target.classList.contains("active") ? "rotate(180deg)" : "rotate(0deg)";
+        });
+        
+        const target = document.getElementById(btn.dataset.target);
+        if (target.classList.contains("active")) {
+             btn.querySelector(".arrow").style.transform = "rotate(180deg)";
+        }
+    });
+
+    
+    genreItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const genre = item.dataset.genre;
+            if (item.classList.contains("active")) {
+                
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeGenres.delete(genre);
+                excludeGenres.add(genre);
+            } else if (item.classList.contains("exclude")) {
+                
+                item.classList.remove("exclude");
+                excludeGenres.delete(genre);
+            } else {
+                
+                item.classList.add("active");
+                includeGenres.add(genre);
+            }
+            currentPage = 1;
+            doFilterAndSort();
+        });
+    });
+
+    
+    modeItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const mode = item.dataset.mode;
+            if (item.classList.contains("active")) {
+                
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeModes.delete(mode);
+                excludeModes.add(mode);
+            } else if (item.classList.contains("exclude")) {
+                
+                item.classList.remove("exclude");
+                excludeModes.delete(mode);
+            } else {
+                
+                item.classList.add("active");
+                includeModes.add(mode);
+            }
+            currentPage = 1;
+            doFilterAndSort();
+        });
+    });
+
+    
+    clearGenresBtn.addEventListener("click", () => {
+        includeGenres.clear();
+        excludeGenres.clear();
+        genreItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+    });
+
+    clearModesBtn.addEventListener("click", () => {
+        includeModes.clear();
+        excludeModes.clear();
+        modeItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+    });
+
+    
+    input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
+
+    
+    doFilterAndSort();
+    
+});
+</script>
+
+  </main>
+
+  <div class="footer-accent"></div>
+<footer class="gamestore-footer">
+  <div class="footer-content">
+    
+    <div class="footer-col footer-brand">
+      <div class="footer-logo-row">
+        <img src="/g88.png" alt="GameStore88 Logo" class="footer-logo-img-left">
+
+        <h2 class="footer-logo">GAME<span>88™</span></h2>
+      </div>
+
+      <p class="footer-desc">
+        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+      </p>
+
+      <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        227 Nguyen Van Cu, Cho Quan District, Ho Chi Minh City, Vietnam
+        <a href="https://maps.google.com/?q=123 Gaming Street, Ho Chi Minh City"></a>
+      </p>
+    </div>
+
+    
+
+    
+    <div class="footer-col">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="/">HomePage</a></li>
+        <li><a href="/products/">Products</a></li>
+        
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Policies</h3>
+      <ul class="footer-links">
+        
+          <li><a href="/policies/warranty/">Warranty Policy</a></li>
+        
+          <li><a href="/policies/returns/">Return &amp; Exchange Policy</a></li>
+        
+          <li><a href="/policies/shipping/">Shipping Policy</a></li>
+        
+          <li><a href="/policies/guide/">Purchase Guide</a></li>
+        
+      </ul>
+    </div>
+
+
+
+
+
+    
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="footer-social">
+        <a href="https://web.facebook.com/minhquuan102" target="_blank" class="social-btn facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+
+      <h3>Business Hours</h3>
+      <ul>
+        <li>Monday – Saturday: 9h00 – 20h00</li>
+        <li>Sunday: 9h00 – 19h00</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sponsor-bottom">
+    <span>Sponsored by</span>
+    <img src="/playstation.png" class="sponsor-logo-bottom" alt="PlayStation">
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 GameStore88. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;  
+}
+
+ 
+.footer-logo-img-left {
+  width: 50px;
+  height: 40px;
+
+  object-fit: cover;
+  border-radius: 12px;               
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+ 
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-logo span {
+  color: #3b82f6;
+}
+
+.footer-logo-img-left {
+  position: relative;
+  top: -6px;    
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;
+
+  --footer-logo-offset: 1px;     
+  position: relative;
+  top: var(--footer-logo-offset);
+}
+
+ 
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: #facc15;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.footer-logo span {
+  color: #3b82f6;
+}
+.footer-desc {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-col a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: #3b82f6;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;    
+  align-items: center;        
+  gap: 1.2rem;
+  margin: 1.5rem auto;        
+  width: 100%;                
+  text-align: center;
+}
+
+ 
+.social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn i {
+  position: absolute;
+  inset: 0;                  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.2rem;         
+  line-height: 1;            
+
+  transform: translateY(1px);    
+}
+
+
+ 
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.social-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.facebook {
+  background: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.4);
+}
+.facebook:hover {
+  background: #0d6efd;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.7);
+}
+
+.youtube {
+  background: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+.youtube:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+}
+
+.discord {
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+.discord:hover {
+  background: #4752c4;
+  box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
+}
+
+.tiktok {
+  background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.4);
+}
+.tiktok:hover {
+  background: linear-gradient(135deg, #fe2c55, #000000, #25f4ee);
+  box-shadow: 0 0 18px rgba(254, 44, 85, 0.7);
+}
+
+ 
+.social-btn:hover {
+  transform: translateY(-4px);
+}
+
+
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: #2563eb;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+.footer-social a:hover {
+  background: #0ea5e9;
+  box-shadow: 0 0 12px #0ea5e9, 0 0 24px #0ea5e9;
+}
+
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s ease;
+  font-size: 1.1rem;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+  background: #3b82f6;
+  box-shadow: 0 0 12px #2563eb;
+}
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #9333ea, #facc15);
+  background-size: 300% 300%;
+  animation: glow 4s ease infinite;
+}
+@keyframes glow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+ 
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-col i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.footer-col h3 {
+  text-align: center;
+}
+.footer-col ul, .footer-col p {
+  text-align: center;
+}
+.footer-address {
+  color: #9ca3af;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer-address i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.sponsor-bottom {
+  margin-top: -5rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-align: center;
+  width: 100%;
+}
+
+.sponsor-bottom span {
+  font-size: 1.2rem;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+  color: #facc15;                      
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.45);
+}
+
+.sponsor-logo-bottom {
+  height: 30px;      
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+}
+
+</style>
+
+
+
+<script>
+function updateHeader() {
+  const user = localStorage.getItem('user');
+  const userDisplay = document.getElementById('user-display');
+  const userIcon = document.getElementById('user-icon');
+  const loginLink = document.getElementById('login-link');
+  const cartLink = document.getElementById('cart-link');
+
+  if (!userDisplay || !userIcon || !loginLink) return;
+
+  if (user) {
+    userDisplay.textContent = user;
+    userDisplay.style.display = "inline-block";
+
+    userIcon.textContent = user.charAt(0).toUpperCase();
+    userIcon.style.display = "flex";
+
+    loginLink.textContent = "Logout";
+    loginLink.href = "#";
+    loginLink.onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      window.location.reload();
+    };
+
+    cartLink.style.display = "inline-flex";
+  } else {
+    userDisplay.textContent = "";
+    userDisplay.style.display = "none";
+    userIcon.style.display = "none";
+
+    loginLink.textContent = "Login";
+    loginLink.href = "/login/";
+    loginLink.onclick = null;
+
+    cartLink.style.display = "none";
+  }
+
+  
+  document.querySelector('.nav-right').style.visibility = "visible";
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+
+  
+  const key = user ? `cart_${user}` : "cart";
+
+  let cart;
+  try {
+    cart = JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    cart = [];
+  }
+
+  const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeader();
+  updateCartCount();
+});
+
+window.addEventListener("storage", () => {
+  updateHeader();
+  updateCartCount();
+});
+</script>
+
+  </script>
+
+
+<div id="toast-container"></div>
+
+
+<div id="confirm-modal" class="confirm-modal">
+  <div class="confirm-box">
+    <p id="confirm-message">Are you sure?</p>
+    <div class="confirm-actions">
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+function showToast(message, type = "info") {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+
+window.alert = function (message) {
+  showToast(message, "info");
+};
+
+ 
+window.customConfirm = function (message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("confirm-message");
+    const yes = document.getElementById("confirm-yes");
+    const no = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.add("active");
+
+    const cleanup = () => {
+      modal.classList.remove("active");
+      yes.removeEventListener("click", onYes);
+      no.removeEventListener("click", onNo);
+    };
+
+    const onYes = () => { cleanup(); resolve(true); };
+    const onNo = () => { cleanup(); resolve(false); };
+
+    yes.addEventListener("click", onYes);
+    no.addEventListener("click", onNo);
+  });
+};
+</script>
+
+<style>
+ 
+#toast-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+.toast {
+  opacity: 0;
+  transform: translateY(-10px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.toast.error { background: linear-gradient(135deg,#ef4444,#b91c1c); }
+.toast.warning { background: linear-gradient(135deg,#f97316,#ea580c); }
+.toast.info { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+
+ 
+.confirm-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+.confirm-modal.active {
+  display: flex;
+}
+.confirm-box {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  text-align: center;
+  min-width: 300px;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-actions button {
+  flex: 1;  
+  max-width: 120px;
+  min-width: 100px;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#confirm-yes {
+  background: #22c55e;
+  color: white;
+}
+#confirm-no {
+  background: #ef4444;
+  color: white;
+}
+
+#confirm-yes:hover { background: #16a34a; transform: scale(1.03); }
+#confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
+
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const current = window.location.pathname;
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    const href = link.getAttribute("href");
+
+    
+    if (current === "/" && href === "/") {
+      link.classList.add("active");
+    }
+    
+    else if (href !== "/" && current.startsWith(href)) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

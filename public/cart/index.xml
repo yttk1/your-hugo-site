@@ -4,7 +4,7 @@
     <title>Your Cart on My New Hugo Site</title>
     <link>http://localhost:1313/cart/</link>
     <description>Recent content in Your Cart on My New Hugo Site</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/cart/index.xml" rel="self" type="application/rss+xml" />
   </channel>

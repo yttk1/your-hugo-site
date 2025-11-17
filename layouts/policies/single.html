@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{/* Lấy id từ tên file (warranty.md -> "warranty") */}}
+{{ $id := .File.BaseFileName }}
+
+{{/* Lọc danh sách policies trong data theo id */}}
+{{ $matches := where site.Data.policies.policies "id" $id }}
+
+<main style="max-width:900px;margin:2rem auto;color:white;padding:1rem;">
+  {{ if lt (len $matches) 1 }}
+    <h1 style="color:red;">Không tìm thấy chính sách</h1>
+    <p>Không có policy có id = <code>{{ $id }}</code></p>
+  {{ else }}
+    {{ $policy := index $matches 0 }}
+    <h1 style="color:#facc15;margin-bottom:0.75rem;">{{ $policy.title }}</h1>
+
+    <article style="margin-top:1rem;">
+      {{/* Nội dung trong data được markdownify để hiển thị đẹp */}}
+      {{ $policy.content | markdownify }}
+    </article>
+  {{ end }}
+</main>
+{{ end }}

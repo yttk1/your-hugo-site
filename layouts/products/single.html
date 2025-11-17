@@ -1,118 +1,422 @@
 {{ define "main" }}
-{{/* Extract the product ID from the URL */}}
 {{ $id := replaceRE "^/products/([^/]+)/?$" "$1" .RelPermalink }}
 {{ $products := site.Data.products }}
 {{ $p := index (where $products "id" $id) 0 }}
 
 {{ if not $p }}
-  <div style="text-align:center; margin-top:4rem;">
-    <h2>😢 Game not found</h2>
-    <p>This product doesn’t exist in our database.</p>
-    <a href="/products/" style="color:#38bdf8;">← Back to all games</a>
-  </div>
+<div style="text-align:center; margin-top:4rem;">
+  <h2>😢 Game not found</h2>
+  <p>This product doesn’t exist in our store database.</p>
+  <a href="/products/" style="color:#38bdf8;">← Back to all games</a>
+</div>
 {{ else }}
-<div class="product-detail">
-  <img src="{{ index $p.images 0 }}" alt="{{ $p.title }}">
-  <div class="details">
-    <h1>{{ $p.title }}</h1>
+<div class="game-container">
+
+  <!-- 🎮 Media Gallery (main preview + thumbnails) -->
+  <div class="gallery-container">
+    <div class="main-display" id="main-display">
+      {{ if $p.trailer }}
+        {{/* extract YouTube video ID (works with ?v= or /embed/ URLs) */}}
+        {{ $videoID := replaceRE ".*(?:v=|embed/)([a-zA-Z0-9_-]+).*" "$1" $p.trailer }}
+        <iframe
+          id="main-media"
+          src="https://www.youtube.com/embed/{{ $videoID }}?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      {{ else }}
+        <img id="main-media" src="{{ index $p.images 0 }}" alt="{{ $p.title }}">
+      {{ end }}
+
+    </div>
+
+    <div class="thumbnails">
+      <!-- 🎬 YouTube Trailer Thumbnail -->
+      {{ if $p.trailer }}
+        {{ $videoID := replaceRE ".*(?:v=|embed/)([a-zA-Z0-9_-]+).*" "$1" $p.trailer }}
+        <div class="thumb video-thumb" onclick="showMedia('{{ $p.trailer }}','video')">
+          <img src="https://img.youtube.com/vi/{{ $videoID }}/hqdefault.jpg" alt="Trailer thumbnail">
+          <div class="play-icon">▶</div>
+        </div>
+      {{ end }}
+
+      <!-- 🖼️ Game Images -->
+      {{ range $p.images }}
+        <div
+          class="thumb image-thumb"
+          role="button"
+          tabindex="0"
+          aria-label="Show {{ $p.title }} screenshot"
+          onclick="showMedia('{{ . }}','image')"
+          onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); showMedia('{{ . }}','image'); }">
+          <img src="{{ . }}" alt="{{ $p.title }} screenshot">
+        </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- 📝 Game Details -->
+  <div class="game-details">
+    <h1 class="game-title">{{ $p.title }}</h1>
     <p class="price">${{ printf "%.2f" $p.price }}</p>
-    <p class="desc">{{ $p.long }}</p>
-    <button class="add-to-cart"
-      data-id="{{ $p.id }}"
-      data-title="{{ $p.title }}"
-      data-price="{{ $p.price }}"
-      data-img="{{ index $p.images 0 }}">
-      Add to Cart
-    </button>
+
+    <br>
+
+    <!-- 📘 Game Info Section -->
+    <div class="section-block">
+      <h2 class="section-title">Game Info</h2>
+      <hr class="section-divider">
+      <div class="meta">
+        <p><strong>Developer:</strong> {{ $p.developer }}</p>
+        <p><strong>Publisher:</strong> {{ $p.publisher }}</p>
+        <p><strong>Release Date:</strong> {{ $p.release_date }}</p>
+        <p><strong>Modes:</strong> {{ $p.modes }}</p>
+        <p><strong>Genres:</strong> {{ delimit $p.genres ", " }}</p>
+      </div>
+    </div>
+
+    <br>
+    <!-- 📖 Game Description Section -->
+    <div class="section-block">
+      <h2 class="section-title">Game Description</h2>
+      <hr class="section-divider">
+      <p class="desc">{{ $p.long }}</p>
+    </div>
+
+    <br>
+    <!-- 🛒 Buttons -->
+    <div class="buttons">
+      <button class="buy-now"
+        data-id="{{ $p.id }}"
+        data-title="{{ $p.title }}"
+        data-price="{{ $p.price }}"
+        data-img="{{ index $p.images 0 }}">
+        Buy Now
+      </button>
+      <button class="add-to-cart"
+        data-id="{{ $p.id }}"
+        data-title="{{ $p.title }}"
+        data-price="{{ $p.price }}"
+        data-img="{{ index $p.images 0 }}">
+        Add to Cart
+      </button>
+      <button class="share-btn" onclick="shareGame('{{ $p.title }}', '{{ .Permalink }}')">Share</button>
+    </div>
   </div>
 </div>
-{{ end }}
-
-<style>
-.product-detail {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 2rem;
-  background: #1e293b;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  color: #fff;
-}
-.product-detail img {
-  width: 420px;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-.details { flex: 1; }
-.details h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-.price { font-size: 1.4rem; color: #38bdf8; font-weight: bold; }
-.desc { color: #e2e8f0; margin-top: 1rem; line-height: 1.6; }
-.add-to-cart {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 1.2rem;
-  font-size: 1rem;
-  transition: background 0.2s;
-}
-.add-to-cart:hover { background: #1d4ed8; }
-</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector(".add-to-cart");
-  if (!btn) return;
+  const addToCartBtn = document.querySelector(".add-to-cart");
+  const buyNowBtn = document.querySelector(".buy-now");
 
-  btn.addEventListener("click", (e) => {
-    const user = localStorage.getItem("user");
-
-    // 🚫 Stop if user not logged in
-    if (!user) {
-      showToast("⚠️ Please log in before adding items to cart.", "warning");
-
-      // wait 1.5 seconds before redirect
-      setTimeout(() => {
-        window.location.href = "/login/";
-      }, 1500);
-
-      return;
-    }
-
-    // ✅ Otherwise, proceed with add-to-cart
+  // Add to Cart
+  addToCartBtn.addEventListener("click", (e) => {
     const item = {
       id: e.target.dataset.id,
       title: e.target.dataset.title,
       price: parseFloat(e.target.dataset.price),
       img: e.target.dataset.img,
-      qty: 1
+      qty: 1,
     };
+
+    const user = localStorage.getItem("user");
+    if (!user) {
+      showToast("⚠️ Please log in first.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
 
     const key = `cart_${user}`;
     let cart = JSON.parse(localStorage.getItem(key)) || [];
-
-    const existing = cart.find(p => p.id === item.id);
+    const existing = cart.find((p) => p.id === item.id);
     if (existing) existing.qty += 1;
     else cart.push(item);
-
     localStorage.setItem(key, JSON.stringify(cart));
-    alert(`${item.title} added to cart!`);
+
+    showToast(`🎮 ${item.title} added to cart!`, "success");
     updateCartCount();
+    animateCartIcon();
   });
 
-  function updateCartCount() {
+  // Buy Now
+  buyNowBtn.addEventListener("click", (e) => {
+    const item = {
+      id: e.target.dataset.id,
+      title: e.target.dataset.title,
+      price: parseFloat(e.target.dataset.price),
+      img: e.target.dataset.img,
+      qty: 1,
+    };
+
     const user = localStorage.getItem("user");
-    const key = user ? `cart_${user}` : "cart";
-    const cart = JSON.parse(localStorage.getItem(key)) || [];
-    const total = cart.reduce((sum, p) => sum + p.qty, 0);
-    const countEl = document.getElementById("cart-count");
-    if (countEl) countEl.textContent = total;
-  }
+    if (!user) {
+      showToast("⚠️ Please log in to buy games.", "warning");
+      setTimeout(() => (window.location.href = "/login/"), 1200);
+      return;
+    }
+
+    // Save for checkout
+    const key = `checkout_${user}`;
+    localStorage.setItem(key, JSON.stringify([item]));
+
+    showToast("💳 Redirecting to payment...", "info");
+    setTimeout(() => (window.location.href = "/payment/"), 1000);
+  });
 });
+
+function showMedia(src, type) {
+  const display = document.getElementById("main-display");
+  display.innerHTML = ""; // Clear old media
+
+  if (type === "image") {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Game image";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
+    img.style.borderRadius = "10px";
+    display.appendChild(img);
+  } else if (type === "video") {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "500";
+    iframe.allowFullscreen = true;
+    iframe.style.borderRadius = "10px";
+    iframe.frameBorder = "0";
+    display.appendChild(iframe);
+  }
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+  const key = user ? `cart_${user}` : "cart";
+  const cart = JSON.parse(localStorage.getItem(key)) || [];
+  const total = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+function animateCartIcon() {
+  const icon = document.getElementById("cart-link"); // id in your header
+  if (!icon) return;
+  icon.classList.add("cart-bounce");
+  setTimeout(() => icon.classList.remove("cart-bounce"), 500);
+}
 </script>
 
+
+
+<style>
+.game-container {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.trailer iframe {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.gallery img {
+  height: 160px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.game-details {
+  margin-top: 1rem;
+}
+.price {
+  color: #38bdf8;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.meta {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.desc {
+  color: #e2e8f0;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.buttons button {
+  padding: 0.8rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.buy-now {
+  background: linear-gradient(135deg, #9333ea, #6366f1);
+  color: white;
+}
+.buy-now:hover { background: linear-gradient(135deg, #7e22ce, #4f46e5); transform: scale(1.03); }
+.add-to-cart {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+.add-to-cart:hover { background: linear-gradient(135deg, #1d4ed8, #2563eb); transform: scale(1.03); }
+.share-btn {
+  background: #334155;
+  color: #f8fafc;
+}
+.share-btn:hover { background: #475569; transform: scale(1.03); }
+
+.gallery-container {
+  margin-bottom: 2rem;
+}
+
+.main-display {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.main-display img,
+.main-display iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Thumbnail strip */
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.thumb {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1424;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* 🎥 YouTube trailer overlay */
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-thumb img {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+.video-thumb:hover img {
+  filter: brightness(1);
+}
+
+/* ====== Game Info / Description styling ====== */
+.section-block {
+  margin-top: 2rem;
+}
+
+.section-title {
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
+  margin-bottom: 1rem;
+}
+
+.meta {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.meta p {
+  margin: 0.2rem 0;
+}
+
+.desc {
+  color: #e2e8f0;
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.cart-bounce {
+  animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+</style>
+{{ end }}
 {{ end }}

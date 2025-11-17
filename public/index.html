@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.152.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.123.7"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/g88.png">
   <title>Welcome to College Store | Game Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+      html {
+    overflow-y: scroll !important;
+  }
     :root {
       --primary: #2563eb;
       --secondary: #f3f4f6;
@@ -16,23 +19,31 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--secondary);
-      color: var(--text);
+      background-color: #131420;
+      color: #e0e0e0;
       margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
     header {
-      background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+       
+      background: rgba(15, 23, 36, 0.75);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+
     header a {
       text-decoration: none;
       color: var(--text);
@@ -60,18 +71,153 @@
       font-size: 0.9rem;
       border-top: 1px solid #e5e7eb;
     }
+
+     
+
+    .nav-right {
+  visibility: hidden;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(180deg, #1a1d23, #13161a);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+ 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6cb5ff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+ 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-links a {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #dce3ec;
+  padding: 5px 6px;
+  border-radius: 4px;
+  transition: 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: #7cc7ff;
+}
+
+.nav-links a.active {
+  color: #7cc7ff;
+  border-bottom: 2px solid #7cc7ff;
+}
+
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+ 
+.login-btn, .logout-btn {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  color: #ffb3b3;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.login-btn:hover, .logout-btn:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.cart-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  background: #1d4dae;
+  color: white;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+ 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dce3ec, #8c9aa8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #071018;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.username {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+}
+
+
   </style>
 </head>
 <body>
   <header>
   <div class="nav-left">
     <a href="/" class="logo">
-      <img src="/favicon-32x32.png" alt="Gamestore88 Logo" class="logo-img">
-      <span class="logo-text">Home</span>
+      <img src="/g88.png" alt="Gamestore88 Logo" class="logo-img">
+      <span class="logo-text">Game88™</span>
     </a>
     <nav class="nav-links">
-      <a href="/products/">🎮 Products</a>
-      <a href="/about/">📜 About</a>
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
     </nav>
   </div>
 
@@ -86,172 +232,10 @@
 
 
 
-  <style>
+<style>
 
  
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 2rem;  
-}
 
- 
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #38bdf8;
-  font-weight: 700;
-  font-size: 1.2rem;
-}
-
- 
-.logo-img {
-  height: 34px;
-  width: auto;
-  margin-right: 8px;
-  border-radius: 8px;
-}
-
- 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: #94a3b8;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #38bdf8;
-}
-
- 
-.store-header {
-  background: linear-gradient(90deg, #0a0f1a 0%, #111827 100%);
-  color: #e2e8f0;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
- 
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #38bdf8;
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-}
-
-.logo-img {
-  height: 34px;
-  width: auto;
-  margin-right: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.logo:hover .logo-img {
-  transform: scale(1.05);
-  box-shadow: 0 0 14px rgba(96, 165, 250, 0.8);
-}
-
- 
-.nav-links a {
-  color: #94a3b8;
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.25s ease, text-shadow 0.25s ease;
-}
-
-.nav-links a:hover {
-  color: #38bdf8;
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-}
-
- 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
- 
-.username {
-  font-weight: 600;
-  color: #4e4c4c;
-  text-shadow: 0 0 8px rgba(79, 83, 84, 0.8);
-}
- 
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
- 
-.user-icon {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #efefef, #6c6e70);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 200;
-  font-size: 0.9rem;
-  box-shadow: 0 0 6px rgba(80, 80, 82, 0.6);
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-}
-
- 
-.logout-btn {
-  color: #f87171;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-  color: #ef4444;
-  text-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
-}
-
- 
-.cart-icon {
-  background: linear-gradient(145deg, #2563eb, #1d4ed8);
-  color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
-}
-
-.cart-icon:hover {
-  transform: scale(1.05);
-}
 </style>
 </header>
 
@@ -259,168 +243,949 @@
 
   <main>
     
-<section class="hero">
-  <div class="video-container">
-  <iframe
-    id="bg-video"
-    src="https://www.youtube.com/embed/nMBBXqu0OLE?autoplay=1&mute=1&loop=1&playlist=nMBBXqu0OLE&controls=0&showinfo=0&modestbranding=1"
-    frameborder="0"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gamestore88 — Home</title>
+  <style>
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-blocker {
+      position: absolute;
+      inset: 0;
+      pointer-events: auto;    
+    }
+
+    :root{
+      --bg:#131420;
+      --panel: rgba(255,255,255,0.03);
+      --panel-2: rgba(255,255,255,0.06);
+      --muted: #cbd5e1;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#fff}
+    a{color:inherit}
+
+     
+    .navbar{
+      position:fixed; top:0; left:0; right:0; height:64px;
+      display:flex; align-items:center; gap:24px; padding:0 24px;
+      background: rgba(10,10,10,0.65);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index:999;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
+    .brand .logo{width:38px;height:38px;border-radius:8px;background:#ff4d6d}
+    .navlinks{display:flex;gap:18px;margin-left:8px}
+    .navlinks a{padding:8px 10px;border-radius:8px;text-decoration:none;color:#ddd}
+    .navlinks a.active{color:#60a5fa;font-weight:700}
+    .nav-right{margin-left:auto;display:flex;gap:12px;align-items:center}
+
+    main{position:relative; z-index:3; padding:24px 16px 80px; max-width:1300px; margin:0 auto; margin-top: 88px}
+
+     
+    .hero-carousel{ position:relative; width:100%; max-width:1400px; aspect-ratio:16/9; margin:12px auto; border-radius:10px; overflow:hidden; background:#000; }
+    .hc-slides{ position:relative; width:100%; height:100%; }
+
+    .hc-slide{ position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .6s ease, transform .6s; transform:scale(1.02) }
+    .hc-slide[aria-hidden="false"]{ opacity:1; pointer-events:auto; transform:scale(1) }
+
+    .hc-media{ position:absolute; inset:0; width:100%; height:100%; display:block; overflow:hidden; background:#000 }
+    .hc-media img{ width:100%; height:100%; object-fit:cover; display:block }
+    .hc-media iframe{ width:100%; height:100%; border:0; display:block }
+
+     
+    .hc-inner-top-left {
+    position: absolute;
+    bottom: 6%;    
+    left: 6%;
+    max-width: 44%;
+    color: #fff;
+    text-align: left;
+    z-index: 3;
+    }
+    
+    .hc-inner-top-left .hc-title{ font-size:2.6rem; margin:6px 0; font-weight:800; text-shadow:0 6px 20px rgba(0,0,0,0.6) }
+    .hc-tags{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap }
+    .tag{ background:rgba(255,255,255,0.95); color:#071218; padding:7px 10px; border-radius:6px; font-weight:700; text-decoration:none }
+
+    .hc-ctas{ display:flex; gap:10px; margin-top:8px }
+    .btn{ padding:8px 14px; border-radius:999px; text-decoration:none; font-weight:800; font-size:0.9rem; display:inline-flex; align-items:center; gap:8px }
+    .btn.primary{ background:linear-gradient(135deg,#10b981,#059669); color:#051814 }
+    .btn.ghost{ background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.12) }
+
+    .hc-arrow{ position:absolute; top:50%; transform:translateY(-50%); width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.55); color:#fff; border:0; z-index:5; display:flex; align-items:center; justify-content:center; cursor:pointer }
+    .hc-prev{ left:14px } .hc-next{ right:14px }
+    .hc-dots{ position:absolute; left:50%; transform:translateX(-50%); bottom:12px; display:flex; gap:8px; z-index:6 }
+    .hc-dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.25) }
+    .hc-dot.active{ background:#fff }
+
+     
+    .new-releases{ margin:36px 0; padding:0 6px }
+    .section-title{ font-size:1.6rem; color:#fff; margin:0 0 12px; }
+    .nr-wrapper{ position:relative; display:flex; align-items:center; gap:12px }
+    .nr-track{ display:flex; gap:16px; overflow:hidden; scroll-behavior:smooth; padding:8px 4px; width:100% }
+    .nr-card{ min-width:160px; width:160px; background:rgba(255,255,255,0.03); border-radius:10px; text-decoration:none; color:inherit; box-shadow:0 8px 20px rgba(0,0,0,0.5); transition:transform .18s }
+    .nr-card:hover{ transform:translateY(-6px) }
+    .nr-media{ width:100%; aspect-ratio:2/3; overflow:hidden; background:#111; border-radius:8px 8px 0 0; display:flex; align-items:center; justify-content:center }
+    .nr-media img{ width:100%; height:100%; object-fit:contain; background:#0b0b0b; display:block }  
+    .nr-meta{ padding:10px; text-align:left }
+    .nr-meta h4{ margin:0 0 6px; font-size:1rem }
+    .nr-meta p{ margin:0; color:#cbd5e1 }
+
+    .nr-arrow{ width:48px; height:48px; border-radius:8px; background:rgba(0,0,0,0.6); color:#fff; border:0; display:flex; align-items:center; justify-content:center; cursor:pointer }
+
+     
+    .popular-genres{ margin:46px 0; padding:0 6px }
+    .genres-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; align-items:stretch }
+    .genre-card{ position:relative; overflow:hidden; border-radius:14px; text-decoration:none; color:#fff; display:block; height:220px; background:#0b0b0b }
+    .genre-card img{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.45) }
+    .genre-card span{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.25);  
+      backdrop-filter: blur(8px);             
+      -webkit-backdrop-filter: blur(8px);     
+      color: #fff;                             
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+     
+    @media (max-width:1000px){
+      .hc-inner-top-left{ max-width:60% }
+      .hc-title{ font-size:2.2rem }
+      .nr-card{ min-width:140px; width:140px }
+    }
+    @media (max-width:640px){
+      .hero-carousel{ aspect-ratio:16/9; margin:12px; border-radius:8px }
+      .hc-inner-top-left{ left:5%; top:4%; max-width:80% }
+      .hc-title{ font-size:1.6rem }
+      .nr-card{ min-width:120px; width:120px }
+      .genre-card{ height:160px }
+      .hc-arrow{ display:none }
+    }
+          .featured-title {
+      text-align: center;         
+      font-size: 2rem;
+      color: #ffffff;             
+      font-weight: 800;
+      margin: 20px 0;
+      
+       
+      text-shadow:
+         
+        0 0 30px #fff,
+        0 0 40px #fff;
+      
+      animation: glow-white 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-white {
+      from {
+        text-shadow:
+           
+          0 0 30px #fff,
+          0 0 40px #fff;
+      }
+      to {
+        text-shadow:
+           
+           
+          0 0 30px #fff,
+          0 0 40px #fff,
+          0 0 50px #fff;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  
+  
+
+  <main>
+
+   
+<h3 class="section-title featured-title">Featured & Recommended</h3>
+<section class="hero-carousel" aria-label="Featured games carousel">
+  <div class="hc-slides">
+    
+    <article class="hc-slide" data-id="p001" aria-hidden="false">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/qIcTM8WXFjk?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&playsinline=1&playlist=qIcTM8WXFjk"
+          title="Cyberpunk trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-blocker"></div>
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p001" class="tag">Action</a>
+          <a href="/products/p001" class="tag">RPG</a>
+          <a href="/products/p001" class="tag">Open World</a>
+        </div>
+        <h2 class="hc-title">Cyberpunk 2077</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p001">View Games</a>
+          <a class="btn ghost" href="/products/p001">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    
+    <article class="hc-slide" data-id="p002" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/E3Huy2cdih0?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=E3Huy2cdih0"
+          title="Elden Ring trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p002" class="tag">Action</a>
+          <a href="/products/p002" class="tag">RPG</a>
+          <a href="/products/p002" class="tag">Fantasy</a>
+        </div>
+        <h2 class="hc-title">Elden Ring</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p002">View Games</a>
+          <a class="btn ghost" href="/products/p002">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    
+    <article class="hc-slide" data-id="p003" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/8A7A1X1TVNc?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=8A7A1X1TVNc"
+          title="Stardew Valley trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p003" class="tag">Indie</a>
+          <a href="/products/p003" class="tag">Simulation</a>
+          <a href="/products/p003" class="tag">Farming</a>
+        </div>
+        <h2 class="hc-title">Stardew Valley</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p003">View Games</a>
+          <a class="btn ghost" href="/products/p003">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    
+    <article class="hc-slide" data-id="p006" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/RXq0yBmfiC8?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=RXq0yBmfiC8"
+          title="Hades trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p006" class="tag">Action</a>
+          <a href="/products/p006" class="tag">Roguelike</a>
+          <a href="/products/p006" class="tag">Indie</a>
+        </div>
+        <h2 class="hc-title">Hades</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p006">View Games</a>
+          <a class="btn ghost" href="/products/p006">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    
+    <article class="hc-slide" data-id="p007" aria-hidden="true">
+      <div class="hc-media hc-video">
+        <iframe loading="lazy"
+          src="https://www.youtube.com/embed/TSi0iJYSQ24?rel=0&controls=0&showinfo=0&mute=1&autoplay=1&loop=1&playlist=TSi0iJYSQ24"
+          title="EA SPORTS FC 26 trailer"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="hc-inner-top-left">
+        <div class="hc-tags">
+          <a href="/products/p007" class="tag">Sports</a>
+        </div>
+        <h2 class="hc-title">EA SPORTS FC 26</h2>
+        <div class="hc-ctas">
+          <a class="btn primary" href="/products/p007">View Games</a>
+          <a class="btn ghost" href="/products/p007">▶ Watch Trailer</a>
+        </div>
+      </div>
+    </article>
   </div>
-  <div class="overlay">
-    <h1>Welcome to Gamestore88</h1>
-    <p>Your one-stop shop for cheap games 🎮</p>
-    <a href="/products/" class="btn">Shop Now</a>
-  </div>
+
+  
+  <button class="hc-arrow hc-prev" aria-label="Previous slide">‹</button>
+  <button class="hc-arrow hc-next" aria-label="Next slide">›</button>
+
+  
+  <div class="hc-dots" role="tablist" aria-label="Slide indicators"></div>
 </section>
 
+    
+    <section class="new-releases" aria-label="New Releases">
+      <h3 class="section-title">New Releases</h3>
+      <div class="nr-wrapper">
+        <button class="nr-arrow nr-prev" aria-label="Prev">‹</button>
+        <div class="nr-track" id="nr-track">
+          <a class="nr-card" href="/products/p007">
+            <div class="nr-media"><img loading="lazy" src="https://cdn.ozone.ro/media/catalog/product/cache/1/image/400x498/a4e40ebdc3e371adff845072e1c73f37/e/a/89440a20ffc1a06a7ec3ca2889625fde/ea-sports-fc-26-ps5-30.jpg" alt="EA SPORTS FC 26"></div>
+            <div class="nr-meta"><h4>EA SPORTS FC 26</h4><p>$64.99</p></div>
+          </a>
+
+          <a class="nr-card" href="/products/p002">
+            <div class="nr-media"><img loading="lazy" src="https://gamescentermexico.com/files/images/productos/1639688402-elden-ring-ps5-pre-orden.jpg" alt="Elden Ring"></div>
+            <div class="nr-meta"><h4>Elden Ring</h4><p>$69.99</p></div>
+          </a>
+
+          <a class="nr-card" href="/products/p006">
+            <div class="nr-media"><img loading="lazy" src="https://m.media-amazon.com/images/I/81TzcunnxZL._AC_UF1000,1000_QL80_.jpg" alt="Hades"></div>
+            <div class="nr-meta"><h4>Hades</h4><p>$24.99</p></div>
+          </a>
+
+          <a class="nr-card" href="/products/p001">
+            <div class="nr-media"><img loading="lazy" src="https://www.gamescard.net/wp-content/uploads/2024/01/Cyberpunk-2077-Ps5.png" alt="Cyberpunk 2077"></div>
+            <div class="nr-meta"><h4>Cyberpunk 2077</h4><p>$59.99</p></div>
+          </a>
+
+          <a class="nr-card" href="/products/p003">
+            <div class="nr-media"><img loading="lazy" src="https://mudishop.com.br/wp-content/uploads/2024/05/job-4.jpg" alt="Stardew Valley"></div>
+            <div class="nr-meta"><h4>Stardew Valley</h4><p>$14.99</p></div>
+          </a>
+        </div>
+        <button class="nr-arrow nr-next" aria-label="Next">›</button>
+      </div>
+    </section>
+
+    
+    <section class="popular-genres" aria-label="Popular by Genres">
+      <h3 class="section-title">Popular by Genres</h3>
+      <div class="genres-grid">
+        <a href="/products/?genre=Action" class="genre-card"><img loading="lazy" src="https://assets-prd.ignimgs.com/2023/12/12/turbo-overkill-1702370714781.jpeg" alt="Action"><span>Action</span></a>
+        <a href="/products/?genre=RPG" class="genre-card"><img loading="lazy" src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:3587,ch:2018,q:80,w:2560/zqUhepZrjQiMstyDcVVedN.jpg" alt="RPG"><span>RPG</span></a>
+        <a href="/products/?genre=Strategy" class="genre-card"><img loading="lazy" src="https://i.ytimg.com/vi/4LCYYsmBJlU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLClFn4FEaulAc0Kptj7hmgnIrQNJw" alt="Strategy"><span>Strategy</span></a>
+        <a href="/products/?genre=Indie" class="genre-card"><img loading="lazy" src="https://www.spieltimes.io/wp-content/uploads/2024/08/The-Rise-of-Indie-Games-A-New-Era-in-Gaming.webp" alt="Indie"><span>Indie</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+ 
+(function(){
+  const container = document.querySelector('.hero-carousel');
+  if(!container) return;
+
+  const slides = Array.from(container.querySelectorAll('.hc-slide'));
+  const nextBtn = container.querySelector('.hc-next');
+  const prevBtn = container.querySelector('.hc-prev');
+  const dotsWrap = container.querySelector('.hc-dots');
+
+  
+  let current = slides.findIndex(s => s.getAttribute('aria-hidden') === 'false');
+  if (current < 0) current = 0;
+
+  
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'hc-dot' + (i === current ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  
+  function setSlide(index){
+    index = (index + slides.length) % slides.length;
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
+    Array.from(dotsWrap.children).forEach((d,i)=> d.classList.toggle('active', i===index));
+
+    
+    slides.forEach((s,i)=>{
+      const iframe = s.querySelector('iframe');
+      if(!iframe) return;
+      
+      let src = iframe.getAttribute('data-src') || iframe.src || '';
+      
+      if(!iframe.getAttribute('data-src')) iframe.setAttribute('data-src', src);
+
+      if(i === index){
+        
+        if(!src.includes('autoplay=1')) {
+          src = src + (src.includes('?') ? '&autoplay=1&mute=1' : '?autoplay=1&mute=1');
+        }
+      } else {
+        
+        src = src.replace(/(&|\?)autoplay=1/g, '').replace(/(&|\?)mute=1/g, '');
+      }
+      
+      iframe.src = src;
+    });
+
+    current = index;
+  }
+
+  function goTo(i){ setSlide(i); }
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  
+  setSlide(current);
+
+  
+  let sx = 0;
+  container.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  container.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - sx;
+    if (Math.abs(diff) > 40) diff < 0 ? next() : prev();
+  });
+
+})();
+</script>
+</body>
+</html>
+
+
+  </main>
+
+  <div class="footer-accent"></div>
+<footer class="gamestore-footer">
+  <div class="footer-content">
+    
+    <div class="footer-col footer-brand">
+      <div class="footer-logo-row">
+        <img src="/g88.png" alt="GameStore88 Logo" class="footer-logo-img-left">
+
+        <h2 class="footer-logo">GAME<span>88™</span></h2>
+      </div>
+
+      <p class="footer-desc">
+        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+      </p>
+
+      <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        227 Nguyen Van Cu, Cho Quan District, Ho Chi Minh City, Vietnam
+        <a href="https://maps.google.com/?q=123 Gaming Street, Ho Chi Minh City"></a>
+      </p>
+    </div>
+
+    
+
+    
+    <div class="footer-col">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="/">HomePage</a></li>
+        <li><a href="/products/">Products</a></li>
+        
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Policies</h3>
+      <ul class="footer-links">
+        
+          <li><a href="/policies/warranty/">Warranty Policy</a></li>
+        
+          <li><a href="/policies/returns/">Return &amp; Exchange Policy</a></li>
+        
+          <li><a href="/policies/shipping/">Shipping Policy</a></li>
+        
+          <li><a href="/policies/guide/">Purchase Guide</a></li>
+        
+      </ul>
+    </div>
+
+
+
+
+
+    
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="footer-social">
+        <a href="https://web.facebook.com/minhquuan102" target="_blank" class="social-btn facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+
+      <h3>Business Hours</h3>
+      <ul>
+        <li>Monday – Saturday: 9h00 – 20h00</li>
+        <li>Sunday: 9h00 – 19h00</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sponsor-bottom">
+    <span>Sponsored by</span>
+    <img src="/playstation.png" class="sponsor-logo-bottom" alt="PlayStation">
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 GameStore88. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-.video-container {
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;  
+}
+
+ 
+.footer-logo-img-left {
+  width: 50px;
+  height: 40px;
+
+  object-fit: cover;
+  border-radius: 12px;               
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+ 
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-logo span {
+  color: #3b82f6;
+}
+
+.footer-logo-img-left {
+  position: relative;
+  top: -6px;    
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;
+
+  --footer-logo-offset: 1px;     
+  position: relative;
+  top: var(--footer-logo-offset);
+}
+
+ 
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: #facc15;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.footer-logo span {
+  color: #3b82f6;
+}
+.footer-desc {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-col a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: #3b82f6;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;    
+  align-items: center;        
+  gap: 1.2rem;
+  margin: 1.5rem auto;        
+  width: 100%;                
+  text-align: center;
+}
+
+ 
+.social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn i {
   position: absolute;
-  top: 0; left: 0;
+  inset: 0;                  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  z-index: 0;
+
+  font-size: 1.2rem;         
+  line-height: 1;            
+
+  transform: translateY(1px);    
 }
 
-.video-container iframe {
+
+ 
+.social-btn::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;  
-}
-.overlay {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  background: rgba(235, 2, 2, 0.45);
-  padding: 2rem;
-  border-radius: 12px;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
 }
 
-.btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #3b82f6, #9333ea);
-  color: white;
-  padding: 0.9rem 2rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  font-weight: 600;
+.social-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.facebook {
+  background: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.4);
+}
+.facebook:hover {
+  background: #0d6efd;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.7);
+}
+
+.youtube {
+  background: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+.youtube:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+}
+
+.discord {
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+.discord:hover {
+  background: #4752c4;
+  box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
+}
+
+.tiktok {
+  background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.4);
+}
+.tiktok:hover {
+  background: linear-gradient(135deg, #fe2c55, #000000, #25f4ee);
+  box-shadow: 0 0 18px rgba(254, 44, 85, 0.7);
+}
+
+ 
+.social-btn:hover {
+  transform: translateY(-4px);
+}
+
+
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: #2563eb;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+.footer-social a:hover {
+  background: #0ea5e9;
+  box-shadow: 0 0 12px #0ea5e9, 0 0 24px #0ea5e9;
+}
+
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s ease;
   font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(147, 51, 234, 0.4);
-  transition: all 0.3s ease;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
-  background: linear-gradient(135deg, #2563eb, #7e22ce);
+.footer-social a:hover {
+  transform: translateY(-3px);
+  background: #3b82f6;
+  box-shadow: 0 0 12px #2563eb;
+}
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #9333ea, #facc15);
+  background-size: 300% 300%;
+  animation: glow 4s ease infinite;
+}
+@keyframes glow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+ 
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-col i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.footer-col h3 {
+  text-align: center;
+}
+.footer-col ul, .footer-col p {
+  text-align: center;
+}
+.footer-address {
+  color: #9ca3af;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer-address i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.sponsor-bottom {
+  margin-top: -5rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-align: center;
+  width: 100%;
+}
+
+.sponsor-bottom span {
+  font-size: 1.2rem;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+  color: #facc15;                      
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.45);
+}
+
+.sponsor-logo-bottom {
+  height: 30px;      
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
 }
 
 </style>
 
-  </main>
 
-  <footer>
-    © 2025 Gamestore88. Built with Hugo.
-  </footer>
 
-  <script>
-  function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const total = cart.reduce((sum, i) => sum + i.qty, 0);
-    document.getElementById('cart-count').textContent = total;
+<script>
+function updateHeader() {
+  const user = localStorage.getItem('user');
+  const userDisplay = document.getElementById('user-display');
+  const userIcon = document.getElementById('user-icon');
+  const loginLink = document.getElementById('login-link');
+  const cartLink = document.getElementById('cart-link');
+
+  if (!userDisplay || !userIcon || !loginLink) return;
+
+  if (user) {
+    userDisplay.textContent = user;
+    userDisplay.style.display = "inline-block";
+
+    userIcon.textContent = user.charAt(0).toUpperCase();
+    userIcon.style.display = "flex";
+
+    loginLink.textContent = "Logout";
+    loginLink.href = "#";
+    loginLink.onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      window.location.reload();
+    };
+
+    cartLink.style.display = "inline-flex";
+  } else {
+    userDisplay.textContent = "";
+    userDisplay.style.display = "none";
+    userIcon.style.display = "none";
+
+    loginLink.textContent = "Login";
+    loginLink.href = "/login/";
+    loginLink.onclick = null;
+
+    cartLink.style.display = "none";
   }
+
+  
+  document.querySelector('.nav-right').style.visibility = "visible";
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+
+  
+  const key = user ? `cart_${user}` : "cart";
+
+  let cart;
+  try {
+    cart = JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    cart = [];
+  }
+
+  const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeader();
   updateCartCount();
-  window.addEventListener('storage', updateCartCount);
-  </script>
+});
 
- <script>
-  function updateHeader() {
-    const loginLink = document.getElementById('login-link');
-    const userDisplay = document.getElementById('user-display');
-    const cartLink = document.getElementById('cart-link');
-    const user = localStorage.getItem('user');
-
-    if (user) {
-      
-      userDisplay.textContent = user;
-      userDisplay.style.display = "inline-block";
-
-      
-      const userIcon = document.getElementById('user-icon');
-      if (userIcon && user && user.length > 0) {
-        userIcon.textContent = user.charAt(0); 
-        userIcon.style.display = "flex";
-      }
-
-      loginLink.textContent = "Logout";
-      loginLink.href = "#";
-      loginLink.onclick = (e) => {
-        e.preventDefault();
-
-        
-        localStorage.removeItem('cart');
-        localStorage.removeItem(`cart_${user}`);
-        localStorage.removeItem('cart_guest');
-
-        
-        localStorage.removeItem('user');
-
-        
-        const countEl = document.getElementById('cart-count');
-        if (countEl) countEl.textContent = 0;
-
-        alert("Logged out — cart cleared!");
-        window.location.reload();
-      };
-    
-      cartLink.style.display = "inline-flex";
-    } else {
-      
-      userDisplay.style.display = "none";
-      cartLink.style.display = "none";
-      loginLink.textContent = "Login";
-      loginLink.href = "/login/";
-      loginLink.onclick = null;
-      const userIcon = document.getElementById('user-icon');
-      if (userIcon) userIcon.style.display = "none";
-
-    }
-  }
-
-  function updateCartCount() {
-    const allKeys = Object.keys(localStorage);
-    let cart = [];
-
-    const user = localStorage.getItem('user');
-    if (user && allKeys.includes(`cart_${user}`)) {
-      cart = JSON.parse(localStorage.getItem(`cart_${user}`)) || [];
-    } else if (allKeys.includes('cart')) {
-      cart = JSON.parse(localStorage.getItem('cart')) || [];
-    }
-
-    const total = cart.reduce((sum, item) => sum + item.qty, 0);
-    const countEl = document.getElementById('cart-count');
-    if (countEl) countEl.textContent = total;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    updateHeader();
-    updateCartCount();
-  });
-
-  window.addEventListener("storage", () => {
-    updateHeader();
-    updateCartCount();
-  });
+window.addEventListener("storage", () => {
+  updateHeader();
+  updateCartCount();
+});
+</script>
 
   </script>
 
@@ -495,7 +1260,7 @@ window.customConfirm = function (message) {
  
 #toast-container {
   position: fixed;
-  top: 20px;
+  top: 90px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -574,6 +1339,25 @@ window.customConfirm = function (message) {
 #confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
 
 </style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const current = window.location.pathname;
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    const href = link.getAttribute("href");
+
+    
+    if (current === "/" && href === "/") {
+      link.classList.add("active");
+    }
+    
+    else if (href !== "/" && current.startsWith(href)) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
 
 </body>
 </html>

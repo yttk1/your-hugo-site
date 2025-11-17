@@ -1,0 +1,249 @@
+{{ define "main" }}
+<section class="confirmation-page">
+    <div class="confirmation-box">
+        
+        <span class="icon">🎉</span>
+        <h1>Order Confirmed!</h1>
+        <p class="message">Thank you for your purchase. Your order has been placed successfully and the game keys will be delivered to <strong id="user-email">your email</strong> shortly.</p>
+        
+        <div class="summary-details">
+            <h2>Order Summary</h2>
+            <div id="order-items" class="order-items">
+                <p>Loading order details...</p>
+            </div>
+
+            <div class="price-breakdown">
+                <p>Subtotal: <span id="subtotal-amount"></span></p>
+                <p>Tax (0%): <span id="tax-amount">$0.00</span></p>
+                <p class="total">Total Paid: <strong id="total-paid-amount"></strong></p>
+            </div>
+
+            <div class="metadata">
+                <p><strong>Order Reference:</strong> <span id="order-ref">#G88-{{ now.Format "20060102" }}-{{ delimit (seq 1 8 | shuffle | first 4) "" }}</span></p>
+                <p><strong>Payment Method:</strong> Visa/MasterCard</p>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <a href="/products/" class="btn secondary-btn">Continue Shopping</a>
+            <a href="/" class="btn primary-btn">Go to Homepage</a>
+        </div>
+        
+    </div>
+</section>
+
+<style>
+/* ==============================================
+I. CONFIRMATION PAGE STYLES
+============================================== */
+.confirmation-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top of the visible area */
+    padding: 4rem 2rem;
+    min-height: calc(100vh - var(--header-height, 80px)); /* Ensure it fills the screen height */
+    background: #0f172a; /* Dark background matching your payment page */
+    color: #f8fafc;
+}
+
+.confirmation-box {
+    transform: scale(0.8);
+    background: #1e293b;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    border-top: 5px solid #10b981; /* Green success bar */
+}
+
+.confirmation-box .icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.confirmation-box h1 {
+    color: #10b981;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.confirmation-box .message {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* New/Updated Styles for Order Details */
+.summary-details {
+    padding: 1.5rem;
+    background: #0f172a;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.summary-details h2 {
+    color: #cbd5e1;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
+
+.order-items {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-bottom: 1.5rem;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    gap: 1rem;
+    text-align: left;
+}
+.order-item img {
+    width: 50px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.item-info {
+    flex: 1;
+}
+.item-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #f8fafc;
+}
+.item-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.price-breakdown {
+    border-top: 1px dashed #334155;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
+    font-size: 1rem;
+    color: #cbd5e1;
+}
+
+.price-breakdown p {
+    margin: 0.5rem 0;
+}
+.price-breakdown .total {
+    font-size: 1.3rem;
+    color: #10b981;
+}
+
+.metadata {
+    border-top: 1px solid #334155;
+    padding-top: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.metadata strong {
+    color: #f8fafc;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* This sets the spacing between the buttons */
+    margin-top: 2rem; /* Add margin to separate actions from the summary */
+}
+
+/* Base button styling */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none; /* Crucial: removes the default underline */
+    font-weight: 600;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+    /* Ensure they are displayed as blocks or inline-blocks for proper padding */
+    display: inline-block; 
+    min-width: 150px; /* Give them a standard width */
+    text-align: center;
+}
+
+.primary-btn {
+    background: #10b981;
+    color: white;
+}
+.primary-btn:hover {
+    background: #059669;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid #4b5563   
+}
+.secondary-btn:hover {
+    background: #334155;
+    color: #f8fafc;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const user = localStorage.getItem("user");
+    const orderContainer = document.getElementById("order-items");
+    const subtotalEl = document.getElementById("subtotal-amount");
+    const totalPaidEl = document.getElementById("total-paid-amount");
+    const userEmailEl = document.getElementById("user-email");
+    
+    // Attempt to load the order details
+    const orderKey = `last_order_${user}`;
+    let order = JSON.parse(localStorage.getItem(orderKey)) || [];
+    
+    // Set user email placeholder (if available)
+    userEmailEl.textContent = user || "your email";
+
+    if (order.length === 0) {
+        orderContainer.innerHTML = `<p>Order details could not be retrieved. Please check your email for confirmation.</p>`;
+        subtotalEl.textContent = "$0.00";
+        totalPaidEl.textContent = "$0.00";
+        return;
+    }
+
+    let total = 0;
+    
+    // Render items
+    orderContainer.innerHTML = order.map(item => {
+        const subtotal = (item.price * item.qty);
+        total += subtotal;
+        return `
+            <div class="order-item">
+                <img src="${item.img}" alt="${item.title}">
+                <div class="item-info">
+                    <h4>${item.title}</h4>
+                    <p>Qty: ${item.qty}</p>
+                </div>
+                <span>$${subtotal.toFixed(2)}</span>
+            </div>
+        `;
+    }).join("");
+
+    const subtotal = total;
+    const tax = 0; // Keeping tax at 0 for simplicity
+
+    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    totalPaidEl.textContent = `$${(subtotal + tax).toFixed(2)}`;
+
+    // Clean up the temporary order data
+    localStorage.removeItem(orderKey);
+});
+</script>
+
+{{ end }}

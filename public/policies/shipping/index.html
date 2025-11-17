@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/g88.png">
+  <title>Shipping Policy | Game Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      html {
+    overflow-y: scroll !important;
+  }
+    :root {
+      --primary: #2563eb;
+      --secondary: #f3f4f6;
+      --text: #111827;
+      --radius: 12px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      background-color: #131420;
+      color: #e0e0e0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+       
+      background: rgba(15, 23, 36, 0.75);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    header a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      margin-right: 1.5rem;
+    }
+    header a:hover { color: var(--primary); }
+    .cart-icon {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius);
+    }
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 90%;
+      margin: 2rem auto;
+    }
+    footer {
+      background: white;
+      text-align: center;
+      padding: 1rem;
+      color: #555;
+      font-size: 0.9rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+     
+
+    .nav-right {
+  visibility: hidden;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(180deg, #1a1d23, #13161a);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+ 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+ 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6cb5ff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+ 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-links a {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #dce3ec;
+  padding: 5px 6px;
+  border-radius: 4px;
+  transition: 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: #7cc7ff;
+}
+
+.nav-links a.active {
+  color: #7cc7ff;
+  border-bottom: 2px solid #7cc7ff;
+}
+
+ 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+ 
+.login-btn, .logout-btn {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  color: #ffb3b3;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.login-btn:hover, .logout-btn:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+ 
+.cart-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  background: #1d4dae;
+  color: white;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+ 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dce3ec, #8c9aa8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #071018;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.username {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 14px;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+  <div class="nav-left">
+    <a href="/" class="logo">
+      <img src="/g88.png" alt="Gamestore88 Logo" class="logo-img">
+      <span class="logo-text">Game88™</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/products/">Products</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info" id="user-info">
+      <div class="user-icon" id="user-icon"></div>
+      <span id="user-display" class="username"></span>
+    </div>
+    <a href="#" id="login-link" class="logout-btn">Login</a>
+    <a href="/cart/" class="cart-icon" id="cart-link">🛒 <span id="cart-count">0</span></a>
+  </div>
+
+
+
+<style>
+
+ 
+
+</style>
+</header>
+
+
+
+  <main>
+    
+
+
+
+
+
+
+<main style="max-width:900px;margin:2rem auto;color:white;padding:1rem;">
+  
+    
+    <h1 style="color:#facc15;margin-bottom:0.75rem;">Shipping Policy</h1>
+
+    <article style="margin-top:1rem;">
+      
+      <h2 id="shipping-policy">Shipping Policy</h2>
+<p>Free nationwide shipping for orders over 500,000₫.</p>
+    </article>
+  
+</main>
+
+  </main>
+
+  <div class="footer-accent"></div>
+<footer class="gamestore-footer">
+  <div class="footer-content">
+    
+    <div class="footer-col footer-brand">
+      <div class="footer-logo-row">
+        <img src="/g88.png" alt="GameStore88 Logo" class="footer-logo-img-left">
+
+        <h2 class="footer-logo">GAME<span>88™</span></h2>
+      </div>
+
+      <p class="footer-desc">
+        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+      </p>
+
+      <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        227 Nguyen Van Cu, Cho Quan District, Ho Chi Minh City, Vietnam
+        <a href="https://maps.google.com/?q=123 Gaming Street, Ho Chi Minh City"></a>
+      </p>
+    </div>
+
+    
+
+    
+    <div class="footer-col">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="/">HomePage</a></li>
+        <li><a href="/products/">Products</a></li>
+        
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-col">
+      <h3>Policies</h3>
+      <ul class="footer-links">
+        
+          <li><a href="/policies/warranty/">Warranty Policy</a></li>
+        
+          <li><a href="/policies/returns/">Return &amp; Exchange Policy</a></li>
+        
+          <li><a href="/policies/shipping/">Shipping Policy</a></li>
+        
+          <li><a href="/policies/guide/">Purchase Guide</a></li>
+        
+      </ul>
+    </div>
+
+
+
+
+
+    
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="footer-social">
+        <a href="https://web.facebook.com/minhquuan102" target="_blank" class="social-btn facebook" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+
+      <h3>Business Hours</h3>
+      <ul>
+        <li>Monday – Saturday: 9h00 – 20h00</li>
+        <li>Sunday: 9h00 – 19h00</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sponsor-bottom">
+    <span>Sponsored by</span>
+    <img src="/playstation.png" class="sponsor-logo-bottom" alt="PlayStation">
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 GameStore88. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;  
+}
+
+ 
+.footer-logo-img-left {
+  width: 50px;
+  height: 40px;
+
+  object-fit: cover;
+  border-radius: 12px;               
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+ 
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-logo span {
+  color: #3b82f6;
+}
+
+.footer-logo-img-left {
+  position: relative;
+  top: -6px;    
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;
+
+  --footer-logo-offset: 1px;     
+  position: relative;
+  top: var(--footer-logo-offset);
+}
+
+ 
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: #facc15;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.footer-logo span {
+  color: #3b82f6;
+}
+.footer-desc {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-col a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: #3b82f6;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;    
+  align-items: center;        
+  gap: 1.2rem;
+  margin: 1.5rem auto;        
+  width: 100%;                
+  text-align: center;
+}
+
+ 
+.social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn i {
+  position: absolute;
+  inset: 0;                  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.2rem;         
+  line-height: 1;            
+
+  transform: translateY(1px);    
+}
+
+
+ 
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.social-btn:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.facebook {
+  background: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.4);
+}
+.facebook:hover {
+  background: #0d6efd;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.7);
+}
+
+.youtube {
+  background: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+.youtube:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+}
+
+.discord {
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+.discord:hover {
+  background: #4752c4;
+  box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
+}
+
+.tiktok {
+  background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.4);
+}
+.tiktok:hover {
+  background: linear-gradient(135deg, #fe2c55, #000000, #25f4ee);
+  box-shadow: 0 0 18px rgba(254, 44, 85, 0.7);
+}
+
+ 
+.social-btn:hover {
+  transform: translateY(-4px);
+}
+
+
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: #2563eb;
+  box-shadow: 0 0 12px #2563eb;
+}
+
+.footer-social a:hover {
+  background: #0ea5e9;
+  box-shadow: 0 0 12px #0ea5e9, 0 0 24px #0ea5e9;
+}
+
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s ease;
+  font-size: 1.1rem;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+  background: #3b82f6;
+  box-shadow: 0 0 12px #2563eb;
+}
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #9333ea, #facc15);
+  background-size: 300% 300%;
+  animation: glow 4s ease infinite;
+}
+@keyframes glow {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+ 
+.footer-bottom {
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-col i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.footer-col h3 {
+  text-align: center;
+}
+.footer-col ul, .footer-col p {
+  text-align: center;
+}
+.footer-address {
+  color: #9ca3af;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer-address i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.sponsor-bottom {
+  margin-top: -5rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-align: center;
+  width: 100%;
+}
+
+.sponsor-bottom span {
+  font-size: 1.2rem;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+  color: #facc15;                      
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.45);
+}
+
+.sponsor-logo-bottom {
+  height: 30px;      
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+}
+
+</style>
+
+
+
+<script>
+function updateHeader() {
+  const user = localStorage.getItem('user');
+  const userDisplay = document.getElementById('user-display');
+  const userIcon = document.getElementById('user-icon');
+  const loginLink = document.getElementById('login-link');
+  const cartLink = document.getElementById('cart-link');
+
+  if (!userDisplay || !userIcon || !loginLink) return;
+
+  if (user) {
+    userDisplay.textContent = user;
+    userDisplay.style.display = "inline-block";
+
+    userIcon.textContent = user.charAt(0).toUpperCase();
+    userIcon.style.display = "flex";
+
+    loginLink.textContent = "Logout";
+    loginLink.href = "#";
+    loginLink.onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      window.location.reload();
+    };
+
+    cartLink.style.display = "inline-flex";
+  } else {
+    userDisplay.textContent = "";
+    userDisplay.style.display = "none";
+    userIcon.style.display = "none";
+
+    loginLink.textContent = "Login";
+    loginLink.href = "/login/";
+    loginLink.onclick = null;
+
+    cartLink.style.display = "none";
+  }
+
+  
+  document.querySelector('.nav-right').style.visibility = "visible";
+}
+
+function updateCartCount() {
+  const user = localStorage.getItem("user");
+
+  
+  const key = user ? `cart_${user}` : "cart";
+
+  let cart;
+  try {
+    cart = JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    cart = [];
+  }
+
+  const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+  const countEl = document.getElementById("cart-count");
+  if (countEl) countEl.textContent = total;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeader();
+  updateCartCount();
+});
+
+window.addEventListener("storage", () => {
+  updateHeader();
+  updateCartCount();
+});
+</script>
+
+  </script>
+
+
+<div id="toast-container"></div>
+
+
+<div id="confirm-modal" class="confirm-modal">
+  <div class="confirm-box">
+    <p id="confirm-message">Are you sure?</p>
+    <div class="confirm-actions">
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+function showToast(message, type = "info") {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+
+window.alert = function (message) {
+  showToast(message, "info");
+};
+
+ 
+window.customConfirm = function (message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("confirm-message");
+    const yes = document.getElementById("confirm-yes");
+    const no = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.add("active");
+
+    const cleanup = () => {
+      modal.classList.remove("active");
+      yes.removeEventListener("click", onYes);
+      no.removeEventListener("click", onNo);
+    };
+
+    const onYes = () => { cleanup(); resolve(true); };
+    const onNo = () => { cleanup(); resolve(false); };
+
+    yes.addEventListener("click", onYes);
+    no.addEventListener("click", onNo);
+  });
+};
+</script>
+
+<style>
+ 
+#toast-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+.toast {
+  opacity: 0;
+  transform: translateY(-10px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: linear-gradient(135deg,#22c55e,#16a34a); }
+.toast.error { background: linear-gradient(135deg,#ef4444,#b91c1c); }
+.toast.warning { background: linear-gradient(135deg,#f97316,#ea580c); }
+.toast.info { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+
+ 
+.confirm-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+.confirm-modal.active {
+  display: flex;
+}
+.confirm-box {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  text-align: center;
+  min-width: 300px;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-actions button {
+  flex: 1;  
+  max-width: 120px;
+  min-width: 100px;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#confirm-yes {
+  background: #22c55e;
+  color: white;
+}
+#confirm-no {
+  background: #ef4444;
+  color: white;
+}
+
+#confirm-yes:hover { background: #16a34a; transform: scale(1.03); }
+#confirm-no:hover { background: #b91c1c; transform: scale(1.03); }
+
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const current = window.location.pathname;
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    const href = link.getAttribute("href");
+
+    
+    if (current === "/" && href === "/") {
+      link.classList.add("active");
+    }
+    
+    else if (href !== "/" && current.startsWith(href)) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

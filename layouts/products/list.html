@@ -1,168 +1,820 @@
 {{ define "main" }}
-<section style="max-width:1200px; margin:2rem auto; padding:0 1rem;">
-  <h1 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🎮 Our Games</h1>
+<section class="store-layout">
+  <aside class="filter-sidebar">
+    <div class="filter-group">
+      <button class="filter-toggle" data-target="genres">
+        Genres <span class="arrow">▼</span>
+      </button>
 
-  <div style="text-align:center; margin-bottom:1.4rem;">
-    <input id="search-bar" placeholder="Search for a game..." aria-label="Search" />
-    <p id="no-results" style="display:none; color:#94a3b8; margin-top:0.6rem;">😢 No games found.</p>
-  </div>
-
-  <!-- product grid -->
-  <div class="products-grid" id="products-grid">
-    {{ range site.Data.products }}
-    <article class="product-card" data-title="{{ lower .title }}">
-      <a href="/products/{{ .id }}/" class="product-link" style="text-decoration:none; color:inherit;">
-        <div class="thumb-wrap">
-          <img src="{{ index .images 0 }}" alt="{{ .title }}" />
+      <div class="filter-options active" id="genres">
+        <div class="filter-scroll">
+          {{ $genres := slice }}
+          {{ range site.Data.products }}
+            {{ range .genres }}
+              {{ if not (in $genres .) }}
+                {{ $genres = $genres | append . }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ range sort $genres }}
+          <div class="filter-item" data-genre="{{ . | lower }}">
+            <span class="label">{{ . }}</span>
+          </div>
+          {{ end }}
         </div>
-        <h3>{{ .title }}</h3>
-        <p class="price">${{ printf "%.2f" .price }}</p>
-      </a>
-    </article>
-    {{ end }}
+        <button class="clear-filters-link clear-genres">Clear genres</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <button class="filter-toggle" data-target="modes">
+        Modes <span class="arrow">▼</span>
+      </button>
+
+      <div class="filter-options active" id="modes">
+        <div class="filter-scroll">
+          <div class="filter-item" data-mode="multiplayer">
+            <span class="label">Multiplayer</span>
+          </div>
+          <div class="filter-item" data-mode="singleplayer">
+            <span class="label">Singleplayer</span>
+          </div>
+          <div class="filter-item" data-mode="co-op">
+            <span class="label">Co-op</span>
+          </div>
+        </div>
+        <button class="clear-filters-link clear-modes">Clear modes</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="products-section">
+    <h1 class="page-title">🎮 Our Games</h1>
+
+    <div class="search-bar-wrap">
+      <div class="search-bar">
+        <span class="search-icon">🔎</span>
+        <input id="search-bar" placeholder="Search for games..." aria-label="Search" />
+      </div>
+    </div>
+
+    <div class="sort-bar-wrap">
+      <div class="sort-dropdown" id="sortDropdown">
+        <button class="sort-button">
+          <span id="sort-label">Sort by: A–Z</span>
+          <span class="arrow">▼</span>
+        </button>
+        <ul class="sort-options">
+          <li data-value="alphabet">A–Z</li>
+          <li data-value="alphabet-desc">Z–A</li>
+          <li data-value="price">Price: Low → High</li>
+          <li data-value="price-desc">Price: High → Low</li>
+          <li data-value="release">Release: Newest</li>
+          <li data-value="release-old">Release: Oldest</li>
+        </ul>
+      </div>
+    </div>
+    
+    <p id="no-results" class="no-results">😢 No games found.</p>
+
+    <div class="products-grid" id="products-grid">
+      {{ range site.Data.products }}
+      <article class="product-card"
+        data-title="{{ lower .title }}"
+        data-price="{{ .price }}"
+        data-release="{{ .release_date }}"
+        data-genres="{{ delimit .genres "," }}"
+        data-modes="{{- with .modes -}}
+          {{- $m := trim . " " -}}
+          {{- if gt (len $m) 0 -}}
+            {{- if in $m "/" -}}
+              {{- $parts := split $m "/" -}}
+              {{- $clean := slice -}}
+              {{- range $parts -}}
+                {{- if gt (len (trim . " ")) 0 -}}
+                  {{- $clean = $clean | append (lower (trim . " ")) -}}
+                {{- end -}}
+              {{- end -}}
+              {{- delimit $clean "," -}}
+            {{- else -}}
+              {{- lower $m -}}
+            {{- end -}}
+          {{- else -}}
+            none
+          {{- end -}}
+        {{- else -}}
+          none
+        {{- end -}}">
+
+        <a href="/products/{{ .id }}/" class="product-link">
+          <div class="thumb-wrap">
+            <img src="{{ index .images 0 }}" alt="{{ .title }}" />
+          </div>
+          <h3>{{ .title }}</h3>
+          <p class="price">${{ printf "%.2f" .price }}</p>
+        </a>
+      </article>
+      {{ end }}
+    </div>
   </div>
 </section>
 
 <style>
-/* ===== Container / grid ===== */
+/* ==============================================
+I. BASE LAYOUT & PRODUCTS
+==============================================
+*/
+/* Two-column layout */
+.store-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem; 
+  width: 1100px;
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0 1rem 0 0;
+  align-self: stretch;
+}
+
+.products-section {
+  flex: 1;
+  min-width: 0;
+  color: #f5f5f5;
+}
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #e5e5e5;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); 
+}
+
+/* Sidebar styling */
+.filter-sidebar {
+  width: 150px;
+  flex-shrink: 0;
+  position: relative; 
+  padding-top: 5rem; 
+  color: #e5e5e5;
+  font-size: 0.9rem;
+  overflow: visible;
+  height: auto; 
+  margin-left: max(0px, (100% - 1800px) / 2);
+}
+
+/* Product Card Grid (Ensuring proper sizing) */
 .products-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-  gap: 1.5rem !important;
-  justify-items: center !important;
-  align-items: start !important;
-  padding: 0.5rem !important;
-  margin: 0 auto !important;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 2.2rem;
+  justify-items: center;
+  align-items: start;
+  padding: 0;
 }
 
-/* ===== Cards ===== */
+/* Product Card */
 .product-card {
-  width: 100% !important;
-  max-width: 320px !important;
-  background: #1e293b !important;
-  color: #fff !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.35) !important;
-  transition: transform 220ms ease, box-shadow 220ms ease, opacity 220ms ease, visibility 220ms;
-  text-align: center !important;
-  box-sizing: border-box !important;
-  border: 0 !important;
-  display: block !important; /* keep block so image & content stack inside the card */
-}
-
-/* image */
-.thumb-wrap {
-  width: 100%;
-  height: 160px;
+  width: 110%; 
+  max-width: 250px; 
+  background: #2b2b2b;
+  color: #fff;
+  border-radius: 15px;
   overflow: hidden;
-  background: #0f172a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
+}
+.thumb-wrap {
+  height: 280px;
+  overflow: hidden;
 }
 .product-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  object-position: top center;
 }
-
-/* text */
 .product-card h3 {
-  margin: 0.7rem 0 0.4rem 0;
-  font-size: 1.05rem;
-  color: #f8fafc;
+  margin: 0.6rem 0.8rem 0.2rem;
+  font-size: 0.95rem;
+  min-height: 2.6rem;
+  text-shadow: none; 
+  word-wrap: break-word;
 }
 .product-card .price {
-  color: #38bdf8;
-  margin-bottom: 1rem;
-  font-weight: 600;
+  margin: 0.2rem 0.8rem 0.8rem;
+  font-weight: 700;
+  color: #64b5f6;
+  font-size: 0.9rem;
+}
+.product-card a {
+    color: #a0c2ff;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.product-card a:hover {
+    color: #64b5f6;
 }
 
-/* hide-but-keep-space: do not collapse grid */
-.product-card.hidden-card {
-  visibility: hidden !important;
-  opacity: 0 !important;
-  transform: scale(0.98) !important;
-  pointer-events: none !important;
+/* ==============================================
+II. FILTER STYLING
+==============================================
+*/
+.filter-group {
+    margin-bottom: 2rem;
 }
 
-/* center single result nicely */
-.products-grid.center-single {
-  justify-content: center !important;
-}
-
-/* responsive tuning */
-@media (max-width: 900px) {
-  .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important; }
-  .thumb-wrap { height: 140px; }
-}
-@media (max-width: 560px) {
-  .products-grid { grid-template-columns: 1fr !important; }
-  .thumb-wrap { height: 200px; }
-}
-
-/* search input styling */
-#search-bar {
-  width: 60%;
-  max-width: 520px;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
+.filter-toggle {
+  background: none;
+  color: #f3f3f3;
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: left;
   border: none;
-  background: #0f172a;
-  color: #cbd5e1;
-  box-shadow: 0 6px 16px rgba(2,6,23,0.2);
+  outline: none;
+  cursor: pointer;
+  padding: 0.6rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #333;
+  transition: color 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.filter-options {
+  display: flex; 
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  width: 100%; 
+}
+.filter-options:not(.active) {
+    display: none;
+}
+
+.filter-scroll {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 0.8rem;
+  padding-right: 5px; 
+  width: 100%; 
+  box-sizing: border-box; 
+  scrollbar-width: thin;
+  scrollbar-color: #0095ff transparent;
+}
+.filter-scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+.filter-scroll::-webkit-scrollbar-thumb {
+  background-color: #0095ff;
+  border-radius: 1px;
+  background-clip: padding-box;
+}
+
+.filter-item {
+  display: block;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 0.2rem;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-left 0.15s ease;
+  cursor: pointer;
+  font-weight: 500;
+  color: #c7d2e8;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+
+.filter-item:hover {
+    background-color: #333d52;
+    color: #fff;
+}
+
+.filter-item.active {
+    background-color: #21305c;
+    color: #a0c2ff;
+    border-left: 3px solid #64b5f6;
+}
+
+.filter-item.exclude {
+    background-color: #4a3434;
+    color: #ffc9c9;
+    opacity: 0.9;
+    border-left: 3px solid #ff7272;
+    text-decoration: line-through;
+}
+
+.clear-filters-link {
+  display: block;
+  background: #333;
+  border: 1px solid #444;
+  text-align: center;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: #a0c2ff;
+  width: 100%;
+  margin-top: 1rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.clear-filters-link:hover {
+    background: #444;
+    color: #fff;
+}
+
+
+/* ==============================================
+III. SEARCH & SORT LAYOUT
+==============================================
+*/
+.search-bar-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #0a002a;
+  border: 1px solid rgb(81, 81, 81);
+  border-radius: 9999px;
+  padding: 0.6rem 1rem;
+  width: 80%;
+  max-width: 650px;
+  backdrop-filter: blur(15px);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+.search-bar:focus-within {
+  border: 3px solid white;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4), inset 0 0 6px rgba(255, 255, 255, 0.1);
+}
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+.search-icon {
+  opacity: 0.6;
+}
+
+.sort-bar-wrap {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.sort-dropdown {
+  position: relative;
+  z-index: 10;
+}
+.sort-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: rgba(20, 24, 35, 0.92);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 240px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.sort-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
   outline: none;
 }
-#search-bar::placeholder { color:#475569; }
+.sort-button.active {
+  background: rgba(24, 28, 40, 0.94);
+}
+.arrow {
+  font-size: 0.88rem;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+}
+.sort-button.active .arrow {
+  transform: rotate(180deg);
+}
+.sort-options {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: rgba(20, 24, 35, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 15px;
+  list-style: none;
+  padding: 6px 0;
+  margin: 8px 0 0 0;
+  min-width: 240px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.995);
+  pointer-events: none;
+  transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1);
+}
+.sort-options.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.sort-options li {
+  padding: 10px 16px;
+  color: #f8fafc;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 120ms ease, color 120ms ease;
+  white-space: nowrap;
+}
+.sort-options li:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6f0ff;
+}
+
+
+/* ==============================================
+V. PAGINATION STYLES (FIX)
+==============================================
+*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding: 0.5rem 0;
+}
+
+.pagination-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.75rem; 
+}
+
+.pagination-list li {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.pagination-list a, .pagination-list span {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    color: #a0c2ff;
+    text-decoration: none;
+    transition: background-color 0.15s;
+    border: 1px solid transparent; 
+}
+
+.pagination-list a:hover {
+    background-color: #333d52;
+}
+
+.pagination-list .active {
+    background-color: #64b5f6;
+    color: #101525;
+    font-weight: 700;
+    cursor: default;
+}
+
+.pagination-list .disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-list .dots {
+    padding: 0.5rem 0;
+    color: #f3f3f3;
+}
+
+
+/* ==============================================
+VI. RESPONSIVE & ADJUSTMENTS
+==============================================
+*/
+@media (max-width: 1200px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .store-layout { flex-direction: column; }
+  .filter-sidebar {
+    position: static; 
+    height: auto;
+    width: 100%;
+    padding-top: 0;
+    margin-left: 0; 
+  }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  
+  .search-bar-wrap { justify-content: flex-start; }
+  .search-bar { width: 100%; max-width: 100%; }
+
+  .sort-bar-wrap { justify-content: flex-start; }
+  .sort-dropdown { width: 100%; }
+  .sort-button, .sort-options { min-width: 100%; }
+  .sort-options { right: auto; left: 0; }
+}
+@media (max-width: 600px) {
+  .products-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("search-bar");
-  const grid = document.getElementById("products-grid");
-  const cards = Array.from(document.querySelectorAll(".product-card"));
-  const noResults = document.getElementById("no-results");
+    const input = document.getElementById("search-bar");
+    const sortButton = document.querySelector(".sort-button");
+    const sortLabel = document.getElementById("sort-label");
+    const sortOptions = document.querySelector(".sort-options");
+    const grid = document.getElementById("products-grid");
+    const cards = Array.from(document.querySelectorAll(".product-card"));
+    const noResults = document.getElementById("no-results");
+    const sortItems = sortOptions.querySelectorAll("li");
 
-  function doFilter() {
-    const q = input.value.trim().toLowerCase();
-    let visible = 0;
+    // Filter Elements
+    const toggles = document.querySelectorAll(".filter-toggle");
+    const genreItems = document.querySelectorAll("[data-genre]");
+    const modeItems = document.querySelectorAll("[data-mode]");
+    const clearGenresBtn = document.querySelector(".clear-genres");
+    const clearModesBtn = document.querySelector(".clear-modes");
+    
+    // Filter State
+    let includeGenres = new Set();
+    let excludeGenres = new Set();
+    let includeModes = new Set();
+    let excludeModes = new Set();
 
-    cards.forEach(card => {
-      const title = card.getAttribute("data-title") || "";
-      if (!q || title.includes(q)) {
-        card.classList.remove("hidden-card");
-        visible++;
-      } else {
-        card.classList.add("hidden-card");
-      }
+    // Pagination State
+    const ITEMS_PER_PAGE = 16;
+    let currentPage = 1;
+    let currentSort = "alphabet"; // Default sort to A-Z
+
+    // --- Pagination Logic ---
+    const paginationContainer = document.createElement("div");
+    paginationContainer.className = "pagination";
+    grid.after(paginationContainer);
+
+    function buildPagination(totalPages) {
+        paginationContainer.innerHTML = "";
+        if (totalPages <= 1) return;
+
+        const ul = document.createElement("ul");
+        ul.className = "pagination-list fixed-size";
+
+        const addItem = (label, page, type = "page", active = false, disabled = false) => {
+            const li = document.createElement("li");
+            if (type === "dots") {
+                li.innerHTML = `<span class="dots">…</span>`;
+            } else if (disabled) {
+                li.innerHTML = `<span class="disabled">${label}</span>`;
+            } else if (active) {
+                li.innerHTML = `<span class="active">${label}</span>`;
+            } else {
+                li.innerHTML = `<a href="#" data-page="${page}">${label}</a>`;
+            }
+            ul.appendChild(li);
+        };
+
+        const MAX_PAGES_DISPLAYED = 5; 
+        let startPage = Math.max(2, currentPage - Math.floor(MAX_PAGES_DISPLAYED / 2));
+        let endPage = Math.min(totalPages - 1, startPage + MAX_PAGES_DISPLAYED - 1);
+
+        // Adjust start/end if we are near the bounds
+        if (endPage - startPage + 1 < MAX_PAGES_DISPLAYED) {
+             startPage = Math.max(2, endPage - MAX_PAGES_DISPLAYED + 1);
+        }
+
+        addItem("‹", currentPage - 1, "arrow", false, currentPage === 1);
+        
+        if (totalPages > 0) addItem(1, 1, "page", currentPage === 1);
+        if (startPage > 2) addItem("…", null, "dots");
+
+        for (let i = startPage; i <= endPage; i++) {
+            if (i >= 2 && i <= totalPages - 1) {
+                addItem(i, i, "page", i === currentPage);
+            }
+        }
+        
+        if (endPage < totalPages - 1) addItem("…", null, "dots");
+        if (totalPages > 1) addItem(totalPages, totalPages, "page", currentPage === totalPages);
+
+        addItem("›", currentPage + 1, "arrow", false, currentPage === totalPages);
+
+        paginationContainer.appendChild(ul);
+
+        ul.querySelectorAll("a[data-page]").forEach(a => {
+            a.addEventListener("click", e => {
+                e.preventDefault();
+                currentPage = parseInt(a.dataset.page);
+                doFilterAndSort();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    }
+
+    // --- Sort Dropdown Logic ---
+    sortLabel.textContent = sortItems[0].textContent; 
+
+    sortButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        sortOptions.classList.toggle("active");
+        sortButton.classList.toggle("active");
     });
 
-    // center if only one result
-    if (visible === 1) {
-      grid.classList.add("center-single");
-    } else {
-      grid.classList.remove("center-single");
+    document.addEventListener("click", (e) => {
+        const sortDropdown = document.getElementById("sortDropdown");
+        if (!sortDropdown.contains(e.target)) {
+            sortOptions.classList.remove("active");
+            sortButton.classList.remove("active");
+        }
+    });
+
+    sortItems.forEach((item) => {
+        item.addEventListener("click", () => {
+            currentSort = item.dataset.value;
+            sortLabel.textContent = item.textContent;
+            
+            sortOptions.classList.remove("active");
+            sortButton.classList.remove("active");
+            
+            currentPage = 1;
+            doFilterAndSort();
+        });
+    });
+
+    // --- Filter & Sort Function (Combined Logic) ---
+    function doFilterAndSort() {
+        const q = input.value.trim().toLowerCase();
+        const sortBy = currentSort;
+        let visibleCards = [];
+
+        // Sorting Logic
+        const sorted = [...cards].sort((a, b) => {
+            const titleA = (a.dataset.title || "").toLowerCase();
+            const titleB = (b.dataset.title || "").toLowerCase();
+            const priceA = parseFloat(a.dataset.price) || 0;
+            const priceB = parseFloat(b.dataset.price) || 0;
+            const dateA = new Date(a.dataset.release || "1970-01-01");
+            const dateB = new Date(b.dataset.release || "1970-01-01");
+            switch (sortBy) {
+                case "alphabet": return titleA.localeCompare(titleB);
+                case "alphabet-desc": return titleB.localeCompare(titleA);
+                case "price": return priceA - priceB;
+                case "price-desc": return priceB - priceA;
+                case "release": return dateB - dateA;
+                case "release-old": return dateA - dateB;
+                default: return 0;
+            }
+        });
+
+        // Filtering Logic
+        sorted.forEach(card => {
+            const title = (card.dataset.title || "").toLowerCase();
+            const genres = (card.dataset.genres || "").toLowerCase().split(",");
+            const modes = (card.dataset.modes || "").toLowerCase().split(",");
+            
+            const matchesSearch = !q || title.includes(q);
+            
+            // Genre Logic: Must contain at least one INCLUDED genre AND must not contain any EXCLUDED genre.
+            const matchesIncludeGenre = includeGenres.size === 0 || [...includeGenres].some(g => genres.includes(g));
+            const matchesExcludeGenre = [...excludeGenres].some(g => genres.includes(g));
+
+            // Mode Logic: Must contain at least one INCLUDED mode AND must not contain any EXCLUDED mode.
+            const matchesIncludeMode = includeModes.size === 0 || [...includeModes].some(m => modes.includes(m));
+            const matchesExcludeMode = [...excludeModes].some(m => modes.includes(m));
+            
+            if (matchesSearch && matchesIncludeGenre && !matchesExcludeGenre && matchesIncludeMode && !matchesExcludeMode) {
+                visibleCards.push(card);
+            }
+        });
+
+        // Pagination/Display Logic
+        const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+        if (currentPage > totalPages) currentPage = totalPages || 1;
+
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        
+        grid.innerHTML = "";
+        visibleCards.slice(start, end).forEach(c => grid.appendChild(c));
+
+        noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+        buildPagination(totalPages);
     }
 
-    // show no-results message
-    noResults.style.display = visible === 0 ? "block" : "none";
-  }
+    // --- Filter Toggles ---
+    toggles.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = document.getElementById(btn.dataset.target);
+            btn.classList.toggle("active");
+            target.classList.toggle("active");
+            btn.querySelector(".arrow").style.transform = target.classList.contains("active") ? "rotate(180deg)" : "rotate(0deg)";
+        });
+        // Initial state check for toggles 
+        const target = document.getElementById(btn.dataset.target);
+        if (target.classList.contains("active")) {
+             btn.querySelector(".arrow").style.transform = "rotate(180deg)";
+        }
+    });
 
-  // initial (in case)
-  doFilter();
+    // --- Genre Filter Clicks ---
+    genreItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const genre = item.dataset.genre;
+            if (item.classList.contains("active")) {
+                // Active -> Exclude
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeGenres.delete(genre);
+                excludeGenres.add(genre);
+            } else if (item.classList.contains("exclude")) {
+                // Exclude -> None
+                item.classList.remove("exclude");
+                excludeGenres.delete(genre);
+            } else {
+                // None -> Active
+                item.classList.add("active");
+                includeGenres.add(genre);
+            }
+            currentPage = 1;
+            doFilterAndSort();
+        });
+    });
 
-  input.addEventListener("input", () => {
-    doFilter();
-  });
+    // --- Mode Filter Clicks ---
+    modeItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const mode = item.dataset.mode;
+            if (item.classList.contains("active")) {
+                // Active -> Exclude
+                item.classList.remove("active");
+                item.classList.add("exclude");
+                includeModes.delete(mode);
+                excludeModes.add(mode);
+            } else if (item.classList.contains("exclude")) {
+                // Exclude -> None
+                item.classList.remove("exclude");
+                excludeModes.delete(mode);
+            } else {
+                // None -> Active
+                item.classList.add("active");
+                includeModes.add(mode);
+            }
+            currentPage = 1;
+            doFilterAndSort();
+        });
+    });
 
-  // Debug helper: press Ctrl+Shift+G to show how many visible cards
-  window.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "g") {
-      const vis = cards.filter(c => !c.classList.contains("hidden-card")).length;
-      console.info("Visible cards:", vis);
-      alert("Visible cards: " + vis);
-    }
-  });
+    // --- Clear Filters ---
+    clearGenresBtn.addEventListener("click", () => {
+        includeGenres.clear();
+        excludeGenres.clear();
+        genreItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+    });
+
+    clearModesBtn.addEventListener("click", () => {
+        includeModes.clear();
+        excludeModes.clear();
+        modeItems.forEach(i => i.classList.remove("active", "exclude"));
+        currentPage = 1;
+        doFilterAndSort();
+    });
+
+    // --- Search input ---
+    input.addEventListener("input", () => { currentPage = 1; doFilterAndSort(); });
+
+    // --- Initial Run ---
+    doFilterAndSort();
+    
 });
 </script>
 {{ end }}
