@@ -172,7 +172,7 @@
   gap: 6px;
 
   padding: 6px 12px;
-  background: #3d9ce5;
+  background: #1d4dae;
   color: white;
   border-radius: 6px;
   font-weight: 700;
@@ -215,7 +215,7 @@
       <span class="logo-text">Game88™</span>
     </a>
     <nav class="nav-links">
-      <a href="/products/">Products</a>
+      <a href="/products/">Browse</a>
       <a href="/about/">About</a>
     </nav>
   </div>
@@ -681,14 +681,27 @@ function animateCartIcon() {
 <footer class="gamestore-footer">
   <div class="footer-content">
     
-    <div class="footer-col">
-      <h2 class="footer-logo">GAME<span>STORE88</span></h2>
+    <div class="footer-col footer-brand">
+      <div class="footer-logo-row">
+        <img src="/g88.png" alt="GameStore88 Logo" class="footer-logo-img-left">
+
+        <h2 class="footer-logo">GAME<span>88™</span></h2>
+      </div>
+
       <p class="footer-desc">
-        GameStore88 — A leading provider of genuine, official game titles. We deliver the best gaming experience at competitive and reasonable prices.
+        GameStore88 — A leading provider of genuine, official PLAYSTATION game titles. We deliver the best gaming experience at competitive and reasonable prices.
       </p>
+
       <p><i class="fas fa-phone"></i> <a href="tel:012 3456 7890">012 3456 7890</a></p>
       <p><i class="fas fa-envelope"></i> <a href="mailto:support@gamestore88.vn">support@gamestore88.vn</a></p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        227 Nguyen Van Cu, Cho Quan District, Ho Chi Minh City, Vietnam
+        <a href="https://maps.google.com/?q=123 Gaming Street, Ho Chi Minh City"></a>
+      </p>
     </div>
+
+    
 
     
     <div class="footer-col">
@@ -696,7 +709,7 @@ function animateCartIcon() {
       <ul>
         <li><a href="/">HomePage</a></li>
         <li><a href="/products/">Products</a></li>
-        <li><a href="/checkout/">Payment</a></li>
+        
         <li><a href="/about/">About</a></li>
       </ul>
     </div>
@@ -721,7 +734,6 @@ function animateCartIcon() {
 
 
 
-
     
     <div class="footer-col">
       <h3>Follow Us</h3>
@@ -732,7 +744,7 @@ function animateCartIcon() {
         <a href="https://www.youtube.com/@gamecuchay" target="_blank" class="social-btn youtube" title="YouTube">
           <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://discord.gg/JGBRw7ZT" target="_blank" class="social-btn discord" title="Discord">
+        <a href="https://discord.gg/JGBRw7Z" target="_blank" class="social-btn discord" title="Discord">
           <i class="fab fa-discord"></i>
         </a>
         <a href="https://www.tiktok.com/@gamestore88" target="_blank" class="social-btn tiktok" title="TikTok">
@@ -748,6 +760,11 @@ function animateCartIcon() {
     </div>
   </div>
 
+  <div class="sponsor-bottom">
+    <span>Sponsored by</span>
+    <img src="/playstation.png" class="sponsor-logo-bottom" alt="PlayStation">
+  </div>
+
   <div class="footer-bottom">
     <p>© 2025 GameStore88. All Rights Reserved.</p>
   </div>
@@ -757,6 +774,57 @@ function animateCartIcon() {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+.gamestore-footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  color: #d1d5db;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;  
+}
+
+ 
+.footer-logo-img-left {
+  width: 50px;
+  height: 40px;
+
+  object-fit: cover;
+  border-radius: 12px;               
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+ 
+.footer-logo {
+  font-size: 1.8rem;
+  color: #facc15;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer-logo span {
+  color: #3b82f6;
+}
+
+.footer-logo-img-left {
+  position: relative;
+  top: -6px;    
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: center;
+
+  --footer-logo-offset: 1px;     
+  position: relative;
+  top: var(--footer-logo-offset);
+}
+
  
 .gamestore-footer {
   background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
@@ -818,34 +886,42 @@ function animateCartIcon() {
 
 .footer-social {
   display: flex;
-  justify-content: center;  
-  align-items: center;      
-  gap: 1.2rem;              
-  margin: 1.2rem 0;         
+  justify-content: center;    
+  align-items: center;        
+  gap: 1.2rem;
+  margin: 1.5rem auto;        
+  width: 100%;                
+  text-align: center;
 }
 
-.footer-social {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
+ 
 .social-btn {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 1.3rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
+
+.social-btn i {
+  position: absolute;
+  inset: 0;                  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.2rem;         
+  line-height: 1;            
+
+  transform: translateY(1px);    
+}
+
 
  
 .social-btn::before {
@@ -970,7 +1046,47 @@ function animateCartIcon() {
 .footer-col ul, .footer-col p {
   text-align: center;
 }
+.footer-address {
+  color: #9ca3af;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
 
+.footer-address i {
+  color: #3b82f6;
+  margin-right: 6px;
+}
+
+.sponsor-bottom {
+  margin-top: -5rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 0.6rem;
+
+  text-align: center;
+  width: 100%;
+}
+
+.sponsor-bottom span {
+  font-size: 1.2rem;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+  color: #facc15;                      
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.45);
+}
+
+.sponsor-logo-bottom {
+  height: 30px;      
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+}
 
 </style>
 
