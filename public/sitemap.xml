@@ -80,6 +80,8 @@
   </url><url>
     <loc>http://localhost:1313/products/p005/</loc>
   </url><url>
+    <loc>http://localhost:1313/payment/success/</loc>
+  </url><url>
     <loc>http://localhost:1313/products/</loc>
   </url><url>
     <loc>http://localhost:1313/payment/</loc>
