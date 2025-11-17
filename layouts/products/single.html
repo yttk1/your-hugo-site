@@ -56,11 +56,33 @@
     </div>
   </div>
 
+
   <!-- 📝 Game Details -->
   <div class="game-details">
     <h1 class="game-title">{{ $p.title }}</h1>
     <p class="price">${{ printf "%.2f" $p.price }}</p>
 
+    <!-- <br> -->
+
+  <div class="buttons">
+      <button class="buy-now"
+        data-id="{{ $p.id }}"
+        data-title="{{ $p.title }}"
+        data-price="{{ $p.price }}"
+        data-img="{{ index $p.images 0 }}">
+        Buy Now
+      </button>
+      <button class="add-to-cart"
+        data-id="{{ $p.id }}"
+        data-title="{{ $p.title }}"
+        data-price="{{ $p.price }}"
+        data-img="{{ index $p.images 0 }}">
+        Add to Cart
+      </button>
+      <button class="share-btn" onclick="shareGame('{{ $p.title }}', '{{ .Permalink }}')">Share</button>
+    </div>
+
+    <br>
     <br>
 
     <!-- 📘 Game Info Section -->
@@ -86,7 +108,7 @@
 
     <br>
     <!-- 🛒 Buttons -->
-    <div class="buttons">
+    <!-- <div class="buttons">
       <button class="buy-now"
         data-id="{{ $p.id }}"
         data-title="{{ $p.title }}"
@@ -102,7 +124,7 @@
         Add to Cart
       </button>
       <button class="share-btn" onclick="shareGame('{{ $p.title }}', '{{ .Permalink }}')">Share</button>
-    </div>
+    </div> -->
   </div>
 </div>
 

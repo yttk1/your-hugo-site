@@ -27,7 +27,14 @@
     - "https://haloshop.vn/wp-content/uploads/2025/07/ELDEN-RING_ps5.webp"
     - "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/ss_3c41384a24d86dddd58a8f61db77f9dc0bfda8b5.1920x1080.jpg?t=1748630546"
     - "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/ss_e0316c76f8197405c1312d072b84331dd735d60b.1920x1080.jpg?t=1748630546"
-  long: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery."
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_3c41384a24d86dddd58a8f61db77f9dc0bfda8b5.1920x1080.jpg?t=1748630546"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_e0316c76f8197405c1312d072b84331dd735d60b.1920x1080.jpg?t=1748630546"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_ef61b771ee6b269b1f0cb484233e07a0bfb5f81b.1920x1080.jpg?t=1748630546"
+  long: "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring. Journey through the Lands Between, an epic world of fantasy and discovery. 
+    
+    The Lands Between are part of a vast continent where magnificent open fields and huge dungeons with complex and three-dimensional designs are seamlessly connected. As you explore, the joy of discovering unknown and overwhelming threats awaits you. Mastery of the terrain and knowledge of its secrets can help you overcome enemies and defeat formidable bosses or lead invading players into traps.
+    
+    Combat in ELDEN RING is simple to learn yet offers hidden depths of mastery. As you seek to become the Elden Lord, you’ll need to explore the balance between attacking and avoiding damage, use a wide variety of weapons, spells, & summons, and perfect your timing to take advantage of your opponents’ weaknesses."
   compatibility: "ps5"
 
 - id: "p003"
@@ -498,18 +505,25 @@
 
 - id: "p032"
   title: "Battlefield 6"
-  price: 59.99
+  price: 69.99
   developer: "Battlefield Studios"
   publisher: "Electronic Arts"
   release_date: "2025-10-10"
   modes: "Multiplayer"
   genres: ["Action","War","Shooter"]
-  trailer: "https://www.youtube.com/embed/k4nSLa8a588"
+  trailer: "https://www.youtube.com/embed/nMBBXqu0OLE"
   images:
     - "https://haloshop.vn/wp-content/uploads/2025/10/BATTLEFIELD-6-00.webp"
-    - "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1649240/ss_3c260834df0c87cfc9ac1b457d0ec0eb3b9f367c.1920x1080.jpg?t=1750956860"
-    - "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1649240/ss_a91854c29cee0b4975862d174f03ff374ae5e26c.1920x1080.jpg?t=1750956860"
-  long: "The ultimate all-out warfare experience. Fight in high-intensity infantry combat. Rip through the skies in aerial dogfights. Demolish your environment for a strategic advantage. Harness complete control over every action and movement using the Kinesthetic Combat System. In a war of tanks, fighter jets, and massive combat arsenals, the deadliest weapon is your squad. This is Battlefield 6."
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/a42a2caf3cb993befd5ef4eb9424934034538582/ss_a42a2caf3cb993befd5ef4eb9424934034538582.1920x1080.jpg?t=1762876911"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/60154977100255e746b8d11811669faf35a0ed1a/ss_60154977100255e746b8d11811669faf35a0ed1a.1920x1080.jpg?t=1762876911"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/2b7a53432782fed15ccd1dedcee725018c08b647/ss_2b7a53432782fed15ccd1dedcee725018c08b647.1920x1080.jpg?t=1762876911"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/ba5a595aee41922964bab3203af3e9edad2537c0/ss_ba5a595aee41922964bab3203af3e9edad2537c0.1920x1080.jpg?t=1762876911"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/d4c4abaf37abcb8f3d8da8b1328fe9911a9ad328/ss_d4c4abaf37abcb8f3d8da8b1328fe9911a9ad328.1920x1080.jpg?t=1762876911"
+  long: "The ultimate all-out warfare experience. Fight in high-intensity infantry combat. Rip through the skies in aerial dogfights. Demolish your environment for a strategic advantage. Harness complete control over every action and movement using the Kinesthetic Combat System. In a war of tanks, fighter jets, and massive combat arsenals, the deadliest weapon is your squad. This is Battlefield 6. 
+    
+    Fight in high-intensity infantry combat. Rip through the skies in aerial dogfights. Demolish your environment for a strategic advantage. Harness complete control over every action and movement using the Kinesthetic Combat System. In a war of tanks, fighter jets and massive combat arsenals, the deadliest weapon is your squad. This is Battlefield 6.
+    
+    Transform your surroundings for a strategic advantage. Destruction is more reactive, consistent and tactical than ever before — let nothing stand in your way to victory."   
   compatibility: "ps5"
 
 - id: "p033"
@@ -770,7 +784,14 @@
     - "https://images.pushsquare.com/3e136187a1eee/hollow-knight-silksong-cover.cover_large.jpg"
     - "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030300/26950369fe4b03c2268620eb9815c8a246aa0b06/ss_26950369fe4b03c2268620eb9815c8a246aa0b06.1920x1080.jpg?t=1756994410"
     - "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030300/09ccaa6c16f158f9df8298feb5d196098506a028/ss_09ccaa6c16f158f9df8298feb5d196098506a028.1920x1080.jpg?t=1756994410"
-  long: "The long-awaited sequel to Hollow Knight — control Hornet as she ascends through a haunted kingdom of silk and song, confronting deadly foes in sprawling metroidvania style."  
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1030300/856e33e755a0b9a785c645d116036516ea08812b/ss_856e33e755a0b9a785c645d116036516ea08812b.1920x1080.jpg?t=1756994410"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1030300/8e09f2b2eedd3fa9b4479dd5c26d8bdf60562478/ss_8e09f2b2eedd3fa9b4479dd5c26d8bdf60562478.1920x1080.jpg?t=1756994410"
+    - "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1030300/d20b045b8bdaea6ace2ca4170875772b439c2c2e/ss_d20b045b8bdaea6ace2ca4170875772b439c2c2e.1920x1080.jpg?t=1756994410"
+  long: "The long-awaited sequel to Hollow Knight — control Hornet as she ascends through a haunted kingdom of silk and song, confronting deadly foes in sprawling metroidvania style.
+    
+    As the lethal hunter Hornet, adventure through a kingdom ruled by silk and song! Captured and taken to this unfamiliar world, prepare to battle mighty foes and solve ancient mysteries as you ascend on a deadly pilgrimage to the kingdom’s peak.
+
+    Hollow Knight: Silksong is the epic sequel to Hollow Knight, the award winning action-adventure. Journey to all-new lands, discover new powers, battle vast hordes of bugs and beasts and uncover secrets tied to your nature and your past."  
   compatibility: "ps5"
 
 
